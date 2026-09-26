@@ -1,0 +1,14 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),P=require('./patch-model');
+const events={},sent=[];let receive;
+const ctx={window:{chrome:{webview:{postMessage:m=>sent.push(m),addEventListener:(_,fn)=>receive=fn}}},document:{addEventListener:(event,fn)=>events[event]=fn,querySelector:()=>({close(){}})},PatchRig:P,state:P.createStarter(),selected:null,chosenSlot:null,checkpoint(){},render(){},renderLibrary(){},renderEditor(){},toast(){},crypto:require('crypto').webcrypto};
+vm.runInNewContext(fs.readFileSync('slot-board.js','utf8'),ctx);ctx.SlotBoard=ctx.window.SlotBoard;ctx.SlotBoard.assign(ctx.state);
+vm.runInNewContext(fs.readFileSync('device-shelf.js','utf8'),ctx);const shelf=ctx.window.DeviceShelf;
+const pack={toneId:42,key:'amp',style:'tweed',colour:'#996644',tone:{id:42,title:'Custom <amp>',user:{username:'maker'}},models:[{id:1,name:'Clean',assetId:'clean.nam',available:true,rate:48000},{id:2,name:'Gain',assetId:'gain.nam',available:true,rate:48000}]};
+receive({data:{type:'ready'}});assert.equal(sent.at(-1).type,'toneLibrary');receive({data:{type:'toneLibrary',devices:[pack]}});
+assert.match(shelf.cards('Amps',''),/Custom &lt;amp&gt;/);assert.equal(shelf.cards('Cabs',''),'');
+const amp=ctx.state.blocks.find(b=>b.key==='amp'),edges=JSON.stringify(ctx.state.connections);ctx.state.scenes[0][amp.id].on=false;
+shelf.place(42,null,amp.id);assert.equal(amp.assetId,'clean.nam');assert.equal(JSON.stringify(ctx.state.connections),edges);assert.equal(ctx.state.scenes[0][amp.id].on,false);assert.ok(P.valid(ctx.state));
+const knobs=JSON.stringify(ctx.state.scenes);events.change({target:{id:'saved-model',value:'2'}});assert.equal(amp.assetId,'gain.nam');assert.equal(JSON.stringify(ctx.state.scenes),knobs);assert.match(shelf.selector(amp),/Gain/);
+events.change({target:{id:'device-look',value:'modern'}});assert.equal(sent.at(-1).type,'toneAppearance');assert.match(shelf.skin(amp,'face'),/skin-modern/);assert.equal(P.migrate(JSON.parse(JSON.stringify(ctx.state))).blocks.find(b=>b.id===amp.id).assetId,'gain.nam');
+ctx.SlotBoard.remove(ctx.state,amp.id);assert.equal(shelf.count(),1);shelf.place(42,{section:'amp',index:0});assert.equal(ctx.state.blocks.find(b=>b.key==='amp').assetId,'clean.nam');assert.ok(P.valid(ctx.state));
+console.log('PASS: saved pack replacement, offline variants, scene/routing preservation, appearance, patch reload and independent library lifetime.');

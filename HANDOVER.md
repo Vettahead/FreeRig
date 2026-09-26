@@ -1,3 +1,11 @@
+# Current update — alpha 04 saved TONE3000 devices
+
+Canonical portable build: releases/GuitarSuite-alpha-04/GuitarSuite.exe and matching win-x64 ZIP. Chris confirmed alpha 03.1 sign-in/individual download functions. Alpha 04 adds durable DeviceLibrary.cs manifest with alpha 03 sidecar recovery, one device per tone, grouped model variants, cached downloads, pedal capture DSP, cancellable sequential pack saving, and saved custom enclosure styles/colours. Save pack covers the selected architecture only, clearly labelled; additional architectures merge into the same tone. Official ZIP endpoint remains partner-only.
+
+UI modules device-shelf.js/css provide saved library cards, drag/replacement integration, offline Saved model selector and appearance controls. Deleting board instances retains library files. Scene knobs/bypass stay independent; model assets remain patch-wide per instance. Model switching uses the existing graph restart path and saved ASIO settings. Account tokens remain encrypted separately.
+
+Validation: six JS suites pass; native tests cover library grouping/restart/dedup/missing files/legacy recovery, cached download, mocked auth/IR download, DSP, real A2 model playback and captured pedal comparison against raw NAM output. Browser fixture verified saved replacement, variant picker and custom amp appearance. No real account pack download or ASIO listening test performed in this turn. Next: Chris opens alpha 04, saves one pack and tries Saved model switching while playing. Earlier implementation history below is historical.
+
 # Latest update — desktop alpha 03 / TONE3000
 
 Canonical build: releases/GuitarSuite-alpha-03.1/GuitarSuite.exe and matching ZIP. TONE3000 implementation commit 2047d3b; follow-up sets TLS 1.2 explicitly. Alpha 03.1 is separate because alpha 03 was already open. The compiled native HTTPS preflight also passed. New native Tone3000.cs contains PKCE Select flow, encrypted DPAPI token store and refresh, scoped authenticated HTTP and streamed model download with native validation. ToneIntegration.cs connects it to the selected amp/cab; tone3000.js renders splash/model picker/creator and licence information and block artwork. Existing alpha 02 volume, saved ASIO settings, automatic restart and replacements retained.

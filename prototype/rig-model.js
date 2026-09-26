@@ -7,6 +7,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function() {
   'use strict';
   const catalogue = [
+    {key:'nampedal',name:'Capture Pedal',type:'Pedals',icon:'↯',colour:'#8f7f9e',detail:'NAM pedal loader',params:[['Input trim',-24,24,0,'dB'],['Output',-30,12,0,'dB']]},
     {key:'gate',name:'Quiet Gate',type:'Utility',icon:'⊣',colour:'#a7b995',detail:'Noise gate',params:[['Threshold',-80,0,-54,'dB'],['Release',10,500,120,'ms']]},
     {key:'drive',name:'Moss Drive',type:'Pedals',icon:'↯',colour:'#bdcf80',detail:'Overdrive · DSP',params:[['Drive',0,10,4.2,''],['Tone',0,10,5.5,''],['Level',-24,12,0,'dB']]},
     {key:'amp',name:'British Bloom',type:'Amps',icon:'≋',colour:'#d6b77e',detail:'NAM A2 · Placeholder',params:[['Input trim',-24,24,0,'dB'],['Bass EQ',-12,12,1.5,'dB'],['Mid EQ',-12,12,0,'dB'],['Treble EQ',-12,12,2,'dB'],['Output',-30,6,-6,'dB']]},

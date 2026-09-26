@@ -63,6 +63,7 @@ sealed class Processor : IDisposable {
     if(model==IntPtr.Zero){bool clean=Block.key=="cleanamp";double soft=x>0?1-Math.Exp(-x):(-1+Math.Exp(x))*(clean?1:.8);double mix=clean?0:.15;x=soft*(1-mix)+Clamp(x,-1,1)*mix;dc+=.005*(x-dc);x=(x-dc)*(clean?.85:.7);}
     x*=Db(p[4]);break;
    case "cab": x=lp.Transform(hp.Transform((float)x))*Db(p[2]);break;
+   case "nampedal": x*=Db(model==IntPtr.Zero?p[0]+p[1]:p[1]);break;
    case "drive": x=Math.Tanh(x*(1+p[0]*3));tone+=(.015+p[1]*.025)*(x-tone);x=tone*Db(p[2])*.55;break;
    case "gate": double magnitude=Math.Abs(x);env+=(magnitude>env?.02:1-Math.Exp(-1.0/(rate*p[1]/1000)))*(magnitude-env);x*=Clamp(env/Math.Max(1e-8,Db(p[0])),0,1);break;
    case "compressor": double level=Math.Max(1e-8,Math.Abs(x));env+=(level>env?1-Math.Exp(-1.0/(rate*p[2]/1000)):1-Math.Exp(-1.0/(rate*.1)))*(level-env);double db=20*Math.Log10(Math.Max(1e-8,env));if(db>p[0])x*=Db((p[0]+(db-p[0])/p[1])-db);break;

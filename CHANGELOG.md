@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-09-26
+- Desktop alpha 04: added persistent TONE3000 devices with whole selected-architecture packs, offline model variants, amp/cab/pedal support, capture-pedal DSP, custom enclosure looks/colours, previous-download recovery, progress/cancellation and cached retry. Verified library and native audio regressions plus fixture UI; real pack download/listening check remains pending.
 - Defined Guitar Suite as a free desktop application for Chris and friends.
 - Recorded NAM A2, pedalboard, cabinet, presets and TONE3000 scope.
 - Planned a playable audio prototype before interface polish and distribution.

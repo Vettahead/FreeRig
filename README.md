@@ -3,11 +3,13 @@
 A free desktop guitar suite for Chris and friends, built around Neural Amp Modeler A2 with optional TONE3000 integration.
 
 ## Status
-Windows desktop alpha 03 and interface build 05 are implemented. Run releases/GuitarSuite-alpha-03.1/GuitarSuite.exe. The program hosts the existing UI locally, uses NAudio ASIO, includes two Amplitron-derived built-in amp voices and a filtered cabinet, and loads NAM models/cabinet WAV IRs through the compiled official NAM Core. No preview server is needed.
+Windows desktop alpha 04 and interface build 05 are implemented. Run releases/GuitarSuite-alpha-04/GuitarSuite.exe. The program hosts the existing UI locally, uses NAudio ASIO, includes two Amplitron-derived built-in amp voices and a filtered cabinet, and loads NAM models/cabinet WAV IRs through the compiled official NAM Core. No preview server is needed.
 
 The board has four slots before the amp and four after the cab, stacked amp/cab branches, plus buttons on the line and undoable off-board drag deletion. Four named scenes remain independent for parameters and bypass. Guitar Suite patch JSON import is implemented; model files are imported onto the selected amp/cab.
 
 Offline audio tests pass for the complete effects chain, amp voices, WaveNet/A2/LSTM models and WAV IR convolution. Chris has confirmed audible Mackie playback, but reported low volume. Alpha 02 adds a remembered master output, input/output meters, saved ASIO choices, automatic restart after edits, and device replacement by library drop or editor picker. Live verification of these fixes and latency/dropout checks remain pending. This alpha is mono-to-stereo, briefly restarts audio for graph changes, and has no tuner, MIDI or real recording yet. See [native/README.md](native/README.md) for setup, exact limits, build instructions and licences. Earlier interface sections below are historical and superseded where noted.
+
+Alpha 04 adds saved TONE3000 amp, cabinet and pedal devices. Save pack downloads all models in the selected architecture into one library entry; select a saved model in the lower details panel. Classic/tweed/modern looks and colours are customisable. Earlier alpha 03 downloads migrate automatically. Chris confirmed sign-in and individual downloads work; the new whole-pack workflow has fixture/native test coverage and awaits a live account check.
 
 ## First release scope
 - Real-time guitar input and output through an audio interface.
