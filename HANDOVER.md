@@ -1,3 +1,11 @@
+# Latest update — desktop alpha 02
+
+Canonical portable build: releases/GuitarSuite-alpha-02/GuitarSuite.exe (and matching ZIP). Alpha 01 remains untouched because Chris may be playing it. Close alpha 01 before opening alpha 02; select Mackie once in the new version. Alpha 02 saves driver/input/output/rate and master volume to the shared WebView local storage. Default master remains −12 dB; raise towards 0 dB to remove previous attenuation. Input/output meters and clipping indication added.
+
+Graph edits while running now stop and restart using the active ASIO configuration; failures leave audio stopped. This is not seamless and has not been retested on hardware. Library-to-existing-device drops and the editor Replace with picker preserve target ID/cables/slot and each scene bypass state, reset knobs to the new device defaults, and clear old asset references. Undo restores snapshots. Moving an existing board device retains the existing slot-swap behaviour.
+
+Chris reported hearing audio through Mackie Big Knob Studio+ but quiet everywhere; do not claim loudness resolved until he tests master output. Native master/ceiling tests, JS settings persistence/replacement tests passed, and browser picker was verified.
+
 # Handover — 26 September 2026
 
 Windows desktop alpha 01 + UI build 05 are ready. Canonical source: C:/Users/chris/Documents/GitHub/guitar-suite. The browser preview still runs from the staged Codex visualizations copy on port 4317. The standalone releases/GuitarSuite-alpha-01/GuitarSuite.exe needs no Node/server; it uses local WebView2 assets and C# ASIO/DSP plus GuitarNam.dll. No installer/remote Git repository yet.
@@ -8,6 +16,6 @@ Desktop code lives in native/. build.ps1 uses .NET Framework csc already on Wind
 
 Tests passed: all three JS suites; browser plus insertion, additional cab, off-board drag removal; native full gate/compressor/drive/amp/cab/chorus/delay/reverb chain, distinct amp voices, live scene update, cycle rejection, WaveNet/A2/LSTM loading and known IR convolution. No physical interface/audio output was activated. Next must be user guitar/interface listening and latency/dropout checks. Audio is deliberately stopped at launch. ASIO drivers on the PC include PreSonus families, FM3 and Valeton; installed does not mean connected.
 
-Important alpha limits: mono processing duplicated to stereo outputs; stereo IR downmix; fixed output trim/ceiling; no oversampling, full smoothing, spillover, MIDI, tuner, TONE3000 or actual looper. Graph/asset changes stop audio. Legacy A/B saved junctions remain visually preserved but native Graph rejects them explicitly; fresh native starter patch has no legacy junctions. Models require matching sample rates unless Core supports resampling. Keep audio/advanced routing milestones open until hardware tested.
+Important alpha limits: mono processing duplicated to stereo outputs; stereo IR downmix; adjustable output trim/ceiling; no oversampling, full smoothing, spillover, MIDI, tuner, TONE3000 or actual looper. Graph/asset changes stop audio. Legacy A/B saved junctions remain visually preserved but native Graph rejects them explicitly; fresh native starter patch has no legacy junctions. Models require matching sample rates unless Core supports resampling. Keep audio/advanced routing milestones open until hardware tested.
 
 Full licence and source links are in native/README.md; release includes required notices and Eigen source archive. No imported NAM captures are bundled. Do not claim the engine is production ready or that ASIO hardware has been verified. Mission Control bb78c32c-d021-44ed-b02c-0cad6ae65576.

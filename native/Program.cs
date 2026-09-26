@@ -12,6 +12,7 @@ namespace GuitarSuite {
 sealed class MainWindow : Form {
  readonly WebView2 web=new WebView2();readonly AudioEngine audio=new AudioEngine();readonly JavaScriptSerializer json=new JavaScriptSerializer{MaxJsonLength=4000000};
  readonly string data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"GuitarSuite"),assets;
+ string activeDriver;int activeInput,activeOutput,activeRate;
  Patch patch;string signature="",lastStatus="";readonly Timer timer=new Timer{Interval=250};
  public MainWindow(){Text="Guitar Suite — Desktop Alpha";Width=1440;Height=1000;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
   var environment=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,"WebView"));await web.EnsureCoreWebView2Async(environment);
@@ -21,7 +22,7 @@ sealed class MainWindow : Form {
   web.CoreWebView2.NewWindowRequested+=(s,e)=>{e.Handled=true;if(e.Uri.StartsWith("https://www.tone3000.com",StringComparison.OrdinalIgnoreCase))System.Diagnostics.Process.Start(e.Uri);};
   web.CoreWebView2.WebMessageReceived+=Receive;web.Source=new Uri("https://guitarsuite.local/index.html");timer.Start();
  }catch(Exception ex){MessageBox.Show(ex.Message,"Unable to start Guitar Suite");}};
- timer.Tick+=delegate{if(audio.Error!=null){string err=audio.Error;audio.Stop();audio.Error=null;Send(new{type="error",message=err});}string status=audio.Running?"ASIO running · "+audio.BufferSize+" samples":"Audio stopped";if(status!=lastStatus){lastStatus=status;Send(new{type="status",running=audio.Running,message=status});}if(audio.Running)Send(new{type="meter",peak=audio.Peak});};
+ timer.Tick+=delegate{if(audio.Error!=null){string err=audio.Error;audio.Stop();audio.Error=null;Send(new{type="error",message=err});}string status=audio.Running?"ASIO running · "+audio.BufferSize+" samples":"Audio stopped";if(status!=lastStatus){lastStatus=status;Send(new{type="status",running=audio.Running,message=status});}if(audio.Running)Send(new{type="meter",peak=audio.Peak,output=audio.OutputPeak,clipped=audio.TakeClip()});};
  FormClosing+=delegate{timer.Stop();audio.Dispose();};
  }
  void Send(object data){if(web.CoreWebView2!=null)web.CoreWebView2.PostWebMessageAsJson(json.Serialize(data));}
@@ -33,10 +34,13 @@ sealed class MainWindow : Form {
     string raw=json.Serialize(message["patch"]);Patch next=json.Deserialize<Patch>(raw);
     if(next==null||next.blocks==null||next.scenes==null||next.scene<0||next.scene>=next.scenes.Length)throw new Exception("Invalid patch data.");
     string nextSignature=json.Serialize(new{blocks=next.blocks,connections=next.connections,junctions=next.junctions});
-    if(nextSignature!=signature&&audio.Running){audio.Stop();Send(new{type="status",running=false,message="Routing changed. Press Start audio to use the new chain."});}
-    patch=next;signature=nextSignature;audio.Update(patch);return;
+    bool resume=nextSignature!=signature&&audio.Running;
+    if(resume)audio.Stop();
+    patch=next;signature=nextSignature;
+    if(resume){audio.Start(activeDriver,activeInput,activeOutput,activeRate,patch,assets);lastStatus="";}else audio.Update(patch);return;
    }
-   if(type=="start"){audio.Start((string)message["driver"],Convert.ToInt32(message["input"]),Convert.ToInt32(message["output"]),Convert.ToInt32(message["rate"]),patch,assets);lastStatus="";return;}
+   if(type=="start"){activeDriver=(string)message["driver"];activeInput=Convert.ToInt32(message["input"]);activeOutput=Convert.ToInt32(message["output"]);activeRate=Convert.ToInt32(message["rate"]);audio.Start(activeDriver,activeInput,activeOutput,activeRate,patch,assets);lastStatus="";return;}
+   if(type=="master"){audio.SetMaster(Convert.ToDouble(message["db"]));return;}
    if(type=="stop"){audio.Stop();lastStatus="";return;}
    if(type=="driver"){
     if(audio.Running)throw new Exception("Stop audio before changing driver settings.");using(var driver=new AsioOut((string)message["driver"])){

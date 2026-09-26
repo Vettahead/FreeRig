@@ -1,0 +1,11 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const saved=new Map([['guitar-suite-audio-choice',JSON.stringify({driver:'Mackie',input:1,output:2,rate:44100,inputName:'Guitar',outputName:'Phones'})]]),sent=[],events={},elements={};let receive;
+class Option{constructor(text,value){this.textContent=text;this.value=String(value);}}
+function select(){return {value:'0',selectedOptions:[new Option('Input 1',0)],replaceChildren(...options){this.selectedOptions=options.slice(0,1);this.value=options[0].value;},add(option){this.selectedOptions=[option];}};}
+function modal(){for(const id of ['audio-driver','audio-input','audio-output','audio-rate'])elements['#'+id]=select();elements['#audio-driver'].value='Other';elements['#audio-message']={};elements['#master-label']={};}
+const context={window:{chrome:{webview:{postMessage:m=>sent.push(m),addEventListener:(name,fn)=>receive=fn}}},document:{addEventListener:(name,fn)=>events[name]=fn,querySelector:()=>({innerHTML:''})},localStorage:{getItem:k=>saved.get(k)??null,setItem:(k,v)=>saved.set(k,v)},Option,modal,$:k=>elements[k],escapeHTML:String,renderLibrary(){},render(){},catalogue:[{key:'amp'},{key:'cleanamp'},{key:'cab'}],setTimeout,clearTimeout};
+vm.runInNewContext(fs.readFileSync(__dirname+'/desktop-bridge.js','utf8'),context);receive({data:{type:'ready',drivers:['Other','Mackie']}});const ui=context.window.NativeDesktop;ui.setup();assert.equal(elements['#audio-driver'].value,'Mackie');assert.equal(elements['#audio-input'].value,'1');assert.equal(elements['#audio-output'].value,'2');assert.equal(elements['#audio-rate'].value,'44100');
+elements['#audio-input'].value='3';events.change({target:{id:'audio-input'}});ui.setup();assert.equal(elements['#audio-input'].value,'3');assert.equal(JSON.parse(saved.get('guitar-suite-audio-choice')).input,3);
+events.input({target:{id:'master-output',value:'0'}});assert.equal(saved.get('guitar-suite-master-db'),'0');assert.equal(sent.at(-1).type,'master');assert.equal(sent.at(-1).db,0);
+receive({data:{type:'ready',drivers:['Other']}});ui.setup();assert.equal(elements['#audio-driver'].value,'Mackie');assert.match(elements['#audio-message'].textContent,/unavailable/);
+console.log('PASS: driver/channel/rate restoration, reopen persistence, master messaging and missing-driver handling.');

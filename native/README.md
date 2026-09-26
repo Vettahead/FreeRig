@@ -8,11 +8,14 @@ Run `GuitarSuite.exe` from the complete release folder. This is an actual x64 Wi
 2. Open **Audio setup**, select the manufacturer's ASIO driver, and press **Read channels**.
 3. Select the guitar input, a stereo output pair and 48 kHz. Use **Driver / buffer settings** for the manufacturer's buffer control; begin at 128 or 256 samples.
 4. Press **Start audio**. The default patch uses the included British crunch amp and a filtered cabinet. Silver Coast supplies the clean amp voice. These work without model downloads.
-5. Press **Stop audio** before changing hardware or chain wiring. Knobs, bypass and scenes update while running.
+5. Raise **Master output** in Audio setup gradually towards **0 dB** if playback is quiet. Input/output meters show levels; a warning appears when output hits its ceiling. The master setting is remembered.
+6. Driver, input, output and sample rate are remembered across dialog openings and launches. Choose them once in this update. Adding/removing/replacing gear automatically restarts running audio on the same interface, with a brief gap; audio stays stopped if rebuilding fails. Stop audio before changing hardware settings. Knobs, bypass and scenes update while running.
 
 ## Board and files
 
 Four effects slots sit before the amp section and four after the cab section. Empty slots show a +; choose gear there or drag from the library. Amps and cabs stack vertically, with extra cabs inheriting parallel source/output connections. Drag gear to another slot to change its drawing position; cables remain the authoritative processing order. Drag off the board to remove, with Undo available; neighbouring cables reconnect. Existing larger rigs keep their overflow devices rather than discarding them.
+
+Drag a library amp onto an existing amp to replace it in place. The selected device panel also has a **Replace with** picker: amps replace amps, cabs replace cabs, and pedals replace pedals. Cables, position and each scene’s bypass state remain; new device knobs reset to defaults, and the old model reference is removed. Undo restores the previous device and all its settings.
 
 Click an amp and **Import NAM (.nam)** to load a local capture. Click a cab and **Import cab IR (.wav)** to load an impulse response. The app validates the file, copies it to `%LOCALAPPDATA%/GuitarSuite/Library`, and links it to that device. **Use built-in** restores the default engine. Set the device sample rate to the model's training rate shown after import; unsupported rate conversions are rejected, not silently played at the wrong speed. NAM model versions supported by the pinned official Core include WaveNet, A2 and LSTM (covered by smoke tests).
 
@@ -20,13 +23,13 @@ Click an amp and **Import NAM (.nam)** to load a local capture. Click a cab and 
 
 ## Current limits
 
-- Early alpha, not yet tested with a connected guitar/audio interface. Installed driver names are discoverable; hardware latency, sound quality, dropout behaviour and hot-unplug recovery require a listening session.
+- Early alpha: Chris reports audible but quiet playback through a Mackie Big Knob Studio+. Installed driver names are discoverable; hardware latency, sound quality, dropout behaviour and hot-unplug recovery require a listening session.
 - Mono processing, duplicated to two ASIO outputs. Stereo IRs are downmixed. No stereo panning or latency compensation yet.
-- Routing changes stop audio so graphs/models can be rebuilt off the callback. Scene/bypass changes have a short bypass fade; complete parameter smoothing, spillover and seamless changes are not finished.
+- Routing changes briefly stop/restart running audio so graphs/models can be rebuilt off the callback. Failed changes leave audio stopped and show an error. Scene/bypass changes have a short bypass fade; complete parameter smoothing, spillover and seamless changes are not finished.
 - Old saved A/B splitter/mixer junctions remain visible and editable in the interface, but are explicitly refused by this first audio engine. Start with a fresh desktop patch or the example for audio testing.
 - A bypassed parallel branch passes dry audio; adjust routing to avoid unwanted dry duplication. Multiple paths sum at unity before the final output trim and ceiling.
 - Built-in effects are basic DSP implementations. Amps are an adapted clean/crunch subset of Amplitron, not exact emulations of commercial hardware. Cabinet default is filtering, not a bundled measured IR. No oversampling in this alpha.
-- Output has a fixed −12 dB trim and a hard ceiling; this is not a mastering limiter. Meters show input peak.
+- Master output adjusts from −30 to +12 dB, initially −12 dB, with a 10 ms gain ramp and a hard ceiling; this is not a mastering limiter. Meters show input and output peaks. 0 dB removes the original fixed attenuation.
 - TONE3000, MIDI, tuner, recording/looper and WASAPI remain unimplemented. Practice transport remains a visual preview.
 - Unsigned portable folder release. No installer, updates, account or subscription.
 
