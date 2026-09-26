@@ -9,5 +9,8 @@
   "cycfi-q": "6cd1aba653765bb66650cff457c0d2333fb4181f",
   "cycfi-infra": "62a88cab2278ac843765c986edfd4d7393ae3db2",
   "surge-spring": "4b642c903918b86320a2c6fb63886967ae203478",
-  "fmt": "10.2.1"
+  "fmt": "10.2.1",
+  "guitarix": "a4c561ad9d411748589287c3834f1b921726f3fa",
+  "signalsmith-stretch": "a670068d9aeb64913331d5cc29337b19a457a7df",
+  "signalsmith-linear": "de55e6a50ffcf6f8f43f649692d94691c7025151"
 }

@@ -14,7 +14,7 @@ sealed partial class MainWindow : Form {
  readonly string data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"GuitarSuite"),assets;
  string activeDriver;int activeInput,activeOutput,activeRate;
  Patch patch;string signature="",lastStatus="";readonly Timer timer=new Timer{Interval=100};
- public MainWindow(){Text="Guitar Suite — Desktop Alpha 05";Width=1440;Height=1000;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
+ public MainWindow(){Text="Guitar Suite — Desktop Alpha 06";Width=1440;Height=1000;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
   var environment=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,"WebView"));webEnvironment=environment;await web.EnsureCoreWebView2Async(environment);
   web.CoreWebView2.SetVirtualHostNameToFolderMapping("guitarsuite.local",Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui"),CoreWebView2HostResourceAccessKind.DenyCors);
   web.CoreWebView2.Settings.AreDevToolsEnabled=false;web.CoreWebView2.Settings.IsStatusBarEnabled=false;
@@ -42,6 +42,7 @@ sealed partial class MainWindow : Form {
    }
    if(type=="start"){activeDriver=(string)message["driver"];activeInput=Convert.ToInt32(message["input"]);activeOutput=Convert.ToInt32(message["output"]);activeRate=Convert.ToInt32(message["rate"]);audio.Start(activeDriver,activeInput,activeOutput,activeRate,patch,assets);lastStatus="";return;}
    if(type=="tuner"){audio.Tune(Convert.ToBoolean(message["enabled"]),Convert.ToBoolean(message["mute"]));return;}
+   if(type=="inputTrim"){audio.SetInput(Convert.ToDouble(message["db"]));return;}
    if(type=="master"){audio.SetMaster(Convert.ToDouble(message["db"]));return;}
    if(type=="stop"){audio.Stop();lastStatus="";return;}
    if(type=="driver"){
@@ -52,7 +53,7 @@ sealed partial class MainWindow : Form {
    if(type=="importAsset"){
     bool cab=(string)message["kind"]=="cab";using(var dialog=new OpenFileDialog{Title=cab?"Import cabinet impulse response":"Import NAM amp model",Filter=cab?"Cabinet IR (*.wav)|*.wav":"Neural Amp Modeler (*.nam)|*.nam",CheckFileExists=true}){
      if(dialog.ShowDialog(this)!=DialogResult.OK)return;var file=new FileInfo(dialog.FileName);if(file.Length>(cab?20000000:128000000))throw new Exception("This file is too large for the first desktop build.");
-     audio.Stop();IntPtr probe=Nam.gs_load(file.FullName,0,4096);if(probe==IntPtr.Zero)throw new Exception(Nam.Error);int rate=Nam.gs_rate(probe);if(rate<=0)rate=48000;Nam.gs_free(probe);
+     IntPtr probe=Nam.gs_load(file.FullName,0,4096);if(probe==IntPtr.Zero)throw new Exception(Nam.Error);int rate=Nam.gs_rate(probe);if(rate<=0)rate=48000;Nam.gs_free(probe);
      string id=Guid.NewGuid().ToString("N")+(cab?".wav":".nam");File.Copy(file.FullName,Path.Combine(assets,id));Send(new{type="asset",blockId=message["blockId"],assetId=id,assetName=file.Name,rate=rate});}return;
    }
    if(type=="importPatch"){using(var dialog=new OpenFileDialog{Title="Import Guitar Suite patch",Filter="Guitar Suite patch (*.json)|*.json",CheckFileExists=true}){if(dialog.ShowDialog(this)==DialogResult.OK){if(new FileInfo(dialog.FileName).Length>4000000)throw new Exception("Patch file is too large.");Send(new{type="patch",value=json.DeserializeObject(File.ReadAllText(dialog.FileName))});}}return;}

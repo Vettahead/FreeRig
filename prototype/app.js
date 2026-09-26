@@ -2,13 +2,13 @@
 const $ = (s) => document.querySelector(s);
 const {catalogue,clone}=PatchRig;
 const storageKey='guitar-suite-rig-v3';
-let state=PatchRig.createStarter(),saved=null,history=[],selected='b2',filter='All',dirty=false,toastTimer,loopTimer,pulseTimer,loopSeconds=0,pendingCable=null,chosenSlot=null;
+let state=PatchRig.createStarter(),saved=null,history=[],selected=null,filter='All',dirty=false,toastTimer,loopTimer,pulseTimer,loopSeconds=0,pendingCable=null,chosenSlot=null;
 try {
   const stored=JSON.parse(localStorage.getItem(storageKey)||localStorage.getItem('guitar-suite-rig-v2')||localStorage.getItem('guitar-suite-rig-v1'));
   const migrated=PatchRig.migrate(stored);if(migrated)state=migrated;
 }catch { /* A corrupt or unavailable save must not stop the editor. */ }
 SlotBoard.assign(state);saved=clone(state);
-if(!state.blocks.some(b=>b.id===selected))selected=state.blocks[0]?.id||null;
+if(selected&&!state.blocks.some(b=>b.id===selected))selected=null;
 const escapeHTML = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function toast(message){$('#toast').textContent=message;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),3500);}
 function checkpoint(){history.push(clone(state));if(history.length>40)history.shift();}
@@ -27,14 +27,14 @@ function render(){
   $('#rig-name').value=state.name;$('#tempo').value=state.tempo;$('#tempo-status').textContent=`${state.tempo} BPM`;$('#device-count').textContent=`${state.blocks.length} devices`;
   PatchUI.render(state,selected,pendingCable);
   $('#scenes').innerHTML=state.sceneNames.map((name,i)=>`<button class="scene ${state.scene===i?'active':''}" data-scene="${i}" aria-pressed="${state.scene===i}"><span class="scene-number">0${i+1}</span><span><strong>${escapeHTML(name)}</strong><small>${Object.values(state.scenes[i]).filter(v=>v.on).length} devices on</small></span></button>`).join('');
-  $('#stomps').innerHTML=state.blocks.map(b=>{const d=catalogue.find(x=>x.key===b.key);return `<button class="stomp ${current(b).on?'':'bypassed'}" data-stomp="${b.id}" style="--accent:${d.colour}" aria-pressed="${current(b).on}">${GearArt.svg(b.key,current(b).on)}<strong>${escapeHTML(b.tone3000?.title||d.name)}</strong><small>${current(b).on?'ON · CLICK TO BYPASS':'BYPASSED · CLICK TO ENABLE'}</small></button>`;}).join('');
+  $('#stomps').innerHTML=state.blocks.map(b=>{const d=catalogue.find(x=>x.key===b.key);return `<button class="stomp ${current(b).on?'':'bypassed'}" data-stomp="${b.id}" style="--accent:${d.colour}" aria-pressed="${current(b).on}">${GearLooks.art(b,current(b).on)}<strong>${escapeHTML(b.tone3000?.title||d.name)}</strong><small>${current(b).on?'ON · CLICK TO BYPASS':'BYPASSED · CLICK TO ENABLE'}</small></button>`;}).join('');
   renderEditor();mark();
 }
 function renderEditor(){
-  const b=state.blocks.find(x=>x.id===selected);if(!b){$('#editor').innerHTML='<div class="empty">Use a + on the signal line to add your first device.</div>';return;}
+  const b=state.blocks.find(x=>x.id===selected);$('#editor').hidden=!b;if(!b){$('#editor').innerHTML='';return;}
   const d=DeviceShelf.definition(b),v=current(b),index=state.blocks.indexOf(b);
   const note=NativeDesktop.installed()?'Desktop engine · '+(b.assetName||'Built-in sound')+' · '+state.sceneNames[state.scene]+' scene':d.type==='Amps'?'NAM capture placeholder · EQ and trims are external controls.':b.key==='cab'?'Cabinet placeholder · No impulse response loaded.':'Effect controls are saved in your rig · Audio processing is not connected.';
-  $('#editor').innerHTML=`<article class="editor" style="--accent:${d.colour}"><div class="editor-top"><div class="title"><span class="device-icon">${d.icon}</span><div><strong>${escapeHTML(d.name)}</strong><small>${escapeHTML(d.detail)} / ${escapeHTML(state.sceneNames[state.scene])} scene</small></div></div><div class="editor-actions"><label>Replace with <select id="replace-device" aria-label="Replace selected device">${catalogue.filter(item=>SlotBoard.compatible(b.key,item.key)).map(item=>`<option value="${item.key}" ${item.key===b.key&&!b.tone3000?'selected':''}>${item.name}</option>`).join('')}${DeviceShelf.options(b)}</select></label> <label>Move to <select id="device-slot" aria-label="Device slot">${SlotBoard.slots(state).map(slot=>`<option value="${slot.section}:${slot.index}" ${b.slot.section===slot.section&&b.slot.index===slot.index?'selected':''}>${SlotBoard.label(slot)}${slot.block&&slot.block.id!==b.id?' (swap)':''}</option>`).join('')}</select></label> <button id="remove" aria-label="Remove device" >✕</button></div></div>${NativeDesktop.controls(b)}${EffectTools.controls(b)}${DeviceShelf.selector(b)}<div class="editor-body">${NativeDesktop.face(d,b,v)}</div><div class="control-hint">Drag a knob up/down · Shift for fine adjustment · Click a value to type · Footswitch toggles bypass</div><div class="editor-note"><span>${escapeHTML(note)}</span><span>PATCH DEVICE / ${String(index+1).padStart(2,'0')}</span></div></article>`;
+  $('#editor').innerHTML=`<article class="editor" style="--accent:${d.colour}"><div class="editor-top"><div class="title"><span class="device-icon">${d.icon}</span><div><strong>${escapeHTML(d.name)}</strong><small>${escapeHTML(d.detail)} / ${escapeHTML(state.sceneNames[state.scene])} scene</small></div></div><div class="editor-actions"><label>Replace with <select id="replace-device" aria-label="Replace selected device">${catalogue.filter(item=>SlotBoard.compatible(b.key,item.key)).map(item=>`<option value="${item.key}" ${item.key===b.key&&!b.tone3000?'selected':''}>${item.name}</option>`).join('')}${DeviceShelf.options(b)}</select></label> <label>Move to <select id="device-slot" aria-label="Device slot">${SlotBoard.slots(state).map(slot=>`<option value="${slot.section}:${slot.index}" ${b.slot.section===slot.section&&b.slot.index===slot.index?'selected':''}>${SlotBoard.label(slot)}${slot.block&&slot.block.id!==b.id?' (replace)':''}</option>`).join('')}</select></label> <button id="close-editor" aria-label="Close device controls">Close</button><button id="remove" aria-label="Remove device" >✕</button></div></div>${NativeDesktop.controls(b)}${EffectTools.controls(b)}${DeviceShelf.selector(b)}<div class="editor-body">${NativeDesktop.face(d,b,v)}</div><div class="control-hint">Drag a knob up/down · Shift for fine adjustment · Click a value to type · Footswitch toggles bypass</div><div class="editor-note"><span>${escapeHTML(note)}</span><span>PATCH DEVICE / ${String(index+1).padStart(2,'0')}</span></div></article>`;
 }
 function addDevice(key,slot=chosenSlot){
   if(key.startsWith("pack:")){DeviceShelf.place(key.slice(5),slot);return;}
@@ -43,16 +43,14 @@ function addDevice(key,slot=chosenSlot){
   const slots=SlotBoard.slots(state),section=def.type==='Amps'?'amp':key==='cab'?'cab':'pre';
   slot=slot||slots.find(s=>s.section===section&&!s.block)||slots.find(s=>s.section==='post'&&!s.block);
   if(!slot||slots.some(s=>s.section===slot.section&&s.index===slot.index&&s.block)){toast('Choose an empty + slot first.');return;}
-  if((slot.section==='amp'&&def.type!=='Amps')||(slot.section==='cab'&&key!=='cab')||(['pre','post'].includes(slot.section)&&['Amps','Cabs'].includes(def.type))){toast('Choose the matching amp, cab or effects slot.');return;}
   checkpoint();const block={id:'b'+crypto.randomUUID(),key,x:0,y:0};SlotBoard.add(state,block,slot);selected=block.id;chosenSlot=null;$('#modal').close();render();toast('Device added to '+SlotBoard.label(slot)+'.');
 }
 function moveDevice(id,slot){const block=state.blocks.find(b=>b.id===id);if(!slot||!block)return;const type=PatchRig.definition(block.key).type;
-  if((slot.section==='amp'&&type!=='Amps')||(slot.section==='cab'&&type!=='Cabs')||(['pre','post'].includes(slot.section)&&['Amps','Cabs'].includes(type))){toast('Use an effects, amp or cab slot to match the device.');return;}
-  checkpoint();SlotBoard.move(state,id,slot);selected=id;render();
+  checkpoint();selected=SlotBoard.move(state,id,slot,state.keepCables===true);render();
 }
 function replaceDevice(id,key){if(key.startsWith("pack:")){DeviceShelf.place(key.slice(5),null,id);return;}const b=state.blocks.find(b=>b.id===id);if(!b||!SlotBoard.compatible(b.key,key)){toast('Choose an amp, cab or pedal to match this device.');return;}checkpoint();SlotBoard.replace(state,id,key);selected=id;render();toast('Device replaced. Cables and scene bypass states kept. Undo restores the previous sound.');}
  function removeDevice(id){checkpoint();SlotBoard.remove(state,id);selected=state.blocks[0]?.id||null;pendingCable=null;render();toast('Device removed. Its neighbours stay connected. Undo restores it.');}
-function chooseSlot(value){const [section,index]=value.split(':');chosenSlot={section,index:Number(index)};const items=catalogue.filter(d=>section==='amp'?d.type==='Amps':section==='cab'?d.type==='Cabs':!['Amps','Cabs'].includes(d.type));modal('ADD / '+SlotBoard.label(chosenSlot).toUpperCase(),'<h2>Choose your sound.</h2><div class="slot-picker">'+items.map(d=>'<button data-picker="'+d.key+'">'+GearArt.svg(d.key)+'<strong>'+d.name+'</strong><small>'+libraryCategory(d)+'</small></button>').join('')+'</div>');}
+function chooseSlot(value){const [section,index]=value.split(':');chosenSlot={section,index:Number(index)};const items=catalogue;modal('ADD / '+SlotBoard.label(chosenSlot).toUpperCase(),'<h2>Choose your sound.</h2><div class="slot-picker">'+items.map(d=>'<button data-picker="'+d.key+'">'+GearArt.svg(d.key)+'<strong>'+d.name+'</strong><small>'+libraryCategory(d)+'</small></button>').join('')+'</div>');}
 function cable(from,to){if(!PatchRig.canConnect(state,from,to)){toast('That cable is already connected, invalid, or would create a feedback loop.');return false;}checkpoint();PatchRig.connect(state,from,to);pendingCable=null;render();toast('Cable connected — shared by every scene.');return true;}
 function openCables(){modal('PATCH / SHARED WIRING',PatchUI.controls(state));}
 
@@ -71,14 +69,14 @@ $('#chain').onclick=e=>{
   if(e.target.closest('[data-legacy]')){state.legacy.scene=state.scene;modal('SAVED ROUTING SETTINGS',RoutingUI.controls(state.legacy));}
 };
 function destination(e){return PatchUI.destination(e);}
-$('#editor').onclick=e=>{const button=e.target.closest('button');if(!button)return;if(button.id==='bypass')toggle(selected);if(button.id==='remove')removeDevice(selected);};
+$('#editor').onclick=e=>{const button=e.target.closest('button');if(!button)return;if(button.id==='close-editor'){selected=null;render();return;}if(button.id==='bypass')toggle(selected);if(button.id==='remove')removeDevice(selected);};
 $('#editor').addEventListener('change',e=>{if(e.target.id==='replace-device'){replaceDevice(selected,e.target.value);return;}if(e.target.id==='device-slot'){const [section,index]=e.target.value.split(':');moveDevice(selected,{section,index:Number(index)});}});
 $('#routing-bar').onclick=e=>{
   if(e.target.closest('#wire-list'))openCables();
   if(e.target.closest('#arrange')){checkpoint();PatchRig.arrange(state);render();}
   if(e.target.closest('#routing-example'))modal('EXAMPLE PATCH','<h2>Echo around the amp.</h2><p>The drive output splits: one cable goes through the amp, the other through a delay. Both join at the cabinet. The delay starts at 100% wet. This replaces your open patch; Undo restores it. Your saved patch stays unchanged until Save.</p><button id="confirm-template" class="primary">Load pre-amp delay example</button>');
 };
-$('#routing-bar').onchange=e=>{if(e.target.id==='board-zoom'){$('#chain').dataset.zoom=e.target.value;PatchUI.render(state,selected,pendingCable);}};
+$('#routing-bar').onchange=e=>{if(e.target.id==='keep-cables'){state.keepCables=e.target.checked;mark();return;}if(e.target.id==='board-zoom'){$('#chain').dataset.zoom=e.target.value;PatchUI.render(state,selected,pendingCable);}};
 $('#rename-scene').onclick=()=>modal('SCENE NAME','<h2>Name this scene.</h2><label>Scene name<input id="scene-name" maxlength="24" value="'+escapeHTML(state.sceneNames[state.scene])+'"></label><button id="apply-scene-name" class="primary">Rename scene</button>');
 $('#copy-scene').onclick=()=>modal('COPY SCENE','<h2>Copy '+escapeHTML(state.sceneNames[state.scene])+'.</h2><p>Replace another scene’s knob settings and bypass states. Its name and the patch wiring stay as they are. Undo can restore it.</p><label>Destination scene<select id="scene-destination">'+state.sceneNames.map((name,i)=>i===state.scene?'':'<option value="'+i+'">'+escapeHTML(name)+'</option>').join('')+'</select></label><button id="apply-copy-scene" class="primary">Copy settings</button>');
 $('#modal-content').addEventListener('click',e=>{
@@ -98,7 +96,7 @@ function updateRoutingControl(e){
 }
 $('#modal-content').addEventListener('input',updateRoutingControl);
 $('#modal-content').addEventListener('change',updateRoutingControl);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&pendingCable){pendingCable=null;PatchUI.render(state,selected);}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&selected&&!$('#modal').open&&!pendingCable){selected=null;render();}if(e.key==='Escape'&&pendingCable){pendingCable=null;PatchUI.render(state,selected);}});
 
 // Keep range elements mounted during pointer and keyboard interaction.
 let parameterEditing=false;

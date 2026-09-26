@@ -1,6 +1,614 @@
 /* Generated from the compiled native parameter catalogue. */
 (function(root){const data=[
   {
+    "key": "fx-ShimmerHall",
+    "latency": 0,
+    "params": [
+      [
+        "Decay",
+        0.2,
+        10,
+        6,
+        "s"
+      ],
+      [
+        "Shimmer",
+        0,
+        100,
+        45,
+        "%"
+      ],
+      [
+        "High cut",
+        1000,
+        16000,
+        7000,
+        "Hz"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Pitch",
+        -12,
+        24,
+        12,
+        "semitones"
+      ]
+    ],
+    "name": "Shimmer Hall",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Signalsmith / Dragonfly",
+    "detail": "Reverb · Signalsmith / Dragonfly",
+    "icon": "✧",
+    "colour": "#b597cb",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Octave sky",
+        "values": [
+          6,
+          45,
+          7000,
+          30,
+          12
+        ]
+      },
+      {
+        "name": "Fifth cloud",
+        "values": [
+          8,
+          65,
+          5500,
+          42,
+          7
+        ]
+      },
+      {
+        "name": "Low octave haze",
+        "values": [
+          5,
+          50,
+          4500,
+          30,
+          -12
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-SurgeFloaty",
+    "latency": 16,
+    "params": [
+      [
+        "Time",
+        20,
+        2000,
+        450,
+        "ms"
+      ],
+      [
+        "Playrate",
+        -5,
+        5,
+        1,
+        ""
+      ],
+      [
+        "Feedback",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "Cutoff",
+        20,
+        18000,
+        8000,
+        "Hz"
+      ],
+      [
+        "Resonance",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Rate",
+        0.02,
+        12,
+        0.5,
+        "Hz"
+      ],
+      [
+        "Width",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Pitch Depth",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Filter Depth",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Low Cut",
+        20,
+        18000,
+        80,
+        "Hz"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        30,
+        "%"
+      ]
+    ],
+    "name": "Warp Echo",
+    "type": "Pedals",
+    "category": "Delay",
+    "engine": "Surge",
+    "detail": "Delay · Surge",
+    "icon": "≈",
+    "colour": "#69afb5",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          450,
+          1,
+          25,
+          8000,
+          50,
+          0.5,
+          0,
+          0,
+          0,
+          80,
+          30
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          450,
+          1,
+          33.75,
+          8000,
+          50,
+          0.5,
+          0,
+          0,
+          0,
+          80,
+          48
+        ]
+      },
+      {
+        "name": "Reverse wash",
+        "values": [
+          450,
+          -1,
+          40,
+          8000,
+          50,
+          0.5,
+          0,
+          0,
+          0,
+          80,
+          45
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-SurgeReverb",
+    "latency": 16,
+    "params": [
+      [
+        "Pre-Delay",
+        4,
+        200,
+        25,
+        "ms"
+      ],
+      [
+        "Room Size",
+        -100,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Decay Time",
+        0.1,
+        32,
+        4,
+        "s"
+      ],
+      [
+        "Diffusion",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Buildup",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Modulation",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "LF Damping",
+        0,
+        100,
+        20,
+        "%"
+      ],
+      [
+        "HF Damping",
+        0,
+        100,
+        20,
+        "%"
+      ],
+      [
+        "Width",
+        -24,
+        24,
+        0,
+        "dB"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        30,
+        "%"
+      ]
+    ],
+    "name": "Modulated Space",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Surge",
+    "detail": "Reverb · Surge",
+    "icon": "✧",
+    "colour": "#b597cb",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          25,
+          0,
+          4,
+          100,
+          100,
+          50,
+          20,
+          20,
+          0,
+          30
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          25,
+          0,
+          5.4,
+          100,
+          100,
+          50,
+          20,
+          20,
+          0,
+          48
+        ]
+      },
+      {
+        "name": "Long cloud",
+        "values": [
+          25,
+          20,
+          8,
+          100,
+          100,
+          50,
+          20,
+          20,
+          0,
+          45
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-GXOrange",
+    "latency": 31,
+    "params": [
+      [
+        "Level",
+        -20,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "Tone",
+        0,
+        1,
+        0.5,
+        ""
+      ],
+      [
+        "Drive",
+        0,
+        1,
+        0.4,
+        ""
+      ]
+    ],
+    "name": "Orange Distortion",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Guitarix",
+    "detail": "Drive · Guitarix",
+    "icon": "↯",
+    "colour": "#be8b55",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0,
+          0.5,
+          0.4
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0,
+          0.5,
+          0.4
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-GXPlus",
+    "latency": 31,
+    "params": [
+      [
+        "Volume",
+        0,
+        1,
+        0.5,
+        ""
+      ],
+      [
+        "Drive",
+        0,
+        1,
+        0.5,
+        ""
+      ]
+    ],
+    "name": "Distortion Plus",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Guitarix",
+    "detail": "Drive · Guitarix",
+    "icon": "↯",
+    "colour": "#be8b55",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75,
+          0.5
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-GXFuzz",
+    "latency": 31,
+    "params": [
+      [
+        "Fuzz",
+        0,
+        1,
+        0.5,
+        ""
+      ],
+      [
+        "Level",
+        0,
+        1,
+        0.5,
+        ""
+      ]
+    ],
+    "name": "Round Fuzz",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Guitarix",
+    "detail": "Drive · Guitarix",
+    "icon": "↯",
+    "colour": "#be8b55",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75,
+          0.5
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-GXMuff",
+    "latency": 31,
+    "params": [
+      [
+        "Tone",
+        0,
+        1,
+        0.5,
+        ""
+      ],
+      [
+        "Volume",
+        0,
+        1,
+        0.5,
+        ""
+      ]
+    ],
+    "name": "Sustain Fuzz",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Guitarix",
+    "detail": "Drive · Guitarix",
+    "icon": "↯",
+    "colour": "#be8b55",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75,
+          0.5
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-GXScream",
+    "latency": 31,
+    "params": [
+      [
+        "Drive",
+        0,
+        1,
+        0.5,
+        ""
+      ]
+    ],
+    "name": "Scream Drive",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Guitarix",
+    "detail": "Drive · Guitarix",
+    "icon": "↯",
+    "colour": "#be8b55",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-GXSoft",
+    "latency": 31,
+    "params": [
+      [
+        "Fuzz",
+        0,
+        1.99,
+        1.5,
+        ""
+      ]
+    ],
+    "name": "Soft Clip",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Guitarix",
+    "detail": "Drive · Guitarix",
+    "icon": "↯",
+    "colour": "#be8b55",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          1.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          1.99
+        ]
+      }
+    ]
+  },
+  {
     "key": "fx-Spring",
     "latency": 16,
     "params": [

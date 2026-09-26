@@ -1,0 +1,836 @@
+[
+  {
+    "key": "ShimmerHall",
+    "presets": [
+      {
+        "name": "Octave sky",
+        "values": [
+          6,
+          45,
+          7000,
+          30,
+          12
+        ]
+      },
+      {
+        "name": "Fifth cloud",
+        "values": [
+          8,
+          65,
+          5500,
+          42,
+          7
+        ]
+      },
+      {
+        "name": "Low octave haze",
+        "values": [
+          5,
+          50,
+          4500,
+          30,
+          -12
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SurgeFloaty",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          450,
+          1,
+          25,
+          8000,
+          50,
+          0.5,
+          0,
+          0,
+          0,
+          80,
+          30
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          450,
+          1,
+          33.75,
+          8000,
+          50,
+          0.5,
+          0,
+          0,
+          0,
+          80,
+          48
+        ]
+      },
+      {
+        "name": "Reverse wash",
+        "values": [
+          450,
+          -1,
+          40,
+          8000,
+          50,
+          0.5,
+          0,
+          0,
+          0,
+          80,
+          45
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SurgeReverb",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          25,
+          0,
+          4,
+          100,
+          100,
+          50,
+          20,
+          20,
+          0,
+          30
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          25,
+          0,
+          5.4,
+          100,
+          100,
+          50,
+          20,
+          20,
+          0,
+          48
+        ]
+      },
+      {
+        "name": "Long cloud",
+        "values": [
+          25,
+          20,
+          8,
+          100,
+          100,
+          50,
+          20,
+          20,
+          0,
+          45
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GXOrange",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0,
+          0.5,
+          0.4
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0,
+          0.5,
+          0.4
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GXPlus",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75,
+          0.5
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GXFuzz",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75,
+          0.5
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GXMuff",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75,
+          0.5
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GXScream",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          0.75
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GXSoft",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          1.5
+        ]
+      },
+      {
+        "name": "Pushed",
+        "values": [
+          1.99
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Spring",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          50,
+          50,
+          70,
+          50,
+          50,
+          0,
+          25
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          50,
+          67.5,
+          70,
+          50,
+          50,
+          0,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DiffuseDelay",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          380,
+          35,
+          45,
+          35,
+          28
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          380,
+          47.25,
+          45,
+          35,
+          44.800000000000004
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SurgeDelay",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          380,
+          380,
+          25,
+          0,
+          80,
+          8000,
+          0.5,
+          40,
+          0,
+          0,
+          30,
+          0
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          380,
+          570,
+          33.75,
+          35,
+          80,
+          8000,
+          0.5,
+          40,
+          0,
+          0,
+          48,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TapeDelay2",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          40,
+          30,
+          50,
+          0,
+          12,
+          25
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          40,
+          40.5,
+          50,
+          0,
+          12,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Doublelay",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          20,
+          20,
+          30,
+          25,
+          30
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          20,
+          20,
+          30,
+          25,
+          48
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PitchDelay",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          40,
+          25,
+          50,
+          0,
+          58,
+          25
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          40,
+          33.75,
+          50,
+          0,
+          58,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PurestEcho",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          35,
+          30,
+          20,
+          12,
+          8
+        ]
+      },
+      {
+        "name": "Wide repeats",
+        "values": [
+          52.5,
+          30,
+          20,
+          12,
+          8
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DragonHall",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          2.5,
+          100,
+          8000,
+          25
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          3.375,
+          100,
+          8000,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DragonRoom",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          2.5,
+          100,
+          8000,
+          25
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          3.375,
+          100,
+          8000,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DragonPlate",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          2.5,
+          100,
+          8000,
+          25
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          3.375,
+          100,
+          8000,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Galactic3",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          50,
+          50,
+          35,
+          100,
+          80,
+          30
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          50,
+          50,
+          35,
+          100,
+          80,
+          48
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CreamCoat",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          50,
+          50,
+          100,
+          0,
+          25
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          50,
+          67.5,
+          100,
+          0,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kCathedral5",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          50,
+          60,
+          24,
+          50,
+          50,
+          25
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          67.5,
+          60,
+          24,
+          50,
+          50,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kGuitarHall2",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          45,
+          60,
+          50,
+          50,
+          50,
+          25
+        ]
+      },
+      {
+        "name": "Deep space",
+        "values": [
+          60.75000000000001,
+          60,
+          50,
+          50,
+          50,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "StereoChorus",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          30,
+          40
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          45,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "key": "StereoEnsemble",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          45,
+          55
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          67.5,
+          55
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SurgeFlanger",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0,
+          0,
+          0.5,
+          40,
+          4,
+          60,
+          0,
+          25,
+          10,
+          0,
+          30
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          0,
+          0,
+          0.5,
+          40,
+          4,
+          60,
+          0,
+          33.75,
+          10,
+          0,
+          48
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SurgePhaser",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0,
+          0,
+          0,
+          0.5,
+          40,
+          40,
+          30,
+          0,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          0,
+          0,
+          0,
+          0.5,
+          40,
+          40,
+          48,
+          0,
+          4,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SurgeRotary",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          0.5,
+          40,
+          40,
+          0.7,
+          0,
+          0,
+          0,
+          30
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          0.5,
+          40,
+          40,
+          0.7,
+          0,
+          0,
+          0,
+          48
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Vibrato",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          30,
+          25,
+          40,
+          0,
+          100
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          30,
+          25,
+          40,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Tremolo",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          45,
+          50
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          67.5,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AutoPan",
+    "presets": [
+      {
+        "name": "Balanced",
+        "values": [
+          25,
+          50,
+          60,
+          70
+        ]
+      },
+      {
+        "name": "Deep movement",
+        "values": [
+          25,
+          50,
+          60,
+          100
+        ]
+      }
+    ]
+  }
+]

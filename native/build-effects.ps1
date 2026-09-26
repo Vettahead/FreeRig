@@ -4,7 +4,7 @@ $vendor=Join-Path $PSScriptRoot 'vendor'
 $out=Join-Path $PSScriptRoot 'dist'
 $obj=Join-Path $PSScriptRoot 'deps/fx-objects'
 New-Item -ItemType Directory -Force $obj,$out | Out-Null
-$includes=@($PSScriptRoot,($vendor+'/airwindows'),($vendor+'/fmt'),($vendor+'/sst-waveshapers'),($vendor+'/cycfi-q'),($vendor+'/cycfi-infra'),($vendor+'/dragonfly/common'),($vendor+'/sst-effects/include'),($vendor+'/sst-basic-blocks/include'),($vendor+'/sst-filters/include'),($PSScriptRoot+'/deps/nam-core/Dependencies/nlohmann')) | ForEach-Object {'-I'+$_}
+$includes=@($PSScriptRoot,($vendor+'/airwindows'),($vendor+'/guitarix'),($vendor+'/fmt'),($vendor+'/sst-waveshapers'),($vendor+'/cycfi-q'),($vendor+'/cycfi-infra'),($vendor+'/dragonfly/common'),($vendor+'/sst-effects/include'),($vendor+'/sst-basic-blocks/include'),($vendor+'/sst-filters/include'),($PSScriptRoot+'/deps/nam-core/Dependencies/nlohmann')) | ForEach-Object {'-I'+$_}
 $sources=@(Get-ChildItem ($vendor+'/airwindows') -Recurse -Filter '*.cpp';Get-ChildItem ($vendor+'/dragonfly') -Recurse -Filter '*.cpp';Get-ChildItem $PSScriptRoot -Filter 'effects_*.cpp')
 $sources=$sources | Where-Object { $_.FullName -notmatch 'freeverb' -or $_.BaseName -in @('allpass','biquad','comb','delay','delayline','earlyref','efilter','nrev','nrevb','progenitor','progenitor2','revbase','slot','strev','utils','zrev','zrev2') }
 $objects=@()
@@ -22,9 +22,3 @@ if($LASTEXITCODE -ne 0){throw 'Effects metadata build failed'}
 & ($obj+'/dump.exe') | Set-Content -Encoding utf8 ($PSScriptRoot+'/effects-catalogue.json')
 if($LASTEXITCODE -ne 0){throw 'Effects metadata export failed'}
 Write-Output 'Built GuitarEffects.dll and effects-catalogue.json'
-
-
-
-
-
-

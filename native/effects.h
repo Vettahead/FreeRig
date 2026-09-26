@@ -18,3 +18,5 @@ std::unique_ptr<Effect> makeDragonHall(int);
 std::unique_ptr<Effect> makeDragonRoom(int);
 std::unique_ptr<Effect> makeDragonPlate(int);
 std::unique_ptr<Effect> makeSpring(int rate); std::unique_ptr<Effect> makeDiffuse(int rate);
+std::unique_ptr<Effect> makeGuitarix(const std::string&,int);
+std::unique_ptr<Effect> makeShimmer(int);

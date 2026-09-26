@@ -20,19 +20,40 @@ window.SlotBoard=(()=>{
     for(let index=0;index<count;index++){const span=cols.length;list.push({section,index,x:30+cols[index%span]*170,y:100+Math.floor(index/span)*220,block:used.find(b=>b.slot.index===index)});}
   }return list;}
   function label(slot){return ({pre:'Before amp',amp:'Amp',cab:'Cab',post:'After cab'})[slot.section]+(slot.section==='pre'||slot.section==='post'?' '+(slot.index+1):slot.index?' '+(slot.index+1):'');}
-  function move(s,id,slot){const b=s.blocks.find(b=>b.id===id);if(!b)return;const other=s.blocks.find(b=>b.id!==id&&b.slot.section===slot.section&&b.slot.index===slot.index);if(other)other.slot={...b.slot};b.slot={section:slot.section,index:slot.index};assign(s);}
+  const order=b=>({pre:0,amp:100,cab:200,post:300}[b.slot.section])+b.slot.index;
+  function insert(s,b){
+    // Insert ahead of the next physical device, preserving its incoming branches.
+    // The detached device has no edges, so this cannot introduce feedback.
+    const next=s.blocks.filter(n=>n.id!==b.id&&order(n)>order(b)).sort((a,c)=>order(a)-order(c))[0]?.id||'output';
+    const edges=s.connections.filter(e=>e[1]===next);
+    s.connections=s.connections.filter(e=>e[1]!==next);
+    for(const edge of edges)PatchRig.connect(s,edge[0],b.id);
+    if(!edges.length)PatchRig.connect(s,'input',b.id);
+    PatchRig.connect(s,b.id,next);
+  }
+  function move(s,id,slot,keepCables=false){
+    const b=s.blocks.find(b=>b.id===id);if(!b)return null;
+    if(b.slot.section===slot.section&&b.slot.index===slot.index)return id;
+    const other=s.blocks.find(n=>n.id!==id&&n.slot.section===slot.section&&n.slot.index===slot.index);
+    if(other){
+      // Move the complete sound into the target's place, retaining target wiring.
+      const settings=s.scenes.map(scene=>PatchRig.clone(scene[id]));
+      const targetId=other.id,targetSlot={...other.slot};remove(s,id);
+      Object.keys(other).forEach(k=>delete other[k]);Object.assign(other,b,{id:targetId,slot:targetSlot});
+      s.scenes.forEach((scene,i)=>scene[targetId]=settings[i]);assign(s);return targetId;
+    }
+    if(!keepCables){const settings=s.scenes.map(scene=>PatchRig.clone(scene[id]));remove(s,id);s.blocks.push(b);s.scenes.forEach((scene,i)=>scene[id]=settings[i]);}
+    b.slot={section:slot.section,index:slot.index};assign(s);if(!keepCables)insert(s,b);return id;
+  }
   function add(s,b,slot){
     b.slot={section:slot.section,index:slot.index};s.blocks.push(b);s.scenes.forEach(scene=>scene[b.id]=PatchRig.valuesFor(b));assign(s);
     // Additional cabs share the first cab's source/destination, creating a branch.
     const peer=slot.section==='cab'&&s.blocks.find(n=>n.key==='cab'&&n.id!==b.id);
     if(peer){const edges=[...s.connections];edges.filter(e=>e[1]===peer.id).forEach(e=>PatchRig.connect(s,e[0],b.id));edges.filter(e=>e[0]===peer.id).forEach(e=>PatchRig.connect(s,b.id,e[1]));return;}
-    const ordered=s.blocks.filter(n=>n.slot.index<4||['amp','cab'].includes(n.slot.section)).sort((a,c)=>a.x-c.x||a.y-c.y),i=ordered.indexOf(b),previous=ordered[i-1]?.id||'input',next=ordered[i+1]?.id||'output';
-    const edge=s.connections.findIndex(e=>e[0]===previous&&e[1]===next);
-    if(edge>=0){s.connections.splice(edge,1);PatchRig.connect(s,previous,b.id);PatchRig.connect(s,b.id,next);}
-    else if(s.blocks.length===1){PatchRig.connect(s,'input',b.id);PatchRig.connect(s,b.id,'output');}
+    insert(s,b);
   }
   function remove(s,id){const incoming=s.connections.filter(e=>e[1]===id).map(e=>e[0]),outgoing=s.connections.filter(e=>e[0]===id).map(e=>e[1]);PatchRig.remove(s,id);for(const a of incoming)for(const b of outgoing)PatchRig.connect(s,a,b);assign(s);}
-  function compatible(a,b){const group=key=>{const d=PatchRig.definition(key);return !d?null:d.type==='Amps'?'amp':d.type==='Cabs'?'cab':'effect';};return group(a)!==null&&group(a)===group(b);}
+  function compatible(a,b){return !!PatchRig.definition(a)&&!!PatchRig.definition(b);}
   function replace(s,id,key){const b=s.blocks.find(n=>n.id===id);if(!b||!compatible(b.key,key))return false;b.key=key;delete b.assetId;delete b.assetName;delete b.tone3000;delete b.appearance;s.scenes.forEach(scene=>{const on=scene[id].on;scene[id]=PatchRig.valuesFor(b);scene[id].on=on;});return true;}
   return {assign,slots,label,move,add,remove,compatible,replace};
 })();

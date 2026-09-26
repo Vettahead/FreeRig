@@ -39,6 +39,9 @@ sealed class StereoProcessor:IDisposable {
  double[] Effective(DeviceState s,int tempo){var p=(double[])s.values.Clone();if(s.sync>0&&(Block.key=="fx-SurgeDelay"||Block.key=="fx-DiffuseDelay")){double[] beats={0,.25,.5,.75,1,1.5,2,4};double seconds=60.0/Math.Max(40,Math.Min(240,tempo))*beats[Math.Min(7,s.sync)];p[0]=Math.Min(2000,seconds*1000);if(Block.key=="fx-SurgeDelay")p[1]=p[0];}return p;}
  void Apply(ControlSnapshot next){if(Object.ReferenceEquals(next,applied))return;var p=next.Values;if(Effects.fx_set(effect,p,p.Length)==0)throw new Exception("Invalid effect parameters for "+Block.key);applied=next;}
  public void Process(int count){var snapshot=controls;var s=snapshot.State;Array.Clear(dryL,0,count);Array.Clear(dryR,0,count);dryDelay.Add(Buffer,Right,dryL,dryR,count);
+  // Once the bypass fade has settled, do not execute a captured model at all.
+  // This also prevents an inactive capture from producing an audio-thread fault.
+  if(modelL!=IntPtr.Zero&&!s.on&&wet<.000001){wet=0;Array.Copy(dryL,Buffer,count);Array.Copy(dryR,Right,count);return;}
   if(effect!=IntPtr.Zero){Apply(snapshot);if(Effects.fx_process(effect,Buffer,Right,count)==0)throw new Exception("Effect returned invalid audio: "+Block.key);}
   else{if(modelL!=IntPtr.Zero){double gain=Block.key=="cab"?1:Math.Pow(10,s.values[0]/20);for(int i=0;i<count;i++){Buffer[i]*=(float)gain;Right[i]*=(float)gain;}if(Nam.gs_process_stereo(modelL,Buffer,Buffer,scratch,count)==0||Nam.gs_process_stereo(modelR,Right,scratch,Right,count)==0)throw new Exception("Model returned invalid audio.");}
    left.Settings=s;right.Settings=s;Array.Copy(Buffer,left.Buffer,count);Array.Copy(Right,right.Buffer,count);left.Process(count);right.Process(count);Array.Copy(left.Buffer,Buffer,count);Array.Copy(right.Buffer,Right,count);

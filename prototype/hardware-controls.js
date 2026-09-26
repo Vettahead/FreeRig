@@ -3,7 +3,7 @@
 window.HardwareControls = (()=>{
   const paints={drive:'#718348',gate:'#718371',delay:'#3f7e83',reverb:'#775986',chorus:'#448f86',compressor:'#b57d65'};
   function control(p,i,value,locked=false){
-    const proportion=(value-p[1])/(p[2]-p[1]),step=['Mode','Waveform','Count','Model'].includes(p[0])?1:p[4]==='Hz'&&p[2]<=12?.01:p[4]==='ms'||p[4]==='Hz'&&p[2]>100?1:.1;
+    const proportion=(value-p[1])/(p[2]-p[1]),step=['Mode','Waveform','Count','Model','Pitch'].includes(p[0])?1:p[4]==='Hz'&&p[2]<=12?.01:p[4]==='ms'||p[4]==='Hz'&&p[2]>100?1:p[2]-p[1]<=2?.001:.1;
     return `<div class="parameter physical-control"><label for="p${i}">${p[0].toUpperCase()}</label><div class="dial-hit"><div class="knob" style="--angle:${proportion*270}deg;--rotate:${-135+proportion*270}deg"><div class="knob-face"></div></div><input id="p${i}" ${locked?"disabled":""} class="rotary-input" aria-label="${p[0]}" title="Drag up or down; use arrow keys for fine adjustment" data-param="${i}" type="range" min="${p[1]}" max="${p[2]}" step="${step}" value="${value}"></div><div class="param-value"><input ${locked?"disabled":""} aria-label="${p[0]} value" data-number="${i}" type="number" min="${p[1]}" max="${p[2]}" step="${step}" value="${value}"><span>${p[4]}</span></div></div>`;
   }
   function face(d,v){

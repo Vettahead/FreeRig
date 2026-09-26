@@ -1,4 +1,4 @@
-# Bundled source — alpha 05
+# Bundled source — alpha 06
 
 Exact revisions are recorded in SOURCES.json. Build-effects.ps1 compiles the selected source; the checked-in copies are authoritative for this build.
 
@@ -16,3 +16,5 @@ Exact revisions are recorded in SOURCES.json. Build-effects.ps1 compiles the sel
 Modifications dated 26 September 2026: Dragonfly class names separated by processor; unused artwork/plug-in includes removed and denormal handling supplied in common/compat.h. Fixed room input filter naming in the host adapter. Surge spring global/portable-intrinsics includes replaced by host SIMD/sum/dB helpers; unused basic_dsp include removed from SmoothedValue. Allpass diffusion from ChowMatrix adapted to standalone stereo delay with local smoothing; no JUCE or complete ChowMatrix UI/code is included. Other source headers retain upstream copyright and licence notices.
 
 The C ABI, stereo graph adapters, preset metadata and tuner UI are Guitar Suite additions. The combined Guitar Suite source is supplied under GPL-3.0-or-later, with original permissive licences retained on individual components. TONE3000 branding remains the owner's trademark. Microsoft runtime/SDK and .NET dependencies retain their separate notices.
+
+Alpha 06 additions (26 September 2026): Guitarix selected Faust-generated drive circuits and original Faust source (GPL-2.0-or-later), Zita resampler 1.1.0 (GPL-3.0-or-later), and Signalsmith Stretch/Linear (MIT). Guitarix clipping.h gained an include guard; the Zita table mutex uses std::mutex instead of pthreads for Windows, with the same locking scope. Circuit maths are retained; the host runs each at 96 kHz with independent left/right instances. Selected Surge FloatyDelay and Reverb2 headers use the existing pinned source. Shimmer Hall is a Guitar Suite composition of Signalsmith pitch shifting and Dragonfly Hall, not a branded-pedal clone. See EFFECTS-RESEARCH.md in the parent directory.

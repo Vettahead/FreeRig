@@ -7,7 +7,7 @@ using Microsoft.Web.WebView2.Core;
 namespace GuitarSuite {
 sealed partial class MainWindow {
  Tone3000 tones;CoreWebView2Environment webEnvironment;bool toneBusy,toneCancel;string toneBlock,toneKey,tonePreviousAsset;
- Block ToneTarget(string id){var block=patch==null?null:patch.blocks.FirstOrDefault(b=>b.id==id);if(block==null||!new[]{"amp","cleanamp","cab","nampedal","drive","gate","delay","chorus","reverb","compressor"}.Contains(block.key))throw new Exception("Select an amp, cabinet or pedal in your chain first.");return block;}
+ Block ToneTarget(string id){var block=patch==null?null:patch.blocks.FirstOrDefault(b=>b.id==id);if(block==null||!(block.key.StartsWith("fx-",StringComparison.Ordinal)||new[]{"amp","cleanamp","cab","nampedal","drive","gate","delay","chorus","reverb","compressor"}.Contains(block.key)))throw new Exception("Select an amp, cabinet or pedal in your chain first.");return block;}
  void VerifyToneTarget(){var block=ToneTarget(toneBlock);if(block.key!=toneKey||block.assetId!=tonePreviousAsset)throw new Exception("The target device changed. Browse again for the current device.");}
  async Task HandleTone(Dictionary<string,object> message){
   string type=(string)message["type"];

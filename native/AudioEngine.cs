@@ -43,9 +43,9 @@ sealed class Processor : IDisposable {
  static double Clamp(double v,double a,double b){return Math.Max(a,Math.Min(b,v));}
  void Filters(double[] p){
   previous=(double[])p.Clone();if(Block.key!="amp"&&Block.key!="cleanamp"&&Block.key!="cab")return;
-  bool clean=Block.key=="cleanamp";bass=BiQuadFilter.LowShelf(rate,clean?200:180,.8f,(float)((clean?3:-1)+p[1]));
-  mid=BiQuadFilter.PeakingEQ(rate,clean?800:650,1f,(float)((clean?-2:4)+p[2]));
-  treble=BiQuadFilter.HighShelf(rate,clean?3500:3000,.7f,(float)((clean?2.5:1.5)+(p.Length>3?p[3]:0)));
+  bool clean=Block.key=="cleanamp";bass=BiQuadFilter.LowShelf(rate,clean?200:180,.8f,(float)((capture?0:clean?3:-1)+p[1]));
+  mid=BiQuadFilter.PeakingEQ(rate,clean?800:650,1f,(float)((capture?0:clean?-2:4)+p[2]));
+  treble=BiQuadFilter.HighShelf(rate,clean?3500:3000,.7f,(float)((capture?0:clean?2.5:1.5)+(p.Length>3?p[3]:0)));
   hp=BiQuadFilter.HighPassFilter(rate,(float)(Block.key=="cab"?p[0]:30),.707f);
   lp=BiQuadFilter.LowPassFilter(rate,(float)Math.Min(rate*.45,Block.key=="cab"?p[1]:12000),.707f);previous=(double[])p.Clone();
  }
@@ -110,20 +110,28 @@ sealed class LiveProvider : IWaveProvider {
  public volatile float Gain=.25f,Peak;public volatile bool Clipped;float currentGain=.25f;
  public int Read(byte[] target,int offset,int bytes){int frames=bytes/8;float peak=0;bool clipped=false;float targetGain=Gain;double blend=1-Math.Exp(-1.0/(WaveFormat.SampleRate*.01));for(int i=0;i<frames;i++){currentGain+=(float)((targetGain-currentGain)*blend);float v=(i<Count?Samples[i]:0)*currentGain;if(Single.IsNaN(v)||Single.IsInfinity(v))v=0;clipped|=Math.Abs(v)>.95f;v=Math.Max(-.95f,Math.Min(.95f,v));peak=Math.Max(peak,Math.Abs(v));interleaved[i*2]=v;float r=(i<Count?(RightSamples??Samples)[i]:0)*currentGain;if(Single.IsNaN(r)||Single.IsInfinity(r))r=0;clipped|=Math.Abs(r)>.95f;r=Math.Max(-.95f,Math.Min(.95f,r));peak=Math.Max(peak,Math.Abs(r));interleaved[i*2+1]=r;}Peak=peak;Clipped|=clipped;Buffer.BlockCopy(interleaved,0,target,offset,bytes);return bytes;}
 }
+sealed class InputTrim {
+ volatile float target=1;float gain=1;
+ public void Set(double db){if(Double.IsNaN(db)||Double.IsInfinity(db))throw new Exception("Invalid input trim.");target=(float)Math.Pow(10,Math.Max(-24,Math.Min(24,db))/20);}
+ public void Reset(){gain=target;}
+ public float Process(float[] input,int count,int rate){double blend=1-Math.Exp(-1.0/(rate*.01));float peak=0,next=target;for(int i=0;i<count;i++){gain+=(float)((next-gain)*blend);input[i]*=gain;peak=Math.Max(peak,Math.Abs(input[i]));}return peak;}
+}
 sealed class AudioEngine : IDisposable {
- float masterDb=-12;IntPtr tuner;public volatile bool TunerEnabled,TunerMute;public volatile float TunerHz,TunerConfidence;
+ float masterDb=-12;readonly InputTrim inputTrim=new InputTrim();int sampleRate=48000;
+ public void SetInput(double db){inputTrim.Set(db);}
+ IntPtr tuner;public volatile bool TunerEnabled,TunerMute;public volatile float TunerHz,TunerConfidence;
  public void Tune(bool enabled,bool mute){TunerEnabled=enabled;TunerMute=mute;SetMaster(masterDb);if(!enabled){TunerHz=0;TunerConfidence=0;}}
  public void SetMaster(double db){if(Double.IsNaN(db)||Double.IsInfinity(db))throw new Exception("Invalid master volume.");masterDb=(float)Math.Max(-30,Math.Min(12,db));if(provider!=null)provider.Gain=TunerEnabled&&TunerMute?0:(float)Math.Pow(10,masterDb/20);}
  public float OutputPeak{get{return provider==null?0:provider.Peak;}}
  public bool TakeClip(){if(provider==null)return false;bool clipped=provider.Clipped;provider.Clipped=false;return clipped;}
  AsioOut asio;Graph graph;LiveProvider provider;readonly float[] input=new float[4096];public volatile string Error;public bool Running{get{return asio!=null&&asio.PlaybackState==PlaybackState.Playing;}}public int BufferSize;public float Peak;
  public void Start(string driver,int channel,int output,int rate,Patch patch,string assets){
-  Stop();try{tuner=Effects.tuner_load(rate);if(tuner==IntPtr.Zero)throw new Exception("Tuner could not initialise.");graph=new Graph(patch,rate,assets);asio=new AsioOut(driver);if(channel<0||channel>=asio.DriverInputChannelCount||output<0||output+1>=asio.DriverOutputChannelCount)throw new Exception("Choose a valid guitar input and stereo output pair.");
+  Stop();sampleRate=rate;inputTrim.Reset();try{tuner=Effects.tuner_load(rate);if(tuner==IntPtr.Zero)throw new Exception("Tuner could not initialise.");graph=new Graph(patch,rate,assets);asio=new AsioOut(driver);if(channel<0||channel>=asio.DriverInputChannelCount||output<0||output+1>=asio.DriverOutputChannelCount)throw new Exception("Choose a valid guitar input and stereo output pair.");
    if(!asio.IsSampleRateSupported(rate))throw new Exception("This driver does not support the selected sample rate.");
    asio.InputChannelOffset=channel;asio.ChannelOffset=output;provider=new LiveProvider(rate);SetMaster(masterDb);asio.AudioAvailable+=OnAudio;asio.InitRecordAndPlayback(provider,1,rate);if(asio.FramesPerBuffer>4096)throw new Exception("Use a buffer of 4096 samples or less in the driver panel.");BufferSize=asio.FramesPerBuffer;Error=null;asio.Play();
   }catch{Stop();throw;}
  }
- void OnAudio(object sender,AsioAudioAvailableEventArgs e){try{if(e.SamplesPerBuffer>4096)throw new Exception("Unsupported ASIO buffer size.");e.GetAsInterleavedSamples(input);if(TunerEnabled){Effects.tuner_process(tuner,input,e.SamplesPerBuffer);TunerHz=Effects.tuner_hz(tuner);TunerConfidence=Effects.tuner_confidence(tuner);}provider.RightSamples=graph.Right;provider.Samples=graph.Run(input,e.SamplesPerBuffer);provider.Count=e.SamplesPerBuffer;float peak=0;for(int i=0;i<e.SamplesPerBuffer;i++)peak=Math.Max(peak,Math.Abs(input[i]));Peak=peak;}catch(Exception ex){Error=ex.Message;provider.Count=0;Array.Clear(provider.Samples,0,provider.Samples.Length);if(provider.RightSamples!=null)Array.Clear(provider.RightSamples,0,provider.RightSamples.Length);}}
+ void OnAudio(object sender,AsioAudioAvailableEventArgs e){try{if(e.SamplesPerBuffer>4096)throw new Exception("Unsupported ASIO buffer size.");e.GetAsInterleavedSamples(input);if(TunerEnabled){Effects.tuner_process(tuner,input,e.SamplesPerBuffer);TunerHz=Effects.tuner_hz(tuner);TunerConfidence=Effects.tuner_confidence(tuner);}Peak=inputTrim.Process(input,e.SamplesPerBuffer,sampleRate);provider.RightSamples=graph.Right;provider.Samples=graph.Run(input,e.SamplesPerBuffer);provider.Count=e.SamplesPerBuffer;}catch(Exception ex){Error=ex.Message;provider.Count=0;Array.Clear(provider.Samples,0,provider.Samples.Length);if(provider.RightSamples!=null)Array.Clear(provider.RightSamples,0,provider.RightSamples.Length);}}
  public void Update(Patch p){if(graph!=null)graph.Update(p);}
  public void Stop(){if(asio!=null){asio.Stop();asio.Dispose();asio=null;}if(graph!=null){graph.Dispose();graph=null;}if(tuner!=IntPtr.Zero){Effects.tuner_free(tuner);tuner=IntPtr.Zero;}TunerHz=0;TunerConfidence=0;Peak=0;}
  public void Dispose(){Stop();}

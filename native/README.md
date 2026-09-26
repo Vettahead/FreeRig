@@ -1,4 +1,23 @@
-## Alpha 05 — stereo effects and tuner (26 September 2026)
+## Alpha 06 — routing, stock drives and ambient sounds (26 September 2026)
+
+Run **releases/GuitarSuite-alpha-06/GuitarSuite.exe** from the complete portable folder. Audio starts only when you press Start in Audio setup. No browser server is required. Alpha 05 remains alongside it.
+
+- Drop any library device onto an existing device to replace it. Dragging an existing device onto another moves its complete sound, capture, appearance and four scene settings into the target's position, removing the old source. The target's wiring remains. Undo restores the previous rig.
+- Moving to an empty slot reconnects at the new position by default; **Keep cables when moving** preserves custom routing instead. New insertions join an actual audio route, including on branched patches. Additional cabs retain the parallel-cab behaviour. Parallel signals sum; manage their levels.
+- **Input trim** and **Master output** live on the routing workspace, with meters and clipping indication. Both are remembered. Input trim affects drive into the rig; master affects listening volume. Gains ramp over 10 ms. Tuner still listens before input trim.
+- Clicking a device opens its controls in a drawer. Close or Escape dismisses it. The board no longer auto-shrinks below 85%; scroll to reach the rest of a long rig. Library and workspace scroll independently.
+- **20 hardware looks each** for amps, cabinets and pedals. Cabinet illustrations include 1×12, 2×12 and 4×12 forms; knobs remain on the illustrated hardware. Looks are cosmetic and do not load a different model or IR. Downloaded packs still offer their Saved model selector.
+- **Six stock Guitarix drives/fuzzes**: Orange Distortion, Distortion Plus, Round Fuzz, Sustain Fuzz, Scream Drive and Soft Clip. These run at 96 kHz internally with Zita resampling where required. Scream Drive is the upstream Screaming Bird circuit, not a Tube Screamer.
+- **Shimmer Hall**, **Warp Echo** (including reverse wash) and **Modulated Space**, alongside alpha 05's 22 stereo effects and tuner. There are now 31 added native effects and 65 presets, plus the original devices. These cover ambient/shimmer/modulated/tape/multitap sounds; they are not Strymon algorithm replicas.
+- Fixed local-file import explicitly stopping audio. Model changes now use the existing resume-on-rig-update path. Fully bypassed captures stop processing after the fade settles. Imported amp captures no longer receive built-in amp voicing EQ; first imports start with neutral external EQ. Existing saved EQ settings remain as the user set them.
+
+Validation: eight JavaScript suites, native tests for all 31 effects and 65 presets at 44.1/48/96 kHz with regular and irregular buffers up to 4096 frames, tuner/IR/latency/tempo/library/auth regressions, and three actual locally downloaded A2 pedal variants through a pedal → amp → cab rig. Bypass matches removing the pedal while retaining the downstream amp/cab; neutral captured amps match direct official NAM Core output. The original distorted/crashing state was not reproduced, so this is a verified set of fixes and regression tests, not a claim that every hardware failure has been reproduced. No live ASIO audio was started during the unattended work.
+
+See **native/EFFECTS-RESEARCH.md** for source comparisons, dated GitHub adoption figures, selection rationale and limitations. Hardware listening/long-run dropout checks remain for Chris. Capture accuracy depends on the capture itself and correct input calibration; amp+cab captures should not normally feed a second cabinet. The built-in cabinet remains a filter approximation until a measured IR is loaded. Routing edits still cause a short restart; spillover, complete smoothing, MIDI, recording and a real looper remain unfinished.
+
+Source, revision pins and licences accompany this GPL-3.0-or-later release. Private pedal test captures and account data are excluded.
+
+## Previous release: Alpha 05 — stereo effects and tuner (26 September 2026)
 
 Run releases/GuitarSuite-alpha-05/GuitarSuite.exe. This portable Windows app needs no browser server. The original built-in sounds and saved TONE3000 library remain available.
 
@@ -14,7 +33,7 @@ Graph/asset edits still briefly restart audio on the saved ASIO configuration. C
 
 The source and licences for this GPL-3.0-or-later build accompany the portable release. Third-party copyrights and their original licences are retained. No downloaded user captures or account credentials are included.
 
-# Guitar Suite — Windows Desktop Alpha 05
+# Guitar Suite — Windows Desktop Alpha 06
 
 Run `GuitarSuite.exe` from the complete release folder. This is an actual x64 Windows application with native ASIO audio and a compiled NAM engine. Its interface is hosted in WebView2; it does not need a browser tab, Node or the preview server. Windows .NET Framework 4.8 and Microsoft Edge WebView2 Runtime are required (both are present on the development PC).
 
@@ -55,7 +74,7 @@ This first integration uses the official hosted Select flow for browsing, favour
 - **Download and load** saves the chosen model to Devices and loads it onto the selected block.
 - **Save pack** saves all models listed for this tone and the selected architecture (A1, A2 or Custom); cabinet packs include all listed IRs. Change architecture and save again to merge additional models into the same device. This uses supported individual-model downloads, not the partner-only ZIP endpoint.
 - Progress shows the current file. **Stop after current model** stops between files. Completed files remain available after cancellation/failure; retry skips already saved files. Requests are paced below the API rate limit.
-- Drag the saved amp/cab/pedal from Devices onto an appropriate slot or existing device, or choose it in **Replace with**. The **Saved model** picker in its lower details panel switches local files without another download. Knobs and scene bypass states remain; the model is shared across scenes within that instance. Models can require different audio sample rates.
+- Drag the saved amp/cab/pedal from Devices onto an appropriate slot or existing device, or choose it in **Replace with**. The **Saved model** picker in its device drawer switches local files without another download. Knobs and scene bypass states remain; the model is shared across scenes within that instance. Models can require different audio sample rates.
 - **Look** and **Colour** customise its enclosure. Appearance is saved as the library default for future instances; existing instances retain their own saved patch appearance.
 - Removing a device from the board does not delete it from the library. Earlier alpha 03 attribution sidecars are recovered automatically. Missing files are marked unavailable.
 - The local catalogue is stored in %LOCALAPPDATA%/GuitarSuite/Library/devices.json. It holds model references and attribution, not sign-in tokens. No captures are redistributed in the application.
@@ -67,9 +86,9 @@ This first integration uses the official hosted Select flow for browsing, favour
 - Routing changes briefly stop/restart running audio so graphs/models can be rebuilt off the callback. Failed changes leave audio stopped and show an error. Scene/bypass changes have a short bypass fade; complete parameter smoothing, spillover and seamless changes are not finished.
 - Old saved A/B splitter/mixer junctions remain visible and editable in the interface, but are explicitly refused by this first audio engine. Start with a fresh desktop patch or the example for audio testing.
 - A bypassed parallel branch passes dry audio; adjust routing to avoid unwanted dry duplication. Multiple paths sum at unity before the final output trim and ceiling.
-- Original legacy effects remain basic DSP implementations; the new named pedals use the bundled open-source engines. Amps are an adapted clean/crunch subset of Amplitron, not exact emulations of commercial hardware. Cabinet default is filtering, not a bundled measured IR. No oversampling in this alpha.
+- Original legacy effects remain basic DSP implementations; the new named pedals use the bundled open-source engines. Amps are an adapted clean/crunch subset of Amplitron, not exact emulations of commercial hardware. Cabinet default is filtering, not a bundled measured IR. The six Guitarix additions run at 96 kHz internally; other algorithms retain their upstream rate handling.
 - Master output adjusts from −30 to +12 dB, initially −12 dB, with a 10 ms gain ramp and a hard ceiling; this is not a mastering limiter. Meters show input and output peaks. 0 dB removes the original fixed attenuation.
-- MIDI, tuner, recording/looper and WASAPI remain unimplemented. Practice transport remains a visual preview.
+- MIDI, recording/looper and WASAPI remain unimplemented; the chromatic tuner is implemented. Practice transport remains a visual preview.
 - Unsigned portable folder release. No installer, updates, account or subscription.
 
 ## Build
