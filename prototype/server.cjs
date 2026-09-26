@@ -2,7 +2,7 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
-const files = {'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js'};
+const files = {'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js','/routing.css':'routing.css','/rig-model.js':'rig-model.js','/gear-art.js':'gear-art.js','/routing-ui.js':'routing-ui.js','/gear-drag.js':'gear-drag.js'};
 const types = {'.html':'text/html','.css':'text/css','.js':'text/javascript'};
 http.createServer((req,res)=>{
   const file=files[new URL(req.url,'http://localhost').pathname];
@@ -12,3 +12,4 @@ http.createServer((req,res)=>{
     res.writeHead(200,{'Content-Type':types[path.extname(file)]+'; charset=utf-8','Cache-Control':'no-store'});res.end(data);
   });
 }).listen(4317,'127.0.0.1',()=>console.log('Guitar Suite preview: http://127.0.0.1:4317'));
+

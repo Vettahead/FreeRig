@@ -1,25 +1,14 @@
 'use strict';
 const $ = (s) => document.querySelector(s);
-const catalogue = [
-  {key:'gate',name:'Quiet Gate',type:'Utility',icon:'⊣',colour:'#a7b995',detail:'Noise gate',params:[['Threshold',-80,0,-54,'dB'],['Release',10,500,120,'ms']]},
-  {key:'drive',name:'Moss Drive',type:'Pedals',icon:'↯',colour:'#bdcf80',detail:'Overdrive · DSP',params:[['Drive',0,10,4.2,''],['Tone',0,10,5.5,''],['Level',-24,12,0,'dB']]},
-  {key:'amp',name:'British Bloom',type:'Amps',icon:'≋',colour:'#d6b77e',detail:'NAM A2 · Placeholder',params:[['Input trim',-24,24,0,'dB'],['Bass EQ',-12,12,1.5,'dB'],['Mid EQ',-12,12,0,'dB'],['Treble EQ',-12,12,2,'dB'],['Output',-30,6,-6,'dB']]},
-  {key:'cab',name:'Vintage 2×12',type:'Cabs',icon:'▦',colour:'#c0a688',detail:'Cabinet IR · Placeholder',params:[['Low cut',20,300,80,'Hz'],['High cut',2000,20000,8000,'Hz'],['Level',-24,6,-3,'dB']]},
-  {key:'delay',name:'Tape Echo',type:'Pedals',icon:'≈',colour:'#82b7ba',detail:'Stereo delay · DSP',params:[['Time',30,1500,380,'ms'],['Feedback',0,95,32,'%'],['Mix',0,100,22,'%']]},
-  {key:'reverb',name:'Open Space',type:'Pedals',icon:'✧',colour:'#b8a0c8',detail:'Reverb · DSP',params:[['Decay',0.2,15,3.5,'s'],['Tone',0,10,6,''],['Mix',0,100,24,'%']]},
-  {key:'chorus',name:'Slow Tide',type:'Pedals',icon:'∿',colour:'#79b5ad',detail:'Chorus · DSP',params:[['Rate',0.1,8,0.8,'Hz'],['Depth',0,100,45,'%'],['Mix',0,100,35,'%']]},
-  {key:'compressor',name:'Soft Press',type:'Utility',icon:'⇥',colour:'#a7b995',detail:'Compressor · DSP',params:[['Threshold',-60,0,-24,'dB'],['Ratio',1,20,4,':1'],['Attack',1,100,20,'ms']]}
-];
-const sceneNames=['Clean','Crunch','Lead','Ambient'];
+const {catalogue,sceneNames,clone,makeBlock}=GuitarRig;
 const sceneDescriptions=['Open & articulate','A little edge','Out in front','Room to wander'];
-const clone = (v) => JSON.parse(JSON.stringify(v));
-const makeBlock = (key, index) => {const d=catalogue.find(x=>x.key===key);return {id:`b${index}`,key,on:true,values:d.params.map(p=>p[3])};};
-const defaultBlocks=['gate','drive','amp','cab','delay','reverb'].map(makeBlock);
-const defaultState={name:'Sunday / Slow Bloom',scene:1,tempo:112,blocks:defaultBlocks,scenes:sceneNames.map((_,i)=>Object.fromEntries(defaultBlocks.map(b=>[b.id,{on:b.key==='drive'?i!==0:true,values:b.values.map((v,j)=>b.key==='reverb'&&j===2&&i===3?58:b.key==='delay'&&j===2&&i===3?40:v)}])))};
-const storageKey='guitar-suite-rig-v1';
-let state=clone(defaultState),saved=null,history=[],selected='b2',filter='All',dragged=null,dirty=false,toastTimer,loopTimer,pulseTimer,loopSeconds=0;
-const valid = s => s && typeof s.name==='string' && Number.isInteger(s.scene)&&s.scene>=0&&s.scene<4 && Number.isFinite(s.tempo)&&s.tempo>=40&&s.tempo<=240 && Array.isArray(s.blocks)&&s.blocks.length>0&&s.blocks.length<=24&&new Set(s.blocks.map(b=>b.id)).size===s.blocks.length&&s.blocks.every(b=>typeof b.id==='string'&&catalogue.some(d=>d.key===b.key))&&Array.isArray(s.scenes)&&s.scenes.length===4&&s.scenes.every(scene=>scene&&s.blocks.every(b=>{const d=catalogue.find(x=>x.key===b.key),v=scene[b.id];return v&&typeof v.on==='boolean'&&Array.isArray(v.values)&&v.values.length===d.params.length&&v.values.every((n,i)=>Number.isFinite(n)&&n>=d.params[i][1]&&n<=d.params[i][2]);}));
-try{const stored=JSON.parse(localStorage.getItem(storageKey));if(valid(stored))state=stored;saved=clone(state);}catch{saved=clone(state);}
+const storageKey='guitar-suite-rig-v2';
+let state=GuitarRig.createDefault(),saved=null,history=[],selected='b2',filter='All',dirty=false,toastTimer,loopTimer,pulseTimer,loopSeconds=0,addLane='a';
+try {
+  const stored=JSON.parse(localStorage.getItem(storageKey)||localStorage.getItem('guitar-suite-rig-v1'));
+  const migrated=GuitarRig.migrate(stored);if(migrated)state=migrated;
+}catch { /* A corrupt or unavailable save must not stop the editor. */ }
+saved=clone(state);
 if(!state.blocks.some(b=>b.id===selected))selected=state.blocks[0].id;
 const escapeHTML = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function toast(message){$('#toast').textContent=message;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),3500);}
@@ -32,34 +21,92 @@ function renderLibrary(){
   const items=catalogue.filter(d=>(filter==='All'||d.type===filter)&&(d.name+' '+d.detail).toLowerCase().includes(q));
   $('#library-count').textContent=String(catalogue.length).padStart(2,'0');
   $('#library-label').textContent=filter==='All'?'ALL DEVICES':filter.toUpperCase();
-  $('#library').innerHTML=items.map(d=>`<button class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="device-icon" style="--accent:${d.colour}">${d.icon}</span><span><strong>${d.name}</strong><small>${d.detail}</small></span><span class="plus">＋</span></button>`).join('')||'<div class="empty">No matching devices. Try another search.</div>';
+  $('#library').innerHTML=items.map(d=>`<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearArt.svg(d.key)}</span><span><strong>${d.name}</strong><small>${d.detail}</small></span><span class="plus">＋</span></button>`).join('')||'<div class="empty">No matching devices. Try another search.</div>';
 }
 function render(){
   $('#rig-name').value=state.name;$('#tempo').value=state.tempo;$('#tempo-status').textContent=`${state.tempo} BPM`;$('#device-count').textContent=`${state.blocks.length} devices`;
-  $('#chain').innerHTML=state.blocks.map(b=>{const d=catalogue.find(x=>x.key===b.key),v=current(b);return `<button draggable="true" class="block ${b.id===selected?'selected':''} ${v.on?'':'bypassed'}" data-block="${b.id}" style="--accent:${d.colour}" aria-label="Edit ${d.name}${v.on?'':', bypassed'}" aria-pressed="${b.id===selected}"><span class="block-type">${d.type.toUpperCase()}<span class="block-symbol">${d.icon}</span></span><strong>${d.name}</strong><small>${v.on?'ON':'BYPASSED'} / ${b.key==='amp'?'NAM A2':b.key==='cab'?'IR':'DSP'}</small></button>`;}).join('');
+  RoutingUI.render(state,selected,addLane);
   $('#scenes').innerHTML=sceneNames.map((name,i)=>`<button class="scene ${state.scene===i?'active':''}" data-scene="${i}" aria-pressed="${state.scene===i}"><span class="scene-number">0${i+1}</span><span><strong>${name}</strong><small>${sceneDescriptions[i]}</small></span></button>`).join('');
-  $('#stomps').innerHTML=state.blocks.map(b=>{const d=catalogue.find(x=>x.key===b.key);return `<button class="stomp ${current(b).on?'':'bypassed'}" data-stomp="${b.id}" style="--accent:${d.colour}" aria-pressed="${current(b).on}">${d.icon}<strong>${d.name}</strong><small>${current(b).on?'ON · CLICK TO BYPASS':'BYPASSED · CLICK TO ENABLE'}</small></button>`;}).join('');
+  $('#stomps').innerHTML=state.blocks.map(b=>{const d=catalogue.find(x=>x.key===b.key);return `<button class="stomp ${current(b).on?'':'bypassed'}" data-stomp="${b.id}" style="--accent:${d.colour}" aria-pressed="${current(b).on}">${GearArt.svg(b.key,current(b).on)}<strong>${d.name}</strong><small>${current(b).on?'ON · CLICK TO BYPASS':'BYPASSED · CLICK TO ENABLE'}</small></button>`;}).join('');
   renderEditor();mark();
 }
 function renderEditor(){
   const b=state.blocks.find(x=>x.id===selected);if(!b)return;
-  const d=catalogue.find(x=>x.key===b.key),v=current(b),index=state.blocks.indexOf(b);
-  const note=b.key==='amp'?'NAM capture placeholder · EQ and trims are external controls.':b.key==='cab'?'Cabinet placeholder · No impulse response loaded.':'Effect controls are saved in your rig · Audio processing is not connected.';
-  $('#editor').innerHTML=`<article class="editor" style="--accent:${d.colour}"><div class="editor-top"><div class="title"><span class="device-icon">${d.icon}</span><div><strong>${d.name}</strong><small>${d.detail} / ${sceneNames[state.scene]} scene</small></div></div><div><button id="move-left" ${index===0?'disabled':''} aria-label="Move device left">←</button> <button id="move-right" ${index===state.blocks.length-1?'disabled':''} aria-label="Move device right">→</button> <button id="bypass" aria-pressed="${!v.on}">${v.on?'● Enabled':'○ Bypassed'}</button> <button id="remove" aria-label="Remove device" ${state.blocks.length===1?'disabled':''}>✕</button></div></div><div class="editor-body"><div class="amp-art"><strong>${b.key==='amp'?'Bloom':d.name.split(' ')[0]}</strong><small>${b.key==='amp'?'BRITISH VOICING':d.type.toUpperCase()}</small></div><div class="parameters">${d.params.map((p,i)=>{const percent=(v.values[i]-p[1])/(p[2]-p[1]);return `<div class="parameter"><div class="knob" style="--angle:${percent*270}deg;--rotate:${-135+percent*270}deg"><div class="knob-face"></div></div><label for="p${i}">${p[0].toUpperCase()}</label><div class="param-value"><input aria-label="${p[0]} value" data-number="${i}" type="number" min="${p[1]}" max="${p[2]}" step="${p[4]==='ms'||p[4]==='Hz'&&p[2]>100?1:0.1}" value="${v.values[i]}"><span>${p[4]}</span></div><input id="p${i}" aria-label="${p[0]}" data-param="${i}" type="range" min="${p[1]}" max="${p[2]}" step="${p[4]==='ms'||p[4]==='Hz'&&p[2]>100?1:0.1}" value="${v.values[i]}"></div>`;}).join('')}</div></div><div class="editor-note"><span>${note}</span><span>BLOCK ${String(index+1).padStart(2,'0')}</span></div></article>`;
+  const d=catalogue.find(x=>x.key===b.key),v=current(b),laneBlocks=GuitarRig.blocksIn(state,b.lane),index=laneBlocks.indexOf(b);
+  const note=d.type==='Amps'?'NAM capture placeholder · EQ and trims are external controls.':b.key==='cab'?'Cabinet placeholder · No impulse response loaded.':'Effect controls are saved in your rig · Audio processing is not connected.';
+  $('#editor').innerHTML=`<article class="editor" style="--accent:${d.colour}"><div class="editor-top"><div class="title"><span class="device-icon">${d.icon}</span><div><strong>${d.name}</strong><small>${d.detail} / ${sceneNames[state.scene]} scene</small></div></div><div class="editor-actions"><label class="lane-select-label">Move to <select id="block-lane" aria-label="Selected device path">${Object.entries(GuitarRig.laneNames).filter(([key])=>state.parallel||key!=='b').map(([key,label])=>`<option value="${key}" ${b.lane===key?'selected':''}>${label}</option>`).join('')}</select></label><button id="move-left" ${index===0?'disabled':''} aria-label="Move device left">←</button> <button id="move-right" ${index===laneBlocks.length-1?'disabled':''} aria-label="Move device right">→</button> <button id="bypass" aria-pressed="${!v.on}">${v.on?'● Enabled':'○ Bypassed'}</button> <button id="remove" aria-label="Remove device" ${state.blocks.length===1?'disabled':''}>✕</button></div></div><div class="editor-body"><div class="gear-hero ${v.on?'':'bypassed'}">${GearArt.svg(b.key,v.on)}<span>${d.type==='Amps'?'AMPLIFIER':d.type==='Cabs'?'SPEAKER CABINET':'STOMPBOX'} / ${GuitarRig.laneNames[b.lane].toUpperCase()}</span></div><div class="parameters">${d.params.map((p,i)=>{const percent=(v.values[i]-p[1])/(p[2]-p[1]);return `<div class="parameter"><div class="knob" style="--angle:${percent*270}deg;--rotate:${-135+percent*270}deg"><div class="knob-face"></div></div><label for="p${i}">${p[0].toUpperCase()}</label><div class="param-value"><input aria-label="${p[0]} value" data-number="${i}" type="number" min="${p[1]}" max="${p[2]}" step="${p[4]==='ms'||p[4]==='Hz'&&p[2]>100?1:0.1}" value="${v.values[i]}"><span>${p[4]}</span></div><input id="p${i}" aria-label="${p[0]}" data-param="${i}" type="range" min="${p[1]}" max="${p[2]}" step="${p[4]==='ms'||p[4]==='Hz'&&p[2]>100?1:0.1}" value="${v.values[i]}"></div>`;}).join('')}</div></div><div class="editor-note"><span>${note}</span><span>${GuitarRig.laneNames[b.lane].toUpperCase()} / ${String(index+1).padStart(2,'0')}</span></div></article>`;
 }
-function addDevice(key){if(state.blocks.length>=24){toast('This prototype supports up to 24 blocks.');return;}checkpoint();const b=makeBlock(key,crypto.randomUUID());state.blocks.push(b);state.scenes.forEach(s=>s[b.id]={on:true,values:clone(b.values)});selected=b.id;render();toast(`${catalogue.find(d=>d.key===key).name} added to rig`);}
-function move(from,to){if(to<0||to>=state.blocks.length||from===to)return;checkpoint();const [b]=state.blocks.splice(from,1);state.blocks.splice(to,0,b);render();}
+function addDevice(key,lane=addLane,beforeId=null){
+  if(state.blocks.length>=24){toast('This prototype supports up to 24 blocks.');return;}
+  if(!GuitarRig.definition(key))return;
+  checkpoint();const b=makeBlock(key,'b'+crypto.randomUUID(),lane);
+  state.blocks.push(b);state.scenes.forEach(s=>s[b.id]=GuitarRig.valuesFor(b));
+  if(beforeId)GuitarRig.relocate(state,b.id,lane,beforeId);
+  selected=b.id;addLane=lane;render();toast(GuitarRig.definition(key).name+' added to '+GuitarRig.laneNames[lane]);
+}
+function moveInLane(id,offset){
+  const block=state.blocks.find(b=>b.id===id),list=GuitarRig.blocksIn(state,block.lane),index=list.findIndex(b=>b.id===id),target=index+offset;
+  if(target<0||target>=list.length)return;
+  checkpoint();GuitarRig.relocate(state,id,block.lane,offset<0?list[target].id:list[target+1]?.id||null);render();
+}
+function relocate(id,lane,beforeId=null){checkpoint();GuitarRig.relocate(state,id,lane,beforeId);selected=id;addLane=lane;render();}
+
 function toggle(id){checkpoint();current({id}).on=!current({id}).on;render();}
 function modal(title,body){$('#modal-eyebrow').textContent=title;$('#modal-content').innerHTML=body;$('#modal').showModal();}
 $('#filters').onclick=e=>{const b=e.target.closest('[data-filter]');if(b){filter=b.dataset.filter;renderLibrary();}};
 $('#search').oninput=renderLibrary;
 $('#library').onclick=e=>{const b=e.target.closest('[data-add]');if(b)addDevice(b.dataset.add);};
-$('#chain').onclick=e=>{const b=e.target.closest('[data-block]');if(b){selected=b.dataset.block;render();}};
-$('#chain').ondragstart=e=>{const b=e.target.closest('[data-block]');if(!b)return;dragged=b.dataset.block;e.dataTransfer.setData('text/plain',dragged);e.dataTransfer.effectAllowed='move';};
-$('#chain').ondragover=e=>{e.preventDefault();e.dataTransfer.dropEffect='move';};
-$('#chain').ondrop=e=>{e.preventDefault();const target=e.target.closest('[data-block]');if(target&&dragged)move(state.blocks.findIndex(b=>b.id===dragged),state.blocks.findIndex(b=>b.id===target.dataset.block));dragged=null;};
-$('#chain').ondragend=()=>{dragged=null;};
-$('#editor').onclick=e=>{const button=e.target.closest('button');if(!button)return;const index=state.blocks.findIndex(b=>b.id===selected);if(button.id==='bypass')toggle(selected);if(button.id==='move-left')move(index,index-1);if(button.id==='move-right')move(index,index+1);if(button.id==='remove'&&state.blocks.length>1){checkpoint();state.blocks.splice(index,1);state.scenes.forEach(s=>delete s[selected]);selected=state.blocks[Math.min(index,state.blocks.length-1)].id;render();}};
+$('#chain').onclick=e=>{
+  const block=e.target.closest('[data-block]'),add=e.target.closest('[data-add-lane]'),junction=e.target.closest('[data-route-panel]');
+  if(block){selected=block.dataset.block;render();}
+  if(add){addLane=add.dataset.addLane;RoutingUI.render(state,selected,addLane);$('#search').focus();toast('Choose or drag a device into '+GuitarRig.laneNames[addLane]);}
+  if(junction)openRouting();
+};
+// Shared destination rules for mouse, pen and touch dragging.
+function destination(e){
+  const lane=e.target.closest('[data-lane]');if(!lane)return null;
+  const id=lane.dataset.lane,card=e.target.closest('[data-block]');
+  if(!card)return {lane:id,before:null,element:lane,side:'drop-lane'};
+  const box=card.getBoundingClientRect(),vertical=id==='pre'||id==='post';
+  const after=vertical?e.clientY>box.top+box.height/2:e.clientX>box.left+box.width/2;
+  const list=GuitarRig.blocksIn(state,id),index=list.findIndex(b=>b.id===card.dataset.block);
+  return {lane:id,before:after?(list[index+1]?.id||null):card.dataset.block,element:card,side:after?'drop-after':'drop-before'};
+}
+$('#editor').onclick=e=>{
+  const button=e.target.closest('button');if(!button)return;
+  if(button.id==='bypass')toggle(selected);
+  if(button.id==='move-left')moveInLane(selected,-1);
+  if(button.id==='move-right')moveInLane(selected,1);
+  if(button.id==='remove'&&state.blocks.length>1){checkpoint();const index=state.blocks.findIndex(b=>b.id===selected);state.blocks.splice(index,1);state.scenes.forEach(s=>delete s[selected]);selected=state.blocks[Math.min(index,state.blocks.length-1)].id;render();}
+};
+$('#editor').addEventListener('change',e=>{if(e.target.id==='block-lane')relocate(selected,e.target.value);});
+function openRouting(){modal('ROUTING / '+sceneNames[state.scene].toUpperCase(),RoutingUI.controls(state));}
+$('#routing-bar').onclick=e=>{
+  const topology=e.target.closest('[data-topology]');
+  if(topology){const enabled=topology.dataset.topology==='parallel';if(enabled===state.parallel)return;
+    if(!enabled&&GuitarRig.blocksIn(state,'b').length){modal('CHANGE ROUTING','<h2>Join both paths?</h2><p>Path B devices will move after Path A, keeping all their scene settings. Before-split and after-merge devices stay in place. Undo restores the parallel layout.</p><button id="confirm-serial" class="primary">Join paths into serial</button>');return;}
+    checkpoint();GuitarRig.setParallel(state,enabled);if(!enabled&&addLane==='b')addLane='a';render();
+  }
+  if(e.target.closest('#route-controls'))openRouting();
+  if(e.target.closest('#dual-template'))modal('EXAMPLE RIG','<h2>Explore a dual-amp rig.</h2><p>Load a gate feeding two amp/cab paths, followed by shared delay and reverb. This replaces the current layout; Undo brings your rig back. Your saved rig is unchanged until you save.</p><button id="confirm-template" class="primary">Load example rig</button>');
+};
+$('#modal-content').addEventListener('click',e=>{
+  if(e.target.id==='confirm-template'){checkpoint();state=GuitarRig.createDefault();selected='b2';addLane='a';$('#modal').close();render();}
+  if(e.target.id==='confirm-serial'){checkpoint();GuitarRig.setParallel(state,false);if(addLane==='b')addLane='a';$('#modal').close();render();}
+});
+function updateRoutingControl(e){
+  const el=e.target;if(!el.dataset.route)return;
+  const r=state.routes[state.scene],keys=el.dataset.route.split('.'),obj=keys.length===2?r[keys[0]]:r,key=keys.at(-1);
+  let value=el.type==='checkbox'?el.checked:el.tagName==='SELECT'?el.value:Number(el.value);
+  if(typeof value==='number'){if(el.value===''||!Number.isFinite(value))return;value=Math.max(Number(el.min),Math.min(Number(el.max),value));if(e.type==='change')el.value=value;}
+  if(obj[key]===value)return;checkpoint();obj[key]=value;
+  if(key==='mode')$('#split-extra').innerHTML=RoutingUI.splitExtra(r);
+  const output=el.parentElement.querySelector('output');if(output)output.textContent=key==='blend'?(100-value)+'% A / '+value+'% B':value===0?'Centre':Math.abs(value)+(value<0?' L':' R');
+  render();
+}
+$('#modal-content').addEventListener('input',updateRoutingControl);
+$('#modal-content').addEventListener('change',updateRoutingControl);
+
 // Keep range elements mounted during pointer and keyboard interaction.
 let parameterEditing=false;
 $('#editor').addEventListener('input',e=>{const el=e.target;if(!el.matches('[data-param],[data-number]'))return;if(!parameterEditing){checkpoint();parameterEditing=true;}const i=Number(el.dataset.param??el.dataset.number),b=state.blocks.find(x=>x.id===selected),d=catalogue.find(x=>x.key===b.key),p=d.params[i];if(el.value==='')return;const value=Math.max(p[1],Math.min(p[2],Number(el.value)));if(!Number.isFinite(value))return;current(b).values[i]=value;const parent=el.closest('.parameter');parent.querySelector('[data-param]').value=value;if(!el.matches('[data-number]'))parent.querySelector('[data-number]').value=value;const proportion=(value-p[1])/(p[2]-p[1]);parent.querySelector('.knob').style.setProperty('--angle',`${proportion*270}deg`);parent.querySelector('.knob').style.setProperty('--rotate',`${-135+proportion*270}deg`);mark();});
@@ -68,9 +115,9 @@ $('#scenes').onclick=e=>{const b=e.target.closest('[data-scene]');if(b){checkpoi
 $('#stomps').onclick=e=>{const b=e.target.closest('[data-stomp]');if(b)toggle(b.dataset.stomp);};
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-view]').forEach(n=>n.classList.toggle('active',n===b));document.querySelectorAll('.workspace-view').forEach(s=>s.hidden=s.id!==`${b.dataset.view}-view`);});
 $('#rig-name').onfocus=()=>checkpoint();$('#rig-name').oninput=e=>{state.name=e.target.value;mark();};$('#rig-name').onblur=()=>{state.name=state.name.trim()||'Untitled rig';$('#rig-name').value=state.name;mark();};
-$('#undo').onclick=()=>{if(!history.length)return;state=history.pop();if(!state.blocks.some(b=>b.id===selected))selected=state.blocks[0].id;render();};
+$('#undo').onclick=()=>{if(!history.length)return;state=history.pop();if(!state.parallel&&addLane==='b')addLane='a';if(!state.blocks.some(b=>b.id===selected))selected=state.blocks[0].id;render();};
 $('#save').onclick=()=>{try{localStorage.setItem(storageKey,JSON.stringify(state));saved=clone(state);mark();toast('Rig saved on this computer.');}catch{toast('Local save unavailable. Use Export to keep your rig.');}};
-$('#export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({format:'guitar-suite-prototype',version:1,rig:state},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`${state.name.replace(/[^a-z0-9 -]/gi,'').trim()||'guitar-rig'}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Rig settings exported. No audio or model files included.');};
+$('#export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({format:'guitar-suite-prototype',version:2,rig:state,graph:GuitarRig.graph(state)},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`${state.name.replace(/[^a-z0-9 -]/gi,'').trim()||'guitar-rig'}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Rig settings exported. No audio or model files included.');};
 $('#add-device').onclick=()=>{$('#search').focus();$('#search').scrollIntoView({behavior:'smooth',block:'center'});};
 $('#tone3000').onclick=()=>modal('CONNECTED LIBRARY','<h2>Your next favourite tone.</h2><p>TONE3000 browsing and downloads will connect here through the official API. This prototype does not sign in or download models.</p><p>Planned: your favourites, amp and pedal captures, cabinet IRs, and a local library for offline playing.</p><a href="https://www.tone3000.com" target="_blank" rel="noopener noreferrer">Explore TONE3000 ↗</a>');
 $('#settings').onclick=()=>modal('WINDOWS AUDIO','<h2>Plug in. Find your sound.</h2><p>The desktop app will use your interface’s ASIO driver. Device detection is not available in this interface prototype.</p><label>Driver<select disabled><option>ASIO — native engine not connected</option></select></label><label>Input / output<select disabled><option>Connect audio engine to select channels</option></select></label><div class="setup-note"><p>Each player will choose their own interface, guitar input and headphone/speaker outputs. Hardware settings stay on that computer, separate from shared rigs.</p></div>');
@@ -85,3 +132,8 @@ $('#stop-loop').onclick=stopLoop;$('#clear-loop').onclick=()=>{stopLoop();loopSe
 document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select')||$('#modal').open)return;if(['1','2','3','4'].includes(e.key)){checkpoint();state.scene=Number(e.key)-1;render();}if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();$('#save').click();}});
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 renderLibrary();render();
+
+installGearDrag({root:$('#chain'),library:$('#library'),resolveTarget:destination,onDrop:(payload,target)=>{if(payload.key)addDevice(payload.key,target.lane,target.before);else relocate(payload.id,target.lane,target.before);}});
+
+
+
