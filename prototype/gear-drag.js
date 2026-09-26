@@ -1,6 +1,6 @@
 /* Pointer-based dragging works with a mouse, pen or touch. Keeping it separate
    from the rig model also makes cancelling a drag a no-op on saved state. */
-window.installGearDrag = function({root,library,resolveTarget,onDrop}) {
+window.installGearDrag = function({root,library,resolveTarget,onDrop,onRemove}) {
   let active=null,ghost=null,lastTarget=null,suppressClick=false;
   const clear=()=>{
     document.querySelectorAll('.drop-lane,.drop-before,.drop-after').forEach(el=>el.classList.remove('drop-lane','drop-before','drop-after'));
@@ -9,7 +9,7 @@ window.installGearDrag = function({root,library,resolveTarget,onDrop}) {
     if(!active)return;
     const a=active,target=lastTarget;active=null;lastTarget=null;
     ghost?.remove();ghost=null;clear();document.body.classList.remove('dragging-gear');
-    if(a.started){suppressClick=true;setTimeout(()=>suppressClick=false,0);if(!cancel&&target)onDrop(a.payload,target);}
+    if(a.started){suppressClick=true;setTimeout(()=>suppressClick=false,0);if(!cancel&&target)onDrop(a.payload,target);else if(!cancel&&a.outside&&a.payload.id&&onRemove)onRemove(a.payload.id);}
   }
   function down(e){
     if(e.button!==0||active)return;
@@ -28,6 +28,7 @@ window.installGearDrag = function({root,library,resolveTarget,onDrop}) {
     e.preventDefault();ghost.style.left=(e.clientX+14)+'px';ghost.style.top=(e.clientY+14)+'px';
     const hit=document.elementFromPoint(e.clientX,e.clientY);
     clear();lastTarget=hit&&root.contains(hit)?resolveTarget({target:hit,clientX:e.clientX,clientY:e.clientY}):null;
+    active.outside=!!hit&&!root.contains(hit);ghost.classList.toggle('remove-ghost',active.outside&&!!active.payload.id);
     if(lastTarget)lastTarget.element.classList.add(lastTarget.side);
     // Scroll the hovered chain near its edge so long rigs remain reorderable.
     const strip=hit?.closest('.lane-devices'),canvas=hit?.closest('.route-scroll');

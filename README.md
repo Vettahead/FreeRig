@@ -3,7 +3,11 @@
 A free desktop guitar suite for Chris and friends, built around Neural Amp Modeler A2 with optional TONE3000 integration.
 
 ## Status
-Interactive interface build 04 completed on 26 September 2026, with illustrated gear, freely connected patch cables and named scenes within each patch. All users are confirmed on Windows; support will target manufacturer ASIO drivers with per-computer device/channel settings. Interface models are not yet confirmed. No real-time audio engine is connected yet.
+Windows desktop alpha 01 and interface build 05 are implemented. Run releases/GuitarSuite-alpha-01/GuitarSuite.exe. The program hosts the existing UI locally, uses NAudio ASIO, includes two Amplitron-derived built-in amp voices and a filtered cabinet, and loads NAM models/cabinet WAV IRs through the compiled official NAM Core. No preview server is needed.
+
+The board has four slots before the amp and four after the cab, stacked amp/cab branches, plus buttons on the line and undoable off-board drag deletion. Four named scenes remain independent for parameters and bypass. Guitar Suite patch JSON import is implemented; model files are imported onto the selected amp/cab.
+
+Offline audio tests pass for the complete effects chain, amp voices, WaveNet/A2/LSTM models and WAV IR convolution. Hardware ASIO/latency/listening tests are still pending. This alpha is mono-to-stereo, stops audio for graph changes, and has no tuner, MIDI, TONE3000 or real recording yet. See [native/README.md](native/README.md) for setup, exact limits, build instructions and licences. Earlier interface sections below are historical and superseded where noted.
 
 ## First release scope
 - Real-time guitar input and output through an audio interface.
@@ -39,7 +43,7 @@ Mac builds and a DAW plugin remain future platform candidates. MIDI control, loo
 The user selected LAVA Studio, Darkglass Anagram and Quad Cortex as product references. See [DESIGN-BRIEF.md](DESIGN-BRIEF.md) for the intended workspace, controls, expanded features and delivery phases.
 
 ## Next step
-Inspect the development toolchain, choose the native audio framework and build the smallest playable NAM plus cabinet prototype. Windows is confirmed; confirm exact interfaces before installer and device testing. Preserve licence notices and check redistribution rights for any bundled captures or IRs.
+Validate the Windows alpha with a connected guitar/audio interface for latency, dropouts and sound quality, then improve smoothing/stereo processing. Windows is confirmed; confirm exact interfaces before installer and device testing. Preserve licence notices and check redistribution rights for any bundled captures or IRs.
 
 
 
@@ -82,3 +86,6 @@ Four named scenes belong to each patch and recall independent parameter values a
 Library filters are All, Amps, Cabs, Drive, Delay, Modulation, Reverb, Dynamics and Utility. Search also matches categories. Hardware artwork/control rendering still uses device type independently of library category.
 
 Validation: both `node prototype/rig-model.test.cjs` and `node prototype/patch-model.test.cjs` pass. Browser checks covered every new effect filter, direct jack connections, cycle rejection, cable removal, device dragging with cables retained, scene parameter/bypass isolation, scene naming/copying and save/reload. The original 10-device user rig was saved before refresh and retained. No physical audio or touch/pen validation has been performed.
+
+## Windows alpha / slotted board (build 05)
+See native/README.md for the current executable and audio behaviour. Tests: node prototype/rig-model.test.cjs, node prototype/patch-model.test.cjs, node prototype/slot-board.test.cjs and GuitarSuite.exe --self-test with official NAM fixtures. Browser-verified plus-slot insertion, parallel cab addition and off-board drag deletion. Old visual rigs are preserved; legacy A/B junction processing is refused explicitly by the first audio engine. TONE3000 and installer remain future work.

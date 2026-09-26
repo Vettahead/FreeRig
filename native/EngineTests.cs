@@ -1,0 +1,27 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using System.Diagnostics;
+namespace GuitarSuite {
+static class EngineTests {
+ static DeviceState State(params double[] p){return new DeviceState{on=true,values=p};}
+ static Patch TestPatch(string key,string asset){var blocks=new[]{new Block{id="amp",key=key,assetId=asset},new Block{id="cab",key="cab"}};var scenes=Enumerable.Range(0,4).Select(i=>new Dictionary<string,DeviceState>{{"amp",State(0,0,0,0,-6)},{"cab",State(80,8000,-3)}}).ToArray();return new Patch{scene=0,blocks=blocks,connections=new[]{new[]{"input","amp"},new[]{"amp","cab"},new[]{"cab","output"}},scenes=scenes};}
+ static void Check(bool condition,string message){if(!condition)throw new Exception(message);}
+ public static int Run(string[] args){var lines=new List<string>();try{
+  var source=new float[128];for(int i=0;i<source.Length;i++)source[i]=(float)(.15*Math.Sin(i*2*Math.PI*220/48000));
+  double clean,crunch;using(var g=new Graph(TestPatch("cleanamp",null),48000,"")){clean=g.Run(source,128).Sum(x=>Math.Abs(x));Check(clean>0,"Clean amp silent");}using(var g=new Graph(TestPatch("amp",null),48000,"")){crunch=g.Run(source,128).Sum(x=>Math.Abs(x));Check(crunch>0&&Math.Abs(crunch-clean)>.01,"Voicings identical");}
+  lines.Add("PASS: built-in clean/crunch and cabinet produce distinct finite audio.");
+  var all=new[]{new Block{id="gate",key="gate"},new Block{id="compressor",key="compressor"},new Block{id="drive",key="drive"},new Block{id="amp",key="amp"},new Block{id="cab",key="cab"},new Block{id="chorus",key="chorus"},new Block{id="delay",key="delay"},new Block{id="reverb",key="reverb"}};
+  var settings=new Dictionary<string,DeviceState>{{"gate",State(-54,120)},{"compressor",State(-24,4,20)},{"drive",State(4.2,5.5,0)},{"amp",State(0,0,0,0,-6)},{"cab",State(80,8000,-3)},{"chorus",State(.8,45,35)},{"delay",State(380,32,22)},{"reverb",State(3.5,6,24)}};
+  var chain=new List<string[]>();string previous="input";foreach(var b in all){chain.Add(new[]{previous,b.id});previous=b.id;}chain.Add(new[]{previous,"output"});
+  using(var g=new Graph(new Patch{blocks=all,connections=chain.ToArray(),scene=0,scenes=Enumerable.Range(0,4).Select(i=>settings).ToArray()},48000,"")){for(int i=0;i<1000;i++)Check(g.Run(source,128).All(x=>!Single.IsNaN(x)&&!Single.IsInfinity(x)),"Effect produced invalid audio");}lines.Add("PASS: complete gate/compressor/drive/amp/cab/chorus/delay/reverb chain.");
+  var p=TestPatch("amp",null);using(var g=new Graph(p,48000,"")){var sw=Stopwatch.StartNew();for(int i=0;i<2000;i++){float[] result=g.Run(source,128);Check(result.All(x=>!Single.IsNaN(x)&&!Single.IsInfinity(x)),"Non-finite output");}sw.Stop();lines.Add("PASS: 256000 frames processed in "+sw.ElapsedMilliseconds+" ms (5333 ms audio).");p.scene=1;p.scenes[1]["amp"].on=false;g.Update(p);g.Run(source,128);lines.Add("PASS: live scene/bypass update.");}
+  p.connections=new[]{new[]{"amp","cab"},new[]{"cab","amp"}};bool rejected=false;try{using(var g=new Graph(p,48000,"")) {}}catch{rejected=true;}Check(rejected,"Cycle accepted");lines.Add("PASS: audio graph rejects cycles.");
+  foreach(string model in args){IntPtr handle=Nam.gs_load(model,48000,4096);Check(handle!=IntPtr.Zero,"NAM load: "+Nam.Error);try{var output=new float[128];Check(Nam.gs_process(handle,source,output,128)==1,"NAM processing failed");Check(output.All(x=>!Single.IsNaN(x)&&!Single.IsInfinity(x)),"NAM not finite");lines.Add("PASS: official NAM Core loaded and processed "+Path.GetFileName(model));}finally{Nam.gs_free(handle);}}
+  string irPath=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"test-ir.wav");using(var w=new NAudio.Wave.WaveFileWriter(irPath,NAudio.Wave.WaveFormat.CreateIeeeFloatWaveFormat(48000,1))){w.WriteSample(.5f);for(int i=1;i<128;i++)w.WriteSample(0);}
+  IntPtr ir=Nam.gs_load(irPath,48000,4096);Check(ir!=IntPtr.Zero,"Cabinet IR load failed");try{var outIr=new float[128];Check(Nam.gs_process(ir,source,outIr,128)==1,"IR process failed");Check(Math.Abs(outIr[20]-source[20]*.5)<.0001,"IR impulse response mismatch");}finally{Nam.gs_free(ir);}lines.Add("PASS: imported WAV IR convolution matches known impulse response.");
+  File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"self-test.txt"),lines);return 0;
+ }catch(Exception e){lines.Add("FAIL: "+e);File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"self-test.txt"),lines);return 1;}}
+}
+}

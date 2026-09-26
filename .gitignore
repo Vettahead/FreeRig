@@ -1,0 +1,4 @@
+native/deps/
+native/dist/
+releases/
+*.user
