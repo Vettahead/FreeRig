@@ -65,3 +65,8 @@ Review this interface direction, then choose the native Windows audio framework 
 - Existing v1 saves migrate to a serial layout without losing order or scene values. V2 is saved under a new storage key; the old save is retained. Export includes the versioned rig and explicit graph edges.
 
 Run `node prototype/rig-model.test.cjs` for graph connectivity, no-cycle, migration, move, serial-conversion and persistence validation checks. Browser checks passed for library drag, cross-path movement, in-path reordering, serial conversion/undo, crossover frequency and level/pan save/reload, and scene isolation. The 600px panel has no page-level horizontal overflow; the routing canvas itself scrolls. Touch/pen use is implemented via pointer events but has not been physically tested.
+
+## Controls on the gear (build 03)
+Click a rig device to open its hardware control surface. Pedals have interactive knobs, numeric readouts and a bypass footswitch directly on the enclosure; amp controls are built into the front panel, and cabinet shaping controls live on the cabinet. The previous separate control bank is removed.
+
+Drag a knob vertically to adjust it, hold Shift for fine adjustment, or focus the knob and use the arrow keys. Click the on-device value to type an exact setting. Settings still belong to the selected scene and use the existing save/export model. Browser checks verified pointer dragging, consecutive keyboard adjustments with retained focus, the pedal footswitch, amp controls, and save/reload persistence. All controls remain interface state only until the audio engine is connected.

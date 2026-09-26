@@ -11,3 +11,5 @@ Validation: node prototype/rig-model.test.cjs passes connectivity/cycle, movemen
 All users are on Windows, using differing interfaces; manufacturer ASIO drivers remain the target. Next: user visual feedback, then native audio framework selection and the actual NAM/ASIO/IR engine. Do not mark the advanced performance milestone complete until real routing DSP and MIDI have been implemented and validated.
 
 Mission Control project: bb78c32c-d021-44ed-b02c-0cad6ae65576.
+
+Build 03 follow-up: User requested actual controls on the device artwork, with no separate bank of knobs. hardware-controls.js and hardware-controls.css now render interactive pedal, amp and cabinet faces. app.js delegates selected-device rendering and installs the rotary pointer handlers. Range controls retain keyboard semantics and numeric entry; consecutive adjustments no longer rerender the focused input. Browser-verified mouse knob drag, bypass switch, persistence and keyboard focus. No DSP was added. Live preview uses the staged copy with identical source.
