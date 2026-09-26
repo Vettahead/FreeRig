@@ -1,0 +1,6 @@
+.tone-brand{width:190px;max-width:100%;height:45px;object-fit:contain;object-position:left;margin-top:22px;background:white;padding:8px;border-radius:5px}
+.tone-logo img{max-height:40px;object-fit:contain;background:white;padding:8px;border-radius:5px}
+.tone-picture{display:block;width:100%;max-height:220px;object-fit:cover;border-radius:9px;margin-top:15px}
+.tone-account,.tone-attribution,.tone-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.tone-account{margin:16px 0}.tone-avatar{width:30px;height:30px;border-radius:50%;object-fit:cover}.tone-tools{padding:12px 20px;border-bottom:1px solid #343d2f;font-size:11px}.tone-tools button{font-size:11px}.tone-tools small{color:#a7b498}
+.tone-block-art{display:block;height:90px;position:relative}.tone-block-art .tone-picture{height:85px;width:110px;object-fit:cover;margin:0}.tone-origin{position:absolute;right:0;bottom:0;width:35px!important;height:20px!important;object-fit:contain;background:white;border-radius:3px;padding:2px}.tone-block-art svg{height:85px}
+#tone-load,#tone-browse{margin-top:14px}#tone-message{min-height:24px}#modal-content .tone-picture+p{white-space:pre-wrap}

@@ -33,6 +33,6 @@ window.SlotBoard=(()=>{
   }
   function remove(s,id){const incoming=s.connections.filter(e=>e[1]===id).map(e=>e[0]),outgoing=s.connections.filter(e=>e[0]===id).map(e=>e[1]);PatchRig.remove(s,id);for(const a of incoming)for(const b of outgoing)PatchRig.connect(s,a,b);assign(s);}
   function compatible(a,b){const group=key=>{const d=PatchRig.definition(key);return !d?null:d.type==='Amps'?'amp':d.type==='Cabs'?'cab':'effect';};return group(a)!==null&&group(a)===group(b);}
-  function replace(s,id,key){const b=s.blocks.find(n=>n.id===id);if(!b||!compatible(b.key,key))return false;b.key=key;delete b.assetId;delete b.assetName;s.scenes.forEach(scene=>{const on=scene[id].on;scene[id]=PatchRig.valuesFor(b);scene[id].on=on;});return true;}
+  function replace(s,id,key){const b=s.blocks.find(n=>n.id===id);if(!b||!compatible(b.key,key))return false;b.key=key;delete b.assetId;delete b.assetName;delete b.tone3000;s.scenes.forEach(scene=>{const on=scene[id].on;scene[id]=PatchRig.valuesFor(b);scene[id].on=on;});return true;}
   return {assign,slots,label,move,add,remove,compatible,replace};
 })();

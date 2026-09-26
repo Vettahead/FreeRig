@@ -2,8 +2,8 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
-const files = {'/desktop-bridge.js':'desktop-bridge.js','/slot-board.js':'slot-board.js','/patch-model.js':'patch-model.js','/patch-ui.js':'patch-ui.js','/patch-ui.css':'patch-ui.css','/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js','/routing.css':'routing.css','/rig-model.js':'rig-model.js','/gear-art.js':'gear-art.js','/routing-ui.js':'routing-ui.js','/gear-drag.js':'gear-drag.js','/hardware-controls.js':'hardware-controls.js','/hardware-controls.css':'hardware-controls.css'};
-const types = {'.html':'text/html','.css':'text/css','.js':'text/javascript'};
+const files = {'/tone3000.js':'tone3000.js','/tone3000.css':'tone3000.css','/tone3000-logo.svg':'tone3000-logo.svg','/tone3000-mark.svg':'tone3000-mark.svg','/desktop-bridge.js':'desktop-bridge.js','/slot-board.js':'slot-board.js','/patch-model.js':'patch-model.js','/patch-ui.js':'patch-ui.js','/patch-ui.css':'patch-ui.css','/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js','/routing.css':'routing.css','/rig-model.js':'rig-model.js','/gear-art.js':'gear-art.js','/routing-ui.js':'routing-ui.js','/gear-drag.js':'gear-drag.js','/hardware-controls.js':'hardware-controls.js','/hardware-controls.css':'hardware-controls.css'};
+const types = {'.svg':'image/svg+xml','.html':'text/html','.css':'text/css','.js':'text/javascript'};
 http.createServer((req,res)=>{
   const file=files[new URL(req.url,'http://localhost').pathname];
   if(!file){res.writeHead(404);res.end('Not found');return;}

@@ -21,6 +21,18 @@ Click an amp and **Import NAM (.nam)** to load a local capture. Click a cab and 
 
 **Import patch** reads exported Guitar Suite JSON files (including older supported rig versions). This is not a converter for other vendors' preset formats. A `.nam` file is an amp/pedal model, not a complete multi-effect preset. Exported patches contain settings and references, not model/IR audio files: friends must import their own copies onto the relevant blocks. Four named scenes save per-device knobs and bypass states; wiring and assets are patch-wide.
 
+## TONE3000 — alpha 03
+
+Powered by [TONE3000](https://www.tone3000.com). Select an amp or cabinet, then **Browse TONE3000** in its editor. Continue to the official sign-in/catalogue window, enter your email and sign-in code there, and select a tone. Back in Guitar Suite, choose a model and press **Download and load**. A2 is selected initially; choose A1 or Custom before browsing for those models. Cabinet browsing filters for WAV IRs. Amp + Cab captures already contain cabinet colour; bypass a separate cabinet if appropriate for your rig.
+
+The built-in publishable app key was supplied by Chris; it is not a secret. Each person signs into their own account. OAuth uses PKCE S256 and random state; the native callback is intercepted at https://guitarsuite.local/tone3000/callback, so no listener or external server is required. If redirect restrictions are configured in TONE3000 settings, register that exact address. The live preflight accepted this key/address and redirected to TONE3000 sign-in on 26 September 2026. Full user sign-in/download/playback still needs verification.
+
+Access and refresh tokens remain in native code and are encrypted for the Windows user at %LOCALAPPDATA%/GuitarSuite/tone3000-session.bin. Disconnect removes those saved API tokens; it does not sign out of TONE3000 browser cookies or delete downloaded models. Tokens are not included in exports, screenshots, logs or release packages. Tokens are sent only to the exact official API origin; external download redirects receive no Authorization header.
+
+Only the model you choose is downloaded, size-limited and validated by NAM Core before attaching it to the rig. Files and an attribution/licence sidecar live in the local Library. No downloaded captures are bundled with the release. Tone metadata and creator attribution appear in the editor; tone artwork and TONE3000 origin appear in the block. The Models button reopens available variants. Downloaded audio files work offline; browsing and remote artwork need a connection. Exports contain references and attribution, not downloaded files or account details.
+
+This first integration uses the official hosted Select flow for browsing, favourites and account sign-in. It does not implement a second searchable catalogue or bulk downloads. Pedal captures are not yet offered by this loader. API reference/design requirements: https://www.tone3000.com/api ; terms: https://www.tone3000.com/api/terms . Official logos are included unchanged from the provided branding bundle and remain TONE3000 trademarks. No partnership or certification is claimed.
+
 ## Current limits
 
 - Early alpha: Chris reports audible but quiet playback through a Mackie Big Knob Studio+. Installed driver names are discoverable; hardware latency, sound quality, dropout behaviour and hot-unplug recovery require a listening session.
@@ -30,7 +42,7 @@ Click an amp and **Import NAM (.nam)** to load a local capture. Click a cab and 
 - A bypassed parallel branch passes dry audio; adjust routing to avoid unwanted dry duplication. Multiple paths sum at unity before the final output trim and ceiling.
 - Built-in effects are basic DSP implementations. Amps are an adapted clean/crunch subset of Amplitron, not exact emulations of commercial hardware. Cabinet default is filtering, not a bundled measured IR. No oversampling in this alpha.
 - Master output adjusts from −30 to +12 dB, initially −12 dB, with a 10 ms gain ramp and a hard ceiling; this is not a mastering limiter. Meters show input and output peaks. 0 dB removes the original fixed attenuation.
-- TONE3000, MIDI, tuner, recording/looper and WASAPI remain unimplemented. Practice transport remains a visual preview.
+- MIDI, tuner, recording/looper and WASAPI remain unimplemented. Practice transport remains a visual preview.
 - Unsigned portable folder release. No installer, updates, account or subscription.
 
 ## Build
