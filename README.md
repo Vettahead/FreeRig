@@ -3,7 +3,7 @@
 A free desktop guitar suite for Chris and friends, built around Neural Amp Modeler A2 with optional TONE3000 integration.
 
 ## Status
-Interactive interface build 02 completed on 26 September 2026, with illustrated gear and an editable split/merge routing design. All users are confirmed on Windows; support will target manufacturer ASIO drivers with per-computer device/channel settings. Interface models are not yet confirmed. No real-time audio engine is connected yet.
+Interactive interface build 04 completed on 26 September 2026, with illustrated gear, freely connected patch cables and named scenes within each patch. All users are confirmed on Windows; support will target manufacturer ASIO drivers with per-computer device/channel settings. Interface models are not yet confirmed. No real-time audio engine is connected yet.
 
 ## First release scope
 - Real-time guitar input and output through an audio interface.
@@ -46,7 +46,7 @@ Inspect the development toolchain, choose the native audio framework and build t
 ## Run the interface prototype
 With Node.js installed, run `node prototype/server.cjs` from this folder, then open http://127.0.0.1:4317 in a browser. You can also open prototype/index.html directly; local storage behaviour can differ for file URLs. No packages or build step are required. Optional Google Fonts fall back to system fonts offline.
 
-Working now: library search/filter, device insertion/removal, drag reordering and arrow controls, scene-specific bypass and parameter values, undo, local save/restore of one rig, JSON export, performance view, and silent practice transport/pulse previews. Keys 1-4 select scenes; Ctrl+S saves. Model names and artwork are illustrative placeholders.
+Working now: library search/filter, device insertion/removal, free board dragging and cable editing, scene-specific bypass and parameter values, undo, local save/restore of one rig, JSON export, performance view, and silent practice transport/pulse previews. Keys 1-4 select scenes; Ctrl+S saves. Model names and artwork are illustrative placeholders.
 
 Not implemented: audio processing, ASIO device enumeration, NAM/IR file loading, TONE3000 OAuth/downloads, actual looping/recording, DSP execution of the routing graph, MIDI and installer. The prototype states these limits in the interface. Export contains settings only; preset import and multiple saved rigs are future work.
 
@@ -56,7 +56,7 @@ JavaScript syntax check passed. Browser verification covered library search, add
 ### Next implementation
 Review this interface direction, then choose the native Windows audio framework and connect an ASIO/NAM/IR processing prototype. Keep the audio thread independent of UI, file loading and network work.
 
-## Illustrated routing editor (build 02)
+## Earlier routing editor (build 02, superseded by build 04)
 - Original vector artwork for individual pedals, two amp heads and a speaker cabinet, shown in the library, chain, performance view and selected-device editor.
 - Drag devices from the library into a path. Drag existing gear before/after another device or into an empty path. A floating preview and insertion marker show the destination. Escape cancels a drag. Arrow buttons and the selected-device path selector provide keyboard alternatives.
 - Topology: input -> shared pre chain -> split -> parallel A/B paths -> merge -> shared post chain -> output. Serial mode keeps a single A chain. This is one split/merge section; arbitrary nested routing, feedback loops and hardware sends are not implemented.
@@ -70,3 +70,15 @@ Run `node prototype/rig-model.test.cjs` for graph connectivity, no-cycle, migrat
 Click a rig device to open its hardware control surface. Pedals have interactive knobs, numeric readouts and a bypass footswitch directly on the enclosure; amp controls are built into the front panel, and cabinet shaping controls live on the cabinet. The previous separate control bank is removed.
 
 Drag a knob vertically to adjust it, hold Shift for fine adjustment, or focus the knob and use the arrow keys. Click the on-device value to type an exact setting. Settings still belong to the selected scene and use the existing save/export model. Browser checks verified pointer dragging, consecutive keyboard adjustments with retained focus, the pedal footswitch, amp controls, and save/reload persistence. All controls remain interface state only until the audio engine is connected.
+
+## Free patch routing and scenes (build 04)
+
+The board now uses explicit cables rather than fixed A/B lanes. Click an output jack, then an input jack. One output can feed multiple devices; multiple cables can join at any input. Click Cables to add or disconnect connections using named devices. Cycles, duplicate cables and invalid endpoints are rejected. Disconnected devices have dashed borders; moving a device preserves its cables. Tidy board arranges the graph, and zoom offers fit/80%/100%. Drag new gear from the library, then wire it; numeric board positions provide a keyboard alternative.
+
+The pre-amp delay example branches after the drive, routes through an amp and a wet delay in parallel, and joins both at the cabinet. Example loading is undoable. This is routing design data only, not an audio implementation; gain staging, stereo port rules, bypass behaviour on wet-only branches, latency compensation and click-free scene changes remain audio-engine work.
+
+Four named scenes belong to each patch and recall independent parameter values and bypass states. Rename a scene or copy its settings to another slot. Cables and board positions stay shared; Save patch saves every scene. Version 3 uses a new storage key, keeping earlier saves intact. Old serial/parallel patches retain their exact connections and scene values, with saved splitter/trim/mixer junctions retaining earlier routing settings. JSON export includes versioned patch data and explicit edges.
+
+Library filters are All, Amps, Cabs, Drive, Delay, Modulation, Reverb, Dynamics and Utility. Search also matches categories. Hardware artwork/control rendering still uses device type independently of library category.
+
+Validation: both `node prototype/rig-model.test.cjs` and `node prototype/patch-model.test.cjs` pass. Browser checks covered every new effect filter, direct jack connections, cycle rejection, cable removal, device dragging with cables retained, scene parameter/bypass isolation, scene naming/copying and save/reload. The original 10-device user rig was saved before refresh and retained. No physical audio or touch/pen validation has been performed.
