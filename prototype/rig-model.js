@@ -18,6 +18,7 @@
     {key:'chorus',name:'Slow Tide',type:'Pedals',icon:'∿',colour:'#79b5ad',detail:'Chorus · DSP',params:[['Rate',0.1,8,0.8,'Hz'],['Depth',0,100,45,'%'],['Mix',0,100,35,'%']]},
     {key:'compressor',name:'Soft Press',type:'Utility',icon:'⇥',colour:'#d5a591',detail:'Compressor · DSP',params:[['Threshold',-60,0,-24,'dB'],['Ratio',1,20,4,':1'],['Attack',1,100,20,'ms']]}
   ];
+  catalogue.push(...(typeof module==='object'&&module.exports?require('./effects-catalogue.js'):globalThis.EffectsCatalogue));
   const laneNames={pre:'Before split',a:'Path A',b:'Path B',post:'After merge'};
   const sceneNames=['Clean','Crunch','Lead','Ambient'];
   const clone=v=>JSON.parse(JSON.stringify(v));
@@ -38,7 +39,7 @@
   const finite=(v,min,max)=>Number.isFinite(v)&&v>=min&&v<=max;
   function validBase(s){
     return s&&typeof s.name==='string'&&s.name.length<=60&&Number.isInteger(s.scene)&&s.scene>=0&&s.scene<4&&finite(s.tempo,40,240)&&Array.isArray(s.blocks)&&s.blocks.length>0&&s.blocks.length<=24&&new Set(s.blocks.map(b=>b.id)).size===s.blocks.length&&s.blocks.every(b=>typeof b.id==='string'&&/^[a-zA-Z0-9-]+$/.test(b.id)&&definition(b.key))&&Array.isArray(s.scenes)&&s.scenes.length===4&&s.scenes.every(scene=>scene&&s.blocks.every(b=>{
-      const d=definition(b.key),v=scene[b.id];return v&&typeof v.on==='boolean'&&Array.isArray(v.values)&&v.values.length===d.params.length&&v.values.every((n,i)=>finite(n,d.params[i][1],d.params[i][2]));
+      const d=definition(b.key),v=scene[b.id];return v&&typeof v.on==='boolean'&&(v.sync===undefined||(Number.isInteger(v.sync)&&v.sync>=0&&v.sync<=7))&&Array.isArray(v.values)&&v.values.length===d.params.length&&v.values.every((n,i)=>finite(n,d.params[i][1],d.params[i][2]));
     }));
   }
   function valid(s){

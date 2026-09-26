@@ -1,0 +1,13 @@
+{
+  "airwindows": "b6eef0af60cd32641b09837096e41bbcdb030341",
+  "dragonfly": "440ec7b3b3db2fec34b9f80cf4890102ca14d1c3",
+  "sst-effects": "8135ae8584018ec73fb1da330b6ef7dac932b361",
+  "sst-basic-blocks": "a32b8aec14d661e415bb676bb2e2a0a4da4efc96",
+  "sst-filters": "8e541f4c17a82ee5a3826b6800aec127677b8604",
+  "chowmatrix": "40d8e0ef1f752a6843099ff3dfc3d99132b332eb",
+  "sst-waveshapers": "dd12f31a5a9016c9895e52d1a00eee0e1eebe6ce",
+  "cycfi-q": "6cd1aba653765bb66650cff457c0d2333fb4181f",
+  "cycfi-infra": "62a88cab2278ac843765c986edfd4d7393ae3db2",
+  "surge-spring": "4b642c903918b86320a2c6fb63886967ae203478",
+  "fmt": "10.2.1"
+}

@@ -24,3 +24,7 @@ API int gs_process(void* handle,float* input,float* output,int frames){
 }
 API void gs_free(void* handle){delete static_cast<Model*>(handle);}
 API int gs_rate(void* handle){auto* m=static_cast<Model*>(handle);return m?(int)m->dsp->GetExpectedSampleRate():0;}
+
+API int gs_process_stereo(void* handle,float* input,float* left,float* right,int frames){
+ auto*m=static_cast<Model*>(handle);if(!m||frames<0||frames>m->maxFrames)return 0;
+ try{float*ins[]={input};float*outs[]={left,right};m->dsp->process(ins,outs,frames);if(m->dsp->NumOutputChannels()==1)std::copy(left,left+frames,right);for(int i=0;i<frames;i++)if(!std::isfinite(left[i])||!std::isfinite(right[i]))return 0;return 1;}catch(...){return 0;}}

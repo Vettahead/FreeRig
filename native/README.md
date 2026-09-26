@@ -1,4 +1,20 @@
-# Guitar Suite — Windows desktop alpha
+## Alpha 05 — stereo effects and tuner (26 September 2026)
+
+Run releases/GuitarSuite-alpha-05/GuitarSuite.exe. This portable Windows app needs no browser server. The original built-in sounds and saved TONE3000 library remain available.
+
+- 22 new processors: six delays (digital, tape, double, pitch, four-tap and diffuse), eight reverbs (spring, hall, room, plate and ambient variants), and eight modulation effects (chorus, ensemble, flanger, phaser, rotary, vibrato, tremolo and auto-pan).
+- Engines: selected Airwindows processors, Dragonfly hall/room/plate, Surge effects and its ChowDSP spring, plus a delay using ChowMatrix's diffusion algorithm. This is not the complete ChowMatrix plug-in or its node editor.
+- Every new pedal has on-device controls and two starting presets. Values and bypass are saved independently in each of four scenes. Stereo Digital and Diffuse Echo offer beat divisions and tap tempo; delay time is limited to 2 seconds, including synced settings. Other Airwindows timing controls use the upstream normalised 0–100 scale.
+- Native stereo signal paths and stereo cabinet IRs. Parallel joins and bypass align the 16-sample adapter delay of Surge/Spring processors. This does not compensate arbitrary latency inherent in imported models or IR contents. Model processing runs one instance per channel, increasing CPU use compared with alpha 04.
+- Chromatic tuner using Cycfi Q BACF on the clean input, with note/octave, cents, A4 calibration from 430–450 Hz and optional output mute. Start ASIO in Audio setup, then press Tuner. Closing it restores the chosen master output. Supports single notes, not chords.
+
+Validation: seven JavaScript suites; native tests for 22 effects at 44.1/48/96 kHz, stereo output, latency alignment, beat timing, stereo IRs, A2/LSTM playback and existing TONE3000/library regressions. The tuner passed 27 harmonic test tones within three cents and cleared after silence. Five stereo effects processed 2667 ms of audio in about 80 ms offline on this PC; this is not a real-time ASIO guarantee. Live guitar pitch tracking, listening quality and dropout tests still need Chris's interface.
+
+Graph/asset edits still briefly restart audio on the saved ASIO configuration. Complete smoothing, spillover, MIDI, looper and recording are not finished. Old A/B mixer-junction patches are still refused by the native engine; use a current starter patch. Output has the existing gain ramp and ceiling.
+
+The source and licences for this GPL-3.0-or-later build accompany the portable release. Third-party copyrights and their original licences are retained. No downloaded user captures or account credentials are included.
+
+# Guitar Suite — Windows Desktop Alpha 05
 
 Run `GuitarSuite.exe` from the complete release folder. This is an actual x64 Windows application with native ASIO audio and a compiled NAM engine. Its interface is hosted in WebView2; it does not need a browser tab, Node or the preview server. Windows .NET Framework 4.8 and Microsoft Edge WebView2 Runtime are required (both are present on the development PC).
 
@@ -47,18 +63,18 @@ This first integration uses the official hosted Select flow for browsing, favour
 ## Current limits
 
 - Early alpha: Chris reports audible but quiet playback through a Mackie Big Knob Studio+. Installed driver names are discoverable; hardware latency, sound quality, dropout behaviour and hot-unplug recovery require a listening session.
-- Mono processing, duplicated to two ASIO outputs. Stereo IRs are downmixed. No stereo panning or latency compensation yet.
+- Alpha 05 preserves stereo, including IR channels; adapter latency is aligned at joins. No general per-path pan control yet.
 - Routing changes briefly stop/restart running audio so graphs/models can be rebuilt off the callback. Failed changes leave audio stopped and show an error. Scene/bypass changes have a short bypass fade; complete parameter smoothing, spillover and seamless changes are not finished.
 - Old saved A/B splitter/mixer junctions remain visible and editable in the interface, but are explicitly refused by this first audio engine. Start with a fresh desktop patch or the example for audio testing.
 - A bypassed parallel branch passes dry audio; adjust routing to avoid unwanted dry duplication. Multiple paths sum at unity before the final output trim and ceiling.
-- Built-in effects are basic DSP implementations. Amps are an adapted clean/crunch subset of Amplitron, not exact emulations of commercial hardware. Cabinet default is filtering, not a bundled measured IR. No oversampling in this alpha.
+- Original legacy effects remain basic DSP implementations; the new named pedals use the bundled open-source engines. Amps are an adapted clean/crunch subset of Amplitron, not exact emulations of commercial hardware. Cabinet default is filtering, not a bundled measured IR. No oversampling in this alpha.
 - Master output adjusts from −30 to +12 dB, initially −12 dB, with a 10 ms gain ramp and a hard ceiling; this is not a mastering limiter. Meters show input and output peaks. 0 dB removes the original fixed attenuation.
 - MIDI, tuner, recording/looper and WASAPI remain unimplemented. Practice transport remains a visual preview.
 - Unsigned portable folder release. No installer, updates, account or subscription.
 
 ## Build
 
-From `native/`, run `bootstrap.ps1`, `build-nam.ps1`, then `build.ps1` in PowerShell. Downloads come from official GitHub/NuGet sources and stay under `native/deps/`; no compiler installation is required. The scripts use the existing .NET Framework compiler. NAM uses a pinned portable LLVM-MinGW build; `GuitarNam.dll` statically includes its C++ runtime.
+From `native/`, run `bootstrap.ps1`, `build-nam.ps1`, then `build-effects.ps1`, then `build.ps1` in PowerShell. Downloads come from official GitHub/NuGet sources and stay under `native/deps/`; no compiler installation is required. The scripts use the existing .NET Framework compiler. NAM uses a pinned portable LLVM-MinGW build; `GuitarNam.dll` statically includes its C++ runtime.
 
 `GuitarSuite.exe --self-test [model.nam ...]` writes `self-test.txt` beside the executable. Tests cover distinct amp voices, a full effects chain, invalid-cycle rejection, live scene updates, WAV IR convolution, and optional NAM model files. Run JS model tests from `prototype/` with Node. ASIO callback hardware tests remain outstanding.
 
@@ -72,4 +88,4 @@ From `native/`, run `bootstrap.ps1`, `build-nam.ps1`, then `build.ps1` in PowerS
 - LLVM-MinGW 20260922 C++ runtime — Apache-2.0 with LLVM exceptions and bundled notices.
 - Microsoft.Web.WebView2 1.0.2903.40 — Microsoft SDK redistributable licence included. The separately installed WebView2 Runtime is provided by Microsoft.
 
-Other investigated options: Airwindows (MIT, many amp/cab DSP designs), Open Riff Box (GPLv3, larger complete suite), Rustortion (MIT, Rust engine with separate IR permissions), and AmpForge. They are not bundled in this alpha. The Amplitron subset plus official NAM Core minimises unrelated framework integration while retaining model import.
+Alpha 05 additionally bundles selected Airwindows, Dragonfly, Surge and ChowMatrix-derived code, Cycfi Q and supporting libraries. See vendor/README.md and the release licences.
