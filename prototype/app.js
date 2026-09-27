@@ -41,6 +41,9 @@ function renderEditor(){
   // Keep the existing model selector and handler, but put it beside Replace device.
   const model=panel.querySelector('#saved-model');
   if(model){const label=model.closest('label');label.classList.add('header-model');model.setAttribute('aria-label','Capture preset');panel.querySelector('.editor-actions').prepend(label);panel.querySelector('.title small').textContent='TONE3000 / '+state.sceneNames[state.scene]+' scene';}
+  // Reuse the existing browse action so its selected-device target stays intact.
+  const browse=panel.querySelector('#browse-tone');
+  if(browse){const tools=browse.parentElement;panel.querySelector('#replace-device').before(browse);if(!tools.children.length)tools.remove();}
   const options=panel.querySelector('.device-options');if(options)options.open=!!optionsOpen;panel.scrollTop=scroll;
 }
 function addDevice(key,slot=chosenSlot,openEditor=true){

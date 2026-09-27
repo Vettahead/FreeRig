@@ -1,5 +1,10 @@
 # Changelog
 
+## Alpha 14 TONE3000 header action — 27 September 2026
+
+Browse TONE3000 is now in the selected device header beside the capture selector and Replace device. The existing browse handler is retained; downloaded-tone attribution and variant details remain in Device options. Browser checks confirm the button is visible with options collapsed and opens the TONE3000 preview dialog. Restart Alpha 14 to load this interface update. Audio processing is unchanged.
+
+
 ## FreeRig Alpha 14 — 27 September 2026
 
 The app is now FreeRig, using the supplied cream-and-orange SVG logo. Run **releases/FreeRig-alpha-14/FreeRig.exe**. Header, native window, status bar and user-facing import/export messages use the new name. Existing GuitarSuite storage folders, browser origin, patch formats and audio processing are preserved for compatibility.
