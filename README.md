@@ -1,3 +1,9 @@
+## Alpha 16 — React interface foundation (27 September 2026)
+
+Run **releases/FreeRig-alpha-16/FreeRig.exe**. The normal pedalboard, device editor and hardware knobs now render through React and TypeScript. Right-click a device to edit, bypass, replace, duplicate with all scene settings, move between stages or remove. Empty slots have an Add menu. Shift+F10 opens the same menu; arrows navigate, Escape closes and restores focus. Ctrl+Z invokes Undo outside text fields. Dragging still leaves the editor closed. Menus, editor entry, bypass and device movement have lightweight animations that respect reduced-motion preferences.
+
+This is the first migration stage. The native audio engine and saved-patch model remain the authority; collection, banks, advanced cable drawing and import/preset forms still use their existing handlers. React is bundled locally and needs no internet at runtime. Alpha 15 remains available. TypeScript build, 11 JS regression suites, full native offline self-test and browser interaction checks pass. No live ASIO playback was started. See docs/REACT-MIGRATION.md.
+
 ## Alpha 15 — imported pedal collection (27 September 2026)
 
 Run **releases/FreeRig-alpha-15/FreeRig.exe**. Adds CloudSeed Space ambient reverb, EchoKing MkII tape echo, Photon Vibe and TriPhase Theorem, with 12 FreeRig starting presets. Find them under Reverb, Delay and Modulation. They work offline. Alpha 14 remains available.

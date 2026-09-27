@@ -34,9 +34,10 @@ function render(){
 }
 function renderEditor(){
   const panel=$('#editor'),same=panel.dataset.device===selected,optionsOpen=same&&panel.querySelector('.device-options')?.open,scroll=same?panel.scrollTop:0;panel.dataset.device=selected||'';if(!same&&selected)document.querySelector('main').scrollTop=0;
-  const b=state.blocks.find(x=>x.id===selected);document.body.classList.toggle('editing-device',!!b);$('#device-overview').hidden=!b;$('#device-overview').innerHTML=b?'<span class=overview-label>DEVICES</span>'+state.blocks.map(item=>'<button data-block="'+item.id+'" aria-pressed="'+(item.id===selected)+'" class="overview-device '+(current(item).on?'':'bypassed')+'">'+GearLooks.art(item,current(item).on)+'<span>'+escapeHTML(DeviceShelf.definition(item).name)+'</span></button>').join('')+'<button id=overview-routing>Routing ↗</button>':'';$('#editor').hidden=!b;if(!b){$('#editor').innerHTML='';return;}
+  const b=state.blocks.find(x=>x.id===selected);document.body.classList.toggle('editing-device',!!b);$('#device-overview').hidden=!b;$('#device-overview').innerHTML=b?'<span class=overview-label>DEVICES</span>'+state.blocks.map(item=>'<button data-block="'+item.id+'" aria-pressed="'+(item.id===selected)+'" class="overview-device '+(current(item).on?'':'bypassed')+'">'+GearLooks.art(item,current(item).on)+'<span>'+escapeHTML(DeviceShelf.definition(item).name)+'</span></button>').join('')+'<button id=overview-routing>Routing ↗</button>':'';$('#editor').hidden=!b;if(!b){if(window.FreeRigReact)FreeRigReact.editor(null);else $('#editor').innerHTML='';return;}
   const d=DeviceShelf.definition(b),v=current(b),index=state.blocks.indexOf(b);
   const note=NativeDesktop.installed()?'Desktop engine · '+(b.assetName||'Built-in sound')+' · '+state.sceneNames[state.scene]+' scene':d.type==='Amps'?'NAM capture placeholder · EQ and trims are external controls.':b.key==='cab'?'Cabinet placeholder · No impulse response loaded.':'Effect controls are saved in your rig · Audio processing is not connected.';
+  if(window.FreeRigReact){FreeRigReact.editor({rig:state,block:b,definition:d,sound:v,optionsOpen:!!optionsOpen,note});panel.scrollTop=scroll;return;}
   $('#editor').innerHTML=`<article class="editor" style="--accent:${d.colour}"><div class="editor-top"><div class="title"><span class="device-icon">${d.icon}</span><div><strong>${escapeHTML(d.name)}</strong><small>${escapeHTML(d.detail)} / ${escapeHTML(state.sceneNames[state.scene])} scene</small></div></div><div class="editor-actions"><button id="replace-device" aria-label="Replace selected device">Replace device…</button>  <button id="close-editor" aria-label="Close device controls">Routing ↗</button></div></div>${EffectTools.controls(b)}<div class="editor-body">${NativeDesktop.face(d,b,v)}</div><details class="device-options"><summary>Device options <span>Models, appearance & placement</span></summary>${NativeDesktop.controls(b)}${DeviceShelf.selector(b)}<div class="placement-tools"><label>Move to <select id="device-slot" aria-label="Device slot">${SlotBoard.slots(state).map(slot=>`<option value="${slot.section}:${slot.index}" ${b.slot.section===slot.section&&b.slot.index===slot.index?'selected':''}>${SlotBoard.label(slot)}${slot.block&&slot.block.id!==b.id?' (replace)':''}</option>`).join('')}</select></label><button id="remove" aria-label="Remove device">Remove from rig</button></div></details><div class="control-hint">Drag a knob up/down · Shift for fine adjustment · Click a value to type · Footswitch toggles bypass</div><div class="editor-note"><span>${escapeHTML(note)}</span><span>PATCH DEVICE / ${String(index+1).padStart(2,'0')}</span></div></article>`;
   // Keep the existing model selector and handler, but put it beside Replace device.
   const model=panel.querySelector('#saved-model');
@@ -138,7 +139,7 @@ $('#device-overview').onclick=e=>{const b=e.target.closest('[data-block]');selec
 $('#stomps').onclick=e=>{const b=e.target.closest('[data-stomp]');if(b)toggle(b.dataset.stomp);};
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.body.dataset.view=b.dataset.view;selected=null;renderEditor();document.querySelectorAll('[data-view]').forEach(n=>n.classList.toggle('active',n===b));document.querySelectorAll('.workspace-view').forEach(s=>s.hidden=s.id!==`${b.dataset.view}-view`);});
 $('#rig-name').onfocus=()=>checkpoint();$('#rig-name').oninput=e=>{state.name=e.target.value;mark();};$('#rig-name').onblur=()=>{state.name=state.name.trim()||'Untitled rig';$('#rig-name').value=state.name;mark();};
-$('#undo').onclick=()=>{if(!history.length)return;state=history.pop();pendingCable=null;if(!state.blocks.some(b=>b.id===selected))selected=state.blocks[0]?.id||null;render();};
+$('#undo').onclick=()=>{if(!history.length)return;state=history.pop();pendingCable=null;if(selected&&!state.blocks.some(b=>b.id===selected))selected=state.blocks[0]?.id||null;render();};
 $('#save').onclick=()=>{try{if(window.BankUI)BankUI.save();localStorage.setItem(storageKey,JSON.stringify(state));saved=clone(state);mark();toast('Patch and all '+state.scenes.length+' scenes saved on this computer.');}catch{toast('Local save unavailable. Use Export to keep your rig.');}};
 $('#export').onclick=()=>{if(NativeDesktop.installed()){NativeDesktop.exportPatch({format:'guitar-suite-prototype',version:3,rig:state,graph:PatchRig.graph(state)});return;}const url=URL.createObjectURL(new Blob([JSON.stringify({format:'guitar-suite-prototype',version:3,rig:state,graph:PatchRig.graph(state)},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`${state.name.replace(/[^a-z0-9 -]/gi,'').trim()||'guitar-rig'}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Rig settings exported. No audio or model files included.');};
 
@@ -175,3 +176,16 @@ document.addEventListener('pointerdown',e=>{
 });
 $('#modal-content').addEventListener('input',e=>{if(e.target.id==='picker-search'&&devicePicker){devicePicker.query=e.target.value.trim().toLowerCase();renderDevicePicker();}});
 $('#modal').addEventListener('close',()=>{devicePicker=null;chosenSlot=null;$('#modal').classList.remove('device-picker-modal');});
+
+// Explicit command adapter: all mutations keep the existing Undo/save/native sync path.
+window.FreeRigReact?.connect({
+ snapshot:()=>state,
+ edit:id=>{selected=id;render();},
+ bypass:id=>toggle(id),
+ replace:id=>{selected=id;openDevicePicker(id);},
+ remove:id=>removeDevice(id,false),
+ add:value=>chooseSlot(value),
+ duplicate:id=>{if(state.blocks.length>=24){toast('The rig supports up to 24 devices.');return;}checkpoint();RigActions.duplicate(state,id,'b'+crypto.randomUUID());selected=null;render();toast('Device duplicated with all scene settings. Undo restores the rig.');},
+ move:(id,section)=>moveDevice(id,RigActions.emptySlot(state,section),false)
+});
+document.addEventListener('keydown',e=>{if(e.defaultPrevented||e.target.closest('input,textarea,select')||$('#modal').open)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$('#undo').click();}});

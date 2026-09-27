@@ -1,0 +1,15 @@
+.react-art{display:contents}
+.compat-controls{display:contents}
+.device-context-menu{position:fixed;z-index:10000;width:258px;max-width:calc(100vw - 16px);max-height:calc(100vh - 16px);overflow:auto;padding:7px;border:1px solid #79918866;border-radius:12px;background:#202a29;box-shadow:0 16px 55px #0009,0 1px 0 #ffffff15 inset;animation:menu-in 120ms ease-out;color:#e4ece7}
+.device-context-menu .context-title{padding:8px 10px 9px;color:#9fb4a9;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.device-context-menu button{display:flex;align-items:center;justify-content:space-between;text-align:left;width:100%;padding:10px;border:0;border-radius:6px;background:transparent;color:inherit;font-size:12px;box-shadow:none;min-height:36px}
+.device-context-menu button:hover,.device-context-menu button:focus-visible{background:#b9d7c622;outline:1px solid #b9d7c655}
+.device-context-menu button:disabled{opacity:.35}.device-context-menu [role=separator]{height:1px;background:#ffffff13;margin:5px}.device-context-menu kbd,.device-context-menu small{font-size:10px;color:#93a99c}.device-context-menu .context-delete{color:#e8b1a6}
+.react-board .board-card,.react-board .board-empty{transition:background-color 140ms,border-color 140ms,box-shadow 140ms}
+.react-board .board-card:hover{box-shadow:0 5px 14px #0005,0 0 0 1px #bedbc62a}.react-board .board-gear .gear-svg{transition:opacity 150ms,filter 150ms}
+.react-editor{animation:editor-in 170ms cubic-bezier(.2,.7,.3,1)}
+.react-editor .power-led{transition:background-color 130ms,box-shadow 130ms}
+dialog[open]{animation:menu-in 140ms ease-out}
+@keyframes menu-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes editor-in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.react-editor,dialog[open],.device-context-menu{animation:none}.react-board .board-card,.react-board .board-empty,.react-board .board-gear .gear-svg,.react-editor .power-led{transition:none}}

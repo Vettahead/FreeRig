@@ -2,3 +2,5 @@ native/deps/
 native/dist/
 releases/
 *.user
+
+node_modules/

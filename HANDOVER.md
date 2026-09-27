@@ -1,3 +1,7 @@
+## Current release: FreeRig Alpha 16 — 27 September 2026
+
+React/TypeScript owns the normal pedalboard, editor and knobs, with device context menus and animations. See docs/REACT-MIGRATION.md for architecture, build commands, checks and remaining areas. Alpha 15 effects are included; both DSP DLLs are unchanged. Run releases/FreeRig-alpha-16/FreeRig.exe. React bundle is local/offline. TypeScript, 11 JS suites, native self-test and browser interactions passed; no live ASIO session was started. Run JS suites from prototype with node --test *.test.cjs. Remaining migration areas: collection, bank/scene shell, import/setup forms and advanced cable drawing. Existing Powercab USB, live long-chain/scene and MIDI follow-ups remain.
+
 
 
 ## Alpha 13 header preset picker — 27 September 2026
