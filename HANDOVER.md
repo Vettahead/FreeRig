@@ -1,3 +1,9 @@
+## Alpha 17 — display clarity and creator credit (27 September 2026)
+
+Run **releases/FreeRig-alpha-17/FreeRig.exe** after closing the previous app. The desktop host now declares per-monitor DPI awareness so Windows does not bitmap-scale its interface on high-DPI screens. Text-bearing filter layers are removed and small labels use clearer sizes and weights. Downloaded captures show their creator name and avatar at the bottom-right of the device editor, visible with Device options closed; missing or unavailable avatars fall back to an initial.
+
+TypeScript production build, native offline self-test and browser creator-credit checks pass. Embedded DPI manifest and release integrity are verified. Actual sharpness on the user's 4K display and movement between monitors still need a visual check after restart. Audio processing is unchanged; both DSP DLLs match Alpha 16. Alpha 16 remains available.
+
 ## Current release: FreeRig Alpha 16 — 27 September 2026
 
 React/TypeScript owns the normal pedalboard, editor and knobs, with device context menus and animations. See docs/REACT-MIGRATION.md for architecture, build commands, checks and remaining areas. Alpha 15 effects are included; both DSP DLLs are unchanged. Run releases/FreeRig-alpha-16/FreeRig.exe. React bundle is local/offline. TypeScript, 11 JS suites, native self-test and browser interactions passed; no live ASIO session was started. Run JS suites from prototype with node --test *.test.cjs. Remaining migration areas: collection, bank/scene shell, import/setup forms and advanced cable drawing. Existing Powercab USB, live long-chain/scene and MIDI follow-ups remain.

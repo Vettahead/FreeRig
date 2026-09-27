@@ -1,6 +1,6 @@
 export type Section = 'pre' | 'amp' | 'loop' | 'cab' | 'post';
 export interface Slot { section: Section; index: number; block?: Block }
-export interface Block { id: string; key: string; slot: Slot; assetId?: string; assetName?: string; tone3000?: {title?: string}; appearance?: {style?: string; colour?: string} }
+export interface Block { id: string; key: string; slot: Slot; assetId?: string; assetName?: string; tone3000?: {title?: string; user?: {username?: string; avatar_url?: string}}; appearance?: {style?: string; colour?: string} }
 export interface Sound { on: boolean; values: number[]; sync?: number }
 export type Param = [string, number, number, number, string];
 export interface Definition { key: string; name: string; detail: string; colour: string; type: string; params: Param[]; sync?: boolean }
