@@ -9,6 +9,7 @@ window.DeviceShelf=(()=>{
  const category=d=>d.key==='cab'?'Cabs':d.key==='nampedal'?'Drive':'Amps';
  function art(d){return GearLooks.art({key:d.key,appearance:{style:d.style,colour:colour(d.colour)}});}
  function cards(filter,query){const list=devices.filter(d=>(filter==='All'||filter===category(d))&&(d.tone.title+' '+(d.tone.user?.username||'')+' '+category(d)).toLowerCase().includes(query));return list.length?'<div class="saved-heading">YOUR DOWNLOADED DEVICES</div>'+list.map(d=>'<button draggable="false" class="library-item saved-device" data-add="pack:'+d.toneId+'" aria-label="Add saved '+esc(d.tone.title)+'"><span class="library-gear">'+art(d)+'</span><span><strong>'+esc(d.tone.title)+'</strong><small>'+d.models.filter(m=>m.available).length+' saved models · @'+esc(d.tone.user?.username||'creator')+'</small></span><span class="plus">＋</span></button>').join(''):'';}
+ function pickerCards(filter,query){return devices.filter(d=>(filter==='All'||filter===category(d))&&(d.tone.title+' '+category(d)+' '+(d.tone.user?.username||'')).toLowerCase().includes(query)).map(d=>'<button data-picker="pack:'+esc(d.toneId)+'">'+art(d)+'<strong>'+esc(d.tone.title)+'</strong><small>'+category(d)+' · saved pack</small></button>').join('');}
  function attach(b,d,m){b.assetId=m.assetId;b.assetName=m.name;b.tone3000={...d.tone,modelId:m.id,architecture:m.architecture};b.appearance={style:d.style,colour:colour(d.colour)};}
  function place(id,slot=null,replaceId=null){
   const d=find(id),m=d?.models.find(m=>m.available);if(!d||!m){toast('This device has no available model files. Download its pack again.');return;}
@@ -28,5 +29,5 @@ window.DeviceShelf=(()=>{
   else{checkpoint();const a=appearance(b);if(e.target.id==='device-look'){a.style=e.target.value;a.colour=GearLooks.list(b).find(x=>x.id===a.style)?.body||a.colour;}else a.colour=colour(e.target.value);b.appearance=a;if(d){d.style=a.style;d.colour=a.colour;send({type:'toneAppearance',toneId:d.toneId,...a});}render();renderLibrary();}
  });
  host?.addEventListener('message',e=>{const m=e.data;if(m.type==='ready')send({type:'toneLibrary'});if(m.type==='toneLibrary'){devices=Array.isArray(m.devices)?m.devices:[];renderLibrary();renderEditor();}});
- return {cards,place,selector,skin,definition,options,find,count:()=>devices.length};
+ return {cards,pickerCards,place,selector,skin,definition,options,find,count:()=>devices.length};
 })();

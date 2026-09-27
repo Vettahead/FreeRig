@@ -14,10 +14,12 @@ function toast(message){$('#toast').textContent=message;$('#toast').classList.ad
 function checkpoint(){history.push(clone(state));if(history.length>40)history.shift();}
 function mark(){dirty=JSON.stringify(state)!==JSON.stringify(saved);$('#dirty').textContent=dirty?'UNSAVED':'SAVED';$('#undo').disabled=!history.length;NativeDesktop.sync(state);}
 function current(b){return state.scenes[state.scene][b.id];}
+const deviceCategories=['All','Amps','Cabs','Drive','Delay','Modulation','Reverb','Dynamics','Utility'];
+let devicePicker=null;
 const libraryCategory=d=>d.category||({nampedal:'Drive',drive:'Drive',delay:'Delay',chorus:'Modulation',reverb:'Reverb',compressor:'Dynamics',gate:'Utility'}[d.key]||d.type);
 function renderLibrary(){
   const q=$('#search').value.toLowerCase();
-  $('#filters').innerHTML=['All','Amps','Cabs','Drive','Delay','Modulation','Reverb','Dynamics','Utility'].map(t=>`<button class="${filter===t?'active':''}" data-filter="${t}" aria-pressed="${filter===t}">${t}</button>`).join('');
+  $('#filters').innerHTML=deviceCategories.map(t=>`<button class="${filter===t?'active':''}" data-filter="${t}" aria-pressed="${filter===t}">${t}</button>`).join('');
   const items=catalogue.filter(d=>(filter==='All'||libraryCategory(d)===filter)&&(d.name+' '+d.detail+' '+libraryCategory(d)).toLowerCase().includes(q));
   $('#library-count').textContent=String(catalogue.length+DeviceShelf.count()).padStart(2,'0');
   $('#library-label').textContent=filter==='All'?'ALL DEVICES':filter.toUpperCase();
@@ -34,7 +36,7 @@ function renderEditor(){
   const b=state.blocks.find(x=>x.id===selected);$('#editor').hidden=!b;if(!b){$('#editor').innerHTML='';return;}
   const d=DeviceShelf.definition(b),v=current(b),index=state.blocks.indexOf(b);
   const note=NativeDesktop.installed()?'Desktop engine · '+(b.assetName||'Built-in sound')+' · '+state.sceneNames[state.scene]+' scene':d.type==='Amps'?'NAM capture placeholder · EQ and trims are external controls.':b.key==='cab'?'Cabinet placeholder · No impulse response loaded.':'Effect controls are saved in your rig · Audio processing is not connected.';
-  $('#editor').innerHTML=`<article class="editor" style="--accent:${d.colour}"><div class="editor-top"><div class="title"><span class="device-icon">${d.icon}</span><div><strong>${escapeHTML(d.name)}</strong><small>${escapeHTML(d.detail)} / ${escapeHTML(state.sceneNames[state.scene])} scene</small></div></div><div class="editor-actions"><label>Replace with <select id="replace-device" aria-label="Replace selected device">${catalogue.filter(item=>SlotBoard.compatible(b.key,item.key)).map(item=>`<option value="${item.key}" ${item.key===b.key&&!b.tone3000?'selected':''}>${item.name}</option>`).join('')}${DeviceShelf.options(b)}</select></label> <label>Move to <select id="device-slot" aria-label="Device slot">${SlotBoard.slots(state).map(slot=>`<option value="${slot.section}:${slot.index}" ${b.slot.section===slot.section&&b.slot.index===slot.index?'selected':''}>${SlotBoard.label(slot)}${slot.block&&slot.block.id!==b.id?' (replace)':''}</option>`).join('')}</select></label> <button id="close-editor" aria-label="Close device controls">Close</button><button id="remove" aria-label="Remove device" >✕</button></div></div>${NativeDesktop.controls(b)}${EffectTools.controls(b)}${DeviceShelf.selector(b)}<div class="editor-body">${NativeDesktop.face(d,b,v)}</div><div class="control-hint">Drag a knob up/down · Shift for fine adjustment · Click a value to type · Footswitch toggles bypass</div><div class="editor-note"><span>${escapeHTML(note)}</span><span>PATCH DEVICE / ${String(index+1).padStart(2,'0')}</span></div></article>`;
+  $('#editor').innerHTML=`<article class="editor" style="--accent:${d.colour}"><div class="editor-top"><div class="title"><span class="device-icon">${d.icon}</span><div><strong>${escapeHTML(d.name)}</strong><small>${escapeHTML(d.detail)} / ${escapeHTML(state.sceneNames[state.scene])} scene</small></div></div><div class="editor-actions"><button id="replace-device" aria-label="Replace selected device">Replace device…</button> <label>Move to <select id="device-slot" aria-label="Device slot">${SlotBoard.slots(state).map(slot=>`<option value="${slot.section}:${slot.index}" ${b.slot.section===slot.section&&b.slot.index===slot.index?'selected':''}>${SlotBoard.label(slot)}${slot.block&&slot.block.id!==b.id?' (replace)':''}</option>`).join('')}</select></label> <button id="close-editor" aria-label="Close device controls">Close</button><button id="remove" aria-label="Remove device" >✕</button></div></div>${NativeDesktop.controls(b)}${EffectTools.controls(b)}${DeviceShelf.selector(b)}<div class="editor-body">${NativeDesktop.face(d,b,v)}</div><div class="control-hint">Drag a knob up/down · Shift for fine adjustment · Click a value to type · Footswitch toggles bypass</div><div class="editor-note"><span>${escapeHTML(note)}</span><span>PATCH DEVICE / ${String(index+1).padStart(2,'0')}</span></div></article>`;
 }
 function addDevice(key,slot=chosenSlot){
   if(key.startsWith("pack:")){DeviceShelf.place(key.slice(5),slot);return;}
@@ -50,7 +52,22 @@ function moveDevice(id,slot){const block=state.blocks.find(b=>b.id===id);if(!slo
 }
 function replaceDevice(id,key){if(key.startsWith("pack:")){DeviceShelf.place(key.slice(5),null,id);return;}const b=state.blocks.find(b=>b.id===id);if(!b||!SlotBoard.compatible(b.key,key)){toast('Choose an amp, cab or pedal to match this device.');return;}checkpoint();SlotBoard.replace(state,id,key);selected=id;render();toast('Device replaced. Cables and scene bypass states kept. Undo restores the previous sound.');}
  function removeDevice(id){checkpoint();SlotBoard.remove(state,id);selected=state.blocks[0]?.id||null;pendingCable=null;render();toast('Device removed. Its neighbours stay connected. Undo restores it.');}
-function chooseSlot(value){const [section,index]=value.split(':');chosenSlot={section,index:Number(index)};const items=catalogue;modal('ADD / '+SlotBoard.label(chosenSlot).toUpperCase(),'<h2>Choose your sound.</h2><div class="slot-picker">'+items.map(d=>'<button data-picker="'+d.key+'">'+GearArt.svg(d.key)+'<strong>'+d.name+'</strong><small>'+libraryCategory(d)+'</small></button>').join('')+'</div>');}
+function chooseSlot(value){const [section,index]=value.split(':');chosenSlot={section,index:Number(index)};openDevicePicker(null,section==='amp'?'Amps':section==='cab'?'Cabs':'All');}
+function openDevicePicker(blockId,category){
+  const block=state.blocks.find(b=>b.id===blockId);
+  devicePicker={blockId: block?.id||null,category:category||libraryCategory(PatchRig.definition(block.key)),query:''};
+  $('#modal').classList.add('device-picker-modal');
+  modal(block?'REPLACE / '+DeviceShelf.definition(block).name.toUpperCase():'ADD / '+SlotBoard.label(chosenSlot).toUpperCase(),'<h2>Choose your sound.</h2><div id="picker-filters" class="filters" aria-label="Device categories"></div><label class="picker-search">Search devices<input id="picker-search" type="search" placeholder="Search this category…" autocomplete="off"></label><div id="picker-results" class="slot-picker"></div>');
+  renderDevicePicker();
+}
+function renderDevicePicker(){
+  if(!devicePicker)return;
+  const {category,query}=devicePicker;
+  $('#picker-filters').innerHTML=deviceCategories.map(t=>'<button data-picker-filter="'+t+'" class="'+(t===category?'active':'')+'" aria-pressed="'+(t===category)+'">'+t+'</button>').join('');
+  const items=catalogue.filter(d=>(category==='All'||libraryCategory(d)===category)&&(d.name+' '+d.detail+' '+libraryCategory(d)).toLowerCase().includes(query));
+  $('#picker-results').innerHTML=DeviceShelf.pickerCards(category,query)+items.map(d=>'<button data-picker="'+d.key+'">'+GearArt.svg(d.key)+'<strong>'+escapeHTML(d.name)+'</strong><small>'+escapeHTML(libraryCategory(d))+'</small></button>').join('')||'<p class="empty">No matching devices. Try another category or search.</p>';
+}
+
 function cable(from,to){if(!PatchRig.canConnect(state,from,to)){toast('That cable is already connected, invalid, or would create a feedback loop.');return false;}checkpoint();PatchRig.connect(state,from,to);pendingCable=null;render();toast('Cable connected — shared by every scene.');return true;}
 function openCables(){modal('PATCH / SHARED WIRING',PatchUI.controls(state));}
 
@@ -69,8 +86,8 @@ $('#chain').onclick=e=>{
   if(e.target.closest('[data-legacy]')){state.legacy.scene=state.scene;modal('SAVED ROUTING SETTINGS',RoutingUI.controls(state.legacy));}
 };
 function destination(e){return PatchUI.destination(e);}
-$('#editor').onclick=e=>{const button=e.target.closest('button');if(!button)return;if(button.id==='close-editor'){selected=null;render();return;}if(button.id==='bypass')toggle(selected);if(button.id==='remove')removeDevice(selected);};
-$('#editor').addEventListener('change',e=>{if(e.target.id==='replace-device'){replaceDevice(selected,e.target.value);return;}if(e.target.id==='device-slot'){const [section,index]=e.target.value.split(':');moveDevice(selected,{section,index:Number(index)});}});
+$('#editor').onclick=e=>{const button=e.target.closest('button');if(!button)return;if(button.id==='replace-device'){openDevicePicker(selected);return;}if(button.id==='close-editor'){selected=null;render();return;}if(button.id==='bypass')toggle(selected);if(button.id==='remove')removeDevice(selected);};
+$('#editor').addEventListener('change',e=>{if(e.target.id==='device-slot'){const [section,index]=e.target.value.split(':');moveDevice(selected,{section,index:Number(index)});}});
 $('#routing-bar').onclick=e=>{
   if(e.target.closest('#wire-list'))openCables();
   if(e.target.closest('#arrange')){checkpoint();PatchRig.arrange(state);render();}
@@ -80,7 +97,8 @@ $('#routing-bar').onchange=e=>{if(e.target.id==='keep-cables'){state.keepCables=
 $('#rename-scene').onclick=()=>modal('SCENE NAME','<h2>Name this scene.</h2><label>Scene name<input id="scene-name" maxlength="24" value="'+escapeHTML(state.sceneNames[state.scene])+'"></label><button id="apply-scene-name" class="primary">Rename scene</button>');
 $('#copy-scene').onclick=()=>modal('COPY SCENE','<h2>Copy '+escapeHTML(state.sceneNames[state.scene])+'.</h2><p>Replace another scene’s knob settings and bypass states. Its name and the patch wiring stay as they are. Undo can restore it.</p><label>Destination scene<select id="scene-destination">'+state.sceneNames.map((name,i)=>i===state.scene?'':'<option value="'+i+'">'+escapeHTML(name)+'</option>').join('')+'</select></label><button id="apply-copy-scene" class="primary">Copy settings</button>');
 $('#modal-content').addEventListener('click',e=>{
-  const picker=e.target.closest('[data-picker]');if(picker){addDevice(picker.dataset.picker);return;}
+  const category=e.target.closest('[data-picker-filter]');if(category&&devicePicker){devicePicker.category=category.dataset.pickerFilter;renderDevicePicker();return;}
+  const picker=e.target.closest('[data-picker]');if(picker&&devicePicker){const target=devicePicker.blockId;if(target){replaceDevice(target,picker.dataset.picker);$('#modal').close();}else addDevice(picker.dataset.picker);return;}
   if(e.target.id==='confirm-template'){checkpoint();state=PatchRig.createDefault();selected='b2';pendingCable=null;$('#modal').close();render();}
   if(e.target.id==='connect-cable'){const from=$('#cable-from').value,to=$('#cable-to').value;if(cable(from,to))openCables();}
   const remove=e.target.closest('[data-disconnect]');if(remove){checkpoint();state.connections.splice(Number(remove.dataset.disconnect),1);render();openCables();}
@@ -132,3 +150,14 @@ HardwareControls.install($('#editor'));
 
 
 NativeDesktop.boot();
+
+// Close panels on an outside press; do this before a new device's click opens it.
+document.addEventListener('pointerdown',e=>{
+  if(!selected||$('#modal').open||e.target.closest('#editor,[data-block]'))return;
+  selected=null;renderEditor();
+  // Keep the clicked board control mounted so its pending click still works.
+  document.querySelectorAll('#chain .selected,#chain .cable.lit').forEach(el=>el.classList.remove('selected','lit'));
+  document.querySelectorAll('#chain [data-block][aria-pressed="true"]').forEach(el=>el.setAttribute('aria-pressed','false'));
+});
+$('#modal-content').addEventListener('input',e=>{if(e.target.id==='picker-search'&&devicePicker){devicePicker.query=e.target.value.trim().toLowerCase();renderDevicePicker();}});
+$('#modal').addEventListener('close',()=>{devicePicker=null;chosenSlot=null;$('#modal').classList.remove('device-picker-modal');});

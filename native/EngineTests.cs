@@ -10,7 +10,7 @@ static class EngineTests {
  static void Check(bool condition,string message){if(!condition)throw new Exception(message);}
  public static int Run(string[] args){var lines=new List<string>();try{
   var trim=new InputTrim();var trimInput=new float[4800];for(int i=0;i<trimInput.Length;i++)trimInput[i]=.1f;trim.Set(20*Math.Log10(2));float trimPeak=trim.Process(trimInput,trimInput.Length,48000);Check(trimInput[0]>.1&&trimInput[0]<.101&&Math.Abs(trimPeak-.2)<.00002,"Input trim gain/ramp wrong");trim.Set(-6.0206);trim.Reset();trimInput[0]=.2f;trim.Process(trimInput,1,48000);Check(Math.Abs(trimInput[0]-.1)<.00001,"Input trim reset wrong");lines.Add("PASS: independent input trim, calibrated gain, 10 ms smoothing and restart level.");
-  EffectsTests.Run(lines);ToneTests.Run(lines);var provider=new LiveProvider(48000);provider.Count=128;for(int i=0;i<128;i++)provider.Samples[i]=.1f;var bytes=new byte[1024];provider.Read(bytes,0,bytes.Length);Check(Math.Abs(BitConverter.ToSingle(bytes,0)-.025)<.0001,"Initial output trim wrong");provider.Gain=1;for(int i=0;i<100;i++)provider.Read(bytes,0,bytes.Length);Check(Math.Abs(BitConverter.ToSingle(bytes,0)-.1)<.0001,"Unity master gain wrong");Check(BitConverter.ToSingle(bytes,0)==BitConverter.ToSingle(bytes,4),"Stereo outputs differ");provider.Gain=4;for(int i=0;i<128;i++)provider.Samples[i]=1;for(int i=0;i<100;i++)provider.Read(bytes,0,bytes.Length);Check(provider.Clipped&&provider.Peak<=.95f,"Output ceiling failed");provider.Count=0;provider.Read(bytes,0,bytes.Length);Check(BitConverter.ToSingle(bytes,0)==0,"Empty output not silent");lines.Add("PASS: master gain, stereo output, clipping ceiling and empty output.");
+  LiveSwitchTests(lines);EffectsTests.Run(lines);ToneTests.Run(lines);var provider=new LiveProvider(48000);provider.Count=128;for(int i=0;i<128;i++)provider.Samples[i]=.1f;var bytes=new byte[1024];provider.Read(bytes,0,bytes.Length);Check(Math.Abs(BitConverter.ToSingle(bytes,0)-.025)<.0001,"Initial output trim wrong");provider.Gain=1;for(int i=0;i<100;i++)provider.Read(bytes,0,bytes.Length);Check(Math.Abs(BitConverter.ToSingle(bytes,0)-.1)<.0001,"Unity master gain wrong");Check(BitConverter.ToSingle(bytes,0)==BitConverter.ToSingle(bytes,4),"Stereo outputs differ");provider.Gain=4;for(int i=0;i<128;i++)provider.Samples[i]=1;for(int i=0;i<100;i++)provider.Read(bytes,0,bytes.Length);Check(provider.Clipped&&provider.Peak<=.95f,"Output ceiling failed");provider.Count=0;provider.Read(bytes,0,bytes.Length);Check(BitConverter.ToSingle(bytes,0)==0,"Empty output not silent");lines.Add("PASS: master gain, stereo output, clipping ceiling and empty output.");
   var source=new float[128];for(int i=0;i<source.Length;i++)source[i]=(float)(.15*Math.Sin(i*2*Math.PI*220/48000));
   double clean,crunch;using(var g=new Graph(TestPatch("cleanamp",null),48000,"")){clean=g.Run(source,128).Sum(x=>Math.Abs(x));Check(clean>0,"Clean amp silent");}using(var g=new Graph(TestPatch("amp",null),48000,"")){crunch=g.Run(source,128).Sum(x=>Math.Abs(x));Check(crunch>0&&Math.Abs(crunch-clean)>.01,"Voicings identical");}
   lines.Add("PASS: built-in clean/crunch and cabinet produce distinct finite audio.");
@@ -25,5 +25,21 @@ static class EngineTests {
   IntPtr ir=Nam.gs_load(irPath,48000,4096);Check(ir!=IntPtr.Zero,"Cabinet IR load failed");try{var outIr=new float[128];Check(Nam.gs_process(ir,source,outIr,128)==1,"IR process failed");Check(Math.Abs(outIr[20]-source[20]*.5)<.0001,"IR impulse response mismatch");}finally{Nam.gs_free(ir);}lines.Add("PASS: imported WAV IR convolution matches known impulse response.");
   File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"self-test.txt"),lines);return 0;
  }catch(Exception e){lines.Add("FAIL: "+e);File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"self-test.txt"),lines);return 1;}}
+ static void LiveSwitchTests(List<string> lines){
+  foreach(int rate in new[]{44100,48000,96000}){
+   using(var live=new LiveGraph(TestPatch("amp",null),rate,"")){
+    Exception failure=null;int rendered=0;var ready=new System.Threading.ManualResetEventSlim();var stop=new System.Threading.ManualResetEventSlim();
+    var thread=new System.Threading.Thread(()=>{try{var input=new float[128];var provider=new LiveProvider(rate);var bytes=new byte[1024];ready.Set();while(!stop.IsSet){for(int i=0;i<128;i++)input[i]=(float)(.08*Math.Sin((rendered*128.0+i)*2*Math.PI*220/rate));live.Render(input,128);provider.Samples=live.Left;provider.RightSamples=live.Right;provider.Count=128;provider.Read(bytes,0,bytes.Length);for(int i=0;i<256;i++){float value=BitConverter.ToSingle(bytes,i*4);Check(!Single.IsNaN(value)&&!Single.IsInfinity(value)&&Math.Abs(value)<.95,"Switch generated invalid or clipped output");}System.Threading.Interlocked.Increment(ref rendered);}}catch(Exception e){failure=e;}});
+    thread.Start();ready.Wait();
+    try{for(int i=0;i<60;i++){var patch=TestPatch(i%2==0?"cleanamp":"amp",null);if(i%3==0){patch.blocks=new[]{new Block{id="drive",key="drive"},patch.blocks[0],patch.blocks[1]};patch.connections=new[]{new[]{"input","drive"},new[]{"drive","amp"},new[]{"amp","cab"},new[]{"cab","output"}};foreach(var scene in patch.scenes)scene.Add("drive",State(3,5,-12));}live.Replace(patch);patch.scene=1;live.Update(patch);}
+     bool rejected=false;try{live.Replace(TestPatch("amp","missing-test-capture.nam"));}catch{rejected=true;}Check(rejected,"Missing capture accepted");
+    }finally{stop.Set();thread.Join();ready.Dispose();stop.Dispose();}
+    if(failure!=null)throw new Exception("Concurrent render failed",failure);Check(rendered>0,"No overlapping callbacks tested");
+    var signal=new float[128];for(int i=0;i<128;i++)signal[i]=(float)(.1*Math.Sin(i*.1));for(int i=0;i<20;i++)live.Render(signal,128);Check(live.Left.Take(128).Sum(x=>Math.Abs(x))>.001,"Failed replacement silenced the working graph");
+    lines.Add("PASS: "+rate+" Hz, 60 amp/drive replacements with "+rendered+" concurrent stereo output callbacks; bypass/scene updates; failed model preserves working audio.");
+   }
+  }
+ }
+
 }
 }
