@@ -1,4 +1,9 @@
 
+
+## Alpha 13 drag/drop fix — 27 September 2026
+
+Dropping moved, added or replacement devices keeps the routing board open, including saved TONE3000 devices. Dragging off the board also stays on the board. Ordinary clicks and picker selections still open controls. Ten existing JS suites pass; browser verification confirms moving and library insertion leave the editor closed, while a normal click opens it. Restart Alpha 13 to load the corrected UI.
+
 ## Alpha 13 — pedalboard and amp FX loop (27 September 2026)
 
 Run **releases/GuitarSuite-alpha-13/GuitarSuite.exe**. The native window title and UI now both identify Alpha 13.
