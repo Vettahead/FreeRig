@@ -1,4 +1,4 @@
-/* Generated from the compiled native parameter catalogue. */
+/* Generated native parameters with curated factory presets. */
 (function(root){const data=[
   {
     "key": "fx-ShimmerHall",
@@ -2322,5 +2322,389 @@
         ]
       }
     ]
+  },
+  {
+    "key": "fx-CloudSeed",
+    "latency": 0,
+    "params": [
+      [
+        "Decay",
+        0.20000000298023224,
+        20,
+        6,
+        "s"
+      ],
+      [
+        "Pre-delay",
+        0,
+        250,
+        20,
+        "ms"
+      ],
+      [
+        "Modulation",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Damping",
+        800,
+        16000,
+        6500,
+        "Hz"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "Early reflections",
+        0,
+        100,
+        15,
+        "%"
+      ]
+    ],
+    "name": "CloudSeed Space",
+    "category": "Reverb",
+    "engine": "Cloud Seed Core / Ghost Note Audio",
+    "colour": "#9289bb",
+    "presets": [
+      {
+        "name": "Dark space",
+        "values": [
+          6,
+          20,
+          30,
+          6500,
+          25,
+          15
+        ]
+      },
+      {
+        "name": "Endless sky",
+        "values": [
+          16,
+          45,
+          65,
+          4500,
+          42,
+          10
+        ]
+      },
+      {
+        "name": "Soft plate",
+        "values": [
+          2.5,
+          8,
+          12,
+          9000,
+          20,
+          30
+        ]
+      }
+    ],
+    "type": "Pedals",
+    "detail": "Reverb · Cloud Seed Core / Ghost Note Audio",
+    "icon": "✧",
+    "sync": false
+  },
+  {
+    "key": "fx-EchoKing",
+    "latency": 0,
+    "params": [
+      [
+        "Time",
+        50,
+        800,
+        320,
+        "ms"
+      ],
+      [
+        "Feedback",
+        0,
+        95,
+        35,
+        "%"
+      ],
+      [
+        "Record level",
+        10,
+        200,
+        70,
+        "%"
+      ],
+      [
+        "Tone",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Wow and flutter",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Model: EP1/EP2/EP3",
+        1,
+        3,
+        2,
+        ""
+      ],
+      [
+        "Tape: new/stock/worn",
+        0,
+        2,
+        1,
+        ""
+      ]
+    ],
+    "name": "EchoKing MkII",
+    "category": "Delay",
+    "engine": "Cleveland Music Co. / FreeRig port",
+    "colour": "#c58a58",
+    "presets": [
+      {
+        "name": "EP-2 warm tape",
+        "values": [
+          320,
+          35,
+          70,
+          50,
+          25,
+          30,
+          2,
+          1
+        ]
+      },
+      {
+        "name": "EP-1 worn slap",
+        "values": [
+          100,
+          18,
+          90,
+          35,
+          50,
+          24,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "EP-3 clear repeats",
+        "values": [
+          450,
+          48,
+          70,
+          65,
+          12,
+          32,
+          3,
+          0
+        ]
+      }
+    ],
+    "type": "Pedals",
+    "detail": "Delay · Cleveland Music Co. / FreeRig port",
+    "icon": "≈",
+    "sync": false
+  },
+  {
+    "key": "fx-PhotonVibe",
+    "latency": 0,
+    "params": [
+      [
+        "Rate",
+        0.10000000149011612,
+        10,
+        1.2000000476837158,
+        "Hz"
+      ],
+      [
+        "Depth",
+        0,
+        100,
+        65,
+        "%"
+      ],
+      [
+        "Photocell lag",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Feedback",
+        0,
+        65,
+        0,
+        "%"
+      ],
+      [
+        "Vibrato",
+        0,
+        1,
+        0,
+        ""
+      ],
+      [
+        "Output",
+        -18,
+        6,
+        0,
+        "dB"
+      ]
+    ],
+    "name": "Photon Vibe",
+    "category": "Modulation",
+    "engine": "Cleveland Music Co. / FreeRig port",
+    "colour": "#a38dc2",
+    "presets": [
+      {
+        "name": "Vintage swirl",
+        "values": [
+          1.2,
+          65,
+          50,
+          50,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Slow photocell",
+        "values": [
+          0.55,
+          90,
+          70,
+          50,
+          15,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Liquid vibrato",
+        "values": [
+          2.4,
+          60,
+          45,
+          50,
+          0,
+          1,
+          0
+        ]
+      }
+    ],
+    "type": "Pedals",
+    "detail": "Modulation · Cleveland Music Co. / FreeRig port",
+    "icon": "∿",
+    "sync": false
+  },
+  {
+    "key": "fx-TriPhase",
+    "latency": 0,
+    "params": [
+      [
+        "Model: 45/90/Stone",
+        0,
+        2,
+        1,
+        ""
+      ],
+      [
+        "Rate",
+        0.05000000074505806,
+        10,
+        0.6000000238418579,
+        "Hz"
+      ],
+      [
+        "Colour",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Output",
+        -18,
+        6,
+        0,
+        "dB"
+      ]
+    ],
+    "name": "TriPhase Theorem",
+    "category": "Modulation",
+    "engine": "Cleveland Music Co. / FreeRig port",
+    "colour": "#d09567",
+    "presets": [
+      {
+        "name": "Script 90",
+        "values": [
+          1,
+          0.6,
+          0,
+          100,
+          0
+        ]
+      },
+      {
+        "name": "Gentle 45",
+        "values": [
+          0,
+          0.45,
+          0,
+          100,
+          0
+        ]
+      },
+      {
+        "name": "Stone colour",
+        "values": [
+          2,
+          0.8,
+          100,
+          100,
+          0
+        ]
+      }
+    ],
+    "type": "Pedals",
+    "detail": "Modulation · Cleveland Music Co. / FreeRig port",
+    "icon": "∿",
+    "sync": false
   }
 ];if(typeof module==='object'&&module.exports)module.exports=data;else root.EffectsCatalogue=data;})(globalThis);

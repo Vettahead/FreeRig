@@ -832,5 +832,163 @@
         ]
       }
     ]
+  },
+  {
+    "key": "CloudSeed",
+    "presets": [
+      {
+        "name": "Dark space",
+        "values": [
+          6,
+          20,
+          30,
+          6500,
+          25,
+          15
+        ]
+      },
+      {
+        "name": "Endless sky",
+        "values": [
+          16,
+          45,
+          65,
+          4500,
+          42,
+          10
+        ]
+      },
+      {
+        "name": "Soft plate",
+        "values": [
+          2.5,
+          8,
+          12,
+          9000,
+          20,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "key": "EchoKing",
+    "presets": [
+      {
+        "name": "EP-2 warm tape",
+        "values": [
+          320,
+          35,
+          70,
+          50,
+          25,
+          30,
+          2,
+          1
+        ]
+      },
+      {
+        "name": "EP-1 worn slap",
+        "values": [
+          100,
+          18,
+          90,
+          35,
+          50,
+          24,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "EP-3 clear repeats",
+        "values": [
+          450,
+          48,
+          70,
+          65,
+          12,
+          32,
+          3,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PhotonVibe",
+    "presets": [
+      {
+        "name": "Vintage swirl",
+        "values": [
+          1.2,
+          65,
+          50,
+          50,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Slow photocell",
+        "values": [
+          0.55,
+          90,
+          70,
+          50,
+          15,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Liquid vibrato",
+        "values": [
+          2.4,
+          60,
+          45,
+          50,
+          0,
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TriPhase",
+    "presets": [
+      {
+        "name": "Script 90",
+        "values": [
+          1,
+          0.6,
+          0,
+          100,
+          0
+        ]
+      },
+      {
+        "name": "Gentle 45",
+        "values": [
+          0,
+          0.45,
+          0,
+          100,
+          0
+        ]
+      },
+      {
+        "name": "Stone colour",
+        "values": [
+          2,
+          0.8,
+          100,
+          100,
+          0
+        ]
+      }
+    ]
   }
 ]

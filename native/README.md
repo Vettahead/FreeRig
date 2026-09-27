@@ -1,3 +1,9 @@
+## Alpha 15 — imported pedal collection (27 September 2026)
+
+Run **releases/FreeRig-alpha-15/FreeRig.exe**. Adds CloudSeed Space ambient reverb, EchoKing MkII tape echo, Photon Vibe and TriPhase Theorem, with 12 FreeRig starting presets. Find them under Reverb, Delay and Modulation. They work offline. Alpha 14 remains available.
+
+The native ports add no dry-path buffering and do not change ASIO settings or NAM processing. Offline qualification passes at 44.1/48/96 kHz, including small blocks, parameter extremes, tails, stereo state and bypass/re-engagement. The full native regression and three JS suites pass. Browser checks confirm all four control panels and preset application. Live ASIO listening and worst-case scheduling are not certified by these offline checks. See docs/IMPORTED-EFFECTS.md for provenance and limitations.
+
 ## Alpha 11 — calibration, banks and performance workspace (27 September 2026)
 
 ## FreeRig Alpha 14 — 27 September 2026

@@ -20,3 +20,6 @@ std::unique_ptr<Effect> makeDragonPlate(int);
 std::unique_ptr<Effect> makeSpring(int rate); std::unique_ptr<Effect> makeDiffuse(int rate);
 std::unique_ptr<Effect> makeGuitarix(const std::string&,int);
 std::unique_ptr<Effect> makeShimmer(int);
+
+std::unique_ptr<Effect> makeHothouse(const std::string&,int);
+std::unique_ptr<Effect> makeCloudSeed(int);

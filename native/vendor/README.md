@@ -18,3 +18,10 @@ Modifications dated 26 September 2026: Dragonfly class names separated by proces
 The C ABI, stereo graph adapters, preset metadata and tuner UI are Guitar Suite additions. The combined Guitar Suite source is supplied under GPL-3.0-or-later, with original permissive licences retained on individual components. TONE3000 branding remains the owner's trademark. Microsoft runtime/SDK and .NET dependencies retain their separate notices.
 
 Alpha 06 additions (26 September 2026): Guitarix selected Faust-generated drive circuits and original Faust source (GPL-2.0-or-later), Zita resampler 1.1.0 (GPL-3.0-or-later), and Signalsmith Stretch/Linear (MIT). Guitarix clipping.h gained an include guard; the Zita table mutex uses std::mutex instead of pthreads for Windows, with the same locking scope. Circuit maths are retained; the host runs each at 96 kHz with independent left/right instances. Selected Surge FloatyDelay and Reverb2 headers use the existing pinned source. Shimmer Hall is a Guitar Suite composition of Signalsmith pitch shifting and Dragonfly Hall, not a branded-pedal clone. See EFFECTS-RESEARCH.md in the parent directory.
+
+## Alpha 15 additions
+
+- cloudseed-core: https://github.com/GhostNoteAudio/CloudSeedCore — MIT. Open stereo core, not the commercial plugin or its preset library.
+- hothouse: https://github.com/clevelandmusicco/HothouseExamples — GPL-3.0-or-later. EchoKing MkII, Glowjob Photon Vibe and TriPhase Theorem portable DSP extracts.
+
+Exact revisions are in SOURCES.json; host modifications are documented in each directory's PORTING.md. All original copyright notices are retained.
