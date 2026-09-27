@@ -14,7 +14,7 @@ sealed partial class MainWindow : Form {
  readonly string data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"GuitarSuite"),assets;
  string activeDriver;int activeInput,activeOutput,activeRate;
  Patch patch;string signature="",lastStatus="";readonly Timer timer=new Timer{Interval=100};
- public MainWindow(){Text="Guitar Suite — Desktop Alpha 08";Width=1440;Height=1000;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
+ public MainWindow(){Text="Guitar Suite — Desktop Alpha 09";Width=1440;Height=1000;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
   var environment=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,"WebView"));webEnvironment=environment;await web.EnsureCoreWebView2Async(environment);
   web.CoreWebView2.SetVirtualHostNameToFolderMapping("guitarsuite.local",Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui"),CoreWebView2HostResourceAccessKind.DenyCors);
   web.CoreWebView2.Settings.AreDevToolsEnabled=false;web.CoreWebView2.Settings.IsStatusBarEnabled=false;
@@ -65,6 +65,7 @@ sealed partial class MainWindow : Form {
 static class Program {
  [STAThread] static int Main(string[] args){
   if(args.Length>0&&args[0]=="--tone-preflight"){try{File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"tone-preflight.txt"),Tone3000.Preflight().GetAwaiter().GetResult());return 0;}catch(Exception ex){File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"tone-preflight.txt"),ex.Message);return 1;}}
+  if(args.Length>0&&args[0]=="--buffer-test")return BufferTests.Run(args.Skip(1).ToArray());
   if(args.Length>0&&args[0]=="--self-test")return EngineTests.Run(args.Skip(1).ToArray());
   if(args.Length>0&&args[0]=="--drivers"){try{File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"drivers.txt"),AsioOut.GetDriverNames());return 0;}catch(Exception e){File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"drivers.txt"),e.ToString());return 1;}}
   Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);Application.Run(new MainWindow());return 0;

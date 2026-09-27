@@ -28,14 +28,14 @@ sealed class Processor : IDisposable {
  int at; double phase,env,dc,wet=1,tone,low; IntPtr model; float[] namInput=new float[4096];
  BiQuadFilter bass,mid,treble,hp,lp; double[] previous;
  readonly bool standalone,capture;
- public Processor(Block b,DeviceState s,int sampleRate,string assetFolder,bool standalone=true){
+ public Processor(Block b,DeviceState s,int sampleRate,string assetFolder,bool standalone=true,int maxFrames=4096){
  this.standalone=standalone;capture=!String.IsNullOrEmpty(b.assetId);
   Block=b;Settings=s;wet=!standalone||s.on?1:0;rate=sampleRate;delay=new float[rate*2];tanks=new float[4][];
   int[] lengths={1499,1601,1747,1867};for(int i=0;i<4;i++)tanks[i]=new float[(int)(lengths[i]*rate/44100.0)];
   if(standalone&&capture){
    if(Path.GetFileName(b.assetId)!=b.assetId||!(b.assetId.EndsWith(".nam")||b.assetId.EndsWith(".wav")))throw new Exception("Invalid model reference.");
    string path=Path.Combine(assetFolder,b.assetId);if(!File.Exists(path))throw new Exception("Missing model for "+b.key+". Import the file again.");
-   model=Nam.gs_load(path,rate,4096);if(model==IntPtr.Zero)throw new Exception(Nam.Error);
+   model=Nam.gs_load(path,rate,maxFrames);if(model==IntPtr.Zero)throw new Exception(Nam.Error);
   }
   Filters(s.values);
  }
@@ -80,15 +80,16 @@ sealed class Processor : IDisposable {
  public void Dispose(){if(model!=IntPtr.Zero){Nam.gs_free(model);model=IntPtr.Zero;}}
 }
 sealed class Graph : IDisposable {
- readonly StereoProcessor[] nodes; readonly float[] input=new float[4096],output=new float[4096];readonly int[] finalSources;readonly Dictionary<string,StereoProcessor> byId;
- public Graph(Patch patch,int rate,string assets){
+ readonly int maxFrames;readonly StereoProcessor[] nodes; readonly float[] input=new float[4096],output=new float[4096];readonly int[] finalSources;readonly Dictionary<string,StereoProcessor> byId;
+ public Graph(Patch patch,int rate,string assets,int maxFrames=4096){
+  if(maxFrames<1||maxFrames>4096)throw new Exception("Unsupported audio buffer size.");this.maxFrames=maxFrames;
   if(patch==null||patch.blocks==null||patch.blocks.Length>24||patch.scenes==null||patch.scenes.Length!=4||patch.scene<0||patch.scene>3)throw new Exception("Invalid patch.");
   if(patch.junctions!=null&&patch.junctions.Length>0)throw new Exception("This older patch has saved A/B mixers. Load the starter patch or remove those mixer routes before playing.");
   var waiting=new List<Block>(patch.blocks);var ordered=new List<Block>();var known=new HashSet<string>{"input"};
   foreach(var edge in patch.connections)if(edge.Length!=2||edge[1]=="input"||edge[0]=="output"||edge[0]==edge[1])throw new Exception("Invalid cable.");
   while(waiting.Count>0){var ready=waiting.Where(b=>patch.connections.Where(e=>e[1]==b.id).All(e=>known.Contains(e[0]))).ToArray();if(ready.Length==0)throw new Exception("The patch contains a cycle or missing device.");foreach(var b in ready){ordered.Add(b);known.Add(b.id);waiting.Remove(b);}}
   if(patch.connections.Any(e=>!known.Contains(e[0])||(!known.Contains(e[1])&&e[1]!="output")))throw new Exception("A cable refers to a missing device.");
-  var built=new List<StereoProcessor>();try{foreach(var b in ordered)built.Add(new StereoProcessor(b,patch.scenes[patch.scene][b.id],rate,assets));}catch{foreach(var p in built)p.Dispose();throw;}
+  var built=new List<StereoProcessor>();try{foreach(var b in ordered)built.Add(new StereoProcessor(b,patch.scenes[patch.scene][b.id],rate,assets,maxFrames));}catch{foreach(var p in built)p.Dispose();throw;}
   nodes=built.ToArray();byId=nodes.ToDictionary(n=>n.Block.id);
   foreach(var node in nodes)node.Sources=patch.connections.Where(e=>e[1]==node.Block.id).Select(e=>e[0]=="input"?-1:Array.FindIndex(nodes,n=>n.Block.id==e[0])).ToArray();
   finalSources=patch.connections.Where(e=>e[1]=="output").Select(e=>e[0]=="input"?-1:Array.FindIndex(nodes,n=>n.Block.id==e[0])).ToArray();
@@ -97,7 +98,7 @@ sealed class Graph : IDisposable {
  public readonly float[] Right=new float[4096]; StereoDelay[] finalAlign;
  public void Update(Patch patch){foreach(var pair in patch.scenes[patch.scene]){StereoProcessor p;if(byId.TryGetValue(pair.Key,out p)){p.Update(pair.Value,patch.tempo);}}}
  public float[] Run(float[] source,int count){
-  if(count>4096)throw new Exception("Choose an ASIO buffer of 4096 samples or less.");Array.Copy(source,input,count);
+  if(count<1||count>maxFrames)throw new Exception("Audio block exceeds the prepared buffer size. Restart audio after changing the driver buffer.");Array.Copy(source,input,count);
   foreach(var node in nodes){Array.Clear(node.Buffer,0,count);Array.Clear(node.Right,0,count);for(int j=0;j<node.Sources.Length;j++){int index=node.Sources[j];node.Align[j].Add(index<0?input:nodes[index].Buffer,index<0?input:nodes[index].Right,node.Buffer,node.Right,count);}node.Process(count);}
   Array.Clear(output,0,count);Array.Clear(Right,0,count);for(int j=0;j<finalSources.Length;j++){int index=finalSources[j];finalAlign[j].Add(index<0?input:nodes[index].Buffer,index<0?input:nodes[index].Right,output,Right,count);}return output;
  }
@@ -106,13 +107,16 @@ sealed class Graph : IDisposable {
 // A replacement is built before taking the render gate. The ASIO device and its
 // buffers stay open; no native model can be disposed while a callback uses it.
 sealed class LiveGraph : IDisposable {
- readonly object gate=new object();Graph graph;readonly int rate;readonly string assets;
+ readonly object gate=new object();Graph graph;readonly int rate,maxFrames;readonly string assets;
  public readonly float[] Left=new float[4096],Right=new float[4096];
  int transition;float lastL,lastR,fromL,fromR;bool faulted;
- public LiveGraph(Patch patch,int rate,string assets){this.rate=rate;this.assets=assets;Replace(patch);}
+ public LiveGraph(Patch patch,int rate,string assets,int maxFrames=4096){this.rate=rate;this.assets=assets;this.maxFrames=maxFrames;Replace(patch);}
  public void Replace(Patch patch){
-  Graph next=new Graph(patch,rate,assets);
-  try{next.Run(new float[4096],4096);}catch{next.Dispose();throw;}
+  Graph next=new Graph(patch,rate,assets,maxFrames);
+  // Prepare with the actual driver block size: NAM's working matrices scale with
+  // this limit. Oversizing to 4096 makes tiny callbacks needlessly expensive.
+  // Warm in bounded chunks without buffering or delaying the live signal.
+  try{var silence=new float[maxFrames];for(int remaining=4096;remaining>0;){int count=Math.Min(remaining,maxFrames);next.Run(silence,count);remaining-=count;}}catch{next.Dispose();throw;}
   Graph old;lock(gate){old=graph;graph=next;fromL=lastL;fromR=lastR;transition=Math.Max(1,rate/100);faulted=false;}
   if(old!=null)old.Dispose();
  }
@@ -151,16 +155,16 @@ sealed class AudioEngine : IDisposable {
  public bool TakeClip(){if(provider==null)return false;bool clipped=provider.Clipped;provider.Clipped=false;return clipped;}
  AsioOut asio;LiveGraph graph;LiveProvider provider;readonly float[] input=new float[4096];public volatile string Error;public bool Running{get{return asio!=null&&asio.PlaybackState==PlaybackState.Playing;}}public int BufferSize;public float Peak;
  public void Start(string driver,int channel,int output,int rate,Patch patch,string assets){
-  Stop();sampleRate=rate;inputTrim.Reset();try{tuner=Effects.tuner_load(rate);if(tuner==IntPtr.Zero)throw new Exception("Tuner could not initialise.");graph=new LiveGraph(patch,rate,assets);asio=new AsioOut(driver);asio.DriverResetRequest+=OnDriverReset;if(channel<0||channel>=asio.DriverInputChannelCount||output<0||output+1>=asio.DriverOutputChannelCount)throw new Exception("Choose a valid guitar input and stereo output pair.");
+  Stop();sampleRate=rate;inputTrim.Reset();try{tuner=Effects.tuner_load(rate);if(tuner==IntPtr.Zero)throw new Exception("Tuner could not initialise.");asio=new AsioOut(driver);asio.DriverResetRequest+=OnDriverReset;if(channel<0||channel>=asio.DriverInputChannelCount||output<0||output+1>=asio.DriverOutputChannelCount)throw new Exception("Choose a valid guitar input and stereo output pair.");
    if(!asio.IsSampleRateSupported(rate))throw new Exception("This driver does not support the selected sample rate.");
-   asio.InputChannelOffset=channel;asio.ChannelOffset=output;provider=new LiveProvider(rate);SetMaster(masterDb);asio.AudioAvailable+=OnAudio;asio.InitRecordAndPlayback(provider,1,rate);if(asio.FramesPerBuffer>4096)throw new Exception("Use a buffer of 4096 samples or less in the driver panel.");BufferSize=asio.FramesPerBuffer;Error=null;Overruns=0;CallbackLoad=0;asio.Play();
+   asio.InputChannelOffset=channel;asio.ChannelOffset=output;provider=new LiveProvider(rate);SetMaster(masterDb);asio.AudioAvailable+=OnAudio;asio.InitRecordAndPlayback(provider,1,rate);if(asio.FramesPerBuffer>4096)throw new Exception("Use a buffer of 4096 samples or less in the driver panel.");BufferSize=asio.FramesPerBuffer;graph=new LiveGraph(patch,rate,assets,BufferSize);Error=null;Overruns=0;CallbackLoad=0;asio.Play();
   }catch{Stop();throw;}
  }
  void OnDriverReset(object sender,EventArgs e){Error="The ASIO driver requested a reset. Audio has been muted. Stop and restart audio after checking the driver buffer and sample rate.";}
  public void Replace(Patch patch){if(graph!=null)graph.Replace(patch);}
  public volatile float CallbackLoad;public int Overruns;
  void OnAudio(object sender,AsioAudioAvailableEventArgs e){long started=System.Diagnostics.Stopwatch.GetTimestamp();try{
-  if(Error!=null){provider.Count=0;return;}if(e.SamplesPerBuffer>4096)throw new Exception("Unsupported ASIO buffer size.");e.GetAsInterleavedSamples(input);if(TunerEnabled){Effects.tuner_process(tuner,input,e.SamplesPerBuffer);TunerHz=Effects.tuner_hz(tuner);TunerConfidence=Effects.tuner_confidence(tuner);}Peak=inputTrim.Process(input,e.SamplesPerBuffer,sampleRate);graph.Render(input,e.SamplesPerBuffer);provider.RightSamples=graph.Right;provider.Samples=graph.Left;provider.Count=e.SamplesPerBuffer;}catch(Exception ex){Error=ex.Message;provider.Count=0;Array.Clear(provider.Samples,0,provider.Samples.Length);if(provider.RightSamples!=null)Array.Clear(provider.RightSamples,0,provider.RightSamples.Length);}finally{double seconds=(double)(System.Diagnostics.Stopwatch.GetTimestamp()-started)/System.Diagnostics.Stopwatch.Frequency;CallbackLoad=(float)(seconds*sampleRate/e.SamplesPerBuffer);if(CallbackLoad>1)System.Threading.Interlocked.Increment(ref Overruns);}}
+  if(Error!=null){provider.Count=0;return;}if(e.SamplesPerBuffer!=BufferSize)throw new Exception("The ASIO buffer changed. Stop and restart audio to prepare the models for the new size.");e.GetAsInterleavedSamples(input);if(TunerEnabled){Effects.tuner_process(tuner,input,e.SamplesPerBuffer);TunerHz=Effects.tuner_hz(tuner);TunerConfidence=Effects.tuner_confidence(tuner);}Peak=inputTrim.Process(input,e.SamplesPerBuffer,sampleRate);graph.Render(input,e.SamplesPerBuffer);provider.RightSamples=graph.Right;provider.Samples=graph.Left;provider.Count=e.SamplesPerBuffer;}catch(Exception ex){Error=ex.Message;provider.Count=0;Array.Clear(provider.Samples,0,provider.Samples.Length);if(provider.RightSamples!=null)Array.Clear(provider.RightSamples,0,provider.RightSamples.Length);}finally{double seconds=(double)(System.Diagnostics.Stopwatch.GetTimestamp()-started)/System.Diagnostics.Stopwatch.Frequency;CallbackLoad=(float)(seconds*sampleRate/e.SamplesPerBuffer);if(CallbackLoad>1)System.Threading.Interlocked.Increment(ref Overruns);}}
  public void Update(Patch p){if(graph!=null)graph.Update(p);}
  public void Stop(){if(asio!=null){asio.AudioAvailable-=OnAudio;asio.DriverResetRequest-=OnDriverReset;asio.Stop();asio.Dispose();asio=null;}if(graph!=null){graph.Dispose();graph=null;}if(tuner!=IntPtr.Zero){Effects.tuner_free(tuner);tuner=IntPtr.Zero;}TunerHz=0;TunerConfidence=0;Peak=0;}
  public void Dispose(){Stop();}

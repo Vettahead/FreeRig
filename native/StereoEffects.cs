@@ -30,9 +30,9 @@ sealed class StereoProcessor:IDisposable {
  public void Update(DeviceState state,int tempo){controls=new ControlSnapshot{State=state,Values=effect!=IntPtr.Zero?Effective(state,tempo):null};}
  readonly Processor left,right;readonly int rate;readonly float[] dryL=new float[4096],dryR=new float[4096],scratch=new float[4096];readonly StereoDelay dryDelay;
  IntPtr effect,modelL,modelR;double wet;ControlSnapshot applied;
- public StereoProcessor(Block b,DeviceState state,int sampleRate,string assets){Block=b;rate=sampleRate;wet=state.on?1:0;
+ public StereoProcessor(Block b,DeviceState state,int sampleRate,string assets,int maxFrames=4096){Block=b;rate=sampleRate;wet=state.on?1:0;
   try{if(b.key.StartsWith("fx-")){effect=Effects.fx_load(b.key.Substring(3),rate);if(effect==IntPtr.Zero)throw new Exception("Could not load effect "+b.key);Latency=Effects.fx_latency(effect);}
-  else{left=new Processor(b,state,rate,assets,false);right=new Processor(b,state,rate,assets,false);if(!String.IsNullOrEmpty(b.assetId)){if(!DeviceLibrary.SafeAsset(b.assetId))throw new Exception("Invalid model reference.");string path=System.IO.Path.Combine(assets,b.assetId);modelL=Nam.gs_load(path,rate,4096);if(modelL==IntPtr.Zero)throw new Exception(Nam.Error);modelR=Nam.gs_load(path,rate,4096);if(modelR==IntPtr.Zero)throw new Exception(Nam.Error);}}
+  else{left=new Processor(b,state,rate,assets,false,maxFrames);right=new Processor(b,state,rate,assets,false,maxFrames);if(!String.IsNullOrEmpty(b.assetId)){if(!DeviceLibrary.SafeAsset(b.assetId))throw new Exception("Invalid model reference.");string path=System.IO.Path.Combine(assets,b.assetId);modelL=Nam.gs_load(path,rate,maxFrames);if(modelL==IntPtr.Zero)throw new Exception(Nam.Error);modelR=Nam.gs_load(path,rate,maxFrames);if(modelR==IntPtr.Zero)throw new Exception(Nam.Error);}}
   dryDelay=new StereoDelay(Latency);Update(state,112);if(effect!=IntPtr.Zero)Apply(controls);
   }catch{Dispose();throw;}
  }
