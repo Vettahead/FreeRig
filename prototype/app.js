@@ -50,7 +50,7 @@ function addDevice(key,slot=chosenSlot){
   checkpoint();const block={id:'b'+crypto.randomUUID(),key,x:0,y:0};SlotBoard.add(state,block,slot);selected=block.id;chosenSlot=null;$('#modal').close();render();toast('Device added to '+SlotBoard.label(slot)+'.');
 }
 function moveDevice(id,slot){const block=state.blocks.find(b=>b.id===id);if(!slot||!block)return;const type=PatchRig.definition(block.key).type;
-  checkpoint();selected=SlotBoard.move(state,id,slot,state.keepCables===true);render();
+  checkpoint();selected=SlotBoard.move(state,id,slot,state.keepCables===true&&($('#chain').dataset.mode==='advanced'||!SlotBoard.isStandard(state)));render();
 }
 function replaceDevice(id,key){if(key.startsWith("pack:")){DeviceShelf.place(key.slice(5),null,id);return;}const b=state.blocks.find(b=>b.id===id);if(!b||!SlotBoard.compatible(b.key,key)){toast('Choose an amp, cab or pedal to match this device.');return;}checkpoint();SlotBoard.replace(state,id,key);selected=id;render();toast('Device replaced. Cables and scene bypass states kept. Undo restores the previous sound.');}
  function removeDevice(id){checkpoint();SlotBoard.remove(state,id);selected=state.blocks[0]?.id||null;pendingCable=null;render();toast('Device removed. Its neighbours stay connected. Undo restores it.');}
@@ -91,6 +91,8 @@ function destination(e){return PatchUI.destination(e);}
 $('#editor').onclick=e=>{const button=e.target.closest('button');if(!button)return;if(button.id==='replace-device'){openDevicePicker(selected);return;}if(button.id==='close-editor'){selected=null;render();return;}if(button.id==='bypass')toggle(selected);if(button.id==='remove')removeDevice(selected);};
 $('#editor').addEventListener('change',e=>{if(e.target.id==='device-slot'){const [section,index]=e.target.value.split(':');moveDevice(selected,{section,index:Number(index)});}});
 $('#routing-bar').onclick=e=>{
+  if(e.target.closest('#advanced-routing')){if($('#chain').dataset.mode==='advanced'||!SlotBoard.isStandard(state)){if(!SlotBoard.isStandard(state)){modal('PEDALBOARD ORDER','<h2>Use the pedalboard signal order?</h2><p>This reconnects the patch as Before amp → Amp → FX loop → Cabinets in parallel → After cab → Output. Custom branches and legacy mixer settings are replaced. Device settings and scenes stay. Undo restores the original routing.</p><button id="confirm-pedalboard" class="primary">Use pedalboard order</button>');return;}$('#chain').dataset.mode='board';}else $('#chain').dataset.mode='advanced';pendingCable=null;PatchUI.render(state,selected,pendingCable);return;}
+
   if(e.target.closest('#add-amp-slot,#add-cab-slot')){const section=e.target.closest('#add-amp-slot')?'amp':'cab',slot=SlotBoard.slots(state).find(s=>s.section===section&&!s.block);chooseSlot(section+':'+slot.index);return;}
   if(e.target.closest('#wire-list'))openCables();
   if(e.target.closest('#arrange')){checkpoint();PatchRig.arrange(state);render();}
@@ -100,6 +102,7 @@ $('#routing-bar').onchange=e=>{if(e.target.id==='keep-cables'){state.keepCables=
 $('#rename-scene').onclick=()=>modal('SCENE NAME','<h2>Name this scene.</h2><label>Scene name<input id="scene-name" maxlength="24" value="'+escapeHTML(state.sceneNames[state.scene])+'"></label><button id="apply-scene-name" class="primary">Rename scene</button>');
 $('#copy-scene').onclick=()=>modal('COPY SCENE','<h2>Copy '+escapeHTML(state.sceneNames[state.scene])+'.</h2><p>Replace another scene’s knob settings and bypass states. Its name and the patch wiring stay as they are. Undo can restore it.</p><label>Destination scene<select id="scene-destination">'+state.sceneNames.map((name,i)=>i===state.scene?'':'<option value="'+i+'">'+escapeHTML(name)+'</option>').join('')+'</select></label><button id="apply-copy-scene" class="primary">Copy settings</button>');
 $('#modal-content').addEventListener('click',e=>{
+  if(e.target.id==='confirm-pedalboard'){checkpoint();SlotBoard.useStandard(state);$('#chain').dataset.mode='board';pendingCable=null;$('#modal').close();render();return;}
   const category=e.target.closest('[data-picker-filter]');if(category&&devicePicker){devicePicker.category=category.dataset.pickerFilter;renderDevicePicker();return;}
   const picker=e.target.closest('[data-picker]');if(picker&&devicePicker){const target=devicePicker.blockId;if(target){replaceDevice(target,picker.dataset.picker);$('#modal').close();}else addDevice(picker.dataset.picker);return;}
   if(e.target.id==='confirm-template'){checkpoint();state=PatchRig.createDefault();selected='b2';pendingCable=null;$('#modal').close();render();}

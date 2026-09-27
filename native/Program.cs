@@ -14,7 +14,7 @@ sealed partial class MainWindow : Form {
  readonly string data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"GuitarSuite"),assets;
  string activeDriver;int activeInput,activeOutput,activeRate;
  Patch patch;string signature="",lastStatus="";readonly Timer timer=new Timer{Interval=100};
- public MainWindow(){Text="Guitar Suite — Desktop Alpha 11";Width=1280;Height=850;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
+ public MainWindow(){Text="Guitar Suite — Desktop Alpha 13";Width=1280;Height=850;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
   var environment=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,"WebView"));webEnvironment=environment;await web.EnsureCoreWebView2Async(environment);
   web.CoreWebView2.SetVirtualHostNameToFolderMapping("guitarsuite.local",Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui"),CoreWebView2HostResourceAccessKind.DenyCors);
   web.CoreWebView2.Settings.AreDevToolsEnabled=false;web.CoreWebView2.Settings.IsStatusBarEnabled=false;
