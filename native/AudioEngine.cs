@@ -9,13 +9,14 @@ using NAudio.Dsp;
 namespace GuitarSuite {
 public class Block { public string id,key,assetId,assetName; }
 public class DeviceState { public bool on; public int sync; public double[] values; }
-public class Patch { public int scene; public int tempo=112; public Block[] blocks; public string[][] connections; public Dictionary<string,DeviceState>[] scenes; public object[] junctions; }
+public class Patch { public int scene; public double? calibrationDbU; public int tempo=112; public Block[] blocks; public string[][] connections; public Dictionary<string,DeviceState>[] scenes; public object[] junctions; }
 static class Nam {
  [DllImport("GuitarNam.dll",CallingConvention=CallingConvention.Cdecl,CharSet=CharSet.Unicode)] public static extern IntPtr gs_load(string path,int rate,int frames);
  [DllImport("GuitarNam.dll",CallingConvention=CallingConvention.Cdecl)] public static extern int gs_process(IntPtr model,float[] input,float[] output,int frames);
  [DllImport("GuitarNam.dll",CallingConvention=CallingConvention.Cdecl)] public static extern int gs_process_stereo(IntPtr model,float[] input,float[] left,float[] right,int frames);
  [DllImport("GuitarNam.dll",CallingConvention=CallingConvention.Cdecl)] public static extern void gs_free(IntPtr model);
  [DllImport("GuitarNam.dll",CallingConvention=CallingConvention.Cdecl)] public static extern int gs_rate(IntPtr model);
+ [DllImport("GuitarNam.dll",CallingConvention=CallingConvention.Cdecl)] public static extern int gs_levels(IntPtr model,out double input,out double output);
  [DllImport("GuitarNam.dll",CallingConvention=CallingConvention.Cdecl)] static extern IntPtr gs_error();
  public static string Error {get{return Marshal.PtrToStringAnsi(gs_error());}}
 }
@@ -80,23 +81,23 @@ sealed class Processor : IDisposable {
  public void Dispose(){if(model!=IntPtr.Zero){Nam.gs_free(model);model=IntPtr.Zero;}}
 }
 sealed class Graph : IDisposable {
- readonly int maxFrames;readonly StereoProcessor[] nodes; readonly float[] input=new float[4096],output=new float[4096];readonly int[] finalSources;readonly Dictionary<string,StereoProcessor> byId;
+ public object[] CalibrationInfo {get;private set;} readonly int maxFrames;readonly StereoProcessor[] nodes; readonly float[] input=new float[4096],output=new float[4096];readonly int[] finalSources;readonly Dictionary<string,StereoProcessor> byId;
  public Graph(Patch patch,int rate,string assets,int maxFrames=4096){
   if(maxFrames<1||maxFrames>4096)throw new Exception("Unsupported audio buffer size.");this.maxFrames=maxFrames;
-  if(patch==null||patch.blocks==null||patch.blocks.Length>24||patch.scenes==null||patch.scenes.Length!=4||patch.scene<0||patch.scene>3)throw new Exception("Invalid patch.");
+  if(patch==null||patch.blocks==null||patch.blocks.Length>24||patch.scenes==null||(patch.scenes.Length!=4&&patch.scenes.Length!=8)||patch.scene<0||patch.scene>=patch.scenes.Length)throw new Exception("Invalid patch.");
   if(patch.junctions!=null&&patch.junctions.Length>0)throw new Exception("This older patch has saved A/B mixers. Load the starter patch or remove those mixer routes before playing.");
   var waiting=new List<Block>(patch.blocks);var ordered=new List<Block>();var known=new HashSet<string>{"input"};
   foreach(var edge in patch.connections)if(edge.Length!=2||edge[1]=="input"||edge[0]=="output"||edge[0]==edge[1])throw new Exception("Invalid cable.");
   while(waiting.Count>0){var ready=waiting.Where(b=>patch.connections.Where(e=>e[1]==b.id).All(e=>known.Contains(e[0]))).ToArray();if(ready.Length==0)throw new Exception("The patch contains a cycle or missing device.");foreach(var b in ready){ordered.Add(b);known.Add(b.id);waiting.Remove(b);}}
   if(patch.connections.Any(e=>!known.Contains(e[0])||(!known.Contains(e[1])&&e[1]!="output")))throw new Exception("A cable refers to a missing device.");
   var built=new List<StereoProcessor>();try{foreach(var b in ordered)built.Add(new StereoProcessor(b,patch.scenes[patch.scene][b.id],rate,assets,maxFrames));}catch{foreach(var p in built)p.Dispose();throw;}
-  nodes=built.ToArray();byId=nodes.ToDictionary(n=>n.Block.id);
+  nodes=built.ToArray();byId=nodes.ToDictionary(n=>n.Block.id);CalibrationInfo=nodes.Where(n=>!String.IsNullOrEmpty(n.Block.assetId)&&n.Block.assetId.EndsWith(".nam",StringComparison.OrdinalIgnoreCase)).Select(n=>(object)new{id=n.Block.id,name=n.Block.assetName??n.Block.key,levels=n.Calibration}).ToArray();
   foreach(var node in nodes)node.Sources=patch.connections.Where(e=>e[1]==node.Block.id).Select(e=>e[0]=="input"?-1:Array.FindIndex(nodes,n=>n.Block.id==e[0])).ToArray();
   finalSources=patch.connections.Where(e=>e[1]=="output").Select(e=>e[0]=="input"?-1:Array.FindIndex(nodes,n=>n.Block.id==e[0])).ToArray();
-  foreach(var node in nodes){int max=node.Sources.Select(i=>i<0?0:nodes[i].TotalLatency).DefaultIfEmpty(0).Max();node.TotalLatency=max+node.Latency;node.Align=node.Sources.Select(i=>new StereoDelay(max-(i<0?0:nodes[i].TotalLatency))).ToArray();node.Update(patch.scenes[patch.scene][node.Block.id],patch.tempo);}int finalMax=finalSources.Select(i=>i<0?0:nodes[i].TotalLatency).DefaultIfEmpty(0).Max();finalAlign=finalSources.Select(i=>new StereoDelay(finalMax-(i<0?0:nodes[i].TotalLatency))).ToArray();
+  foreach(var node in nodes){int max=node.Sources.Select(i=>i<0?0:nodes[i].TotalLatency).DefaultIfEmpty(0).Max();node.TotalLatency=max+node.Latency;node.Align=node.Sources.Select(i=>new StereoDelay(max-(i<0?0:nodes[i].TotalLatency))).ToArray();node.Update(patch.scenes[patch.scene][node.Block.id],patch.tempo,patch.calibrationDbU);}int finalMax=finalSources.Select(i=>i<0?0:nodes[i].TotalLatency).DefaultIfEmpty(0).Max();finalAlign=finalSources.Select(i=>new StereoDelay(finalMax-(i<0?0:nodes[i].TotalLatency))).ToArray();
  }
  public readonly float[] Right=new float[4096]; StereoDelay[] finalAlign;
- public void Update(Patch patch){foreach(var pair in patch.scenes[patch.scene]){StereoProcessor p;if(byId.TryGetValue(pair.Key,out p)){p.Update(pair.Value,patch.tempo);}}}
+ public void Update(Patch patch){foreach(var pair in patch.scenes[patch.scene]){StereoProcessor p;if(byId.TryGetValue(pair.Key,out p)){p.Update(pair.Value,patch.tempo,patch.calibrationDbU);}}}
  public float[] Run(float[] source,int count){
   if(count<1||count>maxFrames)throw new Exception("Audio block exceeds the prepared buffer size. Restart audio after changing the driver buffer.");Array.Copy(source,input,count);
   foreach(var node in nodes){Array.Clear(node.Buffer,0,count);Array.Clear(node.Right,0,count);for(int j=0;j<node.Sources.Length;j++){int index=node.Sources[j];node.Align[j].Add(index<0?input:nodes[index].Buffer,index<0?input:nodes[index].Right,node.Buffer,node.Right,count);}node.Process(count);}
@@ -120,6 +121,7 @@ sealed class LiveGraph : IDisposable {
   Graph old;lock(gate){old=graph;graph=next;fromL=lastL;fromR=lastR;transition=Math.Max(1,rate/100);faulted=false;}
   if(old!=null)old.Dispose();
  }
+ public object[] CalibrationInfo {get{lock(gate){return graph==null?new object[0]:graph.CalibrationInfo;}}}
  public void Update(Patch patch){lock(gate){if(graph!=null)graph.Update(patch);}}
  public void Render(float[] input,int count){lock(gate){
   if(graph==null||faulted){Array.Clear(Left,0,count);Array.Clear(Right,0,count);return;}
@@ -154,6 +156,7 @@ sealed class AudioEngine : IDisposable {
  public float OutputPeak{get{return provider==null?0:provider.Peak;}}
  public bool TakeClip(){if(provider==null)return false;bool clipped=provider.Clipped;provider.Clipped=false;return clipped;}
  SeparateOutput separate;readonly byte[] outputBytes=new byte[32768];
+ public object[] CalibrationInfo {get{return graph==null?new object[0]:graph.CalibrationInfo;}}
  public string OutputName{get{return separate==null?"ASIO output":separate.Name;}}
  public int OutputDropouts{get{return separate==null?0:separate.Queue.Underruns+separate.Queue.Overflows;}}
  public string OutputError{get{return separate==null?null:separate.Error;}}
@@ -162,14 +165,14 @@ sealed class AudioEngine : IDisposable {
   Stop();sampleRate=rate;inputTrim.Reset();try{tuner=Effects.tuner_load(rate);if(tuner==IntPtr.Zero)throw new Exception("Tuner could not initialise.");asio=new AsioOut(driver);asio.DriverResetRequest+=OnDriverReset;if(channel<0||channel>=asio.DriverInputChannelCount||(String.IsNullOrEmpty(outputDevice)&&(output<0||output+1>=asio.DriverOutputChannelCount)))throw new Exception("Choose a valid guitar input and stereo output pair.");
    if(!asio.IsSampleRateSupported(rate))throw new Exception("This driver does not support the selected sample rate.");
    asio.InputChannelOffset=channel;asio.ChannelOffset=String.IsNullOrEmpty(outputDevice)?output:0;provider=new LiveProvider(rate);SetMaster(masterDb);asio.AudioAvailable+=OnAudio;asio.InitRecordAndPlayback(String.IsNullOrEmpty(outputDevice)?provider:null,1,rate);if(asio.FramesPerBuffer>4096)throw new Exception("Use a buffer of 4096 samples or less in the driver panel.");BufferSize=asio.FramesPerBuffer;graph=new LiveGraph(patch,rate,assets,BufferSize);if(!String.IsNullOrEmpty(outputDevice)){if(outputLatency!=5&&outputLatency!=10&&outputLatency!=20)throw new Exception("Choose a supported output buffer.");separate=new SeparateOutput(outputDevice,rate,outputLatency,exclusive);}
-   Error=null;Overruns=0;CallbackLoad=0;if(separate!=null)separate.Play();asio.Play();
+   Error=null;Overruns=0;CallbackLoad=0;Stats.Reset();if(separate!=null)separate.Play();asio.Play();
   }catch{Stop();throw;}
  }
  void OnDriverReset(object sender,EventArgs e){Error="The ASIO driver requested a reset. Audio has been muted. Stop and restart audio after checking the driver buffer and sample rate.";}
  public void Replace(Patch patch){if(graph!=null)graph.Replace(patch);}
- public volatile float CallbackLoad;public int Overruns;
+ public volatile float CallbackLoad;public int Overruns; public readonly AudioStats Stats=new AudioStats();
  void OnAudio(object sender,AsioAudioAvailableEventArgs e){long started=System.Diagnostics.Stopwatch.GetTimestamp();try{
-  if(Error!=null){provider.Count=0;return;}if(e.SamplesPerBuffer!=BufferSize)throw new Exception("The ASIO buffer changed. Stop and restart audio to prepare the models for the new size.");e.GetAsInterleavedSamples(input);if(TunerEnabled){Effects.tuner_process(tuner,input,e.SamplesPerBuffer);TunerHz=Effects.tuner_hz(tuner);TunerConfidence=Effects.tuner_confidence(tuner);}Peak=inputTrim.Process(input,e.SamplesPerBuffer,sampleRate);graph.Render(input,e.SamplesPerBuffer);provider.RightSamples=graph.Right;provider.Samples=graph.Left;provider.Count=e.SamplesPerBuffer;if(separate!=null){provider.Read(outputBytes,0,e.SamplesPerBuffer*8);separate.Queue.Push(outputBytes,e.SamplesPerBuffer);}}catch(Exception ex){Error=ex.Message;provider.Count=0;Array.Clear(provider.Samples,0,provider.Samples.Length);if(provider.RightSamples!=null)Array.Clear(provider.RightSamples,0,provider.RightSamples.Length);}finally{double seconds=(double)(System.Diagnostics.Stopwatch.GetTimestamp()-started)/System.Diagnostics.Stopwatch.Frequency;CallbackLoad=(float)(seconds*sampleRate/e.SamplesPerBuffer);if(CallbackLoad>1)System.Threading.Interlocked.Increment(ref Overruns);}}
+  if(Error!=null){provider.Count=0;return;}if(e.SamplesPerBuffer!=BufferSize)throw new Exception("The ASIO buffer changed. Stop and restart audio to prepare the models for the new size.");e.GetAsInterleavedSamples(input);Stats.Input(input,e.SamplesPerBuffer);if(TunerEnabled){Effects.tuner_process(tuner,input,e.SamplesPerBuffer);TunerHz=Effects.tuner_hz(tuner);TunerConfidence=Effects.tuner_confidence(tuner);}Peak=inputTrim.Process(input,e.SamplesPerBuffer,sampleRate);graph.Render(input,e.SamplesPerBuffer);provider.RightSamples=graph.Right;provider.Samples=graph.Left;provider.Count=e.SamplesPerBuffer;if(separate!=null){provider.Read(outputBytes,0,e.SamplesPerBuffer*8);separate.Queue.Push(outputBytes,e.SamplesPerBuffer);}}catch(Exception ex){Error=ex.Message;provider.Count=0;Array.Clear(provider.Samples,0,provider.Samples.Length);if(provider.RightSamples!=null)Array.Clear(provider.RightSamples,0,provider.RightSamples.Length);}finally{double seconds=(double)(System.Diagnostics.Stopwatch.GetTimestamp()-started)/System.Diagnostics.Stopwatch.Frequency;CallbackLoad=(float)(seconds*sampleRate/e.SamplesPerBuffer);Stats.Load(CallbackLoad);if(CallbackLoad>1)System.Threading.Interlocked.Increment(ref Overruns);}}
  public void Update(Patch p){if(graph!=null)graph.Update(p);}
  public void Stop(){if(asio!=null){asio.AudioAvailable-=OnAudio;asio.DriverResetRequest-=OnDriverReset;asio.Stop();asio.Dispose();asio=null;}if(separate!=null){separate.Dispose();separate=null;}if(graph!=null){graph.Dispose();graph=null;}if(tuner!=IntPtr.Zero){Effects.tuner_free(tuner);tuner=IntPtr.Zero;}TunerHz=0;TunerConfidence=0;Peak=0;}
  public void Dispose(){Stop();}

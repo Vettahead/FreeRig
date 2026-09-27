@@ -19,3 +19,5 @@ events.click({target:{closest:()=>({id:'start-audio'})}});assert.equal(sent.at(-
 receive({data:{type:'outputs',devices:[]}});assert.equal(elements['#output-device'].value,'powercab-id');assert.match(elements['#output-device'].selectedOptions[0].textContent,/unavailable/);
 elements['#output-device'].value='';events.change({target:{id:'output-device'}});assert.equal(elements['#audio-output'].disabled,false);
 console.log('PASS: separate output selection, persistence, start payload, missing-device preservation and ASIO restoration.');
+context.window.CalibrationUI={reference:()=>18};sent.length=0;ui.sync({blocks:[],scene:7},true);assert.equal(sent.length,1);assert.equal(sent[0].patch.scene,7);assert.equal(sent[0].patch.calibrationDbU,18);assert.equal(sent[0].type,'sync');
+console.log('PASS: immediate scene dispatch and independent interface calibration in native sync payload.');

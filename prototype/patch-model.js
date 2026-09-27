@@ -31,9 +31,9 @@
   function valid(s){
     if(!s||s.version!==3||!Array.isArray(s.junctions)||s.junctions.length>3||!Array.isArray(s.blocks)||s.blocks.length>24)return false;
     // Reuse the established parameter/range validation, without legacy lanes.
-    const proxy={...s,version:2,parallel:false,blocks:s.blocks.map(b=>({...b,lane:'a'})),routes:legacy.sceneNames.map(()=>legacy.defaultRoute())};
+    const proxy={...s,version:2,parallel:false,blocks:s.blocks.map(b=>({...b,lane:'a'})),routes:(s.scenes||[]).map(()=>legacy.defaultRoute())};
     if(!s.blocks.length){const sample=legacy.makeBlock('gate','validation-only','a');proxy.blocks=[sample];proxy.scenes=s.scenes?.map(()=>({'validation-only':legacy.valuesFor(sample)}));}
-    if(!legacy.valid(proxy)||!Array.isArray(s.scenes)||s.scenes.length!==4||!s.scenes.every(scene=>scene&&typeof scene==='object')||!Array.isArray(s.sceneNames)||s.sceneNames.length!==4||!s.sceneNames.every(n=>typeof n==='string'&&n.trim().length>0&&n.length<=24))return false;
+    if(!legacy.valid(proxy)||!Array.isArray(s.scenes)||![4,8].includes(s.scenes.length)||!s.scenes.every(scene=>scene&&typeof scene==='object')||!Array.isArray(s.sceneNames)||s.sceneNames.length!==s.scenes.length||!s.sceneNames.every(n=>typeof n==='string'&&n.trim().length>0&&n.length<=24))return false;
     const position=b=>b&&Number.isFinite(b.x)&&b.x>=0&&b.x<=5000&&Number.isFinite(b.y)&&b.y>=0&&b.y<=3000;
     if(!s.blocks.every(position)||!position(s.output)||!s.junctions.every(j=>position(j)&&['split','merge','path-a'].includes(j.id)))return false;
     if(new Set(ids(s)).size!==ids(s).length||!Array.isArray(s.connections)||s.connections.length>200)return false;
@@ -52,7 +52,7 @@
     const walk=(start,reverse)=>{const seen=new Set();function visit(id){if(seen.has(id))return;seen.add(id);s.connections.filter(e=>e[reverse?1:0]===id).forEach(e=>visit(e[reverse?0:1]));}visit(start);return seen;};
     const forward=walk('input',false),back=walk('output',true);return new Set([...forward].filter(id=>back.has(id)));
   }
-  function copyScene(s,from,to){if(from===to||![from,to].every(i=>Number.isInteger(i)&&i>=0&&i<4))return false;s.scenes[to]=clone(s.scenes[from]);if(s.legacy)s.legacy.routes[to]=clone(s.legacy.routes[from]);return true;}
+  function copyScene(s,from,to){if(from===to||![from,to].every(i=>Number.isInteger(i)&&i>=0&&i<s.scenes.length))return false;s.scenes[to]=clone(s.scenes[from]);if(s.legacy)s.legacy.routes[to]=clone(s.legacy.routes[from]);return true;}
   function createStarter(){const s=createDefault();s.name='Sunday / First sound';s.connections=[['input','b0'],['b0','b1'],['b1','b2'],['b2','b3'],['b3','b4'],['b4','b5'],['b5','output']];s.scenes.forEach(scene=>{scene.b4.values[2]=22;});return s;}
   return {...legacy,createDefault,createStarter,valid,migrate,graph,connect,canConnect,remove,arrange,activeNodes,copyScene};
 });

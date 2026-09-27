@@ -1,3 +1,7 @@
+# Current listening result — 27 September 2026
+
+Chris confirms USB Powercab playback works but feels too delayed for playing even with a 5 ms output request. This route is not qualified for live use. No buffer-request value represents measured total round-trip latency. The established low-latency baseline remains Mackie ASIO at 32 samples. Analogue output from that interface to Powercab avoids the app's separate-USB queue, but needs its own physical listening/latency check.
+
 # Separate output devices
 
 ## Mackie input to Powercab USB

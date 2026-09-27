@@ -28,9 +28,9 @@ function renderLibrary(){
 function render(){
   $('#rig-name').value=state.name;$('#tempo').value=state.tempo;$('#tempo-status').textContent=`${state.tempo} BPM`;$('#device-count').textContent=`${state.blocks.length} devices`;
   PatchUI.render(state,selected,pendingCable);
-  $('#scenes').innerHTML=state.sceneNames.map((name,i)=>`<button class="scene ${state.scene===i?'active':''}" data-scene="${i}" aria-pressed="${state.scene===i}"><span class="scene-number">0${i+1}</span><span><strong>${escapeHTML(name)}</strong><small>${Object.values(state.scenes[i]).filter(v=>v.on).length} devices on</small></span></button>`).join('');
+  $('#scenes').innerHTML=state.sceneNames.slice(0,state.showExtraScenes||state.scene>=4?8:4).map((name,i)=>`<button class="scene ${state.scene===i?'active':''}" data-scene="${i}" aria-pressed="${state.scene===i}"><span class="scene-number">0${i+1}</span><span><strong>${escapeHTML(name)}</strong><small>${Object.values(state.scenes[i]).filter(v=>v.on).length} devices on</small></span></button>`).join('');
   $('#stomps').innerHTML=state.blocks.map(b=>{const d=catalogue.find(x=>x.key===b.key);return `<button class="stomp ${current(b).on?'':'bypassed'}" data-stomp="${b.id}" style="--accent:${d.colour}" aria-pressed="${current(b).on}">${GearLooks.art(b,current(b).on)}<strong>${escapeHTML(b.tone3000?.title||d.name)}</strong><small>${current(b).on?'ON · CLICK TO BYPASS':'BYPASSED · CLICK TO ENABLE'}</small></button>`;}).join('');
-  renderEditor();mark();
+  renderEditor();mark();if(window.BankUI)BankUI.render();
 }
 function renderEditor(){
   const panel=$('#editor'),same=panel.dataset.device===selected,optionsOpen=same&&panel.querySelector('.device-options')?.open,scroll=same?panel.scrollTop:0;panel.dataset.device=selected||'';
@@ -91,6 +91,7 @@ function destination(e){return PatchUI.destination(e);}
 $('#editor').onclick=e=>{const button=e.target.closest('button');if(!button)return;if(button.id==='replace-device'){openDevicePicker(selected);return;}if(button.id==='close-editor'){selected=null;render();return;}if(button.id==='bypass')toggle(selected);if(button.id==='remove')removeDevice(selected);};
 $('#editor').addEventListener('change',e=>{if(e.target.id==='device-slot'){const [section,index]=e.target.value.split(':');moveDevice(selected,{section,index:Number(index)});}});
 $('#routing-bar').onclick=e=>{
+  if(e.target.closest('#add-amp-slot,#add-cab-slot')){const section=e.target.closest('#add-amp-slot')?'amp':'cab',slot=SlotBoard.slots(state).find(s=>s.section===section&&!s.block);chooseSlot(section+':'+slot.index);return;}
   if(e.target.closest('#wire-list'))openCables();
   if(e.target.closest('#arrange')){checkpoint();PatchRig.arrange(state);render();}
   if(e.target.closest('#routing-example'))modal('EXAMPLE PATCH','<h2>Echo around the amp.</h2><p>The drive output splits: one cable goes through the amp, the other through a delay. Both join at the cabinet. The delay starts at 100% wet. This replaces your open patch; Undo restores it. Your saved patch stays unchanged until Save.</p><button id="confirm-template" class="primary">Load pre-amp delay example</button>');
@@ -122,12 +123,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&selected&&!$('#moda
 let parameterEditing=false;
 $('#editor').addEventListener('input',e=>{const el=e.target;if(!el.matches('[data-param],[data-number]'))return;if(!parameterEditing){checkpoint();parameterEditing=true;}const i=Number(el.dataset.param??el.dataset.number),b=state.blocks.find(x=>x.id===selected),d=catalogue.find(x=>x.key===b.key),p=d.params[i];if(el.value==='')return;const value=Math.max(p[1],Math.min(p[2],Number(el.value)));if(!Number.isFinite(value))return;current(b).values[i]=value;const parent=el.closest('.parameter');parent.querySelector('[data-param]').value=value;if(!el.matches('[data-number]'))parent.querySelector('[data-number]').value=value;const proportion=(value-p[1])/(p[2]-p[1]);parent.querySelector('.knob').style.setProperty('--angle',`${proportion*270}deg`);parent.querySelector('.knob').style.setProperty('--rotate',`${-135+proportion*270}deg`);mark();});
 $('#editor').addEventListener('change',e=>{if(e.target.matches('[data-param],[data-number]')){parameterEditing=false;const i=Number(e.target.dataset.param??e.target.dataset.number);e.target.value=current(state.blocks.find(b=>b.id===selected)).values[i];}});
-$('#scenes').onclick=e=>{const b=e.target.closest('[data-scene]');if(b){checkpoint();state.scene=Number(b.dataset.scene);render();}};
+$('#scenes').onclick=e=>{const b=e.target.closest('[data-scene]');if(b){checkpoint();state.scene=Number(b.dataset.scene);NativeDesktop.sync(state,true);render();}};
 $('#stomps').onclick=e=>{const b=e.target.closest('[data-stomp]');if(b)toggle(b.dataset.stomp);};
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-view]').forEach(n=>n.classList.toggle('active',n===b));document.querySelectorAll('.workspace-view').forEach(s=>s.hidden=s.id!==`${b.dataset.view}-view`);});
 $('#rig-name').onfocus=()=>checkpoint();$('#rig-name').oninput=e=>{state.name=e.target.value;mark();};$('#rig-name').onblur=()=>{state.name=state.name.trim()||'Untitled rig';$('#rig-name').value=state.name;mark();};
 $('#undo').onclick=()=>{if(!history.length)return;state=history.pop();pendingCable=null;if(!state.blocks.some(b=>b.id===selected))selected=state.blocks[0]?.id||null;render();};
-$('#save').onclick=()=>{try{localStorage.setItem(storageKey,JSON.stringify(state));saved=clone(state);mark();toast('Patch and all four scenes saved on this computer.');}catch{toast('Local save unavailable. Use Export to keep your rig.');}};
+$('#save').onclick=()=>{try{if(window.BankUI)BankUI.save();localStorage.setItem(storageKey,JSON.stringify(state));saved=clone(state);mark();toast('Patch and all '+state.scenes.length+' scenes saved on this computer.');}catch{toast('Local save unavailable. Use Export to keep your rig.');}};
 $('#export').onclick=()=>{if(NativeDesktop.installed()){NativeDesktop.exportPatch({format:'guitar-suite-prototype',version:3,rig:state,graph:PatchRig.graph(state)});return;}const url=URL.createObjectURL(new Blob([JSON.stringify({format:'guitar-suite-prototype',version:3,rig:state,graph:PatchRig.graph(state)},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`${state.name.replace(/[^a-z0-9 -]/gi,'').trim()||'guitar-rig'}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Rig settings exported. No audio or model files included.');};
 
 $('#tone3000').onclick=()=>ToneLibrary.open();
@@ -140,7 +141,7 @@ $('#metronome').onclick=()=>pulseTimer?stopPulse():startPulse();
 $('#loop').onclick=()=>{if(loopTimer)return;$('#loop-status').textContent='Preview running — no audio is being captured.';$('#loop').disabled=true;loopTimer=setInterval(()=>{loopSeconds++;$('#loop-display').textContent=`${String(Math.floor(loopSeconds/60)).padStart(2,'0')}:${String(loopSeconds%60).padStart(2,'0')}`;},1000);};
 function stopLoop(){clearInterval(loopTimer);loopTimer=null;$('#loop').disabled=false;$('#loop-status').textContent='Preview stopped. No audio was recorded.';}
 $('#stop-loop').onclick=stopLoop;$('#clear-loop').onclick=()=>{stopLoop();loopSeconds=0;$('#loop-display').textContent='00:00';};
-document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select')||$('#modal').open)return;if(['1','2','3','4'].includes(e.key)){checkpoint();state.scene=Number(e.key)-1;render();}if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();$('#save').click();}});
+document.addEventListener('keydown',e=>{if(e.target.matches('input,textarea,select')||$('#modal').open)return;if(/^[1-8]$/.test(e.key)&&Number(e.key)<=state.scenes.length){checkpoint();state.scene=Number(e.key)-1;NativeDesktop.sync(state,true);render();}if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();$('#save').click();}});
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 renderLibrary();render();
 

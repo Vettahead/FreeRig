@@ -38,12 +38,12 @@
   }
   const finite=(v,min,max)=>Number.isFinite(v)&&v>=min&&v<=max;
   function validBase(s){
-    return s&&typeof s.name==='string'&&s.name.length<=60&&Number.isInteger(s.scene)&&s.scene>=0&&s.scene<4&&finite(s.tempo,40,240)&&Array.isArray(s.blocks)&&s.blocks.length>0&&s.blocks.length<=24&&new Set(s.blocks.map(b=>b.id)).size===s.blocks.length&&s.blocks.every(b=>typeof b.id==='string'&&/^[a-zA-Z0-9-]+$/.test(b.id)&&definition(b.key))&&Array.isArray(s.scenes)&&s.scenes.length===4&&s.scenes.every(scene=>scene&&s.blocks.every(b=>{
+    return s&&typeof s.name==='string'&&s.name.length<=60&&Number.isInteger(s.scene)&&s.scene>=0&&s.scene<(s.scenes?.length||0)&&finite(s.tempo,40,240)&&Array.isArray(s.blocks)&&s.blocks.length>0&&s.blocks.length<=24&&new Set(s.blocks.map(b=>b.id)).size===s.blocks.length&&s.blocks.every(b=>typeof b.id==='string'&&/^[a-zA-Z0-9-]+$/.test(b.id)&&definition(b.key))&&Array.isArray(s.scenes)&&[4,8].includes(s.scenes.length)&&s.scenes.every(scene=>scene&&s.blocks.every(b=>{
       const d=definition(b.key),v=scene[b.id];return v&&typeof v.on==='boolean'&&(v.sync===undefined||(Number.isInteger(v.sync)&&v.sync>=0&&v.sync<=7))&&Array.isArray(v.values)&&v.values.length===d.params.length&&v.values.every((n,i)=>finite(n,d.params[i][1],d.params[i][2]));
     }));
   }
   function valid(s){
-    return !!(validBase(s)&&s.version===2&&typeof s.parallel==='boolean'&&s.blocks.every(b=>Object.hasOwn(laneNames,b.lane))&&(s.parallel||!s.blocks.some(b=>b.lane==='b'))&&Array.isArray(s.routes)&&s.routes.length===4&&s.routes.every(r=>r&&['parallel','blend','crossover'].includes(r.mode)&&finite(r.cross,40,5000)&&finite(r.blend,0,100)&&['a','b'].every(l=>r[l]&&finite(r[l].level,-60,6)&&finite(r[l].pan,-100,100)&&typeof r[l].mute==='boolean'&&typeof r[l].invert==='boolean')));
+    return !!(validBase(s)&&s.version===2&&typeof s.parallel==='boolean'&&s.blocks.every(b=>Object.hasOwn(laneNames,b.lane))&&(s.parallel||!s.blocks.some(b=>b.lane==='b'))&&Array.isArray(s.routes)&&s.routes.length===s.scenes.length&&s.routes.every(r=>r&&['parallel','blend','crossover'].includes(r.mode)&&finite(r.cross,40,5000)&&finite(r.blend,0,100)&&['a','b'].every(l=>r[l]&&finite(r[l].level,-60,6)&&finite(r[l].pan,-100,100)&&typeof r[l].mute==='boolean'&&typeof r[l].invert==='boolean')));
   }
   function migrate(s){
     if(valid(s))return clone(s);

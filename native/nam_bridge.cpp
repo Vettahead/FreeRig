@@ -24,6 +24,9 @@ API int gs_process(void* handle,float* input,float* output,int frames){
 }
 API void gs_free(void* handle){delete static_cast<Model*>(handle);}
 API int gs_rate(void* handle){auto* m=static_cast<Model*>(handle);return m?(int)m->dsp->GetExpectedSampleRate():0;}
+// Expose the levels already decoded by NAM, including container metadata.
+// No parsing or allocation is needed when the host reads calibration.
+API int gs_levels(void* handle,double* input,double* output){auto* m=static_cast<Model*>(handle);if(!m)return 0;int flags=0;if(m->dsp->HasInputLevel()){*input=m->dsp->GetInputLevel();flags|=1;}if(m->dsp->HasOutputLevel()){*output=m->dsp->GetOutputLevel();flags|=2;}return flags;}
 
 API int gs_process_stereo(void* handle,float* input,float* left,float* right,int frames){
  auto*m=static_cast<Model*>(handle);if(!m||frames<0||frames>m->maxFrames)return 0;
