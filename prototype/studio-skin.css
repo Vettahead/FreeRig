@@ -42,3 +42,20 @@ body{background:radial-gradient(ellipse at 60% 0,#232527,transparent 70%),#11121
 #editor .family-pedal-treadle .pedal-print{padding:14px 0 6px;min-height:75px}#editor .family-pedal-treadle .pedal-print h3{font-family:Arial,sans-serif;letter-spacing:-1px}
 #editor .family-pedal-wide .pedal-face{width:640px;min-height:270px}#editor .family-pedal-wide .pedal-controls{display:grid;grid-template-columns:repeat(4,minmax(60px,1fr))}#editor .family-pedal-wide .pedal-print h3{text-transform:none;letter-spacing:2px;font-weight:400}
 #editor .family-pedal-folded .pedal-face{border:3px solid #bfc0b5;border-bottom-width:8px;border-radius:3px;background:linear-gradient(130deg,#c4c6bc,#e4e5db 25%,#747a74 65%,#c8cbc1);--paint:#a4aaa2}#editor .family-pedal-folded .pedal-print h3,#editor .family-pedal-folded .pedal-print>span:last-child,#editor .family-pedal-folded .pedal-face .physical-control label,#editor .family-pedal-folded .pedal-face .param-value{color:#242a27;text-shadow:none}#editor .family-pedal-folded .pedal-print{border:2px solid #292e29;margin:16px 10px;background:#c8cbc28a}#editor .family-pedal-cast .pedal-print h3{font-family:Arial,sans-serif;font-weight:900;letter-spacing:-1px}
+
+/* Saved paint tints the enclosure; texture must not obscure the chosen colour. */
+#editor .custom-device.colour-custom .amp-face,
+#editor .custom-device.colour-custom .cabinet-face {
+ background-color:var(--device-colour);
+ background-blend-mode:normal,soft-light;
+ border-color:color-mix(in srgb,var(--device-colour) 70%,#d2d2c8);
+}
+#editor .custom-device.colour-custom.family-wood .amp-face,
+#editor .custom-device.colour-custom.family-wood .cabinet-face {
+ background-image:linear-gradient(140deg,#ffffff18,#0002 30%,#0005),repeating-linear-gradient(2deg,#fff2 0 3px,#0003 4px,#ffffff22 5px,#0004 7px);
+ background-size:auto;
+ background-blend-mode:normal,normal;
+}
+#editor .custom-device.colour-custom.family-pedal-folded .pedal-face {
+ background:linear-gradient(130deg,#ffffff44,#ffffff66 25%,#0005 65%,#ffffff33),var(--device-colour);
+}
