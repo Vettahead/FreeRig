@@ -1,4 +1,4 @@
-window.NativeDesktop=(()=>{
+﻿window.NativeDesktop=(()=>{
  const host=window.chrome?.webview;let drivers=[],outputDevices=[],running=false,timer,activeAudioChoice=null;const send=value=>host?.postMessage(value);
  function sync(patch,immediate=false){if(!host)return;clearTimeout(timer);const push=()=>send({type:'sync',patch:{...patch,calibrationDbU:window.CalibrationUI?.reference(running&&activeAudioChoice?activeAudioChoice:audioChoice)??null}});if(immediate)push();else timer=setTimeout(push,90);}
  let masterDb=-12;try{const saved=localStorage.getItem('guitar-suite-master-db');if(saved!==null&&Number.isFinite(Number(saved)))masterDb=Math.max(-30,Math.min(12,Number(saved)));}catch{}
@@ -47,4 +47,3 @@ window.NativeDesktop=(()=>{
  function face(d,b,v){let html=HardwareControls.face(d,window.EffectTools?EffectTools.faceState(d,v):v);if(host&&!b.assetId)html=html.replace('NAM A2 / CAPTURE PLAYER','BUILT-IN / AMPLITRON').replace('TRIM & EQ CONTROLS SURROUND THE CAPTURE','AMP INPUT / TONE / OUTPUT').replace('CABINET IR / OUTPUT SHAPING','FILTERED CABINET / OUTPUT SHAPING');return window.DeviceShelf?DeviceShelf.skin(b,html):html;}
  return {sync,setup,installed,controls,face,boot,send,audioChoice:()=>({...((running&&activeAudioChoice)||audioChoice)}),exportPatch:value=>send({type:'exportPatch',value})};
 })();
-

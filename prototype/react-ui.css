@@ -33,3 +33,4 @@ body,button,input,select,textarea{font-family:'Segoe UI',Arial,sans-serif}
 /* Keep the capture label and selector on the same baseline as header actions. */
 #editor .editor-actions>.compat-controls{display:contents}#editor .header-model{flex-direction:row;align-items:center;flex:1 1 240px;width:280px;max-width:100%;min-width:0;gap:8px;white-space:nowrap}#editor .header-model select{flex:1 1 0;width:0;min-width:0;max-width:none;height:34px;margin:0}#editor .editor-actions button{min-height:34px;white-space:nowrap}#editor .editor-top .title strong{overflow-wrap:anywhere}#editor .editor-actions{flex:0 1 650px}
 @media(max-width:950px){#editor .editor-actions{flex:1 1 100%;justify-content:flex-start}#editor .header-model{width:auto;flex:1 1 200px;max-width:100%}.top{gap:8px}.top #setup-wizard{padding:8px}}
+.setup-wizard{max-width:calc(100vw - 40px)}

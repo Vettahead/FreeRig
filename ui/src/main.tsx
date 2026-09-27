@@ -1,4 +1,4 @@
-import {SetupWizard} from './SetupWizard';
+﻿import {SetupWizard} from './SetupWizard';
 import {createRoot, type Root} from 'react-dom/client';
 import {flushSync} from 'react-dom';
 import {Board} from './Board';
@@ -15,4 +15,3 @@ window.FreeRigReact={
  editor(props:EditorProps|null){if(!editorRoot){editor.replaceChildren();editorRoot=createRoot(editor);}flushSync(()=>editorRoot!.render(props?<Editor key={props.block.id} {...props}/>:null));},
  connect(actions){const host=document.createElement('div');host.id='device-menu-root';document.body.append(host);createRoot(host).render(<><ContextMenu actions={actions}/><SetupWizard actions={actions}/></>);}
 };
-
