@@ -1,5 +1,10 @@
 # Changelog
 
+## Alpha 13 header preset picker — 27 September 2026
+
+The saved capture model picker now sits in the device header beside Replace device. Its original change handler and missing-file handling remain intact, and it is removed from the lower Device options section. The duplicated model filename is removed from the subtitle. Browser verification with an isolated two-model test pack confirms a single header picker and switching Clean to Crunch updates the selected asset. The saved-device regression suite passes. Restart Alpha 13 to load the updated interface.
+
+
 ## Alpha 13 drag/drop fix — 27 September 2026
 
 Dropping moved, added or replacement devices keeps the routing board open, including saved TONE3000 devices. Dragging off the board also stays on the board. Ordinary clicks and picker selections still open controls. Ten existing JS suites pass; browser verification confirms moving and library insertion leave the editor closed, while a normal click opens it. Restart Alpha 13 to load the corrected UI.
