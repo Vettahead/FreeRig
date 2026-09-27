@@ -1,5 +1,9 @@
 # Changelog
 
+## FreeRig Alpha 14 — 27 September 2026
+
+The app is now FreeRig, using the supplied cream-and-orange SVG logo. Run **releases/FreeRig-alpha-14/FreeRig.exe**. Header, native window, status bar and user-facing import/export messages use the new name. Existing GuitarSuite storage folders, browser origin, patch formats and audio processing are preserved for compatibility.
+
 ## Alpha 13 header preset picker — 27 September 2026
 
 The saved capture model picker now sits in the device header beside Replace device. Its original change handler and missing-file handling remain intact, and it is removed from the lower Device options section. The duplicated model filename is removed from the subtitle. Browser verification with an isolated two-model test pack confirms a single header picker and switching Clean to Crunch updates the selected asset. The saved-device regression suite passes. Restart Alpha 13 to load the updated interface.

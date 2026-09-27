@@ -1,4 +1,8 @@
-# Guitar Suite
+# FreeRig
+
+## FreeRig Alpha 14 — 27 September 2026
+
+The app is now FreeRig, using the supplied cream-and-orange SVG logo. Run **releases/FreeRig-alpha-14/FreeRig.exe**. Header, native window, status bar and user-facing import/export messages use the new name. Existing GuitarSuite storage folders, browser origin, patch formats and audio processing are preserved for compatibility.
 
 ## Alpha 13 header preset picker — 27 September 2026
 

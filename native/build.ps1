@@ -1,4 +1,4 @@
-$ErrorActionPreference='Stop'
+﻿$ErrorActionPreference='Stop'
 $deps=Join-Path $PSScriptRoot 'deps'
 $out=Join-Path $PSScriptRoot 'dist'
 New-Item -ItemType Directory -Force $out,(Join-Path $out 'ui'),(Join-Path $out 'licenses') | Out-Null
@@ -8,11 +8,11 @@ Copy-Item -LiteralPath (Join-Path $deps 'webview2/runtimes/win-x64/native/WebVie
 foreach($dll in @('registry/runtimes/win/lib/net461/Microsoft.Win32.Registry.dll','system.security.accesscontrol/runtimes/win/lib/net461/System.Security.AccessControl.dll','system.security.principal.windows/runtimes/win/lib/net461/System.Security.Principal.Windows.dll')){Copy-Item -LiteralPath (Join-Path $deps $dll) -Destination $out -Force}
 foreach($pkg in @('registry','system.security.accesscontrol','system.security.principal.windows')){Copy-Item -LiteralPath (Join-Path $deps ($pkg+'/LICENSE.TXT')) -Destination (Join-Path $out ('licenses/'+$pkg+'.txt')) -Force}
 $refArgs=$references|ForEach-Object {'/reference:'+$_}
-& 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' '/nologo' '/target:winexe' '/platform:x64' '/optimize+' ('/out:'+(Join-Path $out 'GuitarSuite.exe')) @refArgs (Join-Path $PSScriptRoot 'Program.cs') (Join-Path $PSScriptRoot 'AudioEngine.cs') (Join-Path $PSScriptRoot 'Calibration.cs') (Join-Path $PSScriptRoot 'PerformanceTests.cs') (Join-Path $PSScriptRoot 'StereoEffects.cs') (Join-Path $PSScriptRoot 'EffectsTests.cs') (Join-Path $PSScriptRoot 'EngineTests.cs') (Join-Path $PSScriptRoot 'CaptureTests.cs') (Join-Path $PSScriptRoot 'BufferTests.cs') (Join-Path $PSScriptRoot 'SeparateOutput.cs') (Join-Path $PSScriptRoot 'OutputTests.cs') (Join-Path $PSScriptRoot 'Tone3000.cs') (Join-Path $PSScriptRoot 'ToneIntegration.cs') (Join-Path $PSScriptRoot 'ToneTests.cs') (Join-Path $PSScriptRoot 'DeviceLibrary.cs')
+& 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' '/nologo' '/target:winexe' '/platform:x64' '/optimize+' ('/out:'+(Join-Path $out 'FreeRig.exe')) @refArgs (Join-Path $PSScriptRoot 'Program.cs') (Join-Path $PSScriptRoot 'AudioEngine.cs') (Join-Path $PSScriptRoot 'Calibration.cs') (Join-Path $PSScriptRoot 'PerformanceTests.cs') (Join-Path $PSScriptRoot 'StereoEffects.cs') (Join-Path $PSScriptRoot 'EffectsTests.cs') (Join-Path $PSScriptRoot 'EngineTests.cs') (Join-Path $PSScriptRoot 'CaptureTests.cs') (Join-Path $PSScriptRoot 'BufferTests.cs') (Join-Path $PSScriptRoot 'SeparateOutput.cs') (Join-Path $PSScriptRoot 'OutputTests.cs') (Join-Path $PSScriptRoot 'Tone3000.cs') (Join-Path $PSScriptRoot 'ToneIntegration.cs') (Join-Path $PSScriptRoot 'ToneTests.cs') (Join-Path $PSScriptRoot 'DeviceLibrary.cs')
 if($LASTEXITCODE -ne 0){throw 'Desktop compilation failed'}
 $uiRoot=Split-Path $PSScriptRoot
 if(Test-Path (Join-Path $uiRoot 'prototype')){$uiRoot=Join-Path $uiRoot 'prototype'}
-foreach($file in @('pedalboard-ui.js','banks.js','performance-ui.js','calibration-ui.js','workspace.css','tolex-black.png','grille-silver.png','studio-skin.css','hardware-materials.png','effects-catalogue.js','effects-ui.js','effects-ui.css','tuner.js','index.html','style.css','routing.css','hardware-controls.css','patch-ui.css','rig-model.js','patch-model.js','slot-board.js','gear-art.js','gear-looks.js','routing-ui.js','patch-ui.js','gear-drag.js','hardware-controls.js','desktop-bridge.js','tone3000.js','device-shelf.js','device-shelf.css','tone3000.css','tone3000-logo.svg','tone3000-mark.svg','app.js')){Copy-Item -LiteralPath (Join-Path $uiRoot $file) -Destination (Join-Path $out 'ui') -Force}
+foreach($file in @('freerig-logo.svg','pedalboard-ui.js','banks.js','performance-ui.js','calibration-ui.js','workspace.css','tolex-black.png','grille-silver.png','studio-skin.css','hardware-materials.png','effects-catalogue.js','effects-ui.js','effects-ui.css','tuner.js','index.html','style.css','routing.css','hardware-controls.css','patch-ui.css','rig-model.js','patch-model.js','slot-board.js','gear-art.js','gear-looks.js','routing-ui.js','patch-ui.js','gear-drag.js','hardware-controls.js','desktop-bridge.js','tone3000.js','device-shelf.js','device-shelf.css','tone3000.css','tone3000-logo.svg','tone3000-mark.svg','app.js')){Copy-Item -LiteralPath (Join-Path $uiRoot $file) -Destination (Join-Path $out 'ui') -Force}
 Copy-Item -LiteralPath (Join-Path $deps 'LICENSE') -Destination (Join-Path $out 'licenses/Amplitron-MIT.txt') -Force
 Copy-Item -LiteralPath (Join-Path $deps 'NAudio-LICENSE.txt') -Destination (Join-Path $out 'licenses/NAudio-MIT.txt') -Force
 Copy-Item -LiteralPath (Join-Path $deps 'nlohmann-MIT.txt') -Destination (Join-Path $out 'licenses/nlohmann-MIT.txt') -Force
@@ -23,7 +23,7 @@ Get-ChildItem (Join-Path $deps 'nam-core/Dependencies/eigen') -Filter 'COPYING*'
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'README.md') -Destination (Join-Path $out 'README.md') -Force
 New-Item -ItemType Directory -Force (Join-Path $out 'source') | Out-Null
 if(!(Test-Path (Join-Path $out 'source/Eigen-source.zip'))){$eigenFiles=Get-ChildItem (Join-Path $deps 'nam-core/Dependencies/eigen') | Where-Object {$_.Name -ne '.git'} | Select-Object -ExpandProperty FullName;Compress-Archive -Path $eigenFiles -DestinationPath (Join-Path $out 'source/Eigen-source.zip')}
-Write-Output ('Built '+(Join-Path $out 'GuitarSuite.exe'))
+Write-Output ('Built '+(Join-Path $out 'FreeRig.exe'))
 foreach($licence in Get-ChildItem (Join-Path $PSScriptRoot 'vendor') -Recurse -File | Where-Object {$_.Name -match 'LICENSE|COPYING'}){
  $relative=$licence.FullName.Substring((Join-Path $PSScriptRoot 'vendor').Length+1) -replace '[\\/]','-'
  Copy-Item -LiteralPath $licence.FullName -Destination (Join-Path $out ('licenses/'+$relative)) -Force

@@ -11,10 +11,10 @@ window.ToneLibrary=(()=>{
  function open(id=selected){
   const b=state.blocks.find(b=>b.id===id);if(!b){toast('Select an amp, cabinet or pedal in your chain, then browse TONE3000.');return;}
   target=id;details=null;architecture=b.tone3000?.architecture||'2';
-  if(!host){modal('POWERED BY TONE3000',mark()+'<h2>Browse tones in the Windows app.</h2><p>Open Guitar Suite alpha 04, select an amp, cabinet or pedal and choose Browse TONE3000.</p>');return;}
+  if(!host){modal('POWERED BY TONE3000',mark()+'<h2>Browse tones in the Windows app.</h2><p>Open FreeRig, select an amp, cabinet or pedal and choose Browse TONE3000.</p>');return;}
   send({type:'toneStatus'});intro();
  }
- function intro(){modal('POWERED BY TONE3000',mark()+'<h2>Your next favourite tone.</h2><p>Explore community captures of real amps and cabinets on TONE3000. Sign in there, pick a tone, then choose a model to load into this device.</p><p>'+esc(PatchRig.definition(block()?.key)?.name||'Selected device')+' · '+(connected?'Your TONE3000 connection is saved.':'Sign-in stays with TONE3000. No password is stored in Guitar Suite.')+'</p>'+architecturePicker()+'<button id="tone-browse" class="primary">Continue to TONE3000</button> '+(connected?'<button id="tone-disconnect">Disconnect account</button>':'')+'<p id="tone-message" role="status"></p>');setBusy();}
+ function intro(){modal('POWERED BY TONE3000',mark()+'<h2>Your next favourite tone.</h2><p>Explore community captures of real amps and cabinets on TONE3000. Sign in there, pick a tone, then choose a model to load into this device.</p><p>'+esc(PatchRig.definition(block()?.key)?.name||'Selected device')+' · '+(connected?'Your TONE3000 connection is saved.':'Sign-in stays with TONE3000. No password is stored in FreeRig.')+'</p>'+architecturePicker()+'<button id="tone-browse" class="primary">Continue to TONE3000</button> '+(connected?'<button id="tone-disconnect">Disconnect account</button>':'')+'<p id="tone-message" role="status"></p>');setBusy();}
  function architecturePicker(){return block()?.key==='cab'?'':'<label>NAM models<select id="tone-architecture"><option value="2" '+(architecture==='2'?'selected':'')+'>A2</option><option value="1" '+(architecture==='1'?'selected':'')+'>A1</option><option value="custom" '+(architecture==='custom'?'selected':'')+'>Custom</option></select></label>';}
  function attribution(t){return '<div class="tone-attribution">'+picture(t.user?.avatar_url,'Creator avatar','tone-avatar')+'<span>@'+esc(t.user?.username||'Unknown creator')+'</span></div>';}
  function showDetails(){

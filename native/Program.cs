@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,14 +14,14 @@ sealed partial class MainWindow : Form {
  readonly string data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"GuitarSuite"),assets;
  string activeDriver;int activeInput,activeOutput,activeRate;
  Patch patch;string signature="",lastStatus="";readonly Timer timer=new Timer{Interval=100};
- public MainWindow(){Text="Guitar Suite — Desktop Alpha 13";Width=1280;Height=850;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
+ public MainWindow(){Text="FreeRig — Desktop Alpha 14";Width=1280;Height=850;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
   var environment=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,"WebView"));webEnvironment=environment;await web.EnsureCoreWebView2Async(environment);
   web.CoreWebView2.SetVirtualHostNameToFolderMapping("guitarsuite.local",Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui"),CoreWebView2HostResourceAccessKind.DenyCors);
   web.CoreWebView2.Settings.AreDevToolsEnabled=false;web.CoreWebView2.Settings.IsStatusBarEnabled=false;
   web.CoreWebView2.NavigationStarting+=(s,e)=>{if(!e.Uri.StartsWith("https://guitarsuite.local/",StringComparison.OrdinalIgnoreCase))e.Cancel=true;};
   web.CoreWebView2.NewWindowRequested+=(s,e)=>{e.Handled=true;Uri target;if(Uri.TryCreate(e.Uri,UriKind.Absolute,out target)&&target.Scheme=="https"&&target.Host=="www.tone3000.com"&&target.IsDefaultPort)System.Diagnostics.Process.Start(target.AbsoluteUri);};
   web.CoreWebView2.WebMessageReceived+=Receive;web.Source=new Uri("https://guitarsuite.local/index.html");timer.Start();
- }catch(Exception ex){MessageBox.Show(ex.Message,"Unable to start Guitar Suite");}};
+ }catch(Exception ex){MessageBox.Show(ex.Message,"Unable to start FreeRig");}};
  timer.Tick+=delegate{if(audio.OutputError!=null)audio.Error=audio.OutputError;if(audio.Error!=null){string err=audio.Error;LogAudio("Fault: "+err);audio.Stop();audio.Error=null;Send(new{type="error",message=err});}string status=audio.Running?"ASIO running · "+audio.BufferSize+" samples → "+audio.OutputName:"Audio stopped";if(status!=lastStatus){lastStatus=status;Send(new{type="status",running=audio.Running,message=status});}if(audio.TunerEnabled)Send(new{type="tuner",hz=audio.TunerHz,confidence=audio.TunerConfidence,running=audio.Running});if(audio.Running)Send(new{type="meter",peak=audio.Peak,output=audio.OutputPeak,clipped=audio.TakeClip(),load=audio.Stats.TakeLoad(),rawPeak=audio.Stats.TakeInput(),overruns=audio.Overruns,outputDropouts=audio.OutputDropouts});};
  FormClosing+=delegate{timer.Stop();audio.Dispose();tones.Dispose();};
  }
@@ -59,8 +59,8 @@ sealed partial class MainWindow : Form {
      IntPtr probe=Nam.gs_load(file.FullName,0,4096);if(probe==IntPtr.Zero)throw new Exception(Nam.Error);int rate=Nam.gs_rate(probe);if(rate<=0)rate=48000;Nam.gs_free(probe);
      string id=Guid.NewGuid().ToString("N")+(cab?".wav":".nam");File.Copy(file.FullName,Path.Combine(assets,id));Send(new{type="asset",blockId=message["blockId"],assetId=id,assetName=file.Name,rate=rate});}return;
    }
-   if(type=="importPatch"){using(var dialog=new OpenFileDialog{Title="Import Guitar Suite patch",Filter="Guitar Suite patch (*.json)|*.json",CheckFileExists=true}){if(dialog.ShowDialog(this)==DialogResult.OK){if(new FileInfo(dialog.FileName).Length>4000000)throw new Exception("Patch file is too large.");Send(new{type="patch",value=json.DeserializeObject(File.ReadAllText(dialog.FileName))});}}return;}
-   if(type=="exportPatch"){using(var dialog=new SaveFileDialog{Title="Export Guitar Suite patch",Filter="Guitar Suite patch (*.json)|*.json",FileName="Guitar Suite patch.json"}){if(dialog.ShowDialog(this)==DialogResult.OK)File.WriteAllText(dialog.FileName,json.Serialize(message["value"]),Encoding.UTF8);}return;}
+   if(type=="importPatch"){using(var dialog=new OpenFileDialog{Title="Import FreeRig patch",Filter="FreeRig patch (*.json)|*.json",CheckFileExists=true}){if(dialog.ShowDialog(this)==DialogResult.OK){if(new FileInfo(dialog.FileName).Length>4000000)throw new Exception("Patch file is too large.");Send(new{type="patch",value=json.DeserializeObject(File.ReadAllText(dialog.FileName))});}}return;}
+   if(type=="exportPatch"){using(var dialog=new SaveFileDialog{Title="Export FreeRig patch",Filter="FreeRig patch (*.json)|*.json",FileName="FreeRig patch.json"}){if(dialog.ShowDialog(this)==DialogResult.OK)File.WriteAllText(dialog.FileName,json.Serialize(message["value"]),Encoding.UTF8);}return;}
   }catch(Exception ex){Send(new{type="error",message=ex.Message});}
  }
 }
