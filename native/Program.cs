@@ -14,7 +14,7 @@ sealed partial class MainWindow : Form {
  readonly string data=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"GuitarSuite"),assets;
  string activeDriver;int activeInput,activeOutput,activeRate;
  Patch patch;string signature="",lastStatus="";readonly Timer timer=new Timer{Interval=100};
- public MainWindow(){Text="Guitar Suite — Desktop Alpha 09";Width=1440;Height=1000;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
+ public MainWindow(){Text="Guitar Suite — Desktop Alpha 10";Width=1440;Height=1000;MinimumSize=new System.Drawing.Size(850,650);BackColor=System.Drawing.Color.FromArgb(16,20,17);assets=Path.Combine(data,"Library");Directory.CreateDirectory(assets);tones=new Tone3000(data,assets);web.Dock=DockStyle.Fill;Controls.Add(web);Shown+=async delegate{try{
   var environment=await CoreWebView2Environment.CreateAsync(null,Path.Combine(data,"WebView"));webEnvironment=environment;await web.EnsureCoreWebView2Async(environment);
   web.CoreWebView2.SetVirtualHostNameToFolderMapping("guitarsuite.local",Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui"),CoreWebView2HostResourceAccessKind.DenyCors);
   web.CoreWebView2.Settings.AreDevToolsEnabled=false;web.CoreWebView2.Settings.IsStatusBarEnabled=false;
@@ -22,7 +22,7 @@ sealed partial class MainWindow : Form {
   web.CoreWebView2.NewWindowRequested+=(s,e)=>{e.Handled=true;Uri target;if(Uri.TryCreate(e.Uri,UriKind.Absolute,out target)&&target.Scheme=="https"&&target.Host=="www.tone3000.com"&&target.IsDefaultPort)System.Diagnostics.Process.Start(target.AbsoluteUri);};
   web.CoreWebView2.WebMessageReceived+=Receive;web.Source=new Uri("https://guitarsuite.local/index.html");timer.Start();
  }catch(Exception ex){MessageBox.Show(ex.Message,"Unable to start Guitar Suite");}};
- timer.Tick+=delegate{if(audio.Error!=null){string err=audio.Error;LogAudio("Fault: "+err);audio.Stop();audio.Error=null;Send(new{type="error",message=err});}string status=audio.Running?"ASIO running · "+audio.BufferSize+" samples":"Audio stopped";if(status!=lastStatus){lastStatus=status;Send(new{type="status",running=audio.Running,message=status});}if(audio.TunerEnabled)Send(new{type="tuner",hz=audio.TunerHz,confidence=audio.TunerConfidence,running=audio.Running});if(audio.Running)Send(new{type="meter",peak=audio.Peak,output=audio.OutputPeak,clipped=audio.TakeClip(),load=audio.CallbackLoad,overruns=audio.Overruns});};
+ timer.Tick+=delegate{if(audio.OutputError!=null)audio.Error=audio.OutputError;if(audio.Error!=null){string err=audio.Error;LogAudio("Fault: "+err);audio.Stop();audio.Error=null;Send(new{type="error",message=err});}string status=audio.Running?"ASIO running · "+audio.BufferSize+" samples → "+audio.OutputName:"Audio stopped";if(status!=lastStatus){lastStatus=status;Send(new{type="status",running=audio.Running,message=status});}if(audio.TunerEnabled)Send(new{type="tuner",hz=audio.TunerHz,confidence=audio.TunerConfidence,running=audio.Running});if(audio.Running)Send(new{type="meter",peak=audio.Peak,output=audio.OutputPeak,clipped=audio.TakeClip(),load=audio.CallbackLoad,overruns=audio.Overruns,outputDropouts=audio.OutputDropouts});};
  FormClosing+=delegate{timer.Stop();audio.Dispose();tones.Dispose();};
  }
  void LogAudio(string message){try{File.AppendAllText(Path.Combine(data,"audio-diagnostics.log"),DateTime.Now.ToString("s")+" "+message+Environment.NewLine);}catch{}}
@@ -31,7 +31,7 @@ sealed partial class MainWindow : Form {
   if(!e.Source.StartsWith("https://guitarsuite.local/",StringComparison.OrdinalIgnoreCase))return;
   try{var message=json.Deserialize<Dictionary<string,object>>(e.WebMessageAsJson);string type=(string)message["type"];
    if(type.StartsWith("tone",StringComparison.Ordinal)){await HandleTone(message);return;}
-   if(type=="ready"){var drivers=AsioOut.GetDriverNames();File.WriteAllText(Path.Combine(data,"startup.log"),DateTime.Now.ToString("s")+" Desktop UI ready; native bridge connected; "+drivers.Length+" ASIO drivers found; audio stopped.");Send(new{type="ready",drivers=drivers});return;}
+   if(type=="ready"){var drivers=AsioOut.GetDriverNames();File.WriteAllText(Path.Combine(data,"startup.log"),DateTime.Now.ToString("s")+" Desktop UI ready; native bridge connected; "+drivers.Length+" ASIO drivers found; audio stopped.");Send(new{type="ready",drivers=drivers});Send(new{type="outputs",devices=OutputDevices.List()});return;}
    if(type=="sync"){
     string raw=json.Serialize(message["patch"]);Patch next=json.Deserialize<Patch>(raw);
     if(next==null||next.blocks==null||next.scenes==null||next.scene<0||next.scene>=next.scenes.Length)throw new Exception("Invalid patch data.");
@@ -41,7 +41,8 @@ sealed partial class MainWindow : Form {
     if(changed&&audio.Running)audio.Replace(next);else audio.Update(next);
     patch=next;signature=nextSignature;if(changed&&audio.Running)LogAudio("Rig switched with ASIO open; blocks="+next.blocks.Length+"; overruns="+audio.Overruns);return;
    }
-   if(type=="start"){activeDriver=(string)message["driver"];activeInput=Convert.ToInt32(message["input"]);activeOutput=Convert.ToInt32(message["output"]);activeRate=Convert.ToInt32(message["rate"]);audio.Start(activeDriver,activeInput,activeOutput,activeRate,patch,assets);LogAudio("Start: "+activeDriver+"; rate="+activeRate+"; buffer="+audio.BufferSize);lastStatus="";return;}
+   if(type=="outputs"){Send(new{type="outputs",devices=OutputDevices.List()});return;}
+   if(type=="start"){activeDriver=(string)message["driver"];activeInput=Convert.ToInt32(message["input"]);activeOutput=Convert.ToInt32(message["output"]);activeRate=Convert.ToInt32(message["rate"]);audio.Start(activeDriver,activeInput,activeOutput,activeRate,patch,assets,message.ContainsKey("outputDevice")?(string)message["outputDevice"]:"",message.ContainsKey("outputLatency")?Convert.ToInt32(message["outputLatency"]):10,message.ContainsKey("outputExclusive")&&Convert.ToBoolean(message["outputExclusive"]));LogAudio("Start: "+activeDriver+"; rate="+activeRate+"; buffer="+audio.BufferSize+"; output="+audio.OutputName);lastStatus="";return;}
    if(type=="tuner"){audio.Tune(Convert.ToBoolean(message["enabled"]),Convert.ToBoolean(message["mute"]));return;}
    if(type=="inputTrim"){audio.SetInput(Convert.ToDouble(message["db"]));return;}
    if(type=="master"){audio.SetMaster(Convert.ToDouble(message["db"]));return;}
@@ -65,6 +66,9 @@ sealed partial class MainWindow : Form {
 static class Program {
  [STAThread] static int Main(string[] args){
   if(args.Length>0&&args[0]=="--tone-preflight"){try{File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"tone-preflight.txt"),Tone3000.Preflight().GetAwaiter().GetResult());return 0;}catch(Exception ex){File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"tone-preflight.txt"),ex.Message);return 1;}}
+  if(args.Length>0&&args[0]=="--output-test")return OutputTests.Run();
+  if(args.Length>1&&args[0]=="--output-check"){var results=new System.Collections.Generic.List<string>();foreach(bool exclusive in new[]{false,true}){try{using(var output=new SeparateOutput(args[1],48000,5,exclusive))results.Add("PASS: initialised without playback; exclusive="+exclusive+"; "+output.Name+"; "+output.Details);}catch(Exception e){results.Add("FAIL: exclusive="+exclusive+"; "+e.ToString());}}File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"output-check.txt"),results);return results.Any(s=>s.StartsWith("FAIL"))?1:0;}
+  if(args.Length>0&&args[0]=="--outputs"){File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"outputs.json"),new JavaScriptSerializer().Serialize(OutputDevices.List()));return 0;}
   if(args.Length>0&&args[0]=="--buffer-test")return BufferTests.Run(args.Skip(1).ToArray());
   if(args.Length>0&&args[0]=="--self-test")return EngineTests.Run(args.Skip(1).ToArray());
   if(args.Length>0&&args[0]=="--drivers"){try{File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"drivers.txt"),AsioOut.GetDriverNames());return 0;}catch(Exception e){File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"drivers.txt"),e.ToString());return 1;}}

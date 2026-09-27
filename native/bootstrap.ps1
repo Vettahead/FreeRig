@@ -7,6 +7,7 @@ function Package($name,$version,$folder){
 }
 Package 'naudio.core' '2.2.1' 'naudio.core'
 Package 'naudio.asio' '2.2.1' 'naudio.asio'
+Package 'naudio.wasapi' '2.2.1' 'naudio.wasapi'
 Package 'microsoft.win32.registry' '4.7.0' 'registry'
 Package 'system.security.accesscontrol' '4.7.0' 'system.security.accesscontrol'
 Package 'system.security.principal.windows' '4.7.0' 'system.security.principal.windows'
