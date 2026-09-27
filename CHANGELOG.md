@@ -1,3 +1,9 @@
+## Alpha 18 — setup wizard and header alignment (27 September 2026)
+
+Run **releases/FreeRig-alpha-18/FreeRig.exe**. Setup wizard beside Collection walks through connections, ASIO inputs/outputs, buffer size, first-sound troubleshooting, TONE3000 sign-in/downloads and saving patches/scenes. It opens the existing setup screens, remembers the current step for this app session, supports Escape/outside-click dismissal and never starts audio automatically. TONE3000 offers a choice of compatible devices already in the patch. Empty rigs receive an explanation rather than a broken action.
+
+Saved model labels/selectors now align with header buttons; long model names truncate inside the selector and controls wrap on smaller windows. TypeScript/build and browser checks pass, including audio/TONE3000 handoffs, step resumption and an extra-long model label with no header overflow. Native host change is version text only; DPI manifest retained, DSP DLLs unchanged. Live hardware and online authentication were not repeated for this interface-only update.
+
 ## Alpha 17 — display clarity and creator credit (27 September 2026)
 
 Run **releases/FreeRig-alpha-17/FreeRig.exe** after closing the previous app. The desktop host now declares per-monitor DPI awareness so Windows does not bitmap-scale its interface on high-DPI screens. Text-bearing filter layers are removed and small labels use clearer sizes and weights. Downloaded captures show their creator name and avatar at the bottom-right of the device editor, visible with Device options closed; missing or unavailable avatars fall back to an initial.

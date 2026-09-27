@@ -1,3 +1,4 @@
+import {SetupWizard} from './SetupWizard';
 import {createRoot, type Root} from 'react-dom/client';
 import {flushSync} from 'react-dom';
 import {Board} from './Board';
@@ -12,5 +13,6 @@ window.FreeRigReact={
  board(rig,selected){if(!boardRoot){chain.replaceChildren();boardRoot=createRoot(chain);}flushSync(()=>boardRoot!.render(<Board rig={rig} selected={selected}/>));},
  clearBoard(){if(boardRoot){flushSync(()=>boardRoot!.unmount());boardRoot=null;}},
  editor(props:EditorProps|null){if(!editorRoot){editor.replaceChildren();editorRoot=createRoot(editor);}flushSync(()=>editorRoot!.render(props?<Editor key={props.block.id} {...props}/>:null));},
- connect(actions){const host=document.createElement('div');host.id='device-menu-root';document.body.append(host);createRoot(host).render(<ContextMenu actions={actions}/>);}
+ connect(actions){const host=document.createElement('div');host.id='device-menu-root';document.body.append(host);createRoot(host).render(<><ContextMenu actions={actions}/><SetupWizard actions={actions}/></>);}
 };
+
