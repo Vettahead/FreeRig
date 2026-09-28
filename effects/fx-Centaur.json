@@ -1,0 +1,20 @@
+{
+  "key": "fx-Centaur",
+  "name": "Centaur Drive",
+  "category": "Drive",
+  "engine": "KlonCentaur / chowdsp WDF",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Drive · Centaur Drive",
+  "description": "Circuit-derived overdrive based on Jatin Chowdhury’s Klon Centaur research. Gain blends clean and clipped paths; Level controls the following amp input.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [20, 50, 50],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [20, 50, 50]
+    }
+  ],
+  "source": "https://github.com/jatinchowdhury18/KlonCentaur"
+}

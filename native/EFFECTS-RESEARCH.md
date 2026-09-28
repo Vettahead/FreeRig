@@ -1,3 +1,7 @@
+# September 28 expansion
+
+The current 200-processor collection and updated source-selection research are in [the collection guide](../docs/EFFECTS-COLLECTION.md). The material below records earlier releases.
+
 # Effects selection — 26 September 2026
 
 The current app contains 31 native library effects, in addition to its original simple effects and two Amplitron amp voices. Selection combines upstream source inspection, licence compatibility, integration cost and the actual native tests. Popularity is supporting evidence, not a sound-quality score. GitHub has no consistent user-review rating, and release downloads exclude package managers, mirrors and plug-in bundles.

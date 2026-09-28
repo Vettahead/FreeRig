@@ -1,0 +1,20 @@
+{
+  "key": "fx-HipCrush",
+  "name": "AW HipCrush",
+  "type": "Pedals",
+  "category": "Lo-fi",
+  "engine": "Airwindows",
+  "detail": "Lo-fi · Airwindows",
+  "description": "HipCrush is the de-rez section for ConsoleH.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/HipCrush.txt",
+  "icon": "◈",
+  "colour": "#c28e7c",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Parallel grit",
+      "values": [50, 30, 50, 50, 30, 50, 50, 40, 50, 30]
+    }
+  ],
+  "defaults": [50, 30, 50, 50, 30, 50, 50, 40, 50, 30]
+}

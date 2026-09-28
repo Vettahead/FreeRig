@@ -990,5 +990,2291 @@
         ]
       }
     ]
+  },
+  {
+    "key": "Parametric",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PearEQ",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Baxandall2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SmoothEQ3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ToneSlant",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "EQ",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          40,
+          40,
+          0,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Hull2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BiquadStack",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ResEQ",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Air4",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          52,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Energy2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Stonefire",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Weight",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SubTight",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          30,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AngleFilter",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          0,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Aura",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BiquadPlus",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BiquadHiLo",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BiquadNonLin",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          70.71,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Capacitor2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          0,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Dattorro",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Donut",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100,
+          50,
+          0,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Holt2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Isolator3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Suzan",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "XRegion",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "YLowpass",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          10,
+          10,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ZAcidLowpass",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          100,
+          0,
+          10,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ZBandpass2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          100,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ZHighpass2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          100,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ZNotch2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          100,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ZRegion2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Hermepass",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Infrasonic",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ]
+  },
+  {
+    "key": "BeziComp",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BlockParty",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ButterComp2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Compresaturator",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DigitalBlack",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Dynamics3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          38.2,
+          61.8,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Gatelope",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100,
+          50,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Logical4",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          20,
+          19.20202,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Overheads",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Point",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Pop3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          50,
+          50,
+          0,
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Pressure4",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          20,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PurestSquish",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Pyewacket",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Recurve",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ]
+  },
+  {
+    "key": "SoftGate",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "StoneFireComp",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          50,
+          50,
+          100,
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SurgeTide",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          30,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Swell",
+    "presets": [
+      {
+        "name": "Gentle attack",
+        "values": [
+          5,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Thunder",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "VariMu",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DeBess",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          50,
+          50,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DeHiss",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DeNoise",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          25,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Density3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Dirt",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Distortion",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Drive",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Edge",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "HardVacuum",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "HighImpact",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Mackity",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "MultiBandDistortion",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          0,
+          0,
+          0,
+          100,
+          100,
+          100,
+          75
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PurestDrive",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Spiral2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          50,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Tube2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "UnBox",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Coils2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Creature",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          26,
+          26,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Focus",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          50,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Fracture2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          0,
+          50,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Gringer",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ]
+  },
+  {
+    "key": "GuitarConditioner",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ]
+  },
+  {
+    "key": "PowerSag2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          30,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SingleEndedTriode",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Inflamer",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Sweeten",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BussColors4",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Channel9",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CStrip2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          100,
+          0,
+          0,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Desk4",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          27,
+          18,
+          26,
+          54,
+          84,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Discontapeity",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Discontinuity",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PurestWarm3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Exciter",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          60,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Acceleration2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          32,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GoldenSlew",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Slew4",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Smooth",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Remap",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "WoodenBox",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BitGlitter",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Bite",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ChromeOxide",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Cojones",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CrunchyGrooveWear",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          6.4,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DeBez",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DeRez3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Deckwrecka",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Dubly3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Flutter2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GrooveWear",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          6.4,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "HipCrush",
+    "presets": [
+      {
+        "name": "Parallel grit",
+        "values": [
+          50,
+          30,
+          50,
+          50,
+          30,
+          50,
+          50,
+          40,
+          50,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Pockey2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          66,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TapeBias",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TapeDust",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Texturize",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ToVinyl4",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          20.3419,
+          34.24051,
+          32,
+          6.4
+        ]
+      }
+    ]
+  },
+  {
+    "key": "FromTape",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "IronOxideClassic2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          56.234133,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Tape",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ToTape8",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TapeHack2",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Ensemble",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GalacticVibe",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Melt",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          25,
+          75,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TremoSquare",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "RingModulator",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GlitchShifter",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          0,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PitchNasty",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          25,
+          0,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "StereoDoubler",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          60,
+          60
+        ]
+      }
+    ]
+  },
+  {
+    "key": "TripleSpread",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "FathomFive",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          0,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "DubSub",
+    "presets": [
+      {
+        "name": "Sub foundation",
+        "values": [
+          30,
+          60,
+          50,
+          30,
+          50,
+          65,
+          20,
+          30,
+          55,
+          35
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Srsly3",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100,
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "StereoFX",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SweetWide",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Wider",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Sidepass",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SideDull",
+    "presets": [
+      {
+        "name": "Soft sides",
+        "values": [
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ADT",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Hombre",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          42.1,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "StarChild2",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          70,
+          20
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kChamberAR",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          0,
+          0,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "BrightAmbience3",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          0,
+          0,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Chamber2",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          34,
+          31,
+          28,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CrunchCoat",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          0,
+          100,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Infinity2",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          0,
+          100,
+          65,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "MatrixVerb",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          0,
+          0,
+          0,
+          50,
+          50,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "MV2",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "NonlinearSpace",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          30,
+          50,
+          50,
+          50,
+          50,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PocketVerbs",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          0,
+          50,
+          0,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Ultralight2",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          65,
+          75,
+          75,
+          54,
+          25,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Verbity2",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kAlienSpaceship",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kCosmos",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          100,
+          50,
+          50,
+          0,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kCyberCity",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          100,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kPlate140",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          100,
+          0,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kPlate240",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          100,
+          0,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kRockstar",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          100,
+          100,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kStation",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          90,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "kWoodRoom",
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          25,
+          50,
+          75,
+          25
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GraphicEQ",
+    "presets": [
+      {
+        "name": "Flat",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Wah",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          40,
+          3,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "EnvelopeFilter",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          40,
+          3,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PitchShift",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          12,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "GrainCloud",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          120,
+          0,
+          15,
+          50,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "key": "ReverseEcho",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          500,
+          25,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "key": "PhraseLooper",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          70,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Vocoder",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          110,
+          1,
+          80,
+          70
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Centaur",
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          20,
+          50,
+          50
+        ]
+      }
+    ]
   }
 ]

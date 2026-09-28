@@ -1,0 +1,19 @@
+{
+  "key": "fx-Wah",
+  "name": "Sweep Wah",
+  "category": "Filter",
+  "engine": "FreeRig",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Filter · Sweep Wah",
+  "description": "Resonant wah with manual position control.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [40, 3, 100],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [40, 3, 100]
+    }
+  ]
+}

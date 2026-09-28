@@ -1,0 +1,19 @@
+{
+  "key": "fx-GrainCloud",
+  "name": "Grain Cloud",
+  "category": "Delay",
+  "engine": "FreeRig",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Delay · Grain Cloud",
+  "description": "Four overlapping grains with pitch, stereo spread and feedback.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [120, 0, 15, 50, 30],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [120, 0, 15, 50, 30]
+    }
+  ]
+}

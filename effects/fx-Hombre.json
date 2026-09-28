@@ -1,0 +1,20 @@
+{
+  "key": "fx-Hombre",
+  "name": "AW Hombre",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Airwindows",
+  "detail": "Delay · Airwindows",
+  "description": "Hombre is atmosphere and texture (through very short delays).",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Hombre.txt",
+  "icon": "◈",
+  "colour": "#69afb5",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [42.1, 50]
+    }
+  ],
+  "defaults": [42.1, 50]
+}

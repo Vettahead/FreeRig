@@ -41,6 +41,7 @@ function renderDevicePicker() {
         d.name +
         ' ' +
         d.detail +
+        (d.description || '') +
         ' ' +
         libraryCategory(d) +
         ' ' +

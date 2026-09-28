@@ -1,0 +1,20 @@
+{
+  "key": "fx-Fracture2",
+  "name": "AW Fracture2",
+  "type": "Pedals",
+  "category": "Drive",
+  "engine": "Airwindows",
+  "detail": "Drive · Airwindows",
+  "description": "Fracture2 is a wavefolder that allows more extreme disruption.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Fracture2.txt",
+  "icon": "◈",
+  "colour": "#bb805e",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [10, 0, 50, 100, 100]
+    }
+  ],
+  "defaults": [10, 0, 50, 100, 100]
+}

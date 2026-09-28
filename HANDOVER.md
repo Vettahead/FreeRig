@@ -1,3 +1,11 @@
+## 28 September 2026 — Alpha 24: 200 effects and tags
+
+Expanded to 200 separately registered native effects: 156 pinned MIT Airwindows imports plus Centaur, ten-band EQ, manual/envelope wah, standalone studio pitch, granular/reverse delay, vocoder and a temporary stereo practice looper. Preserved existing pedal presets/keys. Added category/description search, source notes, EQ faders and looper buttons. Bird Treble Boost corrects the misleading Scream Drive display name without changing its DSP. Includes the earlier patch/device tags, optional propagation, captured-pedal level comparisons, combined-cab guidance and up/down strip bypass gestures.
+
+Validation: npm run check (13 suites), native formatting, desktop/effect builds, complete offline self-test (200 effects, 242 presets, 11 graph bypass cases), and 1,800 effect/rate/buffer cases with parameter endpoints passed. Graphic EQ response, loop record/play/clear/auto-play and one-sample ClipOnly2 latency verified. React browser checks cover filters, search, EQ faders/scene recall/reset/bypass and looper commands; actual 1920×1080 DOM bounds checked. No live ASIO listening or physical-pedal equivalence claimed. Studio Pitch deliberately adds about 140 ms; labelled accordingly.
+
+Release: releases/FreeRig-alpha-24/FreeRig.exe and FreeRig-alpha-24-win-x64.zip, with source and licences. Research/limitations: docs/EFFECTS-COLLECTION.md. No remote configured; Mission Control access remains unavailable, so this is the local handover. Next: user listening feedback, richer curated presets and advanced key-aware harmonisation/sidechain/persistent looping if wanted.
+
 ## 28 September 2026 — Tags, capture controls and strip bypass
 
 Added modular React patch/device tags, explicit optional propagation, collection search and portable bank metadata. Added explicit NAM pedal level comparison, combined-cab bypass guidance and editor-strip up/down bypass gestures. No audio arithmetic changes. All 13 JavaScript suites and browser interactions pass; see docs/TAGS-AND-CAPTURE-LEVELS.md. Next: broad effect research and implementation requested by user, targeting roughly 200 distinct processors across all major families. Not yet packaged in a new release.

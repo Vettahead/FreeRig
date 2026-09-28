@@ -14,10 +14,17 @@ foreach($source in $sources){$object=Join-Path $obj (($source.FullName.Substring
  & $compiler $standard '-O2' '-DSIMDE_UNAVAILABLE' '-DFMT_HEADER_ONLY' '-DFMT_CONSTEVAL=' '-msse4.1' '-DNOMINMAX' '-D_USE_MATH_DEFINES' '-Wno-unused-value' '-DLIBFV3_FLOAT' '-Wno-multichar' '-Wno-deprecated' @includes '-c' $source.FullName '-o' $object
  if($LASTEXITCODE -ne 0){throw ('Effect compilation failed: '+$source.Name)}
 }
-& $compiler '-shared' '-static' @objects '-o' ($out+'/GuitarEffects.dll')
+# Response files avoid Windows' command-line length limit as the library grows.
+# Quote paths for clang's response-file parser, not for a second shell.
+$linkResponse=Join-Path $obj 'effects-link.rsp'
+$utf8=New-Object System.Text.UTF8Encoding($false)
+[IO.File]::WriteAllLines($linkResponse, @($objects | ForEach-Object {'"'+($_ -replace '\\','/')+'"'}), $utf8)
+& $compiler '-shared' '-static' ('@'+$linkResponse) '-o' ($out+'/GuitarEffects.dll')
 if($LASTEXITCODE -ne 0){throw 'Effects link failed'}
 $dumpObjects=$objects | Where-Object {$_ -notmatch 'effects_bridge.cpp.o$'}
-& $compiler '-std=c++20' '-O2' '-DSIMDE_UNAVAILABLE' '-DFMT_HEADER_ONLY' '-DFMT_CONSTEVAL=' '-msse4.1' '-static' '-DFX_DUMP' @includes ($PSScriptRoot+'/effects_bridge.cpp') @dumpObjects '-o' ($obj+'/dump.exe')
+$dumpResponse=Join-Path $obj 'effects-dump.rsp'
+[IO.File]::WriteAllLines($dumpResponse, @($dumpObjects | ForEach-Object {'"'+($_ -replace '\\','/')+'"'}), $utf8)
+& $compiler '-std=c++20' '-O2' '-DSIMDE_UNAVAILABLE' '-DFMT_HEADER_ONLY' '-DFMT_CONSTEVAL=' '-msse4.1' '-static' '-DFX_DUMP' @includes ($PSScriptRoot+'/effects_bridge.cpp') ('@'+$dumpResponse) '-o' ($obj+'/dump.exe')
 if($LASTEXITCODE -ne 0){throw 'Effects metadata build failed'}
 & ($obj+'/dump.exe') | Set-Content -Encoding utf8 ($PSScriptRoot+'/effects-catalogue.json')
 if($LASTEXITCODE -ne 0){throw 'Effects metadata export failed'}

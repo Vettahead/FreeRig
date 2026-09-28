@@ -1,3 +1,7 @@
+## Alpha 24 — effects collection and tags
+
+200 native stock processors, patch/device tags, capture level comparison and editor-strip bypass gestures. See docs/EFFECTS-COLLECTION.md and docs/TAGS-AND-CAPTURE-LEVELS.md in the repository. Keep all DLLs, UI, presets and licences together.
+
 ## Alpha 23 — capture headroom audit
 
 Run `releases/FreeRig-alpha-23/FreeRig.exe`. Removed unintended internal clipping before downstream level controls, added pre-ceiling peak hold and a master-only overload correction. NAM weights/quality and the 32-sample driver setting are unchanged. See [Capture fidelity](../docs/CAPTURE-FIDELITY.md). The actual cause of the reported live harshness is not confirmed by offline tests.

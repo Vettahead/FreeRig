@@ -23,6 +23,16 @@ struct Effect
     }
 };
 std::unique_ptr<Effect> makeAir(const std::string &, int);
+std::unique_ptr<Effect> makeImportedAir(const std::string &, int);
+std::unique_ptr<Effect> makeGraphicEQ(int);
+std::unique_ptr<Effect> makeWah(int);
+std::unique_ptr<Effect> makeEnvelopeFilter(int);
+std::unique_ptr<Effect> makePitchShift(int);
+std::unique_ptr<Effect> makeGrainCloud(int);
+std::unique_ptr<Effect> makeReverseEcho(int);
+std::unique_ptr<Effect> makePhraseLooper(int);
+std::unique_ptr<Effect> makeVocoder(int);
+std::unique_ptr<Effect> makeCentaur(int);
 std::unique_ptr<Effect> makeSurge(const std::string &, int);
 std::unique_ptr<Effect> makeDragonHall(int);
 std::unique_ptr<Effect> makeDragonRoom(int);

@@ -3,6 +3,8 @@ import { CreatorCredit } from './CreatorCredit';
 import { CaptureNotice } from './CaptureNotice';
 import { TagEditor } from './tags/TagEditor';
 import { CaptureLevels } from './CaptureLevels';
+import { EffectInfo } from './EffectInfo';
+import { GraphicEqualizer } from './GraphicEqualizer';
 
 import type { CSSProperties } from 'react';
 import type { EditorProps } from './types';
@@ -63,8 +65,13 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
       <CaptureNotice block={b} />
       <CaptureLevels rig={rig} block={b} sound={v} />
       <TagEditor rig={rig} block={b} />
+      <EffectInfo block={b} definition={d} sound={v} />
       <div className="editor-body">
-        <Hardware html={face} d={d} v={faceState} />
+        {b.key === 'fx-GraphicEQ' ? (
+          <GraphicEqualizer block={b} definition={d} sound={v} />
+        ) : (
+          <Hardware html={face} d={d} v={faceState} />
+        )}
       </div>
       <details className="device-options" open={optionsOpen}>
         <summary>

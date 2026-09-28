@@ -1,0 +1,19 @@
+{
+  "key": "fx-PhraseLooper",
+  "name": "Phrase Looper",
+  "category": "Looper",
+  "engine": "FreeRig",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Looper · Phrase Looper",
+  "description": "60-second stereo practice looper. Record, play and overdub. Clear discards the loop. Loop audio is temporary and is not saved with patches.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [0, 70, 50],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [0, 70, 50]
+    }
+  ]
+}

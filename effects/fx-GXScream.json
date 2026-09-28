@@ -1,6 +1,6 @@
 {
   "key": "fx-GXScream",
-  "name": "Scream Drive",
+  "name": "Bird Treble Boost",
   "type": "Pedals",
   "category": "Drive",
   "engine": "Guitarix",
@@ -18,5 +18,6 @@
       "values": [0.75]
     }
   ],
-  "defaults": [0.5]
+  "defaults": [0.5],
+  "description": "Guitarix Screaming Bird treble booster. This is not a Tube Screamer circuit; use NAM Tube Screamer captures for that sound."
 }

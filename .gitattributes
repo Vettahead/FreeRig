@@ -6,3 +6,5 @@ prototype/react-ui.js linguist-generated=true
 prototype/react-ui.css linguist-generated=true
 native/effect-presets.json linguist-generated=true
 native/effects-catalogue.json linguist-generated=true
+native/effects_air_expansion.cpp linguist-generated=true
+native/effects_air_entries.inc linguist-generated=true

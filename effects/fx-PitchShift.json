@@ -1,0 +1,19 @@
+{
+  "key": "fx-PitchShift",
+  "name": "Studio Pitch",
+  "category": "Pitch",
+  "engine": "Signalsmith Stretch",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Pitch · Studio Pitch",
+  "description": "Signalsmith stereo pitch and detune. Adds about 140 ms latency: intended for recording or a parallel wet path, not the dry live guitar path.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [12, 0, 100],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [12, 0, 100]
+    }
+  ]
+}

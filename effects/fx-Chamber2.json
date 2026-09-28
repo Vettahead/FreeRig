@@ -1,0 +1,20 @@
+{
+  "key": "fx-Chamber2",
+  "name": "AW Chamber2",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "Chamber2 is a feedforward reverb, a blur delay, and a glitch topping!",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Chamber2.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [34, 31, 28, 25]
+    }
+  ],
+  "defaults": [34, 31, 28, 25]
+}

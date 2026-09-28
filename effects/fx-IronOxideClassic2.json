@@ -1,0 +1,20 @@
+{
+  "key": "fx-IronOxideClassic2",
+  "name": "AW IronOxideClassic2",
+  "type": "Pedals",
+  "category": "Tape",
+  "engine": "Airwindows",
+  "detail": "Tape · Airwindows",
+  "description": "IronOxideClassic2 is my bandpassy tape sim, updated for high sample rate and aliasing control.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/IronOxideClassic2.txt",
+  "icon": "◈",
+  "colour": "#b49169",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [50, 56.234133, 50]
+    }
+  ],
+  "defaults": [50, 56.234133, 50]
+}

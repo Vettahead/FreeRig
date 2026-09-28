@@ -66,6 +66,15 @@ const deviceCategories = [
   'Modulation',
   'Reverb',
   'Dynamics',
+  'EQ',
+  'Filter',
+  'Pitch',
+  'Stereo',
+  'Studio',
+  'Tape',
+  'Lo-fi',
+  'Looper',
+  'Synth',
   'Utility',
 ];
 let devicePicker = null;
@@ -101,6 +110,7 @@ function renderLibrary() {
         d.name +
         ' ' +
         d.detail +
+        (d.description || '') +
         ' ' +
         libraryCategory(d) +
         ' ' +
@@ -365,6 +375,7 @@ function renderDevicePicker() {
         d.name +
         ' ' +
         d.detail +
+        (d.description || '') +
         ' ' +
         libraryCategory(d) +
         ' ' +

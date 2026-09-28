@@ -1,0 +1,20 @@
+{
+  "key": "fx-DubSub",
+  "name": "AW DubSub",
+  "type": "Pedals",
+  "category": "Pitch",
+  "engine": "Airwindows",
+  "detail": "Pitch · Airwindows",
+  "description": "DubSub is a fully featured bass doctor.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DubSub.txt",
+  "icon": "◈",
+  "colour": "#b29cce",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Sub foundation",
+      "values": [30, 60, 50, 30, 50, 65, 20, 30, 55, 35]
+    }
+  ],
+  "defaults": [30, 60, 50, 30, 50, 65, 20, 30, 55, 35]
+}

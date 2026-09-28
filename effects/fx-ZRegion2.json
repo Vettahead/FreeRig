@@ -1,0 +1,20 @@
+{
+  "key": "fx-ZRegion2",
+  "name": "AW ZRegion2",
+  "type": "Pedals",
+  "category": "Filter",
+  "engine": "Airwindows",
+  "detail": "Filter · Airwindows",
+  "description": "ZRegion2 is an Emu e6400 style Airwindows Region filter, with control smoothing.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ZRegion2.txt",
+  "icon": "◈",
+  "colour": "#e29b62",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [10, 50, 50, 50, 100]
+    }
+  ],
+  "defaults": [10, 50, 50, 50, 100]
+}

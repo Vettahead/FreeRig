@@ -1,0 +1,20 @@
+{
+  "key": "fx-kPlate240",
+  "name": "AW kPlate240",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "kPlate240 is for the texture of smaller, gold foil reverb.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kPlate240.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [100, 50, 100, 0, 25]
+    }
+  ],
+  "defaults": [100, 50, 100, 0, 25]
+}

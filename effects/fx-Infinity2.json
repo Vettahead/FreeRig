@@ -1,0 +1,20 @@
+{
+  "key": "fx-Infinity2",
+  "name": "AW Infinity2",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "Infinity2 expands Infinity with more tone shaping and a much-requested kill-switch!",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Infinity2.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [100, 50, 0, 100, 65, 25]
+    }
+  ],
+  "defaults": [100, 50, 0, 100, 65, 25]
+}

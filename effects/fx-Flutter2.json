@@ -1,0 +1,20 @@
+{
+  "key": "fx-Flutter2",
+  "name": "AW Flutter2",
+  "type": "Pedals",
+  "category": "Lo-fi",
+  "engine": "Airwindows",
+  "detail": "Lo-fi · Airwindows",
+  "description": "Flutter2 is the flutter from ToTape7, standalone.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Flutter2.txt",
+  "icon": "◈",
+  "colour": "#c28e7c",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [50, 50, 100]
+    }
+  ],
+  "defaults": [50, 50, 100]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "fx-BrightAmbience3",
+  "name": "AW BrightAmbience3",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "BrightAmbience3 adds undersampling for high sample rates, and better feedback.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BrightAmbience3.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [100, 0, 0, 25]
+    }
+  ],
+  "defaults": [100, 0, 0, 25]
+}

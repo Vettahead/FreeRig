@@ -1,0 +1,19 @@
+{
+  "key": "fx-ReverseEcho",
+  "name": "Reverse Echo",
+  "category": "Delay",
+  "engine": "FreeRig",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Delay · Reverse Echo",
+  "description": "Reversed slices with edge fades. Slice changes apply at the next boundary.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [500, 25, 30],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [500, 25, 30]
+    }
+  ]
+}

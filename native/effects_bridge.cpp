@@ -35,7 +35,7 @@ API int fx_set(Effect *fx, const double *values, int count)
         return 0;
     for (int i = 0; i < count; i++)
     {
-        auto p = fx->params[i];
+        const auto &p = fx->params[i];
         if (!std::isfinite(values[i]) || values[i] < p.min - 0.00001 || values[i] > p.max + 0.00001)
             return 0;
     }

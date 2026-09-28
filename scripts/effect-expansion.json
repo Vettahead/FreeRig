@@ -1,0 +1,17 @@
+{
+  "revision": "b6eef0af60cd32641b09837096e41bbcdb030341",
+  "groups": {
+    "EQ": "Parametric PearEQ Baxandall2 SmoothEQ3 ToneSlant EQ Hull2 BiquadStack ResEQ Air4 Energy2 Stonefire Weight SubTight",
+    "Filter": "AngleFilter Aura BiquadPlus BiquadHiLo BiquadNonLin Capacitor2 Dattorro Donut Holt2 Isolator3 Suzan XRegion YLowpass ZAcidLowpass ZBandpass2 ZHighpass2 ZNotch2 ZRegion2 Hermepass Infrasonic",
+    "Dynamics": "BeziComp BlockParty ButterComp2 Compresaturator DigitalBlack Dynamics3 Gatelope Logical4 Overheads Point Pop3 Pressure4 PurestSquish Pyewacket Recurve SoftGate StoneFireComp SurgeTide Swell Thunder VariMu DeBess DeHiss DeNoise",
+    "Drive": "Density3 Dirt Distortion Drive Edge HardVacuum HighImpact Mackity MultiBandDistortion PurestDrive Spiral2 Tube2 UnBox Coils2 Creature Focus Fracture2 Gringer GuitarConditioner PowerSag2 SingleEndedTriode Inflamer Sweeten",
+    "Studio": "BussColors4 Channel9 CStrip2 Desk4 Discontapeity Discontinuity PurestWarm3 Exciter Acceleration2 GoldenSlew Slew4 Smooth Remap WoodenBox",
+    "Lo-fi": "BitGlitter Bite ChromeOxide Cojones CrunchyGrooveWear DeBez DeRez3 Deckwrecka Dubly3 Flutter2 GrooveWear HipCrush Pockey2 TapeBias TapeDust Texturize ToVinyl4",
+    "Tape": "FromTape IronOxideClassic2 Tape ToTape8 TapeHack2",
+    "Modulation": "Ensemble GalacticVibe Melt TremoSquare RingModulator",
+    "Pitch": "GlitchShifter PitchNasty StereoDoubler TripleSpread FathomFive DubSub",
+    "Stereo": "Srsly3 StereoFX SweetWide Wider Sidepass SideDull",
+    "Delay": "ADT Hombre StarChild2 kChamberAR",
+    "Reverb": "BrightAmbience3 Chamber2 CrunchCoat Infinity2 MatrixVerb MV2 NonlinearSpace PocketVerbs Ultralight2 Verbity2 kAlienSpaceship kCosmos kCyberCity kPlate140 kPlate240 kRockstar kStation kWoodRoom"
+  }
+}

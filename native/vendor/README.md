@@ -25,3 +25,7 @@ Alpha 06 additions (26 September 2026): Guitarix selected Faust-generated drive 
 - hothouse: https://github.com/clevelandmusicco/HothouseExamples — GPL-3.0-or-later. EchoKing MkII, Glowjob Photon Vibe and TriPhase Theorem portable DSP extracts.
 
 Exact revisions are in SOURCES.json; host modifications are documented in each directory's PORTING.md. All original copyright notices are retained.
+
+## Alpha 24 additions
+
+156 additional Airwindows algorithms and original MIT manuals at the existing pinned revision. Centaur circuit source (BSD-3-Clause, Jatin Chowdhury) and chowdsp_wdf (MIT) are documented in centaur/PORTING.md and SOURCES.json. FreeRig adds EQ, wah/envelope, reverse/granular, vocoder, practice looper and standalone Signalsmith pitch adapters. See ../docs/EFFECTS-COLLECTION.md from the repository root.

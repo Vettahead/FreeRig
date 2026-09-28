@@ -1,0 +1,20 @@
+{
+  "key": "fx-StarChild2",
+  "name": "AW StarChild2",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Airwindows",
+  "detail": "Delay · Airwindows",
+  "description": "StarChild2 is a weird digital ambience/echo plugin adapted to high sample rates.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/StarChild2.txt",
+  "icon": "◈",
+  "colour": "#69afb5",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [100, 70, 20]
+    }
+  ],
+  "defaults": [100, 70, 20]
+}

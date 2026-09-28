@@ -69,6 +69,10 @@ namespace GuitarSuite
                 "kHz within 3 cents, silence clears note.");
             var entries = new JavaScriptSerializer().Deserialize<Entry[]>(
                 Marshal.PtrToStringAnsi(Effects.fx_catalogue()));
+            // Exercise the shipped starting settings, including usable gate thresholds.
+            var startingPresets = new JavaScriptSerializer().Deserialize<PresetDevice[]>(
+                System.IO.File.ReadAllText(System.IO.Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory, "effect-presets.json")));
             foreach (int rate in new[] { 44100, 48000, 96000 })
                 foreach (var e in entries)
                 {
@@ -76,7 +80,7 @@ namespace GuitarSuite
                     Check(fx != IntPtr.Zero, "Effect load " + e.key);
                     try
                     {
-                        var p = e.@params.Select(a => Convert.ToDouble(a[3])).ToArray();
+                        var p = startingPresets.First(d => d.key == e.key).presets[0].values;
                         Check(Effects.fx_set(fx, p, p.Length) == 1, "Effect defaults " + e.key);
                         var l = new float[128];
                         var r = new float[128];
@@ -105,8 +109,9 @@ namespace GuitarSuite
                         }
                         Check(energy > .01, "Silent effect " + e.key);
                         Check(difference > .01, "Collapsed stereo " + e.key);
-                        p[0] = Double.NaN;
-                        Check(Effects.fx_set(fx, p, p.Length) == 0,
+                        var invalid = p.Length == 0 ? new[] { Double.NaN } : (double[])p.Clone();
+                        invalid[0] = Double.NaN;
+                        Check(Effects.fx_set(fx, invalid, invalid.Length) == 0,
                               "Non-finite parameter accepted");
                     }
                     finally
@@ -117,7 +122,9 @@ namespace GuitarSuite
             lines.Add("PASS: " + entries.Length +
                       (" effects, stereo asymmetry, finite bounded output, tail processing and " +
                        "invalid parameter rejection at 44.1/48/96 kHz."));
-            foreach (var key in new[] { "CloudSeed", "EchoKing", "PhotonVibe", "TriPhase" })
+            foreach (var key in new[] { "CloudSeed", "EchoKing", "PhotonVibe", "TriPhase",
+                                        "GraphicEQ", "Wah", "EnvelopeFilter", "GrainCloud",
+                                        "ReverseEcho", "PhraseLooper", "Vocoder" })
                 foreach (int rate in new[] { 44100, 48000, 96000 })
                 {
                     var entry = entries.First(e => e.key == key);
@@ -166,9 +173,8 @@ namespace GuitarSuite
                         }
                     }
                 }
-            lines.Add(
-                "PASS: four imported effects, repeated graph bypass/re-engage at 32 samples " +
-                "and 44.1/48/96 kHz; bypass restores dry input.");
+            lines.Add("PASS: eleven effects, repeated graph bypass/re-engage at 32 samples " +
+                      "and 44.1/48/96 kHz; bypass restores dry input.");
             var presets = new JavaScriptSerializer().Deserialize<PresetDevice[]>(
                 System.IO.File.ReadAllText(System.IO.Path.Combine(
                     AppDomain.CurrentDomain.BaseDirectory, "effect-presets.json")));
@@ -185,7 +191,7 @@ namespace GuitarSuite
                             var l = new float[4096];
                             var r = new float[4096];
                             int at = 0;
-                            foreach (int size in new[] { 1, 17, 64, 127, 256, 1024, 4096, 128 })
+                            foreach (int size in new[] { 1, 17, 32, 64, 127, 256, 1024, 4096, 128 })
                             {
                                 for (int i = 0; i < size; i++)
                                 {

@@ -1,0 +1,20 @@
+{
+  "key": "fx-PocketVerbs",
+  "name": "AW PocketVerbs",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "PocketVerbs is my popular old special effects reverbs plugin!",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PocketVerbs.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [0, 50, 0, 25]
+    }
+  ],
+  "defaults": [0, 50, 0, 25]
+}

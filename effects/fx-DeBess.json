@@ -1,0 +1,20 @@
+{
+  "key": "fx-DeBess",
+  "name": "AW DeBess",
+  "type": "Pedals",
+  "category": "Dynamics",
+  "engine": "Airwindows",
+  "detail": "Dynamics · Airwindows",
+  "description": "DeBess is an improved DeEss, with perfect rejection of non-ess audio.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DeBess.txt",
+  "icon": "◈",
+  "colour": "#b9bac8",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [0, 50, 50, 50, 0]
+    }
+  ],
+  "defaults": [0, 50, 50, 50, 0]
+}

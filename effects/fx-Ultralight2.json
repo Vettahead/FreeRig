@@ -1,0 +1,20 @@
+{
+  "key": "fx-Ultralight2",
+  "name": "AW Ultralight2",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "Ultralight2 is more of the most low-CPU matrix reverb I can make.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Ultralight2.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [65, 75, 75, 54, 25, 0]
+    }
+  ],
+  "defaults": [65, 75, 75, 54, 25, 0]
+}

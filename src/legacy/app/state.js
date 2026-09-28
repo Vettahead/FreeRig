@@ -64,6 +64,15 @@ const deviceCategories = [
   'Modulation',
   'Reverb',
   'Dynamics',
+  'EQ',
+  'Filter',
+  'Pitch',
+  'Stereo',
+  'Studio',
+  'Tape',
+  'Lo-fi',
+  'Looper',
+  'Synth',
   'Utility',
 ];
 let devicePicker = null;

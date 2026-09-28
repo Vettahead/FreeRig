@@ -4,7 +4,7 @@ A Windows guitar suite with a WebView2/React interface, native ASIO / Windows au
 
 ## Run
 
-Open `releases/FreeRig-alpha-23/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
+Open `releases/FreeRig-alpha-24/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
 
 ## Audio compatibility
 
@@ -18,7 +18,11 @@ That guide also documents the drive-before-amp investigation and offline compari
 
 ## Tags and capture controls
 
-Tag patches and devices by artist, band or style, search tags in Collection, and optionally apply a patch tag to its devices. Captured pedals offer explicit level comparison; drag devices up/down in the editor strip to bypass/enable them. See [the guide](docs/TAGS-AND-CAPTURE-LEVELS.md). These source changes are being prepared for the next packaged release.
+Tag patches and devices by artist, band or style, search tags in Collection, and optionally apply a patch tag to its devices. Captured pedals offer explicit level comparison; drag devices up/down in the editor strip to bypass/enable them. See [the guide](docs/TAGS-AND-CAPTURE-LEVELS.md). Included in Alpha 24.
+
+## Effects collection
+
+Alpha 24 includes **200 native stock processors**, plus the existing built-in devices. EQ, studio dynamics, drive/fuzz, filters/wah, chorus/phaser/flanger/rotary, delay/reverse/granular, reverb/shimmer, pitch, synth, stereo, tape/lo-fi and a practice looper are covered. Each has its own descriptor and source credit. See [the collection and research](docs/EFFECTS-COLLECTION.md) for coverage, licences and limitations.
 
 ## Play along
 

@@ -1,0 +1,20 @@
+{
+  "key": "fx-NonlinearSpace",
+  "name": "AW NonlinearSpace",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "NonlinearSpace is a flexible reverb plugin.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/NonlinearSpace.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [30, 50, 50, 50, 50, 25]
+    }
+  ],
+  "defaults": [30, 50, 50, 50, 50, 25]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "fx-MV2",
+  "name": "AW MV2",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "MV2 is a dual-mono reverb based on BitShiftGain and the old Midiverbs, adapted to high sample rates.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/MV2.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [50, 50, 50, 100, 25]
+    }
+  ],
+  "defaults": [50, 50, 50, 100, 25]
+}

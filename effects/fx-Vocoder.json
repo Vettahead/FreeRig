@@ -1,0 +1,19 @@
+{
+  "key": "fx-Vocoder",
+  "name": "Sixteen Band Vocoder",
+  "category": "Synth",
+  "engine": "FreeRig",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Synth · Sixteen Band Vocoder",
+  "description": "Guitar envelopes control sixteen bands on a sawtooth carrier. Carrier is a fixed synth note, not automatic pitch tracking.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [110, 1, 80, 70],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [110, 1, 80, 70]
+    }
+  ]
+}

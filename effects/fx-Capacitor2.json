@@ -1,0 +1,20 @@
+{
+  "key": "fx-Capacitor2",
+  "name": "AW Capacitor2",
+  "type": "Pedals",
+  "category": "Filter",
+  "engine": "Airwindows",
+  "detail": "Filter · Airwindows",
+  "description": "Capacitor2 is Capacitor with extra analog modeling and mojo.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Capacitor2.txt",
+  "icon": "◈",
+  "colour": "#e29b62",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [100, 0, 0, 100]
+    }
+  ],
+  "defaults": [100, 0, 0, 100]
+}

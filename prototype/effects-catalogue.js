@@ -599,7 +599,7 @@
         ""
       ]
     ],
-    "name": "Scream Drive",
+    "name": "Bird Treble Boost",
     "type": "Pedals",
     "category": "Drive",
     "engine": "Guitarix",
@@ -623,7 +623,8 @@
     ],
     "defaults": [
       0.5
-    ]
+    ],
+    "description": "Guitarix Screaming Bird treble booster. This is not a Tube Screamer circuit; use NAM Tube Screamer captures for that sound."
   },
   {
     "key": "fx-GXSoft",
@@ -2966,5 +2967,9870 @@
       100,
       0
     ]
+  },
+  {
+    "key": "fx-Parametric",
+    "latency": 0,
+    "params": [
+      [
+        "Tr Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Treble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Tr Reso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "HM Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "HighMid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "HM Reso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "LM Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "LowMid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "LM Reso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Parametric",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "Parametric is three bands of ConsoleX EQ in advance.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Parametric.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-PearEQ",
+    "latency": 0,
+    "params": [
+      [
+        "High",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "HMid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "LMid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Sub",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW PearEQ",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "PearEQ is a six-band Pear-based graphic EQ.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PearEQ.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Baxandall2",
+    "latency": 0,
+    "params": [
+      [
+        "Treble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Baxandall2",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "Baxandall2 is Baxandall, extended and made more powerful.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Baxandall2.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-SmoothEQ3",
+    "latency": 0,
+    "params": [
+      [
+        "High",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW SmoothEQ3",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "SmoothEQ3 is the most approachable EQ.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/SmoothEQ3.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-ToneSlant",
+    "latency": 0,
+    "params": [
+      [
+        "Voicing",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Highs",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW ToneSlant",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "ToneSlant is a super-transparent ‘tilt EQ’ with very low Q.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ToneSlant.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0
+    ]
+  },
+  {
+    "key": "fx-EQ",
+    "latency": 0,
+    "params": [
+      [
+        "Treble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Lowpass",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "TrebFrq",
+        0,
+        100,
+        40,
+        "%"
+      ],
+      [
+        "BassFrq",
+        0,
+        100,
+        40,
+        "%"
+      ],
+      [
+        "Hipass",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "OutGain",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW EQ",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "EQ is just the EQ parts of CStrip.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/EQ.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          40,
+          40,
+          0,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      100,
+      40,
+      40,
+      0,
+      50
+    ]
+  },
+  {
+    "key": "fx-Hull2",
+    "latency": 0,
+    "params": [
+      [
+        "Treble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Hull2",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "Hull2 is a very clear three-band EQ.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Hull2.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-BiquadStack",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Level",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Reso",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW BiquadStack",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "BiquadStack is a way of making a parametric EQ out of stacked biquad filters.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BiquadStack.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-ResEQ",
+    "latency": 0,
+    "params": [
+      [
+        "Reso 1",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Reso 2",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Reso 3",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Reso 4",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Reso 5",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Reso 6",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Reso 7",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Reso 8",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW ResEQ",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "ResEQ is a bank of mostly midrange resonances.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ResEQ.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "key": "fx-Air4",
+    "latency": 0,
+    "params": [
+      [
+        "Air",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Gnd",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "DarkF",
+        0,
+        100,
+        52,
+        "%"
+      ],
+      [
+        "Ratio",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Air4",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "Air4 extends Air3 with controllable high frequency limiting.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Air4.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          52,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      52,
+      0
+    ]
+  },
+  {
+    "key": "fx-Energy2",
+    "latency": 0,
+    "params": [
+      [
+        "Hiss",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Glitter",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Rat",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Fizz",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Scrape",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Chug",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Yowr",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Snarl",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "I/Dr/Wt",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Energy2",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "Energy2 is electrifying fixed-frequency treble boosts for high sample rate.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Energy2.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Stonefire",
+    "latency": 0,
+    "params": [
+      [
+        "Air",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Fire",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Stone",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Range",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Stonefire",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "Stonefire is the non-EQ EQ designed for ConsoleX.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Stonefire.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Weight",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Weight",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Weight",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "Weight is a very accurate sub-bass boost based on Holt.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Weight.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0
+    ]
+  },
+  {
+    "key": "fx-SubTight",
+    "latency": 0,
+    "params": [
+      [
+        "Trim",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Steep",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW SubTight",
+    "type": "Pedals",
+    "category": "EQ",
+    "engine": "Airwindows",
+    "detail": "EQ · Airwindows",
+    "description": "SubTight uses a variation on the Creature algorithm to tighten sub-lows.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/SubTight.txt",
+    "icon": "≋",
+    "colour": "#bcad66",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          30,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      30,
+      50
+    ]
+  },
+  {
+    "key": "fx-AngleFilter",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Hard",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Reso",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Poles",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW AngleFilter",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "AngleFilter is the synth-style extension of AngleEQ.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/AngleFilter.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          0,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      0,
+      50
+    ]
+  },
+  {
+    "key": "fx-Aura",
+    "latency": 0,
+    "params": [
+      [
+        "Voicing",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Aura",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Aura is a new kind of resonant lowpass EQ.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Aura.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-BiquadPlus",
+    "latency": 0,
+    "params": [
+      [
+        "Type",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Q",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Inv/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW BiquadPlus",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "BiquadPlus is Biquad plus zipper noise suppression! For twiddling the controls.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BiquadPlus.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-BiquadHiLo",
+    "latency": 0,
+    "params": [
+      [
+        "Highpas",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Lowpass",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW BiquadHiLo",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "BiquadHiLo is the highpass and lowpass filter in ConsoleX.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BiquadHiLo.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0
+    ]
+  },
+  {
+    "key": "fx-BiquadNonLin",
+    "latency": 0,
+    "params": [
+      [
+        "Type",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Q",
+        0,
+        100,
+        70.71,
+        "%"
+      ],
+      [
+        "NonLin",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Inv/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW BiquadNonLin",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "BiquadNonLin is Capacitor2, but for biquad filtering.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BiquadNonLin.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          70.71,
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      70.71,
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-Capacitor2",
+    "latency": 0,
+    "params": [
+      [
+        "Lowpass",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Highpass",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "NonLin",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Capacitor2",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Capacitor2 is Capacitor with extra analog modeling and mojo.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Capacitor2.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          0,
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      0,
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-Dattorro",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Reso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Dattorro",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Dattorro is the resonant lowpass filter out of Donut.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Dattorro.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Donut",
+    "latency": 0,
+    "params": [
+      [
+        "Attack",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Release",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "BaseFrq",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "MoveFrq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "BaseRes",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "MoveRes",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Donut",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Donut is in memory of Dilla.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Donut.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100,
+          50,
+          0,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100,
+      50,
+      0,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Holt2",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Reso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Poles",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Holt2",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Holt2 is a bass-cab-like resonant lowpass filter.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Holt2.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          100,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Isolator3",
+    "latency": 1,
+    "params": [
+      [
+        "Iso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Q",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Isolator3",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Isolator3 is Isolator2, but on one slider, with a band-narrower control.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Isolator3.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0
+    ]
+  },
+  {
+    "key": "fx-Suzan",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Reso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Suzan",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Suzan is a new type of ladder filter.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Suzan.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-XRegion",
+    "latency": 0,
+    "params": [
+      [
+        "Gain",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "First",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Last",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Nuke",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW XRegion",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "XRegion is distorted staggered bandpasses, for extreme soundmangling.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/XRegion.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-YLowpass",
+    "latency": 0,
+    "params": [
+      [
+        "Gain",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Reson8",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "ResEdge",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW YLowpass",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "YLowpass is soft and smooth to nasty, edgy texture-varying filtering.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/YLowpass.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          10,
+          10,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      50,
+      10,
+      10,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-ZAcidLowpass",
+    "latency": 0,
+    "params": [
+      [
+        "Cutoff",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Over",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Under",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Meltdwn",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Drive",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW ZAcidLowpass",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "ZAcidLowpass is like if an e6400 went insane and grew shark teeth.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ZAcidLowpass.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          100,
+          0,
+          10,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0,
+      100,
+      0,
+      10,
+      100
+    ]
+  },
+  {
+    "key": "fx-ZBandpass2",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Poles",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW ZBandpass2",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "ZBandpass2 acts more like the Emu e6400 Ultra bandpass in motion, with control smoothing.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ZBandpass2.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          100,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      50,
+      100,
+      50
+    ]
+  },
+  {
+    "key": "fx-ZHighpass2",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Poles",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW ZHighpass2",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "ZHighpass2 acts more like the Emu e6400 Ultra highpass in motion, with control smoothing.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ZHighpass2.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          100,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      50,
+      100,
+      50
+    ]
+  },
+  {
+    "key": "fx-ZNotch2",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Poles",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW ZNotch2",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "ZNotch2 acts more like the Emu e6400 Ultra phaser in motion, with control smoothing.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ZNotch2.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          100,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      50,
+      100,
+      50
+    ]
+  },
+  {
+    "key": "fx-ZRegion2",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "First",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Last",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Poles",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW ZRegion2",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "ZRegion2 is an Emu e6400 style Airwindows Region filter, with control smoothing.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ZRegion2.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      50,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Hermepass",
+    "latency": 0,
+    "params": [
+      [
+        "Cutoff",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Slope",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Hermepass",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Hermepass is a mastering highpass to set by ear only.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Hermepass.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Infrasonic",
+    "latency": 0,
+    "params": [],
+    "name": "AW Infrasonic",
+    "type": "Pedals",
+    "category": "Filter",
+    "engine": "Airwindows",
+    "detail": "Filter · Airwindows",
+    "description": "Infrasonic is a very steep subsonic filter, built like Ultrasonic.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Infrasonic.txt",
+    "icon": "◈",
+    "colour": "#e29b62",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ],
+    "defaults": []
+  },
+  {
+    "key": "fx-BeziComp",
+    "latency": 1,
+    "params": [
+      [
+        "Comp",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Speed",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW BeziComp",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "BeziComp is a radical compressor that eliminates aliasing!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BeziComp.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-BlockParty",
+    "latency": 0,
+    "params": [
+      [
+        "Pound",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW BlockParty",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "BlockParty is like a moderately saturated analog limiter.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BlockParty.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-ButterComp2",
+    "latency": 0,
+    "params": [
+      [
+        "Compress",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW ButterComp2",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "ButterComp2 is improved ButterComp with an output control and sound upgrades.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ButterComp2.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Compresaturator",
+    "latency": 0,
+    "params": [
+      [
+        "Drive",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Clamp",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Expand",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Compresaturator",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Compresaturator fades between compressing and soft clipping.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Compresaturator.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-DigitalBlack",
+    "latency": 0,
+    "params": [
+      [
+        "Thresh",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW DigitalBlack",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "DigitalBlack is a quick, staccato gate.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DigitalBlack.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-Dynamics3",
+    "latency": 0,
+    "params": [
+      [
+        "Thresh",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Attack",
+        0,
+        100,
+        38.2,
+        "%"
+      ],
+      [
+        "Release",
+        0,
+        100,
+        61.8,
+        "%"
+      ],
+      [
+        "Inv/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Dynamics3",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Dynamics3 morphs between vari-mu and expander!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Dynamics3.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          38.2,
+          61.8,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      38.2,
+      61.8,
+      100
+    ]
+  },
+  {
+    "key": "fx-Gatelope",
+    "latency": 0,
+    "params": [
+      [
+        "Thresh",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "TrebSus",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "BassSus",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "AttackS",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Gatelope",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Gatelope is a special gate that applies filters.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Gatelope.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100,
+          50,
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100,
+      50,
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-Logical4",
+    "latency": 0,
+    "params": [
+      [
+        "Threshold",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Ratio",
+        0,
+        100,
+        20,
+        "%"
+      ],
+      [
+        "Speed",
+        0,
+        100,
+        19.20202,
+        "%"
+      ],
+      [
+        "MakeupGn",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Logical4",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Logical4 is a classic 2-buss compressor.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Logical4.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          20,
+          19.20202,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      20,
+      19.20202,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Overheads",
+    "latency": 0,
+    "params": [
+      [
+        "Compr",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Sharp",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Overheads",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Overheads is for compressing only part of the sound, strangely!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Overheads.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Point",
+    "latency": 0,
+    "params": [
+      [
+        "Input Trim",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Point",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Reaction Speed",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Point",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Point is an explosive transient designer.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Point.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Pop3",
+    "latency": 0,
+    "params": [
+      [
+        "Thresld",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "C Ratio",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "C Atk",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "C Rls",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Thresld",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "G Ratio",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "G Sust",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "G Rls",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Pop3",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Pop3 is the dynamics from ConsoleX.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Pop3.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          50,
+          50,
+          0,
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      50,
+      50,
+      0,
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Pressure4",
+    "latency": 0,
+    "params": [
+      [
+        "Pressure",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Speed",
+        0,
+        100,
+        20,
+        "%"
+      ],
+      [
+        "Mewiness",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Output Gain",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Pressure4",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Pressure4 is a compressor adjustable between vari-mu and ‘new york’ peak-retaining behaviors.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Pressure4.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          20,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      20,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-PurestSquish",
+    "latency": 0,
+    "params": [
+      [
+        "Squish",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "BassBlm",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW PurestSquish",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "PurestSquish is an open-sounding compressor with bass bloom.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PurestSquish.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Pyewacket",
+    "latency": 0,
+    "params": [
+      [
+        "Input Gain",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Release",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output Gain",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Pyewacket",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Pyewacket is an old school compressor for high definition transients. Adds no fatness, just energy.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Pyewacket.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Recurve",
+    "latency": 0,
+    "params": [],
+    "name": "AW Recurve",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Recurve is a special buss compressor with no threshold point.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Recurve.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ],
+    "defaults": []
+  },
+  {
+    "key": "fx-SoftGate",
+    "latency": 0,
+    "params": [
+      [
+        "Thresh",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Darken",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Silence",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW SoftGate",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "SoftGate is a gate that can mute hiss and smooth sample tails.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/SoftGate.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      0
+    ]
+  },
+  {
+    "key": "fx-StoneFireComp",
+    "latency": 0,
+    "params": [
+      [
+        "Fire Th",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Attack",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Release",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Fire",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "StoneTh",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Attack",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Release",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Stone",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Range",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Ratio",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW StoneFireComp",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "StoneFireComp is some of the dynamics for ConsoleX.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/StoneFireComp.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          50,
+          50,
+          50,
+          100,
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      50,
+      50,
+      100,
+      50,
+      50,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-SurgeTide",
+    "latency": 0,
+    "params": [
+      [
+        "SurgeNode",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "SurgeRate",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW SurgeTide",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "SurgeTide is a surge and flow dynamics plugin.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/SurgeTide.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          30,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      30,
+      100
+    ]
+  },
+  {
+    "key": "fx-Swell",
+    "latency": 0,
+    "params": [
+      [
+        "Thresh",
+        0,
+        100,
+        5,
+        "%"
+      ],
+      [
+        "Swell",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Swell",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Swell is Dial-an-attack, like sidechaining.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Swell.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Gentle attack",
+        "values": [
+          5,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      5,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Thunder",
+    "latency": 0,
+    "params": [
+      [
+        "Thunder",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output Trim",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Thunder",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "Thunder is a compressor that retains or exaggerates subsonic bass when you push it.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Thunder.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-VariMu",
+    "latency": 0,
+    "params": [
+      [
+        "Intensty",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Speed",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW VariMu",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "VariMu is a more organic variation on Pressure (a compressor)",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/VariMu.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-DeBess",
+    "latency": 0,
+    "params": [
+      [
+        "Intense",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Sharp",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Depth",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Filter",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Sense",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW DeBess",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "DeBess is an improved DeEss, with perfect rejection of non-ess audio.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DeBess.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          50,
+          50,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      50,
+      50,
+      0
+    ]
+  },
+  {
+    "key": "fx-DeHiss",
+    "latency": 0,
+    "params": [
+      [
+        "Thresh",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW DeHiss",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "DeHiss tries to suppress background hiss, like a hiss gate.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DeHiss.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-DeNoise",
+    "latency": 0,
+    "params": [
+      [
+        "High",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "HMid",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Mid",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "LMid",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Sub",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Speed",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW DeNoise",
+    "type": "Pedals",
+    "category": "Dynamics",
+    "engine": "Airwindows",
+    "detail": "Dynamics · Airwindows",
+    "description": "DeNoise can work as a multiband gate and as a wild effect.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DeNoise.txt",
+    "icon": "◈",
+    "colour": "#b9bac8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          25,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      25,
+      100
+    ]
+  },
+  {
+    "key": "fx-Density3",
+    "latency": 0,
+    "params": [
+      [
+        "Density",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Highpas",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Density3",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Density3 refines Density to keep up with recent developments.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Density3.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Dirt",
+    "latency": 0,
+    "params": [
+      [
+        "Gain",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Lowpass",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Highpass",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Dirt",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Dirt is a soft-clip distortion in the spirit of Edge.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Dirt.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      100,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Distortion",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mode",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Distortion",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Distortion is a slightly dark analog-style distortion with several presets, like Focus.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Distortion.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Drive",
+    "latency": 0,
+    "params": [
+      [
+        "Drive",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Highpass",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Out Level",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Drive",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Drive is the angry distortion!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Drive.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Edge",
+    "latency": 0,
+    "params": [
+      [
+        "Gain",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Lowpass",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Highpass",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Edge",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Edge is a seven-stage distortion with Hypersonic filtering and tone shaping controls.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Edge.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      100,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-HardVacuum",
+    "latency": 0,
+    "params": [
+      [
+        "Drive",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Warmth",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Aura",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW HardVacuum",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "HardVacuum is tube style saturation effects.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/HardVacuum.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-HighImpact",
+    "latency": 0,
+    "params": [
+      [
+        "Impact",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output Level",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW HighImpact",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "HighImpact is distorted grit and punch without fatness.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/HighImpact.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "key": "fx-Mackity",
+    "latency": 0,
+    "params": [
+      [
+        "In Trim",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Out Pad",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Mackity",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Mackity is an emulation of the input stage of a vintage Mackie 1202!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Mackity.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      100
+    ]
+  },
+  {
+    "key": "fx-MultiBandDistortion",
+    "latency": 0,
+    "params": [
+      [
+        "Freqcy",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "H Gain",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "L Gain",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "H Hard",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "L Hard",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "H Mtrx",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "L Mtrx",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Stable",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        75,
+        "%"
+      ]
+    ],
+    "name": "AW MultiBandDistortion",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "MultiBandDistortion is an old weird gnarly sound wrecker :)",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/MultiBandDistortion.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          0,
+          0,
+          0,
+          100,
+          100,
+          100,
+          75
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0,
+      0,
+      0,
+      0,
+      100,
+      100,
+      100,
+      75
+    ]
+  },
+  {
+    "key": "fx-PurestDrive",
+    "latency": 0,
+    "params": [
+      [
+        "Drive",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW PurestDrive",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "PurestDrive is the magic saturation plugin of subtlety and French House tone.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PurestDrive.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0
+    ]
+  },
+  {
+    "key": "fx-Spiral2",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Highpass",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Presence",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Spiral2",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Spiral2 is Spiral with controls including Presence.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Spiral2.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          50,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0,
+      50,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Tube2",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Tube",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Tube2",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Tube2 extends Tube, with more sophisticated processing and input trim.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Tube2.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-UnBox",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "UnBox",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW UnBox",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "UnBox is a distortion where only the harmonics that don't alias are allowed to distort.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/UnBox.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0,
+      50
+    ]
+  },
+  {
+    "key": "fx-Coils2",
+    "latency": 0,
+    "params": [
+      [
+        "Saturate",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Cheapness",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Coils2",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Coils2 is a transformer overdrive emulator.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Coils2.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-Creature",
+    "latency": 0,
+    "params": [
+      [
+        "Drive",
+        0,
+        100,
+        26,
+        "%"
+      ],
+      [
+        "Depth",
+        0,
+        100,
+        26,
+        "%"
+      ],
+      [
+        "Inv/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Creature",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Creature is a soft slew saturator, a new class of noisechanger.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Creature.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          26,
+          26,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      26,
+      26,
+      100
+    ]
+  },
+  {
+    "key": "fx-Focus",
+    "latency": 0,
+    "params": [
+      [
+        "Boost",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Focus",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mode",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Focus",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Focus brings out clarity by distorting. Aggressive, subtle, flexible.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Focus.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          50,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      50,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Fracture2",
+    "latency": 0,
+    "params": [
+      [
+        "Drive",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Fractre",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Thresh",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Fracture2",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Fracture2 is a wavefolder that allows more extreme disruption.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Fracture2.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          0,
+          50,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      0,
+      50,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Gringer",
+    "latency": 0,
+    "params": [],
+    "name": "AW Gringer",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Gringer is a full-wave rectifier plugin, like a Green Ringer guitar effect.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Gringer.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ],
+    "defaults": []
+  },
+  {
+    "key": "fx-GuitarConditioner",
+    "latency": 0,
+    "params": [],
+    "name": "AW GuitarConditioner",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "GuitarConditioner is like a Tube Screamer voicing without the squishiness and indistinctness.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/GuitarConditioner.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": []
+      }
+    ],
+    "defaults": []
+  },
+  {
+    "key": "fx-PowerSag2",
+    "latency": 0,
+    "params": [
+      [
+        "Range",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Inv/Wet",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW PowerSag2",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "PowerSag2 is my improved circuit-starve plugin, now with inverse effect!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PowerSag2.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          30,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      30,
+      50
+    ]
+  },
+  {
+    "key": "fx-SingleEndedTriode",
+    "latency": 0,
+    "params": [
+      [
+        "Triode",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Clas AB",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Clas B",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW SingleEndedTriode",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "SingleEndedTriode is unusual analog modeling effects.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/SingleEndedTriode.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "key": "fx-Inflamer",
+    "latency": 0,
+    "params": [
+      [
+        "Drive",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Curve",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Effect",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Inflamer",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Inflamer is an Airwindowsized take on the waveshapers in Oxford Inflator.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Inflamer.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Sweeten",
+    "latency": 0,
+    "params": [
+      [
+        "Sweeten",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Sweeten",
+    "type": "Pedals",
+    "category": "Drive",
+    "engine": "Airwindows",
+    "detail": "Drive · Airwindows",
+    "description": "Sweeten is where you can find super-clean second harmonic.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Sweeten.txt",
+    "icon": "◈",
+    "colour": "#bb805e",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0
+    ]
+  },
+  {
+    "key": "fx-BussColors4",
+    "latency": 0,
+    "params": [
+      [
+        "Color",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Input Trim",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output Trim",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW BussColors4",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "BussColors4 is the Airwindows console emulations, now working up to 192K correctly.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BussColors4.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Channel9",
+    "latency": 0,
+    "params": [
+      [
+        "Console Type",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Drive",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Channel9",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Channel9 is Channel8 with ultrasonic filtering, and new Teac and Mackie 'low end' settings.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Channel9.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-CStrip2",
+    "latency": 0,
+    "params": [
+      [
+        "Treble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mid",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "TrebFrq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "BassFrq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "LowCap",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "HiCap",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Compres",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "CompSpd",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        33,
+        "%"
+      ]
+    ],
+    "name": "AW CStrip2",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "CStrip2 refines and optimizes CStrip, by request!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/CStrip2.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          100,
+          0,
+          0,
+          0,
+          33
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      100,
+      0,
+      0,
+      0,
+      33
+    ]
+  },
+  {
+    "key": "fx-Desk4",
+    "latency": 0,
+    "params": [
+      [
+        "Overdrive",
+        0,
+        100,
+        27,
+        "%"
+      ],
+      [
+        "Hi Choke",
+        0,
+        100,
+        18,
+        "%"
+      ],
+      [
+        "Power Sag",
+        0,
+        100,
+        26,
+        "%"
+      ],
+      [
+        "Frequency",
+        0,
+        100,
+        54,
+        "%"
+      ],
+      [
+        "Output Trim",
+        0,
+        100,
+        84,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Desk4",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Desk4 is distinctive analog coloration (a tuneable version of the control-less Desk plugins)",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Desk4.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          27,
+          18,
+          26,
+          54,
+          84,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      27,
+      18,
+      26,
+      54,
+      84,
+      100
+    ]
+  },
+  {
+    "key": "fx-Discontapeity",
+    "latency": 0,
+    "params": [
+      [
+        "More",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Discontapeity",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Discontapeity combines air modeling with tape-style overdrive.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Discontapeity.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0
+    ]
+  },
+  {
+    "key": "fx-Discontinuity",
+    "latency": 0,
+    "params": [
+      [
+        "Top dB",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Discontinuity",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Discontinuity models air under intense loudness.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Discontinuity.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50
+    ]
+  },
+  {
+    "key": "fx-PurestWarm3",
+    "latency": 0,
+    "params": [
+      [
+        "Asym",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW PurestWarm3",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "PurestWarm3 is a subtle tone shaper and warmth adder.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PurestWarm3.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50
+    ]
+  },
+  {
+    "key": "fx-Exciter",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        60,
+        "%"
+      ],
+      [
+        "Excite",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Exciter",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Exciter is an Aural Exciter plugin that can be both subtle and extreme.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Exciter.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          60,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      60,
+      0
+    ]
+  },
+  {
+    "key": "fx-Acceleration2",
+    "latency": 0,
+    "params": [
+      [
+        "Limit",
+        0,
+        100,
+        32,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Acceleration2",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Acceleration2 is Acceleration, better! Updated for high sample rate and more extreme effect.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Acceleration2.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          32,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      32,
+      100
+    ]
+  },
+  {
+    "key": "fx-GoldenSlew",
+    "latency": 0,
+    "params": [
+      [
+        "Slew",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW GoldenSlew",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "GoldenSlew is a multistage slew clipper based on the Golden Ratio.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/GoldenSlew.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0
+    ]
+  },
+  {
+    "key": "fx-Slew4",
+    "latency": 0,
+    "params": [
+      [
+        "Compres",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Slew4",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Slew4 is tape compression without the tape, for brightness control.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Slew4.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50
+    ]
+  },
+  {
+    "key": "fx-Smooth",
+    "latency": 0,
+    "params": [
+      [
+        "Smooth",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Smooth",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Smooth can tame pointy sounds or make drums explode.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Smooth.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Remap",
+    "latency": 0,
+    "params": [
+      [
+        "Remap",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Remap",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "Remap puts the guts back into overloudenated audio!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Remap.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-WoodenBox",
+    "latency": 0,
+    "params": [
+      [
+        "Select",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Reso",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Depth",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW WoodenBox",
+    "type": "Pedals",
+    "category": "Studio",
+    "engine": "Airwindows",
+    "detail": "Studio · Airwindows",
+    "description": "WoodenBox is like a miniature reverb for converting DI to acoustic.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/WoodenBox.txt",
+    "icon": "◈",
+    "colour": "#859db8",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-BitGlitter",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Glitter",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW BitGlitter",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "BitGlitter is an old-sampler style digital lo-fi plugin.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BitGlitter.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Bite",
+    "latency": 0,
+    "params": [
+      [
+        "Bite",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output Level",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Bite",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "Bite is an unusual edge-maker.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Bite.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-ChromeOxide",
+    "latency": 0,
+    "params": [
+      [
+        "Intense",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bias",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW ChromeOxide",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "ChromeOxide is an alternate path to vibey old tape sonics.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ChromeOxide.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Cojones",
+    "latency": 0,
+    "params": [
+      [
+        "Breathy",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Cojones",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Body",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Cojones",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "Cojones is a new kind of distorty.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Cojones.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-CrunchyGrooveWear",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        6.4,
+        "%"
+      ],
+      [
+        "Apply",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW CrunchyGrooveWear",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "CrunchyGrooveWear is a version of GrooveWear for more edge and distortion.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/CrunchyGrooveWear.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          6.4,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      6.4,
+      100
+    ]
+  },
+  {
+    "key": "fx-DeBez",
+    "latency": 0,
+    "params": [
+      [
+        "DeBez",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "DeRez",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Inv/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW DeBez",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "DeBez gives you retro sampley textures!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DeBez.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-DeRez3",
+    "latency": 0,
+    "params": [
+      [
+        "Rate",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Rez",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW DeRez3",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "DeRez3 reinvents retro digital tones.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DeRez3.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Deckwrecka",
+    "latency": 0,
+    "params": [
+      [
+        "Wreck",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Deckwrecka",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "Deckwrecka fattens and dirties up beats.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Deckwrecka.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0
+    ]
+  },
+  {
+    "key": "fx-Dubly3",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Tilt",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Shape",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Dubly3",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "Dubly3 refines and transforms the Dubly sound.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Dubly3.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Flutter2",
+    "latency": 0,
+    "params": [
+      [
+        "Flutter",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Speed",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Flutter2",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "Flutter2 is the flutter from ToTape7, standalone.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Flutter2.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-GrooveWear",
+    "latency": 0,
+    "params": [
+      [
+        "Wear",
+        0,
+        100,
+        6.4,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW GrooveWear",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "GrooveWear is for scrubbing highs off mechanically like a stylus would.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/GrooveWear.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          6.4,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      6.4,
+      100
+    ]
+  },
+  {
+    "key": "fx-HipCrush",
+    "latency": 0,
+    "params": [
+      [
+        "Hi Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "High",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "HiCrush",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "MidFreq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mid",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "MdCrush",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Lo Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Low",
+        0,
+        100,
+        40,
+        "%"
+      ],
+      [
+        "LoCrush",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        30,
+        "%"
+      ]
+    ],
+    "name": "AW HipCrush",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "HipCrush is the de-rez section for ConsoleH.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/HipCrush.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Parallel grit",
+        "values": [
+          50,
+          30,
+          50,
+          50,
+          30,
+          50,
+          50,
+          40,
+          50,
+          30
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      30,
+      50,
+      50,
+      30,
+      50,
+      50,
+      40,
+      50,
+      30
+    ]
+  },
+  {
+    "key": "fx-Pockey2",
+    "latency": 0,
+    "params": [
+      [
+        "DeFreq",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "DeRez",
+        0,
+        100,
+        66,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Pockey2",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "Pockey2 is more efficient, more intense lo-fi hiphop in a plugin.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Pockey2.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          66,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      66,
+      100
+    ]
+  },
+  {
+    "key": "fx-TapeBias",
+    "latency": 0,
+    "params": [
+      [
+        "Bias",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW TapeBias",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "TapeBias is a new piece of ToTape allowing you to underbias or overbias.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/TapeBias.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50
+    ]
+  },
+  {
+    "key": "fx-TapeDust",
+    "latency": 0,
+    "params": [
+      [
+        "Dust",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW TapeDust",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "TapeDust is just a special treble-erode noise, a ‘slew noise’ plugin.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/TapeDust.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-Texturize",
+    "latency": 0,
+    "params": [
+      [
+        "Bright",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Punchy",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Texturize",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "Texturize is a hidden-noise plugin for adding sonic texture to things.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Texturize.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-ToVinyl4",
+    "latency": 0,
+    "params": [
+      [
+        "Mid HiP",
+        0,
+        100,
+        20.3419,
+        "%"
+      ],
+      [
+        "SideHiP",
+        0,
+        100,
+        34.24051,
+        "%"
+      ],
+      [
+        "H Limit",
+        0,
+        100,
+        32,
+        "%"
+      ],
+      [
+        "Gv Wear",
+        0,
+        100,
+        6.4,
+        "%"
+      ]
+    ],
+    "name": "AW ToVinyl4",
+    "type": "Pedals",
+    "category": "Lo-fi",
+    "engine": "Airwindows",
+    "detail": "Lo-fi · Airwindows",
+    "description": "ToVinyl4 is a vinyl-mastering simulator bringing several vinyl-type colors.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ToVinyl4.txt",
+    "icon": "◈",
+    "colour": "#c28e7c",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          20.3419,
+          34.24051,
+          32,
+          6.4
+        ]
+      }
+    ],
+    "defaults": [
+      20.3419,
+      34.24051,
+      32,
+      6.4
+    ]
+  },
+  {
+    "key": "fx-FromTape",
+    "latency": 0,
+    "params": [
+      [
+        "Louder",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Softer",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Weight",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW FromTape",
+    "type": "Pedals",
+    "category": "Tape",
+    "engine": "Airwindows",
+    "detail": "Tape · Airwindows",
+    "description": "FromTape is a minimalist, cleaner analog tape emulation.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/FromTape.txt",
+    "icon": "◈",
+    "colour": "#b49169",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-IronOxideClassic2",
+    "latency": 0,
+    "params": [
+      [
+        "Input Trim",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Tape Speed",
+        0,
+        100,
+        56.234133,
+        "%"
+      ],
+      [
+        "Output Trim",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW IronOxideClassic2",
+    "type": "Pedals",
+    "category": "Tape",
+    "engine": "Airwindows",
+    "detail": "Tape · Airwindows",
+    "description": "IronOxideClassic2 is my bandpassy tape sim, updated for high sample rate and aliasing control.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/IronOxideClassic2.txt",
+    "icon": "◈",
+    "colour": "#b49169",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          56.234133,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      56.234133,
+      50
+    ]
+  },
+  {
+    "key": "fx-Tape",
+    "latency": 0,
+    "params": [
+      [
+        "Slam",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bump",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Tape",
+    "type": "Pedals",
+    "category": "Tape",
+    "engine": "Airwindows",
+    "detail": "Tape · Airwindows",
+    "description": "Tape is simplified, all-purpose tape mojo: my personal jam.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Tape.txt",
+    "icon": "◈",
+    "colour": "#b49169",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-ToTape8",
+    "latency": 1,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Tilt",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Shape",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Flutter",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "FlutSpd",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bias",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "HeadBmp",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "HeadFrq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW ToTape8",
+    "type": "Pedals",
+    "category": "Tape",
+    "engine": "Airwindows",
+    "detail": "Tape · Airwindows",
+    "description": "ToTape8 is Airwindows tape emulation with gain staging, bias and optimized Dubly!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ToTape8.txt",
+    "icon": "◈",
+    "colour": "#b49169",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-TapeHack2",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        10,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW TapeHack2",
+    "type": "Pedals",
+    "category": "Tape",
+    "engine": "Airwindows",
+    "detail": "Tape · Airwindows",
+    "description": "TapeHack2 brings Airwindows tape to a new level.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/TapeHack2.txt",
+    "icon": "◈",
+    "colour": "#b49169",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          10,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      10,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-Ensemble",
+    "latency": 0,
+    "params": [
+      [
+        "Ensemble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Fullness",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Brighten",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Ensemble",
+    "type": "Pedals",
+    "category": "Modulation",
+    "engine": "Airwindows",
+    "detail": "Modulation · Airwindows",
+    "description": "Ensemble is a weird flangey little modulation effect.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Ensemble.txt",
+    "icon": "◈",
+    "colour": "#819fc6",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-GalacticVibe",
+    "latency": 0,
+    "params": [
+      [
+        "Drift",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW GalacticVibe",
+    "type": "Pedals",
+    "category": "Modulation",
+    "engine": "Airwindows",
+    "detail": "Modulation · Airwindows",
+    "description": "GalacticVibe is the stereo vibrato from the original Galactic reverb.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/GalacticVibe.txt",
+    "icon": "◈",
+    "colour": "#819fc6",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      100
+    ]
+  },
+  {
+    "key": "fx-Melt",
+    "latency": 0,
+    "params": [
+      [
+        "Depth",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "Range",
+        0,
+        100,
+        75,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Melt",
+    "type": "Pedals",
+    "category": "Modulation",
+    "engine": "Airwindows",
+    "detail": "Modulation · Airwindows",
+    "description": "Melt is a wobbly chorusy weird diffuse effect.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Melt.txt",
+    "icon": "◈",
+    "colour": "#819fc6",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          25,
+          75,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      25,
+      75,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-TremoSquare",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW TremoSquare",
+    "type": "Pedals",
+    "category": "Modulation",
+    "engine": "Airwindows",
+    "detail": "Modulation · Airwindows",
+    "description": "TremoSquare is a squarewave tremolo effect that only switches on zero crossings.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/TremoSquare.txt",
+    "icon": "◈",
+    "colour": "#819fc6",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-RingModulator",
+    "latency": 0,
+    "params": [
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Freq",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Soar",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW RingModulator",
+    "type": "Pedals",
+    "category": "Modulation",
+    "engine": "Airwindows",
+    "detail": "Modulation · Airwindows",
+    "description": "RingModulator repitches sounds mathematically, not harmonically.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/RingModulator.txt",
+    "icon": "◈",
+    "colour": "#819fc6",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          0,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      0,
+      0
+    ]
+  },
+  {
+    "key": "fx-GlitchShifter",
+    "latency": 0,
+    "params": [
+      [
+        "Note",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Trim",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Tighten",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Feedbck",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW GlitchShifter",
+    "type": "Pedals",
+    "category": "Pitch",
+    "engine": "Airwindows",
+    "detail": "Pitch · Airwindows",
+    "description": "GlitchShifter is a really gnarly, raw-sounding pitch shifter with a dose of insanity!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/GlitchShifter.txt",
+    "icon": "◈",
+    "colour": "#b29cce",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50,
+          0,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      0,
+      50
+    ]
+  },
+  {
+    "key": "fx-PitchNasty",
+    "latency": 0,
+    "params": [
+      [
+        "Note",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Bend",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Grind",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "Feedbck",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW PitchNasty",
+    "type": "Pedals",
+    "category": "Pitch",
+    "engine": "Airwindows",
+    "detail": "Pitch · Airwindows",
+    "description": "PitchNasty is a primitive pitch shifter that also has primitive time-stretch artifacts.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PitchNasty.txt",
+    "icon": "◈",
+    "colour": "#b29cce",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          25,
+          0,
+          100,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      25,
+      0,
+      100,
+      100
+    ]
+  },
+  {
+    "key": "fx-StereoDoubler",
+    "latency": 0,
+    "params": [
+      [
+        "Detune",
+        0,
+        100,
+        60,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        60,
+        "%"
+      ]
+    ],
+    "name": "AW StereoDoubler",
+    "type": "Pedals",
+    "category": "Pitch",
+    "engine": "Airwindows",
+    "detail": "Pitch · Airwindows",
+    "description": "StereoDoubler is like GlitchShifter optimized for pitch shift doubling and tripling.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/StereoDoubler.txt",
+    "icon": "◈",
+    "colour": "#b29cce",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          60,
+          60
+        ]
+      }
+    ],
+    "defaults": [
+      60,
+      60
+    ]
+  },
+  {
+    "key": "fx-TripleSpread",
+    "latency": 0,
+    "params": [
+      [
+        "Spread",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Tighten",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW TripleSpread",
+    "type": "Pedals",
+    "category": "Pitch",
+    "engine": "Airwindows",
+    "detail": "Pitch · Airwindows",
+    "description": "TripleSpread is a stereo tripler with extra wideness and GlitchShifter processing.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/TripleSpread.txt",
+    "icon": "◈",
+    "colour": "#b29cce",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-FathomFive",
+    "latency": 0,
+    "params": [
+      [
+        "Root Note",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "SubOctave",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Frequency",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW FathomFive",
+    "type": "Pedals",
+    "category": "Pitch",
+    "engine": "Airwindows",
+    "detail": "Pitch · Airwindows",
+    "description": "FathomFive is a way of supplementing extreme bass that’s not just EQ.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/FathomFive.txt",
+    "icon": "◈",
+    "colour": "#b29cce",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          100,
+          0,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      0,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-DubSub",
+    "latency": 0,
+    "params": [
+      [
+        "TGrind",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Grd/Out",
+        0,
+        100,
+        60,
+        "%"
+      ],
+      [
+        "XOver",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "BsDrive",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "BsVoice",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "BassOut",
+        0,
+        100,
+        65,
+        "%"
+      ],
+      [
+        "SbDrive",
+        0,
+        100,
+        20,
+        "%"
+      ],
+      [
+        "SbVoice",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "SubOut",
+        0,
+        100,
+        55,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        35,
+        "%"
+      ]
+    ],
+    "name": "AW DubSub",
+    "type": "Pedals",
+    "category": "Pitch",
+    "engine": "Airwindows",
+    "detail": "Pitch · Airwindows",
+    "description": "DubSub is a fully featured bass doctor.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DubSub.txt",
+    "icon": "◈",
+    "colour": "#b29cce",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Sub foundation",
+        "values": [
+          30,
+          60,
+          50,
+          30,
+          50,
+          65,
+          20,
+          30,
+          55,
+          35
+        ]
+      }
+    ],
+    "defaults": [
+      30,
+      60,
+      50,
+      30,
+      50,
+      65,
+      20,
+      30,
+      55,
+      35
+    ]
+  },
+  {
+    "key": "fx-Srsly3",
+    "latency": 0,
+    "params": [
+      [
+        "Center",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Space",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Level",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Q",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Nonlin",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Srsly3",
+    "type": "Pedals",
+    "category": "Stereo",
+    "engine": "Airwindows",
+    "detail": "Stereo · Airwindows",
+    "description": "Srsly3 is Srsly2, with a Nonlin control to analogify the filters.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Srsly3.txt",
+    "icon": "◈",
+    "colour": "#88aba9",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100,
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100,
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-StereoFX",
+    "latency": 0,
+    "params": [
+      [
+        "Wide",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "MonoBs",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "CSquish",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW StereoFX",
+    "type": "Pedals",
+    "category": "Stereo",
+    "engine": "Airwindows",
+    "detail": "Stereo · Airwindows",
+    "description": "StereoFX is an aggressive stereo widener.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/StereoFX.txt",
+    "icon": "◈",
+    "colour": "#88aba9",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "key": "fx-SweetWide",
+    "latency": 0,
+    "params": [
+      [
+        "Soar",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Un/Wide",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW SweetWide",
+    "type": "Pedals",
+    "category": "Stereo",
+    "engine": "Airwindows",
+    "detail": "Stereo · Airwindows",
+    "description": "SweetWide is a strange grungy stereo widener.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/SweetWide.txt",
+    "icon": "◈",
+    "colour": "#88aba9",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50
+    ]
+  },
+  {
+    "key": "fx-Wider",
+    "latency": 0,
+    "params": [
+      [
+        "Width",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Center",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "AW Wider",
+    "type": "Pedals",
+    "category": "Stereo",
+    "engine": "Airwindows",
+    "detail": "Stereo · Airwindows",
+    "description": "Wider is Airwindows stereo space shaping.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Wider.txt",
+    "icon": "◈",
+    "colour": "#88aba9",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          50,
+          50,
+          100
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      100
+    ]
+  },
+  {
+    "key": "fx-Sidepass",
+    "latency": 0,
+    "params": [
+      [
+        "Cutoff",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Sidepass",
+    "type": "Pedals",
+    "category": "Stereo",
+    "engine": "Airwindows",
+    "detail": "Stereo · Airwindows",
+    "description": "Sidepass is a simple utility plugin, a highpass on the side channel. Mono-maker.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Sidepass.txt",
+    "icon": "◈",
+    "colour": "#88aba9",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      0
+    ]
+  },
+  {
+    "key": "fx-SideDull",
+    "latency": 0,
+    "params": [
+      [
+        "Cutoff",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW SideDull",
+    "type": "Pedals",
+    "category": "Stereo",
+    "engine": "Airwindows",
+    "detail": "Stereo · Airwindows",
+    "description": "SideDull is like Sidepass, but a lowpass on the side channel. Treble-centerer.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/SideDull.txt",
+    "icon": "◈",
+    "colour": "#88aba9",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Soft sides",
+        "values": [
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50
+    ]
+  },
+  {
+    "key": "fx-ADT",
+    "latency": 0,
+    "params": [
+      [
+        "Headrm",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "A Delay",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "A Level",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "B Delay",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "B Level",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW ADT",
+    "type": "Pedals",
+    "category": "Delay",
+    "engine": "Airwindows",
+    "detail": "Delay · Airwindows",
+    "description": "ADT is a double short delay tap with saturation.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/ADT.txt",
+    "icon": "◈",
+    "colour": "#69afb5",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50
+    ]
+  },
+  {
+    "key": "fx-Hombre",
+    "latency": 0,
+    "params": [
+      [
+        "Voicing",
+        0,
+        100,
+        42.1,
+        "%"
+      ],
+      [
+        "Intensity",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "AW Hombre",
+    "type": "Pedals",
+    "category": "Delay",
+    "engine": "Airwindows",
+    "detail": "Delay · Airwindows",
+    "description": "Hombre is atmosphere and texture (through very short delays).",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Hombre.txt",
+    "icon": "◈",
+    "colour": "#69afb5",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          42.1,
+          50
+        ]
+      }
+    ],
+    "defaults": [
+      42.1,
+      50
+    ]
+  },
+  {
+    "key": "fx-StarChild2",
+    "latency": 0,
+    "params": [
+      [
+        "Sustain",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Grain",
+        0,
+        100,
+        70,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        20,
+        "%"
+      ]
+    ],
+    "name": "AW StarChild2",
+    "type": "Pedals",
+    "category": "Delay",
+    "engine": "Airwindows",
+    "detail": "Delay · Airwindows",
+    "description": "StarChild2 is a weird digital ambience/echo plugin adapted to high sample rates.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/StarChild2.txt",
+    "icon": "◈",
+    "colour": "#69afb5",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          70,
+          20
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      70,
+      20
+    ]
+  },
+  {
+    "key": "fx-kChamberAR",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Delay",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Regen",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Low Cut",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Wetness",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kChamberAR",
+    "type": "Pedals",
+    "category": "Delay",
+    "engine": "Airwindows",
+    "detail": "Delay · Airwindows",
+    "description": "kChamberAR is a take on tape echo into chamber echo.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kChamberAR.txt",
+    "icon": "◈",
+    "colour": "#69afb5",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          0,
+          0,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      0,
+      0,
+      25
+    ]
+  },
+  {
+    "key": "fx-BrightAmbience3",
+    "latency": 0,
+    "params": [
+      [
+        "Start",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Length",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Feedback",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW BrightAmbience3",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "BrightAmbience3 adds undersampling for high sample rates, and better feedback.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/BrightAmbience3.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          0,
+          0,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      0,
+      0,
+      25
+    ]
+  },
+  {
+    "key": "fx-Chamber2",
+    "latency": 0,
+    "params": [
+      [
+        "Delay",
+        0,
+        100,
+        34,
+        "%"
+      ],
+      [
+        "Regen",
+        0,
+        100,
+        31,
+        "%"
+      ],
+      [
+        "Thick",
+        0,
+        100,
+        28,
+        "%"
+      ],
+      [
+        "Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW Chamber2",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "Chamber2 is a feedforward reverb, a blur delay, and a glitch topping!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Chamber2.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          34,
+          31,
+          28,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      34,
+      31,
+      28,
+      25
+    ]
+  },
+  {
+    "key": "fx-CrunchCoat",
+    "latency": 0,
+    "params": [
+      [
+        "Select",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Regen",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "DeRez",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW CrunchCoat",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "CrunchCoat is a cursed retro digital reverb!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/CrunchCoat.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          0,
+          100,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      0,
+      100,
+      25
+    ]
+  },
+  {
+    "key": "fx-Infinity2",
+    "latency": 0,
+    "params": [
+      [
+        "Filter",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Size",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Damping",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Allpass",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Feedback",
+        0,
+        100,
+        65,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW Infinity2",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "Infinity2 expands Infinity with more tone shaping and a much-requested kill-switch!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Infinity2.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          0,
+          100,
+          65,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      0,
+      100,
+      65,
+      25
+    ]
+  },
+  {
+    "key": "fx-MatrixVerb",
+    "latency": 0,
+    "params": [
+      [
+        "Filter",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Damping",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Speed",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Vibrato",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "RmSize",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Flavor",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW MatrixVerb",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "MatrixVerb is a wildly adjustable, strangely colorful reverb for deep and flexible spaces.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/MatrixVerb.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          0,
+          0,
+          0,
+          50,
+          50,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      0,
+      0,
+      0,
+      50,
+      50,
+      25
+    ]
+  },
+  {
+    "key": "fx-MV2",
+    "latency": 0,
+    "params": [
+      [
+        "Depth",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bright",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Output",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW MV2",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "MV2 is a dual-mono reverb based on BitShiftGain and the old Midiverbs, adapted to high sample rates.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/MV2.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          100,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      100,
+      25
+    ]
+  },
+  {
+    "key": "fx-NonlinearSpace",
+    "latency": 0,
+    "params": [
+      [
+        "SmpRate",
+        0,
+        100,
+        30,
+        "%"
+      ],
+      [
+        "Livenes",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Treble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Bass",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Nonlin",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW NonlinearSpace",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "NonlinearSpace is a flexible reverb plugin.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/NonlinearSpace.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          30,
+          50,
+          50,
+          50,
+          50,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      30,
+      50,
+      50,
+      50,
+      50,
+      25
+    ]
+  },
+  {
+    "key": "fx-PocketVerbs",
+    "latency": 0,
+    "params": [
+      [
+        "Type",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Size",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Gating",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW PocketVerbs",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "PocketVerbs is my popular old special effects reverbs plugin!",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/PocketVerbs.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          0,
+          50,
+          0,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      0,
+      50,
+      0,
+      25
+    ]
+  },
+  {
+    "key": "fx-Ultralight2",
+    "latency": 0,
+    "params": [
+      [
+        "Damping",
+        0,
+        100,
+        65,
+        "%"
+      ],
+      [
+        "UnSolid",
+        0,
+        100,
+        75,
+        "%"
+      ],
+      [
+        "UnReflc",
+        0,
+        100,
+        75,
+        "%"
+      ],
+      [
+        "Predlay",
+        0,
+        100,
+        54,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "Distnce",
+        0,
+        100,
+        0,
+        "%"
+      ]
+    ],
+    "name": "AW Ultralight2",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "Ultralight2 is more of the most low-CPU matrix reverb I can make.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Ultralight2.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          65,
+          75,
+          75,
+          54,
+          25,
+          0
+        ]
+      }
+    ],
+    "defaults": [
+      65,
+      75,
+      75,
+      54,
+      25,
+      0
+    ]
+  },
+  {
+    "key": "fx-Verbity2",
+    "latency": 0,
+    "params": [
+      [
+        "RmSize",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Sustain",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mulch",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Wetness",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW Verbity2",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "Verbity2 adds stereo crossmodulation and expands Verbity's feedforward reverb topology.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/Verbity2.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      25
+    ]
+  },
+  {
+    "key": "fx-kAlienSpaceship",
+    "latency": 0,
+    "params": [
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Derez",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Filter",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "EarlyRF",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Positin",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kAlienSpaceship",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kAlienSpaceship is an unreal realistic reverb.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kAlienSpaceship.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      25
+    ]
+  },
+  {
+    "key": "fx-kCosmos",
+    "latency": 0,
+    "params": [
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Derez",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Filter",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "EarlyRF",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Predlay",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kCosmos",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kCosmos is infinite space ambient, or titanic hall.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kCosmos.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          100,
+          50,
+          50,
+          0,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      100,
+      50,
+      50,
+      0,
+      25
+    ]
+  },
+  {
+    "key": "fx-kCyberCity",
+    "latency": 0,
+    "params": [
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Positin",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kCyberCity",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kCyberCity brings live atmosphere to deep reverb.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kCyberCity.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          100,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      100,
+      25
+    ]
+  },
+  {
+    "key": "fx-kPlate140",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "DeRez",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Predlay",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Wetness",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kPlate140",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kPlate140 is a next-generation Airwindows plate reverb.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kPlate140.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          100,
+          0,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      100,
+      0,
+      25
+    ]
+  },
+  {
+    "key": "fx-kPlate240",
+    "latency": 0,
+    "params": [
+      [
+        "Input",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "DeRez",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Predlay",
+        0,
+        100,
+        0,
+        "%"
+      ],
+      [
+        "Wetness",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kPlate240",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kPlate240 is for the texture of smaller, gold foil reverb.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kPlate240.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          100,
+          50,
+          100,
+          0,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      100,
+      50,
+      100,
+      0,
+      25
+    ]
+  },
+  {
+    "key": "fx-kRockstar",
+    "latency": 0,
+    "params": [
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Positin",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "DownRez",
+        0,
+        100,
+        100,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kRockstar",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kRockstar is a realistic hall reverb that blends very well.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kRockstar.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          100,
+          100,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      100,
+      100,
+      25
+    ]
+  },
+  {
+    "key": "fx-kStation",
+    "latency": 0,
+    "params": [
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Derez",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Filter",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "EarlyRF",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Positin",
+        0,
+        100,
+        90,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kStation",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kStation is a realistic small room modeled after David Bowie's vocal reverb.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kStation.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          50,
+          50,
+          90,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      50,
+      50,
+      90,
+      25
+    ]
+  },
+  {
+    "key": "fx-kWoodRoom",
+    "latency": 0,
+    "params": [
+      [
+        "Regen",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Derez",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Filter",
+        0,
+        100,
+        25,
+        "%"
+      ],
+      [
+        "EarlyRF",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Positin",
+        0,
+        100,
+        75,
+        "%"
+      ],
+      [
+        "Dry/Wet",
+        0,
+        100,
+        25,
+        "%"
+      ]
+    ],
+    "name": "AW kWoodRoom",
+    "type": "Pedals",
+    "category": "Reverb",
+    "engine": "Airwindows",
+    "detail": "Reverb · Airwindows",
+    "description": "kWoodRoom is a small wooden performing space.",
+    "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/kWoodRoom.txt",
+    "icon": "◈",
+    "colour": "#ab93c0",
+    "sync": false,
+    "presets": [
+      {
+        "name": "Subtle space",
+        "values": [
+          50,
+          50,
+          25,
+          50,
+          75,
+          25
+        ]
+      }
+    ],
+    "defaults": [
+      50,
+      50,
+      25,
+      50,
+      75,
+      25
+    ]
+  },
+  {
+    "key": "fx-GraphicEQ",
+    "latency": 0,
+    "params": [
+      [
+        "31 Hz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "63 Hz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "125 Hz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "250 Hz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "500 Hz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "1 kHz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "2 kHz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "4 kHz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "8 kHz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "16 kHz",
+        -12,
+        12,
+        0,
+        "dB"
+      ],
+      [
+        "Output",
+        -24,
+        12,
+        0,
+        "dB"
+      ]
+    ],
+    "name": "Ten Band EQ",
+    "category": "EQ",
+    "engine": "FreeRig",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "EQ · Ten Band EQ",
+    "description": "Ten octave bands with ±12 dB adjustment and output trim.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "presets": [
+      {
+        "name": "Flat",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-Wah",
+    "latency": 0,
+    "params": [
+      [
+        "Position",
+        0,
+        100,
+        40,
+        "%"
+      ],
+      [
+        "Resonance",
+        0.5,
+        8,
+        3,
+        "Q"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "Sweep Wah",
+    "category": "Filter",
+    "engine": "FreeRig",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Filter · Sweep Wah",
+    "description": "Resonant wah with manual position control.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      40,
+      3,
+      100
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          40,
+          3,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-EnvelopeFilter",
+    "latency": 0,
+    "params": [
+      [
+        "Sensitivity",
+        0,
+        100,
+        40,
+        "%"
+      ],
+      [
+        "Resonance",
+        0.5,
+        8,
+        3,
+        "Q"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "Envelope Wah",
+    "category": "Filter",
+    "engine": "FreeRig",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Filter · Envelope Wah",
+    "description": "Pick-sensitive wah. Sensitivity controls how strongly your playing opens the filter.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      40,
+      3,
+      100
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          40,
+          3,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-PitchShift",
+    "latency": 6720,
+    "params": [
+      [
+        "Interval",
+        -24,
+        24,
+        12,
+        "semitones"
+      ],
+      [
+        "Fine",
+        -50,
+        50,
+        0,
+        "cents"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        100,
+        "%"
+      ]
+    ],
+    "name": "Studio Pitch",
+    "category": "Pitch",
+    "engine": "Signalsmith Stretch",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Pitch · Studio Pitch",
+    "description": "Signalsmith stereo pitch and detune. Adds about 140 ms latency: intended for recording or a parallel wet path, not the dry live guitar path.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      12,
+      0,
+      100
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          12,
+          0,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-GrainCloud",
+    "latency": 0,
+    "params": [
+      [
+        "Grain",
+        25,
+        500,
+        120,
+        "ms"
+      ],
+      [
+        "Pitch",
+        -24,
+        24,
+        0,
+        "semitones"
+      ],
+      [
+        "Feedback",
+        0,
+        85,
+        15,
+        "%"
+      ],
+      [
+        "Spread",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        30,
+        "%"
+      ]
+    ],
+    "name": "Grain Cloud",
+    "category": "Delay",
+    "engine": "FreeRig",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Delay · Grain Cloud",
+    "description": "Four overlapping grains with pitch, stereo spread and feedback.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      120,
+      0,
+      15,
+      50,
+      30
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          120,
+          0,
+          15,
+          50,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-ReverseEcho",
+    "latency": 0,
+    "params": [
+      [
+        "Slice",
+        50,
+        2000,
+        500,
+        "ms"
+      ],
+      [
+        "Feedback",
+        0,
+        85,
+        25,
+        "%"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        30,
+        "%"
+      ]
+    ],
+    "name": "Reverse Echo",
+    "category": "Delay",
+    "engine": "FreeRig",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Delay · Reverse Echo",
+    "description": "Reversed slices with edge fades. Slice changes apply at the next boundary.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      500,
+      25,
+      30
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          500,
+          25,
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-PhraseLooper",
+    "latency": 0,
+    "params": [
+      [
+        "Mode",
+        0,
+        3,
+        0,
+        ""
+      ],
+      [
+        "Loop level",
+        0,
+        100,
+        70,
+        "%"
+      ],
+      [
+        "Overdub",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "Phrase Looper",
+    "category": "Looper",
+    "engine": "FreeRig",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Looper · Phrase Looper",
+    "description": "60-second stereo practice looper. Record, play and overdub. Clear discards the loop. Loop audio is temporary and is not saved with patches.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      0,
+      70,
+      50
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          0,
+          70,
+          50
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-Vocoder",
+    "latency": 0,
+    "params": [
+      [
+        "Carrier",
+        40,
+        1000,
+        110,
+        "Hz"
+      ],
+      [
+        "Formant",
+        0.5,
+        2,
+        1,
+        "ratio"
+      ],
+      [
+        "Release",
+        20,
+        500,
+        80,
+        "ms"
+      ],
+      [
+        "Mix",
+        0,
+        100,
+        70,
+        "%"
+      ]
+    ],
+    "name": "Sixteen Band Vocoder",
+    "category": "Synth",
+    "engine": "FreeRig",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Synth · Sixteen Band Vocoder",
+    "description": "Guitar envelopes control sixteen bands on a sawtooth carrier. Carrier is a fixed synth note, not automatic pitch tracking.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      110,
+      1,
+      80,
+      70
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          110,
+          1,
+          80,
+          70
+        ]
+      }
+    ]
+  },
+  {
+    "key": "fx-Centaur",
+    "latency": 31,
+    "params": [
+      [
+        "Gain",
+        0,
+        100,
+        20,
+        "%"
+      ],
+      [
+        "Treble",
+        0,
+        100,
+        50,
+        "%"
+      ],
+      [
+        "Level",
+        0,
+        100,
+        50,
+        "%"
+      ]
+    ],
+    "name": "Centaur Drive",
+    "category": "Drive",
+    "engine": "KlonCentaur / chowdsp WDF",
+    "colour": "#79a69b",
+    "type": "Pedals",
+    "detail": "Drive · Centaur Drive",
+    "description": "Circuit-derived overdrive based on Jatin Chowdhury’s Klon Centaur research. Gain blends clean and clipped paths; Level controls the following amp input.",
+    "icon": "◈",
+    "sync": false,
+    "defaults": [
+      20,
+      50,
+      50
+    ],
+    "presets": [
+      {
+        "name": "Starting point",
+        "values": [
+          20,
+          50,
+          50
+        ]
+      }
+    ],
+    "source": "https://github.com/jatinchowdhury18/KlonCentaur"
   }
 ];if(typeof module==='object'&&module.exports)module.exports=data;else root.EffectsCatalogue=data;})(typeof window!=='undefined'?window:globalThis);

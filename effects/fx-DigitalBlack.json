@@ -1,0 +1,20 @@
+{
+  "key": "fx-DigitalBlack",
+  "name": "AW DigitalBlack",
+  "type": "Pedals",
+  "category": "Dynamics",
+  "engine": "Airwindows",
+  "detail": "Dynamics · Airwindows",
+  "description": "DigitalBlack is a quick, staccato gate.",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/DigitalBlack.txt",
+  "icon": "◈",
+  "colour": "#b9bac8",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [0, 100]
+    }
+  ],
+  "defaults": [0, 100]
+}

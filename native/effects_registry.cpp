@@ -47,6 +47,16 @@ const std::vector<EffectRegistration> &effectRegistry()
         {"Vibrato", makeAir},
         {"Tremolo", makeAir},
         {"AutoPan", makeAir},
+#include "effects_air_entries.inc"
+        {"GraphicEQ", singleFactory<makeGraphicEQ>},
+        {"Wah", singleFactory<makeWah>},
+        {"EnvelopeFilter", singleFactory<makeEnvelopeFilter>},
+        {"PitchShift", singleFactory<makePitchShift>},
+        {"GrainCloud", singleFactory<makeGrainCloud>},
+        {"ReverseEcho", singleFactory<makeReverseEcho>},
+        {"PhraseLooper", singleFactory<makePhraseLooper>},
+        {"Vocoder", singleFactory<makeVocoder>},
+        {"Centaur", singleFactory<makeCentaur>},
     };
     return entries;
 }

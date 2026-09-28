@@ -1,0 +1,20 @@
+{
+  "key": "fx-CrunchCoat",
+  "name": "AW CrunchCoat",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "description": "CrunchCoat is a cursed retro digital reverb!",
+  "source": "https://github.com/baconpaul/airwin2rack/blob/b6eef0af60cd32641b09837096e41bbcdb030341/res/awpdoc/CrunchCoat.txt",
+  "icon": "◈",
+  "colour": "#ab93c0",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Subtle space",
+      "values": [50, 0, 100, 25]
+    }
+  ],
+  "defaults": [50, 0, 100, 25]
+}

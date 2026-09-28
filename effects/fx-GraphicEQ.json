@@ -1,0 +1,19 @@
+{
+  "key": "fx-GraphicEQ",
+  "name": "Ten Band EQ",
+  "category": "EQ",
+  "engine": "FreeRig",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "EQ · Ten Band EQ",
+  "description": "Ten octave bands with ±12 dB adjustment and output trim.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "presets": [
+    {
+      "name": "Flat",
+      "values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+  ]
+}

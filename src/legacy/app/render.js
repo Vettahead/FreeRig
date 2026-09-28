@@ -16,6 +16,7 @@ function renderLibrary() {
         d.name +
         ' ' +
         d.detail +
+        (d.description || '') +
         ' ' +
         libraryCategory(d) +
         ' ' +

@@ -1,0 +1,19 @@
+{
+  "key": "fx-EnvelopeFilter",
+  "name": "Envelope Wah",
+  "category": "Filter",
+  "engine": "FreeRig",
+  "colour": "#79a69b",
+  "type": "Pedals",
+  "detail": "Filter · Envelope Wah",
+  "description": "Pick-sensitive wah. Sensitivity controls how strongly your playing opens the filter.",
+  "icon": "◈",
+  "sync": false,
+  "defaults": [40, 3, 100],
+  "presets": [
+    {
+      "name": "Starting point",
+      "values": [40, 3, 100]
+    }
+  ]
+}

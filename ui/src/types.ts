@@ -26,6 +26,8 @@ export interface Sound {
 }
 export type Param = [string, number, number, number, string];
 export interface Definition {
+  description?: string;
+  source?: string;
   key: string;
   name: string;
   detail: string;
