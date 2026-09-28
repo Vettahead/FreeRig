@@ -2,6 +2,10 @@
 
 Start with [the architecture map](docs/ARCHITECTURE.md) and [adding a pedal](docs/ADDING-A-PEDAL.md).
 
+## Start each session
+
+Verify that the working directory is this FreeRig repository, not `G8-website` or a release folder. Read the current README, newest HANDOVER entry and relevant guides, then inspect Git status before edits. `docs/PROJECT-CONTEXT.md` is orientation for new chats; verify it against current source. Conversation project membership does not grant filesystem access.
+
 ## Source rules
 
 - Keep a file focused on one responsibility. Separate presentation, saved patch data, native messaging and audio processing.

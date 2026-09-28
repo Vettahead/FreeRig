@@ -1,3 +1,9 @@
+## Project onboarding — 28 September 2026
+
+- Added a concise Freerig project brief and ready-to-use project instructions with source location, architecture, verification limits and priorities.
+- Added a mandatory working-directory check to repository guidance to prevent edits in the unrelated website project.
+- Documentation only; no app version or audio behaviour change. Conversation-project settings/uploads must be applied separately.
+
 ## Alpha 20 — modular source and contributor workflow (28 September 2026)
 
 - Split native patch models, interop, graph/processors, host messages and services into focused source files.

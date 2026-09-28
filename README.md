@@ -6,6 +6,10 @@ A Windows guitar suite with a WebView2/React interface, native ASIO audio, NAM c
 
 Open `releases/FreeRig-alpha-20/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
 
+## Project setup
+
+For a new Freerig conversation, use [Project context](docs/PROJECT-CONTEXT.md) as the reference brief and [Project instructions](docs/PROJECT-INSTRUCTIONS.md) as its working instructions. The conversation project is separate from the local source folder; select this repository for coding work.
+
 ## Edit the source
 
 - [Architecture map](docs/ARCHITECTURE.md): where each part lives and how it connects.
