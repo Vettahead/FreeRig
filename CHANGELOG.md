@@ -1,3 +1,7 @@
+## 28 September 2026 — Exported patch gain-stage audit (source only)
+
+Added a developer-only saved serial patch audit with per-stage peaks/RMS and sequential-routing checks. The supplied JCM Patch contains a combined amp+cab capture followed by another IR, with +5.1/+6 dB amp input/output in Crunch. Synthetic rendering reproduces a 12.89 dB TS9 pre-amp RMS drop and confirms the amp/cab path is retained. Prepared a separate four-scene listening comparison patch; original user files and playback DSP are unchanged. See docs/CAPTURE-FIDELITY.md for evidence and limits.
+
 ## 28 September 2026 — Drive-chain diagnostics (source only)
 
 Extended offline capture-chain comparison to include a stock or NAM pedal before the amp/IR. Added stock-drive buffer-invariance diagnostics and routing regression tests. Six stock drives and three local Fortin TS-9 captures preserve the complete amp/cab path in constructed tests; capture inference matches generic NAM. The reported live sound remains under investigation pending the affected patch and gain settings. No playback DSP, model weights or release files changed. See docs/CAPTURE-FIDELITY.md.

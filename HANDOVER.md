@@ -1,3 +1,11 @@
+## 28 September 2026 — User's JCM Patch inspected
+
+User supplied Desktop/FreeRig patch.json. Active Crunch scene has Fortin_TS9_1 at 0/0 dB, Jcm800 at +5.1 input/+6 output, Floaty Delay on, V30 IR at −3 dB and Dragon Room on. Jcm800 is an amp+cab capture: extra cab double-filters. Routing is a correct series chain. Synthetic saved-patch render measures TS9 pre-amp RMS drop 12.89 dB, post-amp drop 5.43 dB; extra IR raises RMS 21 dB (including its −3 dB trim). Exact graph/sequential parity through cabinet at 32/64/128; Dragon Room's random modulation prevents identical independent wet tails. No engine bypass bug demonstrated.
+
+Added --audit-patch in focused SavedPatchAudit.cs, developer-only/no audio hardware. Separate releases/diagnostics/JCM TS9 comparison.json has four listening scenes: bypass/raw/+6/+12 dB pedal output, amp 0/−6 dB, extra IR/delay/reverb bypassed. All original assets/routing retained, original export untouched. These are explicit gain comparisons, not automatic calibration or a guaranteed hardware match. Alpha23 remains released; no DSP or app UI changes. Await user listening comparison. See docs/CAPTURE-FIDELITY.md.
+
+Comparison copy placed on Desktop as FreeRig TS9 comparison.json. All four scenes render with exact sequential parity at 32/64/128; scene 4 is 0.86 dB louder than bypass post-amp on the synthetic chord. Required project checks, native formatting, desktop build and offline self-test pass. Original/compare reports are under releases/diagnostics; no live ASIO listening claimed.
+
 ## 28 September 2026 — Drive-before-amp investigation, not resolved
 
 User reports stock Scream Drive and downloaded Tube Screamer sound wrong before an amp even at low gain. Scream Drive is actually Guitarix Screaming Bird. Local Fortin TS9 models 1/2/3 have no input/output dBu metadata. All three match generic NAM within 2.44e-7; all six stock drives and three TS9 captures followed by Hendrix 1959JMH + G12M IR match direct sequential processing exactly at 32/64/128. Stock drives are block-invariant at 44.1/48/96 kHz. New CLI audit supports stock keys or a same-folder pedal .nam filename; see docs/CAPTURE-FIDELITY.md.

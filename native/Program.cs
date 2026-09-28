@@ -16,6 +16,8 @@ namespace GuitarSuite
         [STAThread]
         static int Main(string[] args)
         {
+            if (args.Length == 3 && args[0] == "--audit-patch")
+                return SavedPatchAudit.Run(args[1], args[2]);
             if (args.Length == 3 && args[0] == "--audit-chain")
                 return CaptureChainAudit.Run(args[1], args[2]);
             if (args.Length == 4 && args[0] == "--audit-drive-chain")

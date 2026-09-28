@@ -63,3 +63,19 @@ Results:
 - Added routing regression coverage: inserting a stock or captured drive preserves the amp/IR assets, their scene settings, and the series path with no pedal-to-output bypass branch.
 
 The user's actual patch, gain settings and live playing have not been reproduced. No engine fix is claimed from these passing diagnostics, and no calibration, tone compensation or model weights were changed. The next step is the affected saved patch and its current pedal/amp trims, rather than guessing a new input attenuation.
+
+### Exported JCM Patch examined
+
+The supplied export selects Crunch (scene index 1): gate → Fortin_TS9_1 → JCM800 → Floaty Delay → V30 IR → Dragon Room. There is no pedal-to-output bypass route. Pedal trims are 0/0 dB, but the amp has +5.1 dB input and +6 dB output. The amp's saved metadata identifies **Marshall Jcm800 + V30 1960**, an amp+cab capture, so the additional V30 IR filters the cabinet sound a second time.
+
+The new developer command renders this saved serial chain, compares each stage with sequential processing, and measures pedal-on/off variants:
+
+```powershell
+native/dist/FreeRig.exe --audit-patch "C:/path/FreeRig patch.json" C:/path/Library
+```
+
+It writes `saved-patch-audit.txt` next to the executable. It is a narrow diagnostic for a serial four-or-eight-scene patch with one captured pedal; it does not claim to validate arbitrary parallel routing. It additionally renders stored scenes 1–4. Dragon Room's random modulation means independently constructed wet tails differ; deterministic stages are checked separately, with exact agreement through the extra cabinet at 32/64/128 frames.
+
+With the same synthetic chord used above, the TS9 reduced pre-amp RMS by 12.89 dB (−26.68 to −39.57 dBFS). The active saved chain's RMS drop after the amp was 5.43 dB. The additional IR raised the delayed signal from −23.37 to −2.37 dBFS RMS despite its −3 dB output control; it reached a 2.83 peak before the reverb. This proves the tested level drop and hot downstream signal, not the user's live output clipping: master gain and hardware gain are absent from the export.
+
+A separate, untracked `releases/diagnostics/JCM TS9 comparison.json` keeps the original model files and routing, bypasses the extra cab/delay/reverb, sets amp input/output to 0/−6 dB, and offers pedal bypass/raw/+6/+12 dB output scenes. The gain steps are explicit listening comparisons, **not inferred physical pedal calibration**. The original export and saved app patch are not edited; no playback DSP change or new app release accompanies this investigation.
