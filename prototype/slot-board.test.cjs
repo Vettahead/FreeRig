@@ -49,3 +49,35 @@ assert.ok(P.valid(JSON.parse(snapshot)));
 console.log(
   'PASS: replacement preserves wiring, slots and scene bypass, resets assets, accepts replacement across device types.',
 );
+
+// Adding a drive must splice into the series path, not create an unfiltered
+// pedal-to-output branch or discard the loaded amp/cab assets in another scene.
+for (const key of ['drive', 'nampedal']) {
+  const rig = P.createStarter();
+  B.assign(rig);
+  for (const block of [...rig.blocks])
+    if (!['amp', 'cab'].includes(block.key)) B.remove(rig, block.id);
+  const amp = rig.blocks.find((b) => b.key === 'amp');
+  const cab = rig.blocks.find((b) => b.key === 'cab');
+  amp.assetId = 'amp.nam';
+  cab.assetId = 'cab.wav';
+  B.useStandard(rig);
+  const before = JSON.stringify(rig.scenes);
+  B.add(rig, { id: 'drive-test', key }, { section: 'pre', index: 0 });
+  assert.equal(
+    JSON.stringify(rig.connections),
+    JSON.stringify([
+      ['input', 'drive-test'],
+      ['drive-test', amp.id],
+      [amp.id, cab.id],
+      [cab.id, 'output'],
+    ]),
+  );
+  assert.equal(amp.assetId, 'amp.nam');
+  assert.equal(cab.assetId, 'cab.wav');
+  const existingScenes = rig.scenes.map(({ 'drive-test': ignored, ...scene }) => scene);
+  assert.equal(JSON.stringify(existingScenes), before);
+}
+console.log(
+  'PASS: stock/captured drive insertion retains series amp/IR path and all amp/cab scenes.',
+);

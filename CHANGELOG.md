@@ -1,3 +1,7 @@
+## 28 September 2026 — Drive-chain diagnostics (source only)
+
+Extended offline capture-chain comparison to include a stock or NAM pedal before the amp/IR. Added stock-drive buffer-invariance diagnostics and routing regression tests. Six stock drives and three local Fortin TS-9 captures preserve the complete amp/cab path in constructed tests; capture inference matches generic NAM. The reported live sound remains under investigation pending the affected patch and gain settings. No playback DSP, model weights or release files changed. See docs/CAPTURE-FIDELITY.md.
+
 ## 28 September 2026 — Alpha 23 capture fidelity and output headroom
 
 Removed unintended ±8 floating-point clipping between devices, preserving hot capture waveforms until downstream attenuation. Intentional drive algorithms and final output protection remain. Added held pre-ceiling peak measurement and a React overload action that reduces only the saved master output. Unloaded cabinet blocks are labelled cuts-only, and capture editors distinguish head-only from amp+cab metadata.

@@ -1,3 +1,9 @@
+## 28 September 2026 — Drive-before-amp investigation, not resolved
+
+User reports stock Scream Drive and downloaded Tube Screamer sound wrong before an amp even at low gain. Scream Drive is actually Guitarix Screaming Bird. Local Fortin TS9 models 1/2/3 have no input/output dBu metadata. All three match generic NAM within 2.44e-7; all six stock drives and three TS9 captures followed by Hendrix 1959JMH + G12M IR match direct sequential processing exactly at 32/64/128. Stock drives are block-invariant at 44.1/48/96 kHz. New CLI audit supports stock keys or a same-folder pedal .nam filename; see docs/CAPTURE-FIDELITY.md.
+
+No playback changes or new release made: do not present passing synthetic tests as a fix. User says first selected TS9 model and untouched default controls; library order confirms TS9_1. Asked user to Export the affected patch as Desktop/drive-test.json and confirm when saved. Need that actual patch to distinguish custom routing, gain staging and captured settings. Explained Input trim is not input clipping or a recreation of a captured pedal's physical Drive knob; default is 0 dB unity. Existing Alpha23 remains the released app. Required project checks, native formatting, desktop build and full offline self-test pass. Mission Control unavailable; local handover retained.
+
 ## 28 September 2026 — Alpha 23 capture fidelity and output headroom
 
 Removed unintended ±8 floating-point clipping between devices, preserving hot capture waveforms until downstream attenuation. Intentional drive algorithms and final output protection remain. Added held pre-ceiling peak measurement and a React overload action that reduces only the saved master output. Unloaded cabinet blocks are labelled cuts-only, and capture editors distinguish head-only from amp+cab metadata.

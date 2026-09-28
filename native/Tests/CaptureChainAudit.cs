@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NAudio.Dsp;
+using System.Runtime.InteropServices;
+using System.Web.Script.Serialization;
 
 namespace GuitarSuite
 {
-    // Developer-only offline comparison of a complete NAM -> IR graph against
-    // separate NAM/IR calls and explicit cab cuts. Never opens an audio device.
+    // Developer-only comparison of optional pedal -> NAM -> IR graph processing
+    // against separate processor calls and explicit cuts. Never opens audio hardware.
     static class CaptureChainAudit
     {
-        public static int Run(string model, string cabinet)
+        sealed class EffectEntry
+        {
+            public string key;
+            public object[][] @params;
+        }
+        public static int Run(string model, string cabinet, string drive = null)
         {
             var lines = new List<string>();
             string folder = Path.GetDirectoryName(model);
+            bool capturedPedal =
+                drive != null && drive.EndsWith(".nam", StringComparison.OrdinalIgnoreCase);
             try
             {
                 if (folder != Path.GetDirectoryName(cabinet))
@@ -37,9 +46,56 @@ namespace GuitarSuite
                                 })
                                 .ToArray()
                     };
-                    IntPtr amp = IntPtr.Zero, cab = IntPtr.Zero;
+                    double[] pedalValues = null;
+                    if (drive != null)
+                    {
+                        if (capturedPedal)
+                        {
+                            if (!DeviceLibrary.SafeAsset(drive))
+                                throw new Exception(
+                                    "Pass a pedal filename in the same library folder.");
+                            pedalValues = new[] { 0.0, 0.0 };
+                        }
+                        else
+                        {
+                            var entry = new JavaScriptSerializer()
+                                            .Deserialize<EffectEntry[]>(
+                                                Marshal.PtrToStringAnsi(Effects.fx_catalogue()))
+                                            .First(e => e.key == drive);
+                            // Minimum drive tests the reported case. Preserve the circuit's normal
+                            // level/tone settings; this is not an automatic loudness compensation.
+                            pedalValues =
+                                entry.@params
+                                    .Select(p => Convert.ToDouble((string)p[0] == "Drive" ||
+                                                                          (string)p[0] == "Fuzz"
+                                                                      ? p[1]
+                                                                      : p[3]))
+                                    .ToArray();
+                        }
+                        patch.blocks =
+                            (new[] { new Block { id = "d",
+                                                 key = capturedPedal ? "nampedal" : "fx-" + drive,
+                                                 assetId = capturedPedal ? drive : null } })
+                                .Concat(patch.blocks)
+                                .ToArray();
+                        patch.connections = new[] { new[] { "input", "d" }, new[] { "d", "a" },
+                                                    new[] { "a", "c" }, new[] { "c", "output" } };
+                        foreach (var scene in patch.scenes)
+                            scene["d"] = new DeviceState { on = true, values = pedalValues };
+                    }
+                    IntPtr amp = IntPtr.Zero, cab = IntPtr.Zero, pedal = IntPtr.Zero;
                     try
                     {
+                        if (drive != null)
+                        {
+                            pedal = capturedPedal
+                                        ? Nam.gs_load(Path.Combine(folder, drive), 48000, frames)
+                                        : Effects.fx_load(drive, 48000);
+                            if (pedal == IntPtr.Zero ||
+                                (!capturedPedal &&
+                                 Effects.fx_set(pedal, pedalValues, pedalValues.Length) == 0))
+                                throw new Exception("Audit drive could not load.");
+                        }
                         amp = Nam.gs_load(model, 48000, frames);
                         cab = Nam.gs_load(cabinet, 48000, frames);
                         if (amp == IntPtr.Zero || cab == IntPtr.Zero)
@@ -50,6 +106,8 @@ namespace GuitarSuite
                             var raw = new float[frames];
                             var l = new float[frames];
                             var r = new float[frames];
+                            var driven = new float[frames];
+                            var drivenRight = new float[frames];
                             var hpL = BiQuadFilter.HighPassFilter(48000, 80, .707f);
                             var hpR = BiQuadFilter.HighPassFilter(48000, 80, .707f);
                             var lpL = BiQuadFilter.LowPassFilter(48000, 8000, .707f);
@@ -67,7 +125,14 @@ namespace GuitarSuite
                                                                Math.Sin(2 * Math.PI * 164.81 * t)))
                                                     : 0;
                                 }
-                                if (Nam.gs_process(amp, source, raw, frames) == 0 ||
+                                Array.Copy(source, driven, frames);
+                                Array.Copy(source, drivenRight, frames);
+                                if (pedal != IntPtr.Zero &&
+                                    (capturedPedal ? Nam.gs_process(pedal, source, driven, frames)
+                                                   : Effects.fx_process(pedal, driven, drivenRight,
+                                                                        frames)) == 0)
+                                    throw new Exception("Reference drive returned invalid audio.");
+                                if (Nam.gs_process(amp, driven, raw, frames) == 0 ||
                                     Nam.gs_process_stereo(cab, raw, l, r, frames) == 0)
                                     throw new Exception("Reference chain returned invalid audio.");
                                 var actual = graph.Run(source, frames);
@@ -94,6 +159,13 @@ namespace GuitarSuite
                     }
                     finally
                     {
+                        if (pedal != IntPtr.Zero)
+                        {
+                            if (capturedPedal)
+                                Nam.gs_free(pedal);
+                            else
+                                Effects.fx_free(pedal);
+                        }
                         if (amp != IntPtr.Zero)
                             Nam.gs_free(amp);
                         if (cab != IntPtr.Zero)
@@ -107,9 +179,10 @@ namespace GuitarSuite
             {
                 lines.Add("FAIL: " + e);
             }
-            File.WriteAllLines(
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "capture-chain-audit.txt"),
-                lines);
+            File.WriteAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                                            drive == null ? "capture-chain-audit.txt"
+                                                          : "drive-chain-" + drive + "-audit.txt"),
+                               lines);
             return lines.Any(s => s.StartsWith("FAIL")) ? 1 : 0;
         }
     }

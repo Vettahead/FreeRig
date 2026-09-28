@@ -38,3 +38,28 @@ Reference behaviour: [NAM plugin input/output gain implementation](https://githu
 ## Limits
 
 Offline synthetic signals and browser fixtures do not establish live ASIO timing, the current hardware gain, monitor behaviour or subjective tone. The user's exact live harshness remains unconfirmed until the same patch is played with measured headroom. These changes correct a demonstrated internal clipping defect and make final overload observable without changing NAM's processing quality.
+
+## Drive-before-amp investigation (28 September 2026)
+
+The subsequent report concerns stock Scream Drive and a saved Tube Screamer capture. Scream Drive uses Guitarix's **Screaming Bird treble booster**, not a Tube Screamer. The downloaded pack is **Fortin Modded TS-9 Tube Screamer**, with `Fortin_TS9_1`, `_2` and `_3` models. None contains `input_level_dbu` or `output_level_dbu`; FreeRig therefore applies no inferred calibration. The model metadata's `gain` and `loudness` fields are not physical calibration references.
+
+The editor's **Input trim** adjusts signal level before inference. It does not recreate the captured pedal's physical Drive knob. Lowering trim cannot select a different captured setting; that requires selecting another saved model. Pedal Output controls how hard the following amp is driven, while master output controls listening level after the chain.
+
+Developer diagnostics added (no playback DSP changes):
+
+```powershell
+python scripts/audit-drives.py
+native/dist/FreeRig.exe --audit-drive-chain C:/models/amp.nam C:/models/cab.wav GXScream
+native/dist/FreeRig.exe --audit-drive-chain C:/models/amp.nam C:/models/cab.wav pedal.nam
+```
+
+For a captured pedal, supply its filename in the same directory as the amp/IR. Reports are written beside the executable as `drive-chain-<key-or-filename>-audit.txt`. The stock-drive script uses the existing developer NumPy dependency; it checks minimum drive, stereo equality, finite output, block invariance and reports DC/silence levels without imposing a subjective tone target.
+
+Results:
+
+- All six Guitarix drives produced exactly identical samples at 32/64/128 frames at each of 44.1/48/96 kHz. This does not compare against recordings of hardware circuits.
+- All three TS-9 captures matched the separate generic NAM engine at 48 kHz, 32/64/128 frames. Worst absolute error was 2.44e-7; in-place processing was identical.
+- Each of the six stock drives and three captured pedals, followed by the Hendrix 1959JMH NAM and Marshall G12M/M201 IR, matched separate sequential processing exactly at 32/64/128 frames. The amp and IR were not skipped in these constructed series patches.
+- Added routing regression coverage: inserting a stock or captured drive preserves the amp/IR assets, their scene settings, and the series path with no pedal-to-output bypass branch.
+
+The user's actual patch, gain settings and live playing have not been reproduced. No engine fix is claimed from these passing diagnostics, and no calibration, tone compensation or model weights were changed. The next step is the affected saved patch and its current pedal/amp trims, rather than guessing a new input attenuation.

@@ -14,6 +14,8 @@ Audio setup now offers ASIO or Windows audio (WASAPI shared input). Select a rec
 
 Alpha 23 preserves floating-point headroom between devices and holds output-overload readings. If **Output clipped** appears, **Lower master output** reduces listening level without changing capture drive. See [the capture audit](docs/CAPTURE-FIDELITY.md).
 
+That guide also documents the drive-before-amp investigation and offline comparisons. A captured pedal's **Input trim** changes its input level, not its original physical Drive setting.
+
 ## Play along
 
 Use **Play along** in the toolbar to mix another app into your output, with its own stereo level and mute. Route the app to a separate playback device first. See [the setup guide](docs/PLAY-ALONG.md).

@@ -18,6 +18,8 @@ namespace GuitarSuite
         {
             if (args.Length == 3 && args[0] == "--audit-chain")
                 return CaptureChainAudit.Run(args[1], args[2]);
+            if (args.Length == 4 && args[0] == "--audit-drive-chain")
+                return CaptureChainAudit.Run(args[1], args[2], args[3]);
             if (args.Length > 0 && args[0] == "--tone-preflight")
             {
                 try
