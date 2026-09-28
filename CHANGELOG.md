@@ -1,3 +1,9 @@
+## 28 September 2026 — Alpha 22 play-along input
+
+Added a React Play along toolbar dialog and independent stereo WASAPI loopback input. Backing volume/mute/meter sit after guitar effects and before the global master/ceiling. Two bounded SPSC queues isolate capture and worker resampling from the guitar callback. Source choices persist, connection does not; known output feedback routes are blocked and direct ASIO requires separate-device confirmation. Stopping guitar disconnects backing. No new dependencies or NAM/effects DLL changes.
+
+Offline tests pass across 44.1/48/96 kHz and 32/64/128/4096-frame blocks, including independent mute, stereo summing, output protection, empty-source guitar equivalence, concurrent FIFO ordering and nine 30-second clock-drift simulations. Browser fixture checks cover connection, levels, mute, persistence, routing protection and stop/restart. These do not establish real-device loopback compatibility or live listening quality. See docs/PLAY-ALONG.md. No automatic capture, disk recording or audio upload.
+
 ## Alpha 21 — broader audio compatibility (28 September 2026)
 
 - Added WASAPI shared input with channel selection, float format negotiation and bounded preallocated processing blocks using the existing NAudio dependency.

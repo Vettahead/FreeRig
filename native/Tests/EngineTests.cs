@@ -51,6 +51,7 @@ namespace GuitarSuite
                 Check(Math.Abs(trimInput[0] - .1) < .00001, "Input trim reset wrong");
                 lines.Add("PASS: independent input trim, calibrated gain, 10 ms smoothing and " +
                           "restart level.");
+                PlayAlongTests.Run(lines);
                 WindowsInputTests.Run(lines);
                 PerformanceTests.Run(lines);
                 LiveSwitchTests(lines);

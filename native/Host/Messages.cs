@@ -22,6 +22,11 @@ namespace GuitarSuite
             {
                 var message = json.Deserialize<Dictionary<string, object>>(e.WebMessageAsJson);
                 string type = (string)message["type"];
+                if (type.StartsWith("playAlong", StringComparison.Ordinal))
+                {
+                    HandlePlayAlong(type, message);
+                    return;
+                }
                 if (type.StartsWith("tone", StringComparison.Ordinal))
                 {
                     await HandleTone(message);

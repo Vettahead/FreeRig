@@ -567,3 +567,63 @@ textarea {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.play-along label {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+.play-along select {
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+}
+.play-along .backing-confirm {
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+}
+.play-along .backing-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+.play-along meter {
+  flex: 1;
+  min-width: 100px;
+}
+.play-along p,
+.play-along details {
+  line-height: 1.5;
+}
+.play-along button:disabled {
+  opacity: 0.45;
+}
+.play-along-host {
+  display: contents;
+}
+.play-along input[type='range'] {
+  width: 100%;
+}
+.play-along ol {
+  font-size: 13px;
+}
+.play-along li {
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.play-along .backing-confirm input {
+  width: 18px;
+  flex: 0 0 18px;
+}
+.play-along .backing-guide {
+  padding: 12px;
+  background: #ffffff06;
+  border-radius: 8px;
+}
+.play-along summary {
+  cursor: pointer;
+}

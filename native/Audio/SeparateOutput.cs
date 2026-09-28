@@ -35,6 +35,7 @@ namespace GuitarSuite
         readonly object gate = new object();
         readonly float[] ring, output;
         readonly int rate, capacity, baseTarget;
+        readonly bool limitOutput;
         int head, count;
         bool primed;
         double correction;
@@ -48,9 +49,10 @@ namespace GuitarSuite
             }
         }
         public WaveFormat WaveFormat { get; private set; }
-        public ClockedOutput(int rate, int targetMs)
+        public ClockedOutput(int rate, int targetMs, bool limitOutput = true)
         {
             this.rate = rate;
+            this.limitOutput = limitOutput;
             capacity = rate / 2;
             ring = new float[capacity * 2];
             output = new float[rate * 2];
@@ -75,6 +77,20 @@ namespace GuitarSuite
                     Buffer.BlockCopy(bytes, first * 8, ring, 0, (frames - first) * 8);
                 count += frames;
             }
+        }
+        // Only the resampling consumer may call this. Loopback sources can stop
+        // delivering packets while paused; discard residual pre-pause samples.
+        public void DiscardPending()
+        {
+            lock (gate)
+            {
+                head = 0;
+                count = 0;
+            }
+            primed = false;
+            correction = 0;
+            fade = 0;
+            resampler.Reset();
         }
         public int Read(byte[] bytes, int offset, int byteCount)
         {
@@ -125,7 +141,13 @@ namespace GuitarSuite
             {
                 fade = Math.Min(1, fade + 1f / (rate * .005f));
                 for (int c = 0; c < 2; c++)
-                    output[i * 2 + c] = Math.Max(-.95f, Math.Min(.95f, output[i * 2 + c] * fade));
+                {
+                    float value = output[i * 2 + c] * fade;
+                    // Backing audio is attenuated and protected later by LiveProvider.
+                    // Preserve its peaks here; the separate final output keeps its ceiling.
+                    output[i * 2 + c] =
+                        limitOutput ? Math.Max(-.95f, Math.Min(.95f, value)) : value;
+                }
             }
             Buffer.BlockCopy(output, 0, bytes, offset, byteCount);
             return byteCount;

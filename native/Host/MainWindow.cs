@@ -27,7 +27,7 @@ namespace GuitarSuite
         readonly Timer timer = new Timer { Interval = 100 };
         public MainWindow()
         {
-            Text = "FreeRig — Desktop Alpha 21";
+            Text = "FreeRig — Desktop Alpha 22";
             Width = 1280;
             Height = 850;
             MinimumSize = new System.Drawing.Size(850, 650);
@@ -77,6 +77,7 @@ namespace GuitarSuite
             };
             timer.Tick += delegate
             {
+                Send(audio.PlayAlongStatus());
                 if (audio.OutputError != null)
                     audio.Error = audio.OutputError;
                 if (audio.Error != null)

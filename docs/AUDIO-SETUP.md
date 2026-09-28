@@ -1,6 +1,6 @@
 # Audio setup
 
-Open Alpha 21 and choose **Audio setup**. Audio starts only after **Start audio**. Stop before changing devices, channels, sample rate or driver settings. Input trim and master output remain on the routing workspace.
+Open Alpha 22 and choose **Audio setup**. Audio starts only after **Start audio**. Stop before changing devices, channels, sample rate or driver settings. Input trim and master output remain on the routing workspace.
 
 ## Choose a route
 
@@ -24,10 +24,8 @@ The offline suite tests selected-channel isolation for 1/2/8-channel float packe
 
 Browser testing checks ASIO discovery, Windows selection, explicit start/stop, locked settings while running, remembered choices, missing endpoints, refresh and dismissal. Real WASAPI, manufacturer ASIO and FlexASIO playing tests on several interfaces are still needed before claiming broad live-use qualification.
 
-## Proposed follow-up: play-along input
+## Play along
 
-Mix a separately captured stereo backing source after the guitar effects, with its own gain, mute and meter, before the final output ceiling. Keep buffering/resampling off the guitar callback's critical path and do not make guitar output wait for backing audio. Correct clock drift and supply silence when the backing source pauses. Prevent selecting FreeRig's final output as its own loopback source.
+Alpha 22 includes stereo Windows loopback capture. Open **Play along** in the toolbar after starting guitar audio. See [Play-along setup](PLAY-ALONG.md) for routing, separate source selection and limitations.
 
-WASAPI endpoint loopback requires a shared-mode source; the final guitar output may independently use ASIO or exclusive WASAPI. Muting a Windows source can silence its capture on some systems, so do not promise a muted-speaker workaround. Protected content and driver behaviour may limit capture. See [Microsoft loopback recording](https://learn.microsoft.com/en-us/windows/win32/coreaudio/loopback-recording) and [NAudio's loopback guide](https://github.com/naudio/NAudio/blob/main/Docs/WasapiLoopbackCapture.md).
-
-This is a design proposal, not implemented in Alpha 21. A hardware version could prioritise USB audio-in and optionally offer Bluetooth for backing tracks; live guitar monitoring should remain local. PipeWire alone is not a guarantee of low latency: the device graph, scheduling and hardware still require measurement.
+A hardware version could prioritise USB audio-in and optionally offer Bluetooth for backing tracks; this remains future work. Live guitar monitoring should remain local. PipeWire alone does not guarantee low latency; scheduling and hardware still require measurement.

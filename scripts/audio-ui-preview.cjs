@@ -7,7 +7,8 @@ const root = path.resolve(__dirname, '../prototype');
 const fixture = `<script>
 (() => {
   const listeners = new Set();
-  let connected = true;
+  let connected = true, audioRunning = false, backingRunning = false, backingMuted = false, outputDevice = '', sessionId = 0;
+  const backingStatus = () => reply({type:'playAlongStatus',running:backingRunning,audioRunning,sourceName:'Test music bus',outputDevice,peak:backingRunning && !backingMuted ? .25 : 0,sessionId});
   const reply = data => setTimeout(() => listeners.forEach(fn => fn({data})), 0);
   window.chrome = {webview: {
     addEventListener: (_, fn) => listeners.add(fn),
@@ -16,10 +17,17 @@ const fixture = `<script>
       if (m.type === 'ready') reply({type:'ready',drivers:['Test ASIO','FlexASIO']});
       if (m.type === 'audioDevices') reply({type:'audioDevices',drivers:['Test ASIO','FlexASIO'],
         inputs:connected?[{id:'test-input',name:'Test USB input',channels:2}]:[],
-        outputs:connected?[{id:'test-output',name:'Test speakers'}]:[]});
+        outputs:connected?[{id:'test-output',name:'Test speakers'},{id:'music-bus',name:'Test music bus'}]:[]});
       if (m.type === 'driver') reply({type:'driver',driver:m.driver,inputs:['Instrument 1','Instrument 2'],outputs:['Left','Right']});
-      if (m.type === 'start' || m.type === 'startWindows') reply({type:'status',running:true,message:'TEST ONLY — '+m.type+' — '+m.rate+' Hz'});
-      if (m.type === 'stop') reply({type:'status',running:false,message:'Stopped (test fixture)'});
+      if (m.type === 'start' || m.type === 'startWindows') { audioRunning=true; outputDevice=m.outputDevice || ''; sessionId++; reply({type:'status',running:true,message:'TEST ONLY — '+m.type+' — '+m.rate+' Hz'}); backingStatus(); }
+      if (m.type === 'stop') { audioRunning=false; backingRunning=false; sessionId++; reply({type:'status',running:false,message:'Stopped (test fixture)'}); backingStatus(); }
+      if (m.type === 'playAlongDevices') { reply({type:'playAlongDevices',devices:connected?[{id:'test-output',name:'Test speakers'},{id:'music-bus',name:'Test music bus'}]:[]}); backingStatus(); }
+      if (m.type === 'playAlongStart') {
+        if (!audioRunning || m.device === outputDevice || (!outputDevice && !m.confirmedSeparate)) reply({type:'playAlongError',message:'Test: unsafe or stopped route rejected'});
+        else { backingRunning=true; backingMuted=m.muted; backingStatus(); }
+      }
+      if (m.type === 'playAlongStop') { backingRunning=false; backingStatus(); }
+      if (m.type === 'playAlongLevel') { backingMuted=m.muted; backingStatus(); }
     }
   }};
   addEventListener('DOMContentLoaded', () => {

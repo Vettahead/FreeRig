@@ -9,7 +9,7 @@ using NAudio.Dsp;
 namespace GuitarSuite
 {
     // Owns the selected audio session. Graph edits must not reset the selected audio driver.
-    sealed class AudioEngine : IDisposable
+    sealed partial class AudioEngine : IDisposable
     {
         float masterDb = -12;
         readonly InputTrim inputTrim = new InputTrim();
@@ -108,6 +108,7 @@ namespace GuitarSuite
                           bool exclusive = false)
         {
             Stop();
+            playbackEndpoint = outputDevice;
             sampleRate = rate;
             inputTrim.Reset();
             try
@@ -169,6 +170,7 @@ namespace GuitarSuite
                 throw new Exception("Choose a supported output buffer.");
             try
             {
+                playbackEndpoint = outputDevice;
                 sampleRate = rate;
                 inputTrim.Reset();
                 tuner = Effects.tuner_load(rate);
@@ -286,6 +288,9 @@ namespace GuitarSuite
         }
         public void Stop()
         {
+            StopPlayAlong();
+            playbackGeneration++;
+            playbackEndpoint = "";
             if (windows != null)
             {
                 windows.Dispose();

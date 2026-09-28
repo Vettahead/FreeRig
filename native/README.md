@@ -1,3 +1,7 @@
+## Alpha 22 — play-along input
+
+Run `releases/FreeRig-alpha-22/FreeRig.exe`. Start guitar audio, then open **Play along** to connect a separate Windows playback source. See [Play-along setup](../docs/PLAY-ALONG.md). Guitar capture/processing remains independent of backing capture and resampling. NAM/effects DLLs are unchanged from Alpha 21; the managed host and React interface are rebuilt.
+
 ## Alpha 21 — Windows input and React audio setup
 
 Run `releases/FreeRig-alpha-21/FreeRig.exe`. Audio setup supports manufacturer/universal ASIO drivers or Windows shared-mode input with a selected Windows output. See [Audio setup](../docs/AUDIO-SETUP.md). `FreeRig.exe --inputs` enumerates active Windows capture devices without starting recording. The NAM/effects DLLs are unchanged from Alpha 20; the managed host and UI are rebuilt.

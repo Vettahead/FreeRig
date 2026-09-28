@@ -1,3 +1,4 @@
+import { PlayAlong } from './audio/PlayAlong';
 import { AudioSetup } from './audio/AudioSetup';
 import { SetupWizard } from './SetupWizard';
 import { createRoot, type Root } from 'react-dom/client';
@@ -44,6 +45,10 @@ window.FreeRigReact = {
     flushSync(() => editorRoot!.render(props ? <Editor key={props.block.id} {...props} /> : null));
   },
   connect(actions) {
+    const musicHost = document.createElement('span');
+    musicHost.className = 'play-along-host';
+    document.getElementById('settings')!.before(musicHost);
+    createRoot(musicHost).render(<PlayAlong />);
     const host = document.createElement('div');
     host.id = 'device-menu-root';
     document.body.append(host);
