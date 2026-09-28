@@ -1,3 +1,7 @@
+## 28 September 2026 — Tags, capture controls and strip bypass
+
+Added modular React patch/device tags, explicit optional propagation, collection search and portable bank metadata. Added explicit NAM pedal level comparison, combined-cab bypass guidance and editor-strip up/down bypass gestures. No audio arithmetic changes. All 13 JavaScript suites and browser interactions pass; see docs/TAGS-AND-CAPTURE-LEVELS.md. Next: broad effect research and implementation requested by user, targeting roughly 200 distinct processors across all major families. Not yet packaged in a new release.
+
 ## 28 September 2026 — User's JCM Patch inspected
 
 User supplied Desktop/FreeRig patch.json. Active Crunch scene has Fortin_TS9_1 at 0/0 dB, Jcm800 at +5.1 input/+6 output, Floaty Delay on, V30 IR at −3 dB and Dragon Room on. Jcm800 is an amp+cab capture: extra cab double-filters. Routing is a correct series chain. Synthetic saved-patch render measures TS9 pre-amp RMS drop 12.89 dB, post-amp drop 5.43 dB; extra IR raises RMS 21 dB (including its −3 dB trim). Exact graph/sequential parity through cabinet at 32/64/128; Dragon Room's random modulation prevents identical independent wet tails. No engine bypass bug demonstrated.

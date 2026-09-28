@@ -8,6 +8,10 @@ import { Board } from './Board';
 import { Editor } from './Editor';
 import { ContextMenu } from './ContextMenu';
 import type { EditorProps } from './types';
+import { connectCommands } from './commands';
+import { deviceTags, editTags } from './tags/store';
+import { TagEditor } from './tags/TagEditor';
+import { OverviewBypassGesture } from './OverviewBypassGesture';
 let boardRoot: Root | null = null,
   editorRoot: Root | null = null;
 const chain = document.getElementById('chain')!,
@@ -16,7 +20,13 @@ const chain = document.getElementById('chain')!,
 // gesture handlers inspect the rendered DOM immediately after render() returns.
 let audioRoot: Root | null = null;
 let audioSession = 0;
+let tagsRoot: Root | null = null;
 window.FreeRigReact = {
+  deviceTags,
+  editTags,
+  updated(rig) {
+    tagsRoot?.render(<TagEditor rig={rig} />);
+  },
   audioSetup() {
     if (!audioRoot) {
       const host = document.createElement('div');
@@ -46,6 +56,12 @@ window.FreeRigReact = {
     flushSync(() => editorRoot!.render(props ? <Editor key={props.block.id} {...props} /> : null));
   },
   connect(actions) {
+    connectCommands(actions);
+    const tagsHost = document.createElement('div');
+    tagsHost.className = 'patch-tags-host';
+    document.querySelector('.rig-sub')!.after(tagsHost);
+    tagsRoot = createRoot(tagsHost);
+    window.FreeRigReact.updated(actions.snapshot());
     const musicHost = document.createElement('span');
     musicHost.className = 'play-along-host';
     document.getElementById('settings')!.before(musicHost);
@@ -60,6 +76,7 @@ window.FreeRigReact = {
       <>
         <ContextMenu actions={actions} />
         <SetupWizard actions={actions} />
+        <OverviewBypassGesture actions={actions} />
       </>,
     );
   },

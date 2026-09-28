@@ -41,6 +41,19 @@ const fixture = `<script>
     overload.style = 'position:fixed;bottom:0;left:0;z-index:99999';
     overload.onclick = () => reply({type:'meter',beforeCeiling:2,peak:.2,output:.95,clipped:true});
     document.body.append(overload);
+    const captures = document.createElement('button');
+    captures.textContent = 'TEST: capture levels';
+    captures.style = 'position:fixed;bottom:0;left:180px;z-index:99999';
+    captures.onclick = () => {
+      const rig = window.PatchRig.createStarter();
+      rig.blocks.find(b => b.id === 'b1').key = 'nampedal';
+      Object.assign(rig.blocks.find(b => b.id === 'b1'), {assetId:'fixture-pedal', assetName:'Test captured drive'});
+      Object.assign(rig.blocks.find(b => b.id === 'b2'), {assetId:'fixture-amp', assetName:'Test combined capture', tone3000:{gear:'amp-cab'}});
+      Object.assign(rig.blocks.find(b => b.id === 'b3'), {assetId:'fixture-ir', assetName:'Test IR'});
+      rig.scenes.forEach(scene => {scene.b1.values=[0,0]; scene.b1.on=true; scene.b3.on=true;});
+      reply({type:'patch', value:rig});
+    };
+    document.body.append(captures);
   });
 })();
 </script>`;

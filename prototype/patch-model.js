@@ -108,13 +108,27 @@
     return s;
   }
   function valid(s) {
+    const validTags = (tags) =>
+      tags === undefined ||
+      (Array.isArray(tags) &&
+        tags.length <= 20 &&
+        tags.every(
+          (t) =>
+            typeof t === 'string' &&
+            t.trim().length > 0 &&
+            t.length <= 32 &&
+            !/[\u0000-\u001f]/.test(t),
+        ) &&
+        new Set(tags.map((t) => t.trim().toLowerCase())).size === tags.length);
     if (
       !s ||
       s.version !== 3 ||
       !Array.isArray(s.junctions) ||
       s.junctions.length > 3 ||
       !Array.isArray(s.blocks) ||
-      s.blocks.length > 24
+      s.blocks.length > 24 ||
+      !validTags(s.tags) ||
+      !s.blocks.every((b) => b && validTags(b.tags))
     )
       return false;
     // Reuse the established parameter/range validation, without legacy lanes.

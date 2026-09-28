@@ -1,3 +1,7 @@
+## 28 September 2026 — Tags, capture controls and strip bypass
+
+Added modular React patch/device tags, explicit optional propagation, collection search and portable bank metadata. Added explicit NAM pedal level comparison, combined-cab bypass guidance and editor-strip up/down bypass gestures. No audio arithmetic changes. All 13 JavaScript suites and browser interactions pass; see docs/TAGS-AND-CAPTURE-LEVELS.md. Next: broad effect research and implementation requested by user, targeting roughly 200 distinct processors across all major families. Not yet packaged in a new release.
+
 ## 28 September 2026 — Exported patch gain-stage audit (source only)
 
 Added a developer-only saved serial patch audit with per-stage peaks/RMS and sequential-routing checks. The supplied JCM Patch contains a combined amp+cab capture followed by another IR, with +5.1/+6 dB amp input/output in Crunch. Synthetic rendering reproduces a 12.89 dB TS9 pre-amp RMS drop and confirms the amp/cab path is retained. Prepared a separate four-scene listening comparison patch; original user files and playback DSP are unchanged. See docs/CAPTURE-FIDELITY.md for evidence and limits.

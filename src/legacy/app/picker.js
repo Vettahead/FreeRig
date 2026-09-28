@@ -37,7 +37,17 @@ function renderDevicePicker() {
   const items = catalogue.filter(
     (d) =>
       (category === 'All' || libraryCategory(d) === category) &&
-      (d.name + ' ' + d.detail + ' ' + libraryCategory(d)).toLowerCase().includes(query),
+      (
+        d.name +
+        ' ' +
+        d.detail +
+        ' ' +
+        libraryCategory(d) +
+        ' ' +
+        (window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' ')
+      )
+        .toLowerCase()
+        .includes(query),
   );
   $('#picker-results').innerHTML =
     DeviceShelf.pickerCards(category, query) +

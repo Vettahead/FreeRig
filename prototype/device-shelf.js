@@ -21,6 +21,8 @@ window.DeviceShelf = (() => {
     };
   }
   const category = (d) => (d.key === 'cab' ? 'Cabs' : d.key === 'nampedal' ? 'Drive' : 'Amps');
+  const tags = (d) =>
+    window.FreeRigReact?.deviceTags({ key: d.key, tone3000: { id: d.toneId } }) || [];
   function art(d) {
     return GearLooks.art({
       key: d.key,
@@ -32,7 +34,15 @@ window.DeviceShelf = (() => {
     const list = devices.filter(
       (d) =>
         (filter === 'All' || filter === category(d)) &&
-        (d.tone.title + ' ' + (d.tone.user?.username || '') + ' ' + category(d))
+        (
+          d.tone.title +
+          ' ' +
+          (d.tone.user?.username || '') +
+          ' ' +
+          category(d) +
+          ' ' +
+          tags(d).join(' ')
+        )
           .toLowerCase()
           .includes(query),
     );
@@ -53,6 +63,8 @@ window.DeviceShelf = (() => {
                 d.models.filter((m) => m.available).length +
                 ' saved models · @' +
                 esc(d.tone.user?.username || 'creator') +
+                '</small><small>' +
+                esc(tags(d).join(' · ')) +
                 '</small></span><span class="plus">＋</span></button>',
             )
             .join('')
@@ -63,7 +75,15 @@ window.DeviceShelf = (() => {
       .filter(
         (d) =>
           (filter === 'All' || filter === category(d)) &&
-          (d.tone.title + ' ' + category(d) + ' ' + (d.tone.user?.username || ''))
+          (
+            d.tone.title +
+            ' ' +
+            category(d) +
+            ' ' +
+            (d.tone.user?.username || '') +
+            ' ' +
+            tags(d).join(' ')
+          )
             .toLowerCase()
             .includes(query),
       )
@@ -127,6 +147,7 @@ window.DeviceShelf = (() => {
       SlotBoard.add(state, b, slot);
     }
     attach(b, d, m);
+    b.tags = [...tags(d)];
     if (d.key === 'amp')
       state.scenes.forEach((scene) => {
         scene[b.id].values[1] = scene[b.id].values[2] = scene[b.id].values[3] = 0;

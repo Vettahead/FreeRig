@@ -24,6 +24,7 @@ function addDevice(key, slot = chosenSlot, openEditor = true) {
   }
   checkpoint();
   const block = { id: 'b' + crypto.randomUUID(), key, x: 0, y: 0 };
+  block.tags = window.FreeRigReact?.deviceTags(block) || [];
   SlotBoard.add(state, block, slot);
   selected = openEditor ? block.id : null;
   chosenSlot = null;
@@ -58,6 +59,7 @@ function replaceDevice(id, key, openEditor = true) {
   }
   checkpoint();
   SlotBoard.replace(state, id, key);
+  b.tags = window.FreeRigReact?.deviceTags({ key }) || [];
   selected = openEditor ? id : null;
   render();
   toast('Device replaced. Cables and scene bypass states kept. Undo restores the previous sound.');

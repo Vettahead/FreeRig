@@ -16,6 +16,10 @@ Alpha 23 preserves floating-point headroom between devices and holds output-over
 
 That guide also documents the drive-before-amp investigation and offline comparisons. A captured pedal's **Input trim** changes its input level, not its original physical Drive setting.
 
+## Tags and capture controls
+
+Tag patches and devices by artist, band or style, search tags in Collection, and optionally apply a patch tag to its devices. Captured pedals offer explicit level comparison; drag devices up/down in the editor strip to bypass/enable them. See [the guide](docs/TAGS-AND-CAPTURE-LEVELS.md). These source changes are being prepared for the next packaged release.
+
 ## Play along
 
 Use **Play along** in the toolbar to mix another app into your output, with its own stereo level and mute. Route the app to a separate playback device first. See [the setup guide](docs/PLAY-ALONG.md).

@@ -12,7 +12,17 @@ function renderLibrary() {
   const items = catalogue.filter(
     (d) =>
       (filter === 'All' || libraryCategory(d) === filter) &&
-      (d.name + ' ' + d.detail + ' ' + libraryCategory(d)).toLowerCase().includes(q),
+      (
+        d.name +
+        ' ' +
+        d.detail +
+        ' ' +
+        libraryCategory(d) +
+        ' ' +
+        (window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' ')
+      )
+        .toLowerCase()
+        .includes(q),
   );
   $('#library-count').textContent = String(catalogue.length + DeviceShelf.count()).padStart(2, '0');
   $('#library-label').textContent = filter === 'All' ? 'ALL DEVICES' : filter.toUpperCase();
@@ -21,11 +31,12 @@ function renderLibrary() {
       items
         .map(
           (d) =>
-            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small></span><span class="plus">＋</span></button>`,
+            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small><small>${escapeHTML((window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' · '))}</small></span><span class="plus">＋</span></button>`,
         )
         .join('') || '<div class="empty">No matching devices. Try another search.</div>';
 }
 function render() {
+  window.FreeRigReact?.updated(state);
   $('#rig-name').value = state.name;
   $('#tempo').value = state.tempo;
   $('#tempo-status').textContent = `${state.tempo} BPM`;

@@ -657,3 +657,117 @@ textarea {
   color: #eee0cd;
   font-size: 13px;
 }
+.tag-editor > button {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.patch-tags-host {
+  margin-top: 6px;
+  max-width: 440px;
+}
+.react-editor > .tag-editor {
+  margin: 4px 18px 10px;
+}
+.tag-dialog {
+  width: min(540px, calc(100vw - 36px));
+  max-height: calc(100vh - 64px);
+  overflow: auto;
+  border: 1px solid #647063;
+  border-radius: 16px;
+  background: #202827;
+  color: #e7e9df;
+  box-shadow: 0 24px 80px #000a;
+  padding: 24px;
+}
+.tag-dialog::backdrop {
+  background: #080d10b8;
+}
+.tag-dialog header,
+.tag-dialog form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tag-dialog h2 {
+  margin: 0;
+  font-size: 21px;
+}
+.tag-dialog p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.tag-dialog label {
+  display: grid;
+  gap: 6px;
+  flex: 1;
+}
+.tag-dialog input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.tag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 16px 0;
+}
+.tag-chips button {
+  border-color: #a5ba70;
+}
+.tag-propagation,
+.capture-cab-warning {
+  border: 1px solid #8b9164;
+  border-radius: 9px;
+  padding: 12px;
+  margin: 12px 0;
+}
+.tag-propagation button {
+  margin-right: 8px;
+}
+.capture-levels {
+  margin: 0 18px 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #121b1a;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.capture-levels p {
+  margin: 5px 0 9px;
+}
+.capture-level-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+.capture-level-actions button {
+  padding: 5px 9px;
+  font-size: 12px;
+}
+.capture-cab-warning button {
+  display: block;
+  margin-top: 9px;
+}
+#device-overview [data-block] {
+  touch-action: none;
+  user-select: none;
+  cursor: ns-resize;
+}
+.bypass-gesture-hint {
+  position: fixed;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: #bed27e;
+  color: #17211e;
+  padding: 12px 20px;
+  border-radius: 24px;
+  box-shadow: 0 6px 24px #0006;
+  pointer-events: none;
+}

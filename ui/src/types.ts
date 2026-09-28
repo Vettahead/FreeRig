@@ -5,12 +5,18 @@ export interface Slot {
   block?: Block;
 }
 export interface Block {
+  tags?: string[];
   id: string;
   key: string;
   slot: Slot;
   assetId?: string;
   assetName?: string;
-  tone3000?: { title?: string; gear?: string; user?: { username?: string; avatar_url?: string } };
+  tone3000?: {
+    id?: number | string;
+    title?: string;
+    gear?: string;
+    user?: { username?: string; avatar_url?: string };
+  };
   appearance?: { style?: string; colour?: string; cabFormat?: string };
 }
 export interface Sound {
@@ -29,6 +35,8 @@ export interface Definition {
   sync?: boolean;
 }
 export interface Rig {
+  tags?: string[];
+  connections: string[][];
   blocks: Block[];
   scenes: Record<string, Sound>[];
   scene: number;
@@ -43,6 +51,10 @@ export interface EditorProps {
   note: string;
 }
 export interface Actions {
+  setTags(id: string | null, tags: string[], propagate?: string): void;
+  setParameter(id: string, index: number, value: number): void;
+  setBypass(id: string, on: boolean): void;
+  setDevicesOn(ids: string[], on: boolean): void;
   snapshot(): Rig;
   edit(id: string): void;
   bypass(id: string): void;
@@ -69,6 +81,9 @@ declare global {
     DeviceShelf: { definition(b: Block): Definition; selector(b: Block): string };
     EffectTools: { controls(b: Block): string; faceState(d: Definition, v: Sound): Sound };
     FreeRigReact: {
+      deviceTags(block: Pick<Block, 'key' | 'assetId' | 'tone3000' | 'tags'>): string[];
+      updated(rig: Rig): void;
+      editTags(rig: Rig, id: string | null, tags: string[], propagate?: string): Rig;
       board(s: Rig, selected: string | null): void;
       clearBoard(): void;
       editor(props: EditorProps | null): void;

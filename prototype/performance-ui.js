@@ -234,7 +234,11 @@ window.BankUI = (() => {
     const q = $('#patch-search').value.trim().toLocaleLowerCase();
     const rows = store.banks.flatMap((b) =>
       b.patches
-        .filter((p) => (p.rig.name + ' ' + b.name).toLocaleLowerCase().includes(q))
+        .filter((p) =>
+          (p.rig.name + ' ' + b.name + ' ' + (p.rig.tags || []).join(' '))
+            .toLocaleLowerCase()
+            .includes(q),
+        )
         .map(
           (p) =>
             '<button class="patch-card" data-bank="' +
@@ -251,7 +255,9 @@ window.BankUI = (() => {
             p.rig.blocks.length +
             ' devices · ' +
             (p.rig.showExtraScenes ? 8 : 4) +
-            ' scenes</span></button>',
+            ' scenes</span><small>' +
+            escapeHTML((p.rig.tags || []).join(' · ')) +
+            '</small></button>',
         ),
     );
     $('#patch-results').innerHTML =

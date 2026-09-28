@@ -1,6 +1,8 @@
 // Selected-device view. Legacy control islands retain import/preset handlers during migration.
 import { CreatorCredit } from './CreatorCredit';
 import { CaptureNotice } from './CaptureNotice';
+import { TagEditor } from './tags/TagEditor';
+import { CaptureLevels } from './CaptureLevels';
 
 import type { CSSProperties } from 'react';
 import type { EditorProps } from './types';
@@ -59,6 +61,8 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
       </div>
       <LegacyControls html={window.EffectTools.controls(b)} />
       <CaptureNotice block={b} />
+      <CaptureLevels rig={rig} block={b} sound={v} />
+      <TagEditor rig={rig} block={b} />
       <div className="editor-body">
         <Hardware html={face} d={d} v={faceState} />
       </div>
@@ -94,7 +98,7 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
       </details>
       <footer className="device-footer">
         <div className="control-hint">
-          Drag a knob · Shift for fine adjustment · Right-click a device for actions
+          Drag a knob · Shift for fine adjustment · Top strip: drag up to bypass, down to enable
         </div>
         {b.tone3000 && <CreatorCredit key={JSON.stringify(b.tone3000.user)} tone={b.tone3000} />}
       </footer>

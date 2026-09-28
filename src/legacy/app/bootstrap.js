@@ -28,7 +28,7 @@ NativeDesktop.boot();
 document.addEventListener('pointerdown', (e) => {
   if (
     !selected ||
-    $('#modal').open ||
+    document.querySelector('dialog[open]') ||
     e.target.closest(
       '#editor,#device-overview,#scenes,#performance-scenes,.scene-tools,[data-block],button,input,select,label,a,summary',
     )
@@ -58,6 +58,35 @@ $('#modal').addEventListener('close', () => {
 
 // Explicit command adapter: all mutations keep the existing Undo/save/native sync path.
 window.FreeRigReact?.connect({
+  setTags: (id, tags, propagate) => {
+    const next = FreeRigReact.editTags(state, id, tags, propagate);
+    checkpoint();
+    state = next;
+    render();
+    renderLibrary();
+  },
+  setParameter: (id, index, value) => {
+    const b = state.blocks.find((b) => b.id === id),
+      p = b && PatchRig.definition(b.key).params[index];
+    if (!p || !Number.isFinite(value) || value < p[1] || value > p[2]) return;
+    checkpoint();
+    state.scenes[state.scene][id].values[index] = value;
+    render();
+  },
+  setDevicesOn: (ids, on) => {
+    const devices = state.blocks.filter((b) => ids.includes(b.id) && current(b).on !== on);
+    if (!devices.length) return;
+    checkpoint();
+    devices.forEach((b) => {
+      state.scenes[state.scene][b.id].on = on;
+    });
+    render();
+    NativeDesktop.sync(state, true);
+  },
+  setBypass: (id, on) => {
+    const b = state.blocks.find((b) => b.id === id);
+    if (b && current(b).on !== on) toggle(id);
+  },
   snapshot: () => state,
   edit: (id) => {
     selected = id;

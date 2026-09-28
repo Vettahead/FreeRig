@@ -97,7 +97,17 @@ function renderLibrary() {
   const items = catalogue.filter(
     (d) =>
       (filter === 'All' || libraryCategory(d) === filter) &&
-      (d.name + ' ' + d.detail + ' ' + libraryCategory(d)).toLowerCase().includes(q),
+      (
+        d.name +
+        ' ' +
+        d.detail +
+        ' ' +
+        libraryCategory(d) +
+        ' ' +
+        (window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' ')
+      )
+        .toLowerCase()
+        .includes(q),
   );
   $('#library-count').textContent = String(catalogue.length + DeviceShelf.count()).padStart(2, '0');
   $('#library-label').textContent = filter === 'All' ? 'ALL DEVICES' : filter.toUpperCase();
@@ -106,11 +116,12 @@ function renderLibrary() {
       items
         .map(
           (d) =>
-            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small></span><span class="plus">＋</span></button>`,
+            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small><small>${escapeHTML((window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' · '))}</small></span><span class="plus">＋</span></button>`,
         )
         .join('') || '<div class="empty">No matching devices. Try another search.</div>';
 }
 function render() {
+  window.FreeRigReact?.updated(state);
   $('#rig-name').value = state.name;
   $('#tempo').value = state.tempo;
   $('#tempo-status').textContent = `${state.tempo} BPM`;
@@ -256,6 +267,7 @@ function addDevice(key, slot = chosenSlot, openEditor = true) {
   }
   checkpoint();
   const block = { id: 'b' + crypto.randomUUID(), key, x: 0, y: 0 };
+  block.tags = window.FreeRigReact?.deviceTags(block) || [];
   SlotBoard.add(state, block, slot);
   selected = openEditor ? block.id : null;
   chosenSlot = null;
@@ -290,6 +302,7 @@ function replaceDevice(id, key, openEditor = true) {
   }
   checkpoint();
   SlotBoard.replace(state, id, key);
+  b.tags = window.FreeRigReact?.deviceTags({ key }) || [];
   selected = openEditor ? id : null;
   render();
   toast('Device replaced. Cables and scene bypass states kept. Undo restores the previous sound.');
@@ -348,7 +361,17 @@ function renderDevicePicker() {
   const items = catalogue.filter(
     (d) =>
       (category === 'All' || libraryCategory(d) === category) &&
-      (d.name + ' ' + d.detail + ' ' + libraryCategory(d)).toLowerCase().includes(query),
+      (
+        d.name +
+        ' ' +
+        d.detail +
+        ' ' +
+        libraryCategory(d) +
+        ' ' +
+        (window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' ')
+      )
+        .toLowerCase()
+        .includes(query),
   );
   $('#picker-results').innerHTML =
     DeviceShelf.pickerCards(category, query) +
@@ -882,7 +905,7 @@ NativeDesktop.boot();
 document.addEventListener('pointerdown', (e) => {
   if (
     !selected ||
-    $('#modal').open ||
+    document.querySelector('dialog[open]') ||
     e.target.closest(
       '#editor,#device-overview,#scenes,#performance-scenes,.scene-tools,[data-block],button,input,select,label,a,summary',
     )
@@ -912,6 +935,35 @@ $('#modal').addEventListener('close', () => {
 
 // Explicit command adapter: all mutations keep the existing Undo/save/native sync path.
 window.FreeRigReact?.connect({
+  setTags: (id, tags, propagate) => {
+    const next = FreeRigReact.editTags(state, id, tags, propagate);
+    checkpoint();
+    state = next;
+    render();
+    renderLibrary();
+  },
+  setParameter: (id, index, value) => {
+    const b = state.blocks.find((b) => b.id === id),
+      p = b && PatchRig.definition(b.key).params[index];
+    if (!p || !Number.isFinite(value) || value < p[1] || value > p[2]) return;
+    checkpoint();
+    state.scenes[state.scene][id].values[index] = value;
+    render();
+  },
+  setDevicesOn: (ids, on) => {
+    const devices = state.blocks.filter((b) => ids.includes(b.id) && current(b).on !== on);
+    if (!devices.length) return;
+    checkpoint();
+    devices.forEach((b) => {
+      state.scenes[state.scene][b.id].on = on;
+    });
+    render();
+    NativeDesktop.sync(state, true);
+  },
+  setBypass: (id, on) => {
+    const b = state.blocks.find((b) => b.id === id);
+    if (b && current(b).on !== on) toggle(id);
+  },
   snapshot: () => state,
   edit: (id) => {
     selected = id;
