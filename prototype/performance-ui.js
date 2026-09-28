@@ -1,28 +1,287 @@
-window.BankUI=(()=>{
- const key='guitar-suite-banks-v1';let store={version:1,banks:[{id:crypto.randomUUID(),name:'My patches',patches:[]}]},bankId,patchId=null;
- try{const read=JSON.parse(localStorage.getItem(key));if(PatchBanks.validStore(read))store=read;else if(read)toast('Saved banks could not be read. Their original data is preserved.');}catch{}
- bankId=store.banks[0].id;
- try{const choice=JSON.parse(localStorage.getItem(key+'-selection'));if(store.banks.some(b=>b.id===choice?.bankId)){bankId=choice.bankId;patchId=choice.patchId;}}catch{}
- const bank=()=>store.banks.find(b=>b.id===bankId)||store.banks[0];
- function write(next){if(!PatchBanks.validStore(next))throw Error('The bank is not valid. Export the patch to keep it.');const old=localStorage.getItem(key);if(old)localStorage.setItem(key+'-backup',old);localStorage.setItem(key,JSON.stringify(next));store=next;}
- function selection(){try{localStorage.setItem(key+'-selection',JSON.stringify({bankId,patchId}));}catch{}}
- function renderBanks(){renderPatchBrowser();const b=bank();$('#bank-bar').innerHTML='<label>Bank<select id="bank-select" aria-label="Patch bank">'+store.banks.map(x=>'<option value="'+x.id+'" '+(x.id===b.id?'selected':'')+'>'+escapeHTML(x.name)+'</option>').join('')+'</select></label><button id="previous-patch" aria-label="Previous saved patch">‹</button><label>Patch<select id="patch-select" aria-label="Saved patch"><option value="">Choose a saved patch…</option>'+b.patches.map((x,i)=>'<option value="'+x.id+'" '+(x.id===patchId?'selected':'')+'>'+String(i+1).padStart(2,'0')+' · '+escapeHTML(x.rig.name)+'</option>').join('')+'</select></label><button id="next-patch" aria-label="Next saved patch">›</button><button id="save-as-patch">Save as new</button><button id="manage-banks">Banks…</button>';
-  $('#extra-scenes').textContent=state.showExtraScenes||state.scene>=4?'Hide extra scenes':'＋ 4 more scenes';$('#extra-scenes').setAttribute('aria-expanded',String(!!state.showExtraScenes||state.scene>=4));
- }
- function save(asNew=false){const next=clone(store),b=next.banks.find(b=>b.id===bankId),existing=!asNew&&b.patches.find(p=>p.id===patchId);if(existing)existing.rig=clone(state);else{if(b.patches.length>=128)throw Error('This bank is full. Create another bank.');const id=crypto.randomUUID();b.patches.push({id,rig:clone(state)});write(next);patchId=id;selection();renderBanks();return;}write(next);selection();renderBanks();}
- function recall(id){const p=bank().patches.find(p=>p.id===id);if(!p)return;try{if(dirty)localStorage.setItem('guitar-suite-recovery',JSON.stringify(state));localStorage.setItem(storageKey,JSON.stringify(p.rig));}catch{toast('Unable to preserve this patch. Export it before recalling another.');return;}checkpoint();state=SlotBoard.assign(clone(p.rig));saved=clone(state);selected=null;pendingCable=null;patchId=p.id;selection();render();NativeDesktop.sync(state,true);toast('Recalled '+state.name+'. Undo restores your previous working patch.');}
- function manage(){modal('PATCH BANKS','<h2>Your saved sounds.</h2><p>Banks hold complete patches. Scenes recall settings inside one patch. Changing patches may reset effect tails.</p><label>Bank name<input id="bank-name" maxlength="60" value="'+escapeHTML(bank().name)+'"></label><div class="transport"><button id="rename-bank">Rename</button><button id="new-bank">Create bank</button><button id="export-bank">Export bank</button></div><p>Use Import patch to import a bank file too. Model and IR files are referenced, not bundled.</p>');}
- $('#bank-bar').addEventListener('change',e=>{if(e.target.id==='bank-select'){bankId=e.target.value;patchId=null;selection();renderBanks();}if(e.target.id==='patch-select')recall(e.target.value);});
- $('#bank-bar').addEventListener('click',e=>{const id=e.target.closest('button')?.id;if(id==='manage-banks')manage();if(id==='save-as-patch'){try{save(true);localStorage.setItem(storageKey,JSON.stringify(state));saved=clone(state);mark();toast('Saved a new patch in '+bank().name+'.');}catch(error){toast(error.message);}}if(id==='next-patch'||id==='previous-patch'){const list=bank().patches;if(!list.length){toast('Save a patch into this bank first.');return;}let at=list.findIndex(p=>p.id===patchId);recall(list[(at+(id==='next-patch'?1:-1)+list.length)%list.length].id);}});
- $('#modal-content').addEventListener('click',e=>{try{if(e.target.id==='rename-bank'||e.target.id==='new-bank'){const name=$('#bank-name').value.trim();if(!name){toast('Enter a bank name.');return;}const next=clone(store);if(e.target.id==='new-bank'){const id=crypto.randomUUID();next.banks.push({id,name,patches:[]});write(next);bankId=id;patchId=null;}else{next.banks.find(b=>b.id===bankId).name=name;write(next);}selection();$('#modal').close();renderBanks();}if(e.target.id==='export-bank'){const value=PatchBanks.exportBank(bank());if(NativeDesktop.installed())NativeDesktop.exportPatch(value);else{const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='FreeRig bank.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}}}catch(error){toast(error.message);}});
- $('#extra-scenes').onclick=()=>{checkpoint();if(state.showExtraScenes||state.scene>=4){if(state.scene>=4){history.pop();toast('Choose scene 1–4 before hiding the extra scenes. Your sound has not changed.');return;}state.showExtraScenes=false;}else PatchBanks.extendScenes(state);render();};
- $('#library-toggle').onclick=()=>{const hidden=document.body.classList.toggle('library-hidden');$('#library-toggle').setAttribute('aria-expanded',String(!hidden));};
- function importBank(value){if(value?.format!=='guitar-suite-bank')return false;try{if(value.version!==1||!PatchBanks.valid(value.bank))throw Error('This bank file is invalid.');const next=clone(store),b=clone(value.bank);b.id=crypto.randomUUID();next.banks.push(b);write(next);bankId=b.id;patchId=null;selection();renderBanks();toast('Imported bank '+b.name+'. Choose a patch to recall it.');}catch(error){toast(error.message);}return true;}
+window.BankUI = (() => {
+  const key = 'guitar-suite-banks-v1';
+  let store = { version: 1, banks: [{ id: crypto.randomUUID(), name: 'My patches', patches: [] }] },
+    bankId,
+    patchId = null;
+  try {
+    const read = JSON.parse(localStorage.getItem(key));
+    if (PatchBanks.validStore(read)) store = read;
+    else if (read) toast('Saved banks could not be read. Their original data is preserved.');
+  } catch {}
+  bankId = store.banks[0].id;
+  try {
+    const choice = JSON.parse(localStorage.getItem(key + '-selection'));
+    if (store.banks.some((b) => b.id === choice?.bankId)) {
+      bankId = choice.bankId;
+      patchId = choice.patchId;
+    }
+  } catch {}
+  const bank = () => store.banks.find((b) => b.id === bankId) || store.banks[0];
+  function write(next) {
+    if (!PatchBanks.validStore(next))
+      throw Error('The bank is not valid. Export the patch to keep it.');
+    const old = localStorage.getItem(key);
+    if (old) localStorage.setItem(key + '-backup', old);
+    localStorage.setItem(key, JSON.stringify(next));
+    store = next;
+  }
+  function selection() {
+    try {
+      localStorage.setItem(key + '-selection', JSON.stringify({ bankId, patchId }));
+    } catch {}
+  }
+  function renderBanks() {
+    renderPatchBrowser();
+    const b = bank();
+    $('#bank-bar').innerHTML =
+      '<label>Bank<select id="bank-select" aria-label="Patch bank">' +
+      store.banks
+        .map(
+          (x) =>
+            '<option value="' +
+            x.id +
+            '" ' +
+            (x.id === b.id ? 'selected' : '') +
+            '>' +
+            escapeHTML(x.name) +
+            '</option>',
+        )
+        .join('') +
+      '</select></label><button id="previous-patch" aria-label="Previous saved patch">‹</button><label>Patch<select id="patch-select" aria-label="Saved patch"><option value="">Choose a saved patch…</option>' +
+      b.patches
+        .map(
+          (x, i) =>
+            '<option value="' +
+            x.id +
+            '" ' +
+            (x.id === patchId ? 'selected' : '') +
+            '>' +
+            String(i + 1).padStart(2, '0') +
+            ' · ' +
+            escapeHTML(x.rig.name) +
+            '</option>',
+        )
+        .join('') +
+      '</select></label><button id="next-patch" aria-label="Next saved patch">›</button><button id="save-as-patch">Save as new</button><button id="manage-banks">Banks…</button>';
+    $('#extra-scenes').textContent =
+      state.showExtraScenes || state.scene >= 4 ? 'Hide extra scenes' : '＋ 4 more scenes';
+    $('#extra-scenes').setAttribute(
+      'aria-expanded',
+      String(!!state.showExtraScenes || state.scene >= 4),
+    );
+  }
+  function save(asNew = false) {
+    const next = clone(store),
+      b = next.banks.find((b) => b.id === bankId),
+      existing = !asNew && b.patches.find((p) => p.id === patchId);
+    if (existing) existing.rig = clone(state);
+    else {
+      if (b.patches.length >= 128) throw Error('This bank is full. Create another bank.');
+      const id = crypto.randomUUID();
+      b.patches.push({ id, rig: clone(state) });
+      write(next);
+      patchId = id;
+      selection();
+      renderBanks();
+      return;
+    }
+    write(next);
+    selection();
+    renderBanks();
+  }
+  function recall(id) {
+    const p = bank().patches.find((p) => p.id === id);
+    if (!p) return;
+    try {
+      if (dirty) localStorage.setItem('guitar-suite-recovery', JSON.stringify(state));
+      localStorage.setItem(storageKey, JSON.stringify(p.rig));
+    } catch {
+      toast('Unable to preserve this patch. Export it before recalling another.');
+      return;
+    }
+    checkpoint();
+    state = SlotBoard.assign(clone(p.rig));
+    saved = clone(state);
+    selected = null;
+    pendingCable = null;
+    patchId = p.id;
+    selection();
+    render();
+    NativeDesktop.sync(state, true);
+    toast('Recalled ' + state.name + '. Undo restores your previous working patch.');
+  }
+  function manage() {
+    modal(
+      'PATCH BANKS',
+      '<h2>Your saved sounds.</h2><p>Banks hold complete patches. Scenes recall settings inside one patch. Changing patches may reset effect tails.</p><label>Bank name<input id="bank-name" maxlength="60" value="' +
+        escapeHTML(bank().name) +
+        '"></label><div class="transport"><button id="rename-bank">Rename</button><button id="new-bank">Create bank</button><button id="export-bank">Export bank</button></div><p>Use Import patch to import a bank file too. Model and IR files are referenced, not bundled.</p>',
+    );
+  }
+  $('#bank-bar').addEventListener('change', (e) => {
+    if (e.target.id === 'bank-select') {
+      bankId = e.target.value;
+      patchId = null;
+      selection();
+      renderBanks();
+    }
+    if (e.target.id === 'patch-select') recall(e.target.value);
+  });
+  $('#bank-bar').addEventListener('click', (e) => {
+    const id = e.target.closest('button')?.id;
+    if (id === 'manage-banks') manage();
+    if (id === 'save-as-patch') {
+      try {
+        save(true);
+        localStorage.setItem(storageKey, JSON.stringify(state));
+        saved = clone(state);
+        mark();
+        toast('Saved a new patch in ' + bank().name + '.');
+      } catch (error) {
+        toast(error.message);
+      }
+    }
+    if (id === 'next-patch' || id === 'previous-patch') {
+      const list = bank().patches;
+      if (!list.length) {
+        toast('Save a patch into this bank first.');
+        return;
+      }
+      let at = list.findIndex((p) => p.id === patchId);
+      recall(list[(at + (id === 'next-patch' ? 1 : -1) + list.length) % list.length].id);
+    }
+  });
+  $('#modal-content').addEventListener('click', (e) => {
+    try {
+      if (e.target.id === 'rename-bank' || e.target.id === 'new-bank') {
+        const name = $('#bank-name').value.trim();
+        if (!name) {
+          toast('Enter a bank name.');
+          return;
+        }
+        const next = clone(store);
+        if (e.target.id === 'new-bank') {
+          const id = crypto.randomUUID();
+          next.banks.push({ id, name, patches: [] });
+          write(next);
+          bankId = id;
+          patchId = null;
+        } else {
+          next.banks.find((b) => b.id === bankId).name = name;
+          write(next);
+        }
+        selection();
+        $('#modal').close();
+        renderBanks();
+      }
+      if (e.target.id === 'export-bank') {
+        const value = PatchBanks.exportBank(bank());
+        if (NativeDesktop.installed()) NativeDesktop.exportPatch(value);
+        else {
+          const url = URL.createObjectURL(
+              new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }),
+            ),
+            a = document.createElement('a');
+          a.href = url;
+          a.download = 'FreeRig bank.json';
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+      }
+    } catch (error) {
+      toast(error.message);
+    }
+  });
+  $('#extra-scenes').onclick = () => {
+    checkpoint();
+    if (state.showExtraScenes || state.scene >= 4) {
+      if (state.scene >= 4) {
+        history.pop();
+        toast('Choose scene 1–4 before hiding the extra scenes. Your sound has not changed.');
+        return;
+      }
+      state.showExtraScenes = false;
+    } else PatchBanks.extendScenes(state);
+    render();
+  };
+  $('#library-toggle').onclick = () => {
+    const hidden = document.body.classList.toggle('library-hidden');
+    $('#library-toggle').setAttribute('aria-expanded', String(!hidden));
+  };
+  function importBank(value) {
+    if (value?.format !== 'guitar-suite-bank') return false;
+    try {
+      if (value.version !== 1 || !PatchBanks.valid(value.bank))
+        throw Error('This bank file is invalid.');
+      const next = clone(store),
+        b = clone(value.bank);
+      b.id = crypto.randomUUID();
+      next.banks.push(b);
+      write(next);
+      bankId = b.id;
+      patchId = null;
+      selection();
+      renderBanks();
+      toast('Imported bank ' + b.name + '. Choose a patch to recall it.');
+    } catch (error) {
+      toast(error.message);
+    }
+    return true;
+  }
 
- // Render from the same bank store used by save/recall, never a second patch cache.
- function renderPatchBrowser(){const q=$('#patch-search').value.trim().toLocaleLowerCase();const rows=store.banks.flatMap(b=>b.patches.filter(p=>(p.rig.name+' '+b.name).toLocaleLowerCase().includes(q)).map(p=>'<button class="patch-card" data-bank="'+b.id+'" data-patch="'+p.id+'" aria-pressed="'+(b.id===bankId&&p.id===patchId)+'"><small>'+escapeHTML(b.name)+'</small><strong>'+escapeHTML(p.rig.name)+'</strong><span>'+p.rig.blocks.length+' devices · '+(p.rig.showExtraScenes?8:4)+' scenes</span></button>'));$('#patch-results').innerHTML=rows.join('')||'<p class="collection-empty">'+(q?'No matching patches.':'Save your first patch to build your collection.')+'</p>';}
- $('#patch-search').oninput=renderPatchBrowser;
- $('#patch-results').onclick=e=>{const card=e.target.closest('[data-patch]');if(!card)return;const previousBank=bankId;bankId=card.dataset.bank;recall(card.dataset.patch);if(patchId!==card.dataset.patch)bankId=previousBank;renderBanks();};
- document.querySelectorAll('[data-collection]').forEach(button=>button.onclick=()=>{const patches=button.dataset.collection==='patches';$('#patch-browser').hidden=!patches;$('#device-browser').hidden=patches;document.querySelectorAll('[data-collection]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));renderPatchBrowser();});
- renderBanks();return {render:renderBanks,save,importBank};
+  // Render from the same bank store used by save/recall, never a second patch cache.
+  function renderPatchBrowser() {
+    const q = $('#patch-search').value.trim().toLocaleLowerCase();
+    const rows = store.banks.flatMap((b) =>
+      b.patches
+        .filter((p) => (p.rig.name + ' ' + b.name).toLocaleLowerCase().includes(q))
+        .map(
+          (p) =>
+            '<button class="patch-card" data-bank="' +
+            b.id +
+            '" data-patch="' +
+            p.id +
+            '" aria-pressed="' +
+            (b.id === bankId && p.id === patchId) +
+            '"><small>' +
+            escapeHTML(b.name) +
+            '</small><strong>' +
+            escapeHTML(p.rig.name) +
+            '</strong><span>' +
+            p.rig.blocks.length +
+            ' devices · ' +
+            (p.rig.showExtraScenes ? 8 : 4) +
+            ' scenes</span></button>',
+        ),
+    );
+    $('#patch-results').innerHTML =
+      rows.join('') ||
+      '<p class="collection-empty">' +
+        (q ? 'No matching patches.' : 'Save your first patch to build your collection.') +
+        '</p>';
+  }
+  $('#patch-search').oninput = renderPatchBrowser;
+  $('#patch-results').onclick = (e) => {
+    const card = e.target.closest('[data-patch]');
+    if (!card) return;
+    const previousBank = bankId;
+    bankId = card.dataset.bank;
+    recall(card.dataset.patch);
+    if (patchId !== card.dataset.patch) bankId = previousBank;
+    renderBanks();
+  };
+  document.querySelectorAll('[data-collection]').forEach(
+    (button) =>
+      (button.onclick = () => {
+        const patches = button.dataset.collection === 'patches';
+        $('#patch-browser').hidden = !patches;
+        $('#device-browser').hidden = patches;
+        document
+          .querySelectorAll('[data-collection]')
+          .forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+        renderPatchBrowser();
+      }),
+  );
+  renderBanks();
+  return { render: renderBanks, save, importBank };
 })();

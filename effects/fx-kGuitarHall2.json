@@ -1,0 +1,22 @@
+{
+  "key": "fx-kGuitarHall2",
+  "name": "Guitar Hall",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [45, 60, 50, 50, 50, 25]
+    },
+    {
+      "name": "Deep space",
+      "values": [60.75000000000001, 60, 50, 50, 50, 40]
+    }
+  ],
+  "defaults": [45, 60, 50, 50, 50, 25]
+}

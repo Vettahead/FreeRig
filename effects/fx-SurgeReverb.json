@@ -1,0 +1,26 @@
+{
+  "key": "fx-SurgeReverb",
+  "name": "Modulated Space",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Surge",
+  "detail": "Reverb · Surge",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [25, 0, 4, 100, 100, 50, 20, 20, 0, 30]
+    },
+    {
+      "name": "Deep space",
+      "values": [25, 0, 5.4, 100, 100, 50, 20, 20, 0, 48]
+    },
+    {
+      "name": "Long cloud",
+      "values": [25, 20, 8, 100, 100, 50, 20, 20, 0, 45]
+    }
+  ],
+  "defaults": [25, 0, 4, 100, 100, 50, 20, 20, 0, 30]
+}

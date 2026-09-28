@@ -1,4 +1,4 @@
-# Imported effects — Alpha 15
+# Imported effects ï¿½ Alpha 15
 
 CloudSeed Space uses the current reusable [CloudSeedCore](https://github.com/GhostNoteAudio/CloudSeedCore) stereo engine (MIT), starting from its DarkPlate topology. It is not a port of the commercial plugin interface or its preset collection. EchoKing MkII, Photon Vibe and TriPhase Theorem adapt [HothouseExamples](https://github.com/clevelandmusicco/HothouseExamples) (GPL-3.0-or-later). Pinned revisions and exact host changes are in native/vendor/SOURCES.json and the two PORTING.md files.
 

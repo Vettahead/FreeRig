@@ -1,0 +1,22 @@
+{
+  "key": "fx-SurgeDelay",
+  "name": "Stereo Digital",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Surge",
+  "detail": "Delay · Surge",
+  "icon": "≈",
+  "colour": "#69afb5",
+  "sync": true,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [380, 380, 25, 0, 80, 8000, 0.5, 40, 0, 0, 30, 0]
+    },
+    {
+      "name": "Wide repeats",
+      "values": [380, 570, 33.75, 35, 80, 8000, 0.5, 40, 0, 0, 48, 0]
+    }
+  ],
+  "defaults": [380, 380, 25, 0, 80, 8000, 0.5, 40, 0, 0, 30, 0]
+}

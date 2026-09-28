@@ -1,0 +1,22 @@
+{
+  "key": "fx-StereoChorus",
+  "name": "Stereo Chorus",
+  "type": "Pedals",
+  "category": "Modulation",
+  "engine": "Airwindows",
+  "detail": "Modulation · Airwindows",
+  "icon": "∿",
+  "colour": "#83b99b",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [30, 40]
+    },
+    {
+      "name": "Deep movement",
+      "values": [45, 40]
+    }
+  ],
+  "defaults": [30, 40]
+}

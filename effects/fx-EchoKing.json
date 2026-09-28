@@ -1,0 +1,26 @@
+{
+  "key": "fx-EchoKing",
+  "name": "EchoKing MkII",
+  "category": "Delay",
+  "engine": "Cleveland Music Co. / FreeRig port",
+  "colour": "#c58a58",
+  "presets": [
+    {
+      "name": "EP-2 warm tape",
+      "values": [320, 35, 70, 50, 25, 30, 2, 1]
+    },
+    {
+      "name": "EP-1 worn slap",
+      "values": [100, 18, 90, 35, 50, 24, 1, 2]
+    },
+    {
+      "name": "EP-3 clear repeats",
+      "values": [450, 48, 70, 65, 12, 32, 3, 0]
+    }
+  ],
+  "type": "Pedals",
+  "detail": "Delay · Cleveland Music Co. / FreeRig port",
+  "icon": "≈",
+  "sync": false,
+  "defaults": [320, 35, 70, 50, 25, 30, 2, 1]
+}

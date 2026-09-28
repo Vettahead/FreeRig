@@ -1,10 +1,251 @@
-.saved-heading{font-size:9px;letter-spacing:1.2px;color:#bdcf80;padding:18px 4px 8px}.saved-device{border-color:#4b5744!important}.saved-mini{display:flex;width:68px;height:59px;background:var(--device-colour);border:4px solid #343930;border-radius:6px;position:relative;flex-direction:column;justify-content:center;box-shadow:0 4px 6px #0006;overflow:hidden}.saved-mini i{position:absolute;inset:5px 3px 13px;background:repeating-linear-gradient(45deg,#171b16 0,#171b16 2px,#424439 3px,#424439 4px);opacity:.8}.saved-mini strong{font-size:8px!important;position:relative;text-align:center;background:#141914c9;padding:2px;overflow:hidden;max-height:27px}.saved-mini small{font-size:5px!important;position:absolute;bottom:1px;left:3px;color:#ece7d7!important;letter-spacing:1px}.mini-cab{height:66px;width:60px}.mini-nampedal{width:43px;height:65px;border-width:2px;border-radius:5px}.mini-nampedal i{inset:5px 7px auto;height:9px;border-radius:50%;background:#191c19;box-shadow:17px 0 #191c19}.mini-nampedal strong{font-size:7px!important;margin-top:8px}
-.saved-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid #343d2f;background:#151b14}.saved-controls label{font-size:10px;color:#becbad;display:flex;flex-direction:column;gap:6px}.saved-controls select{max-width:410px;background:#252f20;border:1px solid #46543c;color:#dbe7cf;padding:8px;border-radius:5px}.saved-controls span{font-size:10px;color:#9cac8e}.saved-controls input[type=color]{height:34px;width:45px;border:0;padding:0}
-.custom-device{width:100%}.custom-device .amp-face,.custom-device .cabinet-face{background:var(--device-colour);border-color:var(--device-colour)}.custom-device .amp-grille span{max-width:95%;font-size:clamp(20px,2.5vw,36px);text-align:center;overflow-wrap:anywhere}.custom-device .pedal-face{--paint:var(--device-colour)!important}.custom-device .cabinet-grille strong{font-size:20px;max-width:80%;text-align:center}.skin-tweed .amp-face,.skin-tweed .cabinet-face{background:repeating-linear-gradient(45deg,var(--device-colour),var(--device-colour) 3px,#c9af7955 3px,#c9af7955 5px)}.skin-tweed .amp-grille{background:repeating-linear-gradient(90deg,#635740,#635740 2px,#a48a6340 2px,#a48a6340 4px)}.skin-modern .amp-grille{background:radial-gradient(#555 1px,#151918 2px);background-size:5px 5px;border-radius:2px}.skin-modern .amp-front-panel{background:#1d2225;color:#c0c6bf}.skin-modern .amp-grille span{font-style:normal;font-family:var(--display);letter-spacing:3px}.skin-classic .amp-front-panel{background:#ab956c}.custom-device .hardware-caption{color:#ddd5ba}
-.skin-modern .amp-front-panel .physical-control label,.skin-modern .amp-front-panel .param-value,.skin-modern .amp-front-panel .switch-label{color:#e0e8d2}.skin-modern .amp-front-panel .param-value input{color:#f4f6e6;background:#122010;border-color:#738369}.custom-device .pedal-print h3{overflow-wrap:anywhere;max-width:100%}
+.saved-heading {
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  color: #bdcf80;
+  padding: 18px 4px 8px;
+}
+.saved-device {
+  border-color: #4b5744 !important;
+}
+.saved-mini {
+  display: flex;
+  width: 68px;
+  height: 59px;
+  background: var(--device-colour);
+  border: 4px solid #343930;
+  border-radius: 6px;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 6px #0006;
+  overflow: hidden;
+}
+.saved-mini i {
+  position: absolute;
+  inset: 5px 3px 13px;
+  background: repeating-linear-gradient(45deg, #171b16 0, #171b16 2px, #424439 3px, #424439 4px);
+  opacity: 0.8;
+}
+.saved-mini strong {
+  font-size: 8px !important;
+  position: relative;
+  text-align: center;
+  background: #141914c9;
+  padding: 2px;
+  overflow: hidden;
+  max-height: 27px;
+}
+.saved-mini small {
+  font-size: 5px !important;
+  position: absolute;
+  bottom: 1px;
+  left: 3px;
+  color: #ece7d7 !important;
+  letter-spacing: 1px;
+}
+.mini-cab {
+  height: 66px;
+  width: 60px;
+}
+.mini-nampedal {
+  width: 43px;
+  height: 65px;
+  border-width: 2px;
+  border-radius: 5px;
+}
+.mini-nampedal i {
+  inset: 5px 7px auto;
+  height: 9px;
+  border-radius: 50%;
+  background: #191c19;
+  box-shadow: 17px 0 #191c19;
+}
+.mini-nampedal strong {
+  font-size: 7px !important;
+  margin-top: 8px;
+}
+.saved-controls {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-bottom: 1px solid #343d2f;
+  background: #151b14;
+}
+.saved-controls label {
+  font-size: 10px;
+  color: #becbad;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.saved-controls select {
+  max-width: 410px;
+  background: #252f20;
+  border: 1px solid #46543c;
+  color: #dbe7cf;
+  padding: 8px;
+  border-radius: 5px;
+}
+.saved-controls span {
+  font-size: 10px;
+  color: #9cac8e;
+}
+.saved-controls input[type='color'] {
+  height: 34px;
+  width: 45px;
+  border: 0;
+  padding: 0;
+}
+.custom-device {
+  width: 100%;
+}
+.custom-device .amp-face,
+.custom-device .cabinet-face {
+  background: var(--device-colour);
+  border-color: var(--device-colour);
+}
+.custom-device .amp-grille span {
+  max-width: 95%;
+  font-size: clamp(20px, 2.5vw, 36px);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.custom-device .pedal-face {
+  --paint: var(--device-colour) !important;
+}
+.custom-device .cabinet-grille strong {
+  font-size: 20px;
+  max-width: 80%;
+  text-align: center;
+}
+.skin-tweed .amp-face,
+.skin-tweed .cabinet-face {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--device-colour),
+    var(--device-colour) 3px,
+    #c9af7955 3px,
+    #c9af7955 5px
+  );
+}
+.skin-tweed .amp-grille {
+  background: repeating-linear-gradient(90deg, #635740, #635740 2px, #a48a6340 2px, #a48a6340 4px);
+}
+.skin-modern .amp-grille {
+  background: radial-gradient(#555 1px, #151918 2px);
+  background-size: 5px 5px;
+  border-radius: 2px;
+}
+.skin-modern .amp-front-panel {
+  background: #1d2225;
+  color: #c0c6bf;
+}
+.skin-modern .amp-grille span {
+  font-style: normal;
+  font-family: var(--display);
+  letter-spacing: 3px;
+}
+.skin-classic .amp-front-panel {
+  background: #ab956c;
+}
+.custom-device .hardware-caption {
+  color: #ddd5ba;
+}
+.skin-modern .amp-front-panel .physical-control label,
+.skin-modern .amp-front-panel .param-value,
+.skin-modern .amp-front-panel .switch-label {
+  color: #e0e8d2;
+}
+.skin-modern .amp-front-panel .param-value input {
+  color: #f4f6e6;
+  background: #122010;
+  border-color: #738369;
+}
+.custom-device .pedal-print h3 {
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
 
-.look-gold .amp-front-panel,.look-silver .amp-front-panel,.look-tweed .amp-front-panel,.look-cream .amp-front-panel,.look-diamond .amp-front-panel,.look-wood .amp-front-panel,.custom-device .cabinet-panel{background:var(--look-panel)}
-.custom-device .amp-grille,.custom-device .cabinet-grille{background-color:var(--look-grille);border-color:var(--look-panel)}.look-diamond .amp-grille,.look-diamond .cabinet-grille{background-image:repeating-linear-gradient(45deg,transparent 0 10px,#dac49766 11px 12px),repeating-linear-gradient(-45deg,transparent 0 10px,#dac49766 11px 12px)}
-.look-tweed .amp-face,.look-tweed .cabinet-face,.look-wood .amp-face,.look-wood .cabinet-face{background-image:repeating-linear-gradient(35deg,#d6b06b55 0 2px,transparent 2px 5px)}
-.look-steel .amp-face,.look-steel .cabinet-face{border-radius:3px}.look-steel .amp-grille{background-image:radial-gradient(#c5c7c955 1px,transparent 2px);background-size:6px 6px}.look-steel .amp-front-panel{background:var(--look-panel)}
-.custom-device .cabinet-grille{display:grid;grid-template-columns:repeat(2,1fr);justify-items:center;height:180px;gap:8px;padding:20px}.speakers-1 .cabinet-grille{grid-template-columns:1fr}.speakers-1 .cabinet-face{width:440px}.speakers-4 .cabinet-grille{height:275px}.custom-device .cabinet-grille i{height:115px;width:115px}.custom-device .cabinet-grille strong{font-size:12px;letter-spacing:1px;z-index:1}.custom-device .cabinet-panel{position:relative}.custom-device .amp-grille span{line-height:1.15}.custom-device .amp-front-panel .param-value input{background:#faf2dccc;color:#19211b}.look-steel .amp-front-panel .physical-control label,.look-steel .amp-front-panel .switch-label{color:#fff;text-shadow:0 1px 2px #000}.look-steel .amp-front-panel .param-value{color:#fff}
+.look-gold .amp-front-panel,
+.look-silver .amp-front-panel,
+.look-tweed .amp-front-panel,
+.look-cream .amp-front-panel,
+.look-diamond .amp-front-panel,
+.look-wood .amp-front-panel,
+.custom-device .cabinet-panel {
+  background: var(--look-panel);
+}
+.custom-device .amp-grille,
+.custom-device .cabinet-grille {
+  background-color: var(--look-grille);
+  border-color: var(--look-panel);
+}
+.look-diamond .amp-grille,
+.look-diamond .cabinet-grille {
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 10px, #dac49766 11px 12px),
+    repeating-linear-gradient(-45deg, transparent 0 10px, #dac49766 11px 12px);
+}
+.look-tweed .amp-face,
+.look-tweed .cabinet-face,
+.look-wood .amp-face,
+.look-wood .cabinet-face {
+  background-image: repeating-linear-gradient(35deg, #d6b06b55 0 2px, transparent 2px 5px);
+}
+.look-steel .amp-face,
+.look-steel .cabinet-face {
+  border-radius: 3px;
+}
+.look-steel .amp-grille {
+  background-image: radial-gradient(#c5c7c955 1px, transparent 2px);
+  background-size: 6px 6px;
+}
+.look-steel .amp-front-panel {
+  background: var(--look-panel);
+}
+.custom-device .cabinet-grille {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  height: 180px;
+  gap: 8px;
+  padding: 20px;
+}
+.speakers-1 .cabinet-grille {
+  grid-template-columns: 1fr;
+}
+.speakers-1 .cabinet-face {
+  width: 440px;
+}
+.speakers-4 .cabinet-grille {
+  height: 275px;
+}
+.custom-device .cabinet-grille i {
+  height: 115px;
+  width: 115px;
+}
+.custom-device .cabinet-grille strong {
+  font-size: 12px;
+  letter-spacing: 1px;
+  z-index: 1;
+}
+.custom-device .cabinet-panel {
+  position: relative;
+}
+.custom-device .amp-grille span {
+  line-height: 1.15;
+}
+.custom-device .amp-front-panel .param-value input {
+  background: #faf2dccc;
+  color: #19211b;
+}
+.look-steel .amp-front-panel .physical-control label,
+.look-steel .amp-front-panel .switch-label {
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+}
+.look-steel .amp-front-panel .param-value {
+  color: #fff;
+}

@@ -1,0 +1,22 @@
+{
+  "key": "fx-Tremolo",
+  "name": "Tremolo",
+  "type": "Pedals",
+  "category": "Modulation",
+  "engine": "Airwindows",
+  "detail": "Modulation · Airwindows",
+  "icon": "∿",
+  "colour": "#83b99b",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [45, 50]
+    },
+    {
+      "name": "Deep movement",
+      "values": [67.5, 50]
+    }
+  ],
+  "defaults": [45, 50]
+}

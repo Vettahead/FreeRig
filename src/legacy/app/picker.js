@@ -1,0 +1,58 @@
+/** Context-sensitive device picker.
+ * Classic-script compatibility module; build order is in src/legacy/manifest.json.
+ */
+function openDevicePicker(blockId, category) {
+  const block = state.blocks.find((b) => b.id === blockId);
+  devicePicker = {
+    blockId: block?.id || null,
+    category: category || libraryCategory(PatchRig.definition(block.key)),
+    query: '',
+  };
+  $('#modal').classList.add('device-picker-modal');
+  modal(
+    block
+      ? 'REPLACE / ' + DeviceShelf.definition(block).name.toUpperCase()
+      : 'ADD / ' + SlotBoard.label(chosenSlot).toUpperCase(),
+    '<h2>Choose your sound.</h2><div id="picker-filters" class="filters" aria-label="Device categories"></div><label class="picker-search">Search devices<input id="picker-search" type="search" placeholder="Search this category…" autocomplete="off"></label><div id="picker-results" class="slot-picker"></div>',
+  );
+  renderDevicePicker();
+}
+function renderDevicePicker() {
+  if (!devicePicker) return;
+  const { category, query } = devicePicker;
+  $('#picker-filters').innerHTML = deviceCategories
+    .map(
+      (t) =>
+        '<button data-picker-filter="' +
+        t +
+        '" class="' +
+        (t === category ? 'active' : '') +
+        '" aria-pressed="' +
+        (t === category) +
+        '">' +
+        t +
+        '</button>',
+    )
+    .join('');
+  const items = catalogue.filter(
+    (d) =>
+      (category === 'All' || libraryCategory(d) === category) &&
+      (d.name + ' ' + d.detail + ' ' + libraryCategory(d)).toLowerCase().includes(query),
+  );
+  $('#picker-results').innerHTML =
+    DeviceShelf.pickerCards(category, query) +
+      items
+        .map(
+          (d) =>
+            '<button data-picker="' +
+            d.key +
+            '">' +
+            GearArt.svg(d.key) +
+            '<strong>' +
+            escapeHTML(d.name) +
+            '</strong><small>' +
+            escapeHTML(libraryCategory(d)) +
+            '</small></button>',
+        )
+        .join('') || '<p class="empty">No matching devices. Try another category or search.</p>';
+}

@@ -1,0 +1,22 @@
+{
+  "key": "fx-AutoPan",
+  "name": "Auto Pan",
+  "type": "Pedals",
+  "category": "Modulation",
+  "engine": "Airwindows",
+  "detail": "Modulation · Airwindows",
+  "icon": "∿",
+  "colour": "#83b99b",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [25, 50, 60, 70]
+    },
+    {
+      "name": "Deep movement",
+      "values": [25, 50, 60, 100]
+    }
+  ],
+  "defaults": [25, 50, 60, 70]
+}

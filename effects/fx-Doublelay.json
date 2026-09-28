@@ -1,0 +1,22 @@
+{
+  "key": "fx-Doublelay",
+  "name": "Double Echo",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Airwindows",
+  "detail": "Delay · Airwindows",
+  "icon": "≈",
+  "colour": "#69afb5",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [20, 20, 30, 25, 30]
+    },
+    {
+      "name": "Wide repeats",
+      "values": [20, 20, 30, 25, 48]
+    }
+  ],
+  "defaults": [20, 20, 30, 25, 30]
+}

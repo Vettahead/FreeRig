@@ -1,0 +1,22 @@
+{
+  "key": "fx-DiffuseDelay",
+  "name": "Diffuse Echo",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "ChowMatrix diffusion adaptation",
+  "detail": "Delay · ChowMatrix diffusion adaptation",
+  "icon": "≈",
+  "colour": "#69afb5",
+  "sync": true,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [380, 35, 45, 35, 28]
+    },
+    {
+      "name": "Wide repeats",
+      "values": [380, 47.25, 45, 35, 44.800000000000004]
+    }
+  ],
+  "defaults": [380, 35, 45, 35, 28]
+}

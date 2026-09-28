@@ -8,7 +8,12 @@ Copy-Item -LiteralPath (Join-Path $deps 'webview2/runtimes/win-x64/native/WebVie
 foreach($dll in @('registry/runtimes/win/lib/net461/Microsoft.Win32.Registry.dll','system.security.accesscontrol/runtimes/win/lib/net461/System.Security.AccessControl.dll','system.security.principal.windows/runtimes/win/lib/net461/System.Security.Principal.Windows.dll')){Copy-Item -LiteralPath (Join-Path $deps $dll) -Destination $out -Force}
 foreach($pkg in @('registry','system.security.accesscontrol','system.security.principal.windows')){Copy-Item -LiteralPath (Join-Path $deps ($pkg+'/LICENSE.TXT')) -Destination (Join-Path $out ('licenses/'+$pkg+'.txt')) -Force}
 $refArgs=$references|ForEach-Object {'/reference:'+$_}
-& 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' '/nologo' '/target:winexe' '/platform:x64' '/optimize+' ('/win32manifest:'+(Join-Path $PSScriptRoot 'FreeRig.manifest')) ('/out:'+(Join-Path $out 'FreeRig.exe')) @refArgs (Join-Path $PSScriptRoot 'Program.cs') (Join-Path $PSScriptRoot 'AudioEngine.cs') (Join-Path $PSScriptRoot 'Calibration.cs') (Join-Path $PSScriptRoot 'PerformanceTests.cs') (Join-Path $PSScriptRoot 'StereoEffects.cs') (Join-Path $PSScriptRoot 'EffectsTests.cs') (Join-Path $PSScriptRoot 'EngineTests.cs') (Join-Path $PSScriptRoot 'CaptureTests.cs') (Join-Path $PSScriptRoot 'BufferTests.cs') (Join-Path $PSScriptRoot 'SeparateOutput.cs') (Join-Path $PSScriptRoot 'OutputTests.cs') (Join-Path $PSScriptRoot 'Tone3000.cs') (Join-Path $PSScriptRoot 'ToneIntegration.cs') (Join-Path $PSScriptRoot 'ToneTests.cs') (Join-Path $PSScriptRoot 'DeviceLibrary.cs')
+# Only owned source directories are compiled; vendor/dependency trees are excluded.
+$sources=@((Join-Path $PSScriptRoot 'Program.cs'))
+foreach($folder in @('Model','Interop','Audio','Services','Host','Tests')) {
+ $sources += Get-ChildItem (Join-Path $PSScriptRoot $folder) -Filter '*.cs' -File | Select-Object -ExpandProperty FullName
+}
+& 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' '/nologo' '/target:winexe' '/platform:x64' '/optimize+' ('/win32manifest:'+(Join-Path $PSScriptRoot 'FreeRig.manifest')) ('/out:'+(Join-Path $out 'FreeRig.exe')) @refArgs @sources
 if($LASTEXITCODE -ne 0){throw 'Desktop compilation failed'}
 $uiRoot=Split-Path $PSScriptRoot
 if(Test-Path (Join-Path $uiRoot 'prototype')){$uiRoot=Join-Path $uiRoot 'prototype'}

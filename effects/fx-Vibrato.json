@@ -1,0 +1,22 @@
+{
+  "key": "fx-Vibrato",
+  "name": "Pitch Vibrato",
+  "type": "Pedals",
+  "category": "Modulation",
+  "engine": "Airwindows",
+  "detail": "Modulation · Airwindows",
+  "icon": "∿",
+  "colour": "#83b99b",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [30, 25, 40, 0, 100]
+    },
+    {
+      "name": "Deep movement",
+      "values": [30, 25, 40, 0, 100]
+    }
+  ],
+  "defaults": [30, 25, 40, 0, 100]
+}

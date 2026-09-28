@@ -5,4 +5,3 @@ Run **releases/FreeRig-alpha-19/FreeRig.exe**. Cabinet format is now separate fr
 The chosen format is saved in the patch and survives scene changes and model changes. Existing patches without an explicit format infer it from a recognised tone/model name, then fall back to the previous look's speaker count. Geometry is representative, not a manufacturer specification. Appearance does not replace the loaded IR or change its sound; collection format inference uses the tone title, while explicit format choices belong to patch instances.
 
 TypeScript/native builds, cabinet geometry/patch-roundtrip and saved-device regressions pass. Browser checks cover four-speaker layouts, format switching and cabinet parameter editing. All ten silhouettes were visually reviewed. Audio processing and both DSP DLLs are unchanged from Alpha 18.
-

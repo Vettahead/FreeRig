@@ -1,0 +1,26 @@
+{
+  "key": "fx-PhotonVibe",
+  "name": "Photon Vibe",
+  "category": "Modulation",
+  "engine": "Cleveland Music Co. / FreeRig port",
+  "colour": "#a38dc2",
+  "presets": [
+    {
+      "name": "Vintage swirl",
+      "values": [1.2, 65, 50, 50, 0, 0, 0]
+    },
+    {
+      "name": "Slow photocell",
+      "values": [0.55, 90, 70, 50, 15, 0, 0]
+    },
+    {
+      "name": "Liquid vibrato",
+      "values": [2.4, 60, 45, 50, 0, 1, 0]
+    }
+  ],
+  "type": "Pedals",
+  "detail": "Modulation · Cleveland Music Co. / FreeRig port",
+  "icon": "∿",
+  "sync": false,
+  "defaults": [1.2000000476837158, 65, 50, 50, 0, 0, 0]
+}

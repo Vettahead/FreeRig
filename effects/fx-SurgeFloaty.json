@@ -1,0 +1,26 @@
+{
+  "key": "fx-SurgeFloaty",
+  "name": "Warp Echo",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Surge",
+  "detail": "Delay · Surge",
+  "icon": "≈",
+  "colour": "#69afb5",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [450, 1, 25, 8000, 50, 0.5, 0, 0, 0, 80, 30]
+    },
+    {
+      "name": "Wide repeats",
+      "values": [450, 1, 33.75, 8000, 50, 0.5, 0, 0, 0, 80, 48]
+    },
+    {
+      "name": "Reverse wash",
+      "values": [450, -1, 40, 8000, 50, 0.5, 0, 0, 0, 80, 45]
+    }
+  ],
+  "defaults": [450, 1, 25, 8000, 50, 0.5, 0, 0, 0, 80, 30]
+}

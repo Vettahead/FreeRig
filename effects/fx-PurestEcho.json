@@ -1,0 +1,22 @@
+{
+  "key": "fx-PurestEcho",
+  "name": "Four Tap",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Airwindows",
+  "detail": "Delay · Airwindows",
+  "icon": "≈",
+  "colour": "#69afb5",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [35, 30, 20, 12, 8]
+    },
+    {
+      "name": "Wide repeats",
+      "values": [52.5, 30, 20, 12, 8]
+    }
+  ],
+  "defaults": [35, 30, 20, 12, 8]
+}

@@ -1,0 +1,16 @@
+node_modules/
+ui/node_modules/
+native/deps/
+native/dist/
+native/vendor/
+releases/
+prototype/react-ui.js
+prototype/react-ui.css
+prototype/app.js
+prototype/gear-looks.js
+prototype/effects-catalogue.js
+native/effects-catalogue.json
+native/effect-presets.json
+CHANGELOG.md
+HANDOVER.md
+docs/screenshots/

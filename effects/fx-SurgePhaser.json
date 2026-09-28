@@ -1,0 +1,22 @@
+{
+  "key": "fx-SurgePhaser",
+  "name": "Phase Sweep",
+  "type": "Pedals",
+  "category": "Modulation",
+  "engine": "Surge",
+  "detail": "Modulation · Surge",
+  "icon": "∿",
+  "colour": "#83b99b",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [0, 0, 0, 0.5, 40, 40, 30, 0, 4, 0, 0, 0]
+    },
+    {
+      "name": "Deep movement",
+      "values": [0, 0, 0, 0.5, 40, 40, 48, 0, 4, 0, 0, 0]
+    }
+  ],
+  "defaults": [0, 0, 0, 0.5, 40, 40, 30, 0, 4, 0, 0, 0]
+}

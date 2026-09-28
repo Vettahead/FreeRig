@@ -1,0 +1,22 @@
+{
+  "key": "fx-Galactic3",
+  "name": "Galactic",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [50, 50, 35, 100, 80, 30]
+    },
+    {
+      "name": "Deep space",
+      "values": [50, 50, 35, 100, 80, 48]
+    }
+  ],
+  "defaults": [50, 50, 35, 100, 80, 30]
+}

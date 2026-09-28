@@ -1,19 +1,55 @@
-const assert=require('node:assert/strict'),P=require('./patch-model.js'),L=require('./rig-model.js');
-const patch=P.createDefault();assert.ok(P.valid(patch));
-assert.ok(patch.connections.some(e=>e[0]==='b1'&&e[1]==='b4'));
-assert.ok(patch.connections.some(e=>e[0]==='b4'&&e[1]==='b3'));
-assert.equal(P.activeNodes(patch).size,8);
-for(const edge of [['b3','b1'],['b1','b1'],['output','b0'],['b0','input'],['input','missing'],['b1','b4']])assert.equal(P.connect(patch,...edge),false);
-assert.ok(P.connect(patch,'b0','b3'));assert.ok(P.valid(patch));
-const wiring=JSON.stringify(patch.connections);patch.scenes[1].b4.on=false;patch.scenes[1].b4.values[0]=555;
-assert.equal(patch.scenes[2].b4.values[0],380);assert.equal(patch.scenes[2].b4.on,true);
-assert.ok(P.copyScene(patch,1,2));assert.equal(patch.scenes[2].b4.values[0],555);
-patch.scenes[1].b4.values[0]=600;assert.equal(patch.scenes[2].b4.values[0],555);assert.equal(JSON.stringify(patch.connections),wiring);
-assert.deepEqual(P.migrate(JSON.parse(JSON.stringify(patch))),patch);
-const old=L.createDefault();old.routes[0].a.level=-14;const migrated=P.migrate(old);
-assert.ok(P.valid(migrated));assert.deepEqual(P.graph(migrated).edges,L.graph(old).edges);assert.deepEqual(P.graph(migrated).nodes.sort(),L.graph(old).nodes.sort());assert.deepEqual(migrated.scenes,old.scenes);assert.deepEqual(migrated.legacy.routes,old.routes);
-const removed=P.clone(patch);P.remove(removed,'b3');assert.ok(P.valid(removed));assert.ok(!removed.connections.some(e=>e.includes('b3')));assert.equal(P.activeNodes(removed).size,0);
-const cyclic=P.clone(patch);cyclic.connections.push(['b3','b1']);assert.equal(P.valid(cyclic),false);
-const duplicate=P.clone(patch);duplicate.blocks[0].id='input';assert.equal(P.valid(duplicate),false);
-const malformed=P.clone(patch);malformed.sceneNames[0]='';assert.equal(P.valid(malformed),false);
-console.log('PASS: free routing, cycle prevention, scene isolation/copy, persistence, legacy migration, removal and invalid data.');
+const assert = require('node:assert/strict'),
+  P = require('./patch-model.js'),
+  L = require('./rig-model.js');
+const patch = P.createDefault();
+assert.ok(P.valid(patch));
+assert.ok(patch.connections.some((e) => e[0] === 'b1' && e[1] === 'b4'));
+assert.ok(patch.connections.some((e) => e[0] === 'b4' && e[1] === 'b3'));
+assert.equal(P.activeNodes(patch).size, 8);
+for (const edge of [
+  ['b3', 'b1'],
+  ['b1', 'b1'],
+  ['output', 'b0'],
+  ['b0', 'input'],
+  ['input', 'missing'],
+  ['b1', 'b4'],
+])
+  assert.equal(P.connect(patch, ...edge), false);
+assert.ok(P.connect(patch, 'b0', 'b3'));
+assert.ok(P.valid(patch));
+const wiring = JSON.stringify(patch.connections);
+patch.scenes[1].b4.on = false;
+patch.scenes[1].b4.values[0] = 555;
+assert.equal(patch.scenes[2].b4.values[0], 380);
+assert.equal(patch.scenes[2].b4.on, true);
+assert.ok(P.copyScene(patch, 1, 2));
+assert.equal(patch.scenes[2].b4.values[0], 555);
+patch.scenes[1].b4.values[0] = 600;
+assert.equal(patch.scenes[2].b4.values[0], 555);
+assert.equal(JSON.stringify(patch.connections), wiring);
+assert.deepEqual(P.migrate(JSON.parse(JSON.stringify(patch))), patch);
+const old = L.createDefault();
+old.routes[0].a.level = -14;
+const migrated = P.migrate(old);
+assert.ok(P.valid(migrated));
+assert.deepEqual(P.graph(migrated).edges, L.graph(old).edges);
+assert.deepEqual(P.graph(migrated).nodes.sort(), L.graph(old).nodes.sort());
+assert.deepEqual(migrated.scenes, old.scenes);
+assert.deepEqual(migrated.legacy.routes, old.routes);
+const removed = P.clone(patch);
+P.remove(removed, 'b3');
+assert.ok(P.valid(removed));
+assert.ok(!removed.connections.some((e) => e.includes('b3')));
+assert.equal(P.activeNodes(removed).size, 0);
+const cyclic = P.clone(patch);
+cyclic.connections.push(['b3', 'b1']);
+assert.equal(P.valid(cyclic), false);
+const duplicate = P.clone(patch);
+duplicate.blocks[0].id = 'input';
+assert.equal(P.valid(duplicate), false);
+const malformed = P.clone(patch);
+malformed.sceneNames[0] = '';
+assert.equal(P.valid(malformed), false);
+console.log(
+  'PASS: free routing, cycle prevention, scene isolation/copy, persistence, legacy migration, removal and invalid data.',
+);

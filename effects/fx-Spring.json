@@ -1,0 +1,22 @@
+{
+  "key": "fx-Spring",
+  "name": "Spring Tank",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Surge / ChowDSP",
+  "detail": "Reverb · Surge / ChowDSP",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [50, 50, 70, 50, 50, 0, 25]
+    },
+    {
+      "name": "Deep space",
+      "values": [50, 67.5, 70, 50, 50, 0, 40]
+    }
+  ],
+  "defaults": [50, 50, 70, 50, 50, 0, 25]
+}

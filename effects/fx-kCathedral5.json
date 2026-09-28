@@ -1,0 +1,22 @@
+{
+  "key": "fx-kCathedral5",
+  "name": "Cathedral",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [50, 60, 24, 50, 50, 25]
+    },
+    {
+      "name": "Deep space",
+      "values": [67.5, 60, 24, 50, 50, 40]
+    }
+  ],
+  "defaults": [50, 60, 24, 50, 50, 25]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "fx-CreamCoat",
+  "name": "Cream Plate",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Airwindows",
+  "detail": "Reverb · Airwindows",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [50, 50, 100, 0, 25]
+    },
+    {
+      "name": "Deep space",
+      "values": [50, 67.5, 100, 0, 40]
+    }
+  ],
+  "defaults": [50, 50, 100, 0, 25]
+}

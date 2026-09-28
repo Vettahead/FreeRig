@@ -1,0 +1,22 @@
+{
+  "key": "fx-TapeDelay2",
+  "name": "Tape Machine",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Airwindows",
+  "detail": "Delay · Airwindows",
+  "icon": "≈",
+  "colour": "#69afb5",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [40, 30, 50, 0, 12, 25]
+    },
+    {
+      "name": "Wide repeats",
+      "values": [40, 40.5, 50, 0, 12, 40]
+    }
+  ],
+  "defaults": [40, 30, 50, 0, 12, 25]
+}

@@ -1,3 +1,7 @@
+## 28 September 2026 — Alpha 20 source refactor
+
+Readable source now has native Model/Interop/Audio/Host/Services/Tests folders, ordered legacy UI compatibility modules, one descriptor per stock effect and a central native factory registry. Start at README, CONTRIBUTING and docs/ARCHITECTURE.md. AGENTS.md establishes modularity, useful comments and verification rules. All 12 JS suites and native offline self-tests pass; browser checks verified knob edits, contextual amp replacement and cabinet navigation. DSP maths/parameter definitions are preserved. Actual live ASIO listening was not repeated. Remaining React migration, clean-machine sharing checks, Powercab USB latency, live-use qualification and MIDI remain separate work.
+
 ## Alpha 19 — cabinet formats redrawn (27 September 2026)
 
 Run **releases/FreeRig-alpha-19/FreeRig.exe**. Cabinet format is now separate from Hardware look in Device options: 1x10, 1x12, 1x15, horizontal 2x10/2x12, vertical 2x12, compact 4x10, straight/slant 4x12 and 8x10. All 20 finishes work with any format. The editor and thumbnails use the same scalable illustration, with circular speakers, individual enclosure proportions, grille cloth, piping, protective corners and feet. Cabinet adjustments sit alongside the enclosure.

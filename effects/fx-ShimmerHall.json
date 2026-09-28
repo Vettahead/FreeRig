@@ -1,0 +1,26 @@
+{
+  "key": "fx-ShimmerHall",
+  "name": "Shimmer Hall",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Signalsmith / Dragonfly",
+  "detail": "Reverb · Signalsmith / Dragonfly",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Octave sky",
+      "values": [6, 45, 7000, 30, 12]
+    },
+    {
+      "name": "Fifth cloud",
+      "values": [8, 65, 5500, 42, 7]
+    },
+    {
+      "name": "Low octave haze",
+      "values": [5, 50, 4500, 30, -12]
+    }
+  ],
+  "defaults": [6, 45, 7000, 30, 12]
+}

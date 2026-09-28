@@ -1,0 +1,22 @@
+{
+  "key": "fx-GXFuzz",
+  "name": "Round Fuzz",
+  "type": "Pedals",
+  "category": "Drive",
+  "engine": "Guitarix",
+  "detail": "Drive · Guitarix",
+  "icon": "↯",
+  "colour": "#be8b55",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [0.5, 0.5]
+    },
+    {
+      "name": "Pushed",
+      "values": [0.75, 0.5]
+    }
+  ],
+  "defaults": [0.5, 0.5]
+}

@@ -1,0 +1,26 @@
+{
+  "key": "fx-TriPhase",
+  "name": "TriPhase Theorem",
+  "category": "Modulation",
+  "engine": "Cleveland Music Co. / FreeRig port",
+  "colour": "#d09567",
+  "presets": [
+    {
+      "name": "Script 90",
+      "values": [1, 0.6, 0, 100, 0]
+    },
+    {
+      "name": "Gentle 45",
+      "values": [0, 0.45, 0, 100, 0]
+    },
+    {
+      "name": "Stone colour",
+      "values": [2, 0.8, 100, 100, 0]
+    }
+  ],
+  "type": "Pedals",
+  "detail": "Modulation · Cleveland Music Co. / FreeRig port",
+  "icon": "∿",
+  "sync": false,
+  "defaults": [1, 0.6000000238418579, 0, 100, 0]
+}

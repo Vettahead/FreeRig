@@ -1,0 +1,22 @@
+{
+  "key": "fx-DragonRoom",
+  "name": "Dragon Room",
+  "type": "Pedals",
+  "category": "Reverb",
+  "engine": "Dragonfly",
+  "detail": "Reverb · Dragonfly",
+  "icon": "✧",
+  "colour": "#b597cb",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [2.5, 100, 8000, 25]
+    },
+    {
+      "name": "Deep space",
+      "values": [3.375, 100, 8000, 40]
+    }
+  ],
+  "defaults": [2.5, 100, 8000, 25]
+}

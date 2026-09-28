@@ -1,11 +1,93 @@
-const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const events={},sent=[],elements={};let receive,body='',message='';const block={id:'amp1',key:'amp'};
-const context={window:{chrome:{webview:{postMessage:m=>sent.push(m),addEventListener:(event,fn)=>receive=fn}}},document:{addEventListener:(event,fn)=>events[event]=fn,getElementById:id=>elements[id]},state:{blocks:[block]},selected:'amp1',URL,PatchRig:{definition:()=>({name:'Amp'})},GearArt:{svg:()=>'<svg></svg>'},modal:(title,html)=>{body=html;for(const id of ['tone-browse','tone-model','tone-load','tone-pack','tone-cancel','tone-message'])elements[id]={value:'7'};},toast:text=>message=text};
-vm.runInNewContext(fs.readFileSync(__dirname+'/tone3000.js','utf8'),context);const ui=context.window.ToneLibrary;
-ui.open();assert.match(body,/Continue to TONE3000/);assert.equal(sent[0].type,'toneStatus');
-events.click({target:{closest:()=>({id:'tone-browse'})}});assert.equal(sent.at(-1).type,'toneBrowse');assert.equal(sent.at(-1).blockId,'amp1');assert.equal(sent.at(-1).architecture,'2');
-receive({data:{type:'toneDetails',blockId:'amp1',architecture:'2',tone:{title:'<script>bad</script>',gear:'amp-cab',format:'nam',license:'cc-by',description:'<b>text</b>',user:{username:'creator'}},user:{username:'listener'},models:[{id:7,name:'Clean',size:'standard'}]}});assert.ok(body.includes('&lt;script&gt;'));assert.ok(!body.includes('<script>'));assert.match(body,/already includes a cabinet/);assert.match(body,/@creator/);
-receive({data:{type:'toneBusy',busy:false}});events.click({target:{closest:()=>({id:'tone-load'})}});assert.equal(sent.at(-1).modelId,7);assert.equal(sent.at(-1).type,'toneDownload');assert.equal(ui.imageURL('javascript:alert(1)'),'');assert.equal(ui.imageURL('https://user:password@example.com/a.png'),'');assert.equal(ui.imageURL('https://example.com/a.png'),'https://example.com/a.png');
-console.log('PASS: TONE3000 target/architecture flow, model selection, attribution, combined-cab guidance and metadata escaping.');
+const fs = require('node:fs'),
+  vm = require('node:vm'),
+  assert = require('node:assert/strict');
+const events = {},
+  sent = [],
+  elements = {};
+let receive,
+  body = '',
+  message = '';
+const block = { id: 'amp1', key: 'amp' };
+const context = {
+  window: {
+    chrome: {
+      webview: {
+        postMessage: (m) => sent.push(m),
+        addEventListener: (event, fn) => (receive = fn),
+      },
+    },
+  },
+  document: {
+    addEventListener: (event, fn) => (events[event] = fn),
+    getElementById: (id) => elements[id],
+  },
+  state: { blocks: [block] },
+  selected: 'amp1',
+  URL,
+  PatchRig: { definition: () => ({ name: 'Amp' }) },
+  GearArt: { svg: () => '<svg></svg>' },
+  modal: (title, html) => {
+    body = html;
+    for (const id of [
+      'tone-browse',
+      'tone-model',
+      'tone-load',
+      'tone-pack',
+      'tone-cancel',
+      'tone-message',
+    ])
+      elements[id] = { value: '7' };
+  },
+  toast: (text) => (message = text),
+};
+vm.runInNewContext(fs.readFileSync(__dirname + '/tone3000.js', 'utf8'), context);
+const ui = context.window.ToneLibrary;
+ui.open();
+assert.match(body, /Continue to TONE3000/);
+assert.equal(sent[0].type, 'toneStatus');
+events.click({ target: { closest: () => ({ id: 'tone-browse' }) } });
+assert.equal(sent.at(-1).type, 'toneBrowse');
+assert.equal(sent.at(-1).blockId, 'amp1');
+assert.equal(sent.at(-1).architecture, '2');
+receive({
+  data: {
+    type: 'toneDetails',
+    blockId: 'amp1',
+    architecture: '2',
+    tone: {
+      title: '<script>bad</script>',
+      gear: 'amp-cab',
+      format: 'nam',
+      license: 'cc-by',
+      description: '<b>text</b>',
+      user: { username: 'creator' },
+    },
+    user: { username: 'listener' },
+    models: [{ id: 7, name: 'Clean', size: 'standard' }],
+  },
+});
+assert.ok(body.includes('&lt;script&gt;'));
+assert.ok(!body.includes('<script>'));
+assert.match(body, /already includes a cabinet/);
+assert.match(body, /@creator/);
+receive({ data: { type: 'toneBusy', busy: false } });
+events.click({ target: { closest: () => ({ id: 'tone-load' }) } });
+assert.equal(sent.at(-1).modelId, 7);
+assert.equal(sent.at(-1).type, 'toneDownload');
+assert.equal(ui.imageURL('javascript:alert(1)'), '');
+assert.equal(ui.imageURL('https://user:password@example.com/a.png'), '');
+assert.equal(ui.imageURL('https://example.com/a.png'), 'https://example.com/a.png');
+console.log(
+  'PASS: TONE3000 target/architecture flow, model selection, attribution, combined-cab guidance and metadata escaping.',
+);
 
-receive({data:{type:'toneBusy',busy:false}});assert.match(body,/Save pack \(1 models · A2\)/);events.click({target:{closest:()=>({id:'tone-pack'})}});assert.equal(sent.at(-1).type,'tonePack');assert.equal(elements['tone-cancel'].hidden,false);events.click({target:{closest:()=>({id:'tone-cancel'})}});assert.equal(sent.at(-1).type,'toneCancel');receive({data:{type:'toneBusy',busy:false}});assert.equal(elements['tone-cancel'].hidden,true);console.log('PASS: whole-pack action and cancellation.');
+receive({ data: { type: 'toneBusy', busy: false } });
+assert.match(body, /Save pack \(1 models · A2\)/);
+events.click({ target: { closest: () => ({ id: 'tone-pack' }) } });
+assert.equal(sent.at(-1).type, 'tonePack');
+assert.equal(elements['tone-cancel'].hidden, false);
+events.click({ target: { closest: () => ({ id: 'tone-cancel' }) } });
+assert.equal(sent.at(-1).type, 'toneCancel');
+receive({ data: { type: 'toneBusy', busy: false } });
+assert.equal(elements['tone-cancel'].hidden, true);
+console.log('PASS: whole-pack action and cancellation.');

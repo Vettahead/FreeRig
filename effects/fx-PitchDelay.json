@@ -1,0 +1,22 @@
+{
+  "key": "fx-PitchDelay",
+  "name": "Pitch Echo",
+  "type": "Pedals",
+  "category": "Delay",
+  "engine": "Airwindows",
+  "detail": "Delay · Airwindows",
+  "icon": "≈",
+  "colour": "#69afb5",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [40, 25, 50, 0, 58, 25]
+    },
+    {
+      "name": "Wide repeats",
+      "values": [40, 33.75, 50, 0, 58, 40]
+    }
+  ],
+  "defaults": [40, 25, 50, 0, 58, 25]
+}

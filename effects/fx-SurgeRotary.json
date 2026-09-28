@@ -1,0 +1,22 @@
+{
+  "key": "fx-SurgeRotary",
+  "name": "Rotary Speaker",
+  "type": "Pedals",
+  "category": "Modulation",
+  "engine": "Surge",
+  "detail": "Modulation · Surge",
+  "icon": "∿",
+  "colour": "#83b99b",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [0.5, 40, 40, 0.7, 0, 0, 0, 30]
+    },
+    {
+      "name": "Deep movement",
+      "values": [0.5, 40, 40, 0.7, 0, 0, 0, 48]
+    }
+  ],
+  "defaults": [0.5, 40, 40, 0.7, 0, 0, 0, 30]
+}

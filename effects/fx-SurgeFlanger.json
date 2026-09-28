@@ -1,0 +1,22 @@
+{
+  "key": "fx-SurgeFlanger",
+  "name": "Jet Flanger",
+  "type": "Pedals",
+  "category": "Modulation",
+  "engine": "Surge",
+  "detail": "Modulation · Surge",
+  "icon": "∿",
+  "colour": "#83b99b",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [0, 0, 0.5, 40, 4, 60, 0, 25, 10, 0, 30]
+    },
+    {
+      "name": "Deep movement",
+      "values": [0, 0, 0.5, 40, 4, 60, 0, 33.75, 10, 0, 48]
+    }
+  ],
+  "defaults": [0, 0, 0.5, 40, 4, 60, 0, 25, 10, 0, 30]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "fx-GXSoft",
+  "name": "Soft Clip",
+  "type": "Pedals",
+  "category": "Drive",
+  "engine": "Guitarix",
+  "detail": "Drive · Guitarix",
+  "icon": "↯",
+  "colour": "#be8b55",
+  "sync": false,
+  "presets": [
+    {
+      "name": "Balanced",
+      "values": [1.5]
+    },
+    {
+      "name": "Pushed",
+      "values": [1.99]
+    }
+  ],
+  "defaults": [1.5]
+}

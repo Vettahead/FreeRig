@@ -1,3 +1,7 @@
+## Alpha 20 source layout
+
+Run `releases/FreeRig-alpha-20/FreeRig.exe`. Native source is split into Model, Interop, Audio, Host, Services and Tests. See [Contributing](../CONTRIBUTING.md) for build/check commands and [Adding a pedal](../docs/ADDING-A-PEDAL.md) for extension guidance. Earlier release notes below are historical.
+
 ## Alpha 19 — cabinet formats redrawn (27 September 2026)
 
 Run **releases/FreeRig-alpha-19/FreeRig.exe**. Cabinet format is now separate from Hardware look in Device options: 1x10, 1x12, 1x15, horizontal 2x10/2x12, vertical 2x12, compact 4x10, straight/slant 4x12 and 8x10. All 20 finishes work with any format. The editor and thumbnails use the same scalable illustration, with circular speakers, individual enclosure proportions, grille cloth, piping, protective corners and feet. Cabinet adjustments sit alongside the enclosure.
@@ -169,7 +173,6 @@ Access and refresh tokens remain in native code and are encrypted for the Window
 Each downloaded model is size-limited and validated by NAM Core before it is saved or attached to the rig. Files and an attribution/licence sidecar live in the local Library. No downloaded captures are bundled with the release. Tone metadata and creator attribution appear in the editor; tone artwork and TONE3000 origin appear in the block. The Browse variants button reopens available remote variants. Downloaded audio files work offline; browsing and remote artwork need a connection. Exports contain references and attribution, not downloaded files or account details.
 
 This first integration uses the official hosted Select flow for browsing, favourites and account sign-in. It does not implement a second searchable remote catalogue. Pedal captures use the dedicated Capture Pedal block with input/output trims. API reference/design requirements: https://www.tone3000.com/api ; terms: https://www.tone3000.com/api/terms . Official logos are included unchanged from the provided branding bundle and remain TONE3000 trademarks. No partnership or certification is claimed.
-
 
 ### Saved devices and packs
 

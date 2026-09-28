@@ -1,0 +1,13 @@
+{
+  "app": [
+    "src/legacy/app/state.js",
+    "src/legacy/app/render.js",
+    "src/legacy/app/devices.js",
+    "src/legacy/app/picker.js",
+    "src/legacy/app/routing.js",
+    "src/legacy/app/events.js",
+    "src/legacy/app/practice.js",
+    "src/legacy/app/bootstrap.js"
+  ],
+  "artwork": ["src/legacy/artwork/cabinets.js", "src/legacy/artwork/hardware.js"]
+}

@@ -1,3 +1,12 @@
+## Alpha 20 — modular source and contributor workflow (28 September 2026)
+
+- Split native patch models, interop, graph/processors, host messages and services into focused source files.
+- Split the legacy application/artwork into named compatibility modules, with deterministic generated runtime bundles.
+- Added one descriptor per imported stock pedal and a shared native factory registry; generation validates preset ranges and parameter counts.
+- Added consistent source formatting, useful ownership/compatibility comments, contributor and pedal guides, and repository rules for future edits.
+- Fixed delegated editor button handlers being replaced by React root event setup.
+- Retained processing maths, saved patch keys and parameter ordering; no intentional sound or UI behaviour changes.
+
 ## Alpha 19 — cabinet formats redrawn (27 September 2026)
 
 Run **releases/FreeRig-alpha-19/FreeRig.exe**. Cabinet format is now separate from Hardware look in Device options: 1x10, 1x12, 1x15, horizontal 2x10/2x12, vertical 2x12, compact 4x10, straight/slant 4x12 and 8x10. All 20 finishes work with any format. The editor and thumbnails use the same scalable illustration, with circular speakers, individual enclosure proportions, grille cloth, piping, protective corners and feet. Cabinet adjustments sit alongside the enclosure.
