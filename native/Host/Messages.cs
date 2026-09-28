@@ -38,6 +38,22 @@ namespace GuitarSuite
                     Send(new { type = "outputs", devices = OutputDevices.List() });
                     return;
                 }
+                if (type == "audioDevices")
+                {
+                    Send(new { type = "audioDevices", drivers = AsioOut.GetDriverNames(),
+                               inputs = WindowsInput.List(), outputs = OutputDevices.List() });
+                    return;
+                }
+                if (type == "startWindows")
+                {
+                    audio.StartWindows(
+                        (string)message["inputDevice"], Convert.ToInt32(message["input"]),
+                        Convert.ToInt32(message["rate"]), patch, assets,
+                        (string)message["outputDevice"], Convert.ToInt32(message["outputLatency"]),
+                        Convert.ToBoolean(message["outputExclusive"]));
+                    lastStatus = "";
+                    return;
+                }
                 if (type == "sync")
                 {
                     string raw = json.Serialize(message["patch"]);
@@ -131,7 +147,7 @@ namespace GuitarSuite
                     {
                         if (message.ContainsKey("panel") && Convert.ToBoolean(message["panel"]))
                             driver.ShowControlPanel();
-                        Send(new { type = "driver",
+                        Send(new { type = "driver", driver = (string)message["driver"],
                                    inputs = Enumerable.Range(0, driver.DriverInputChannelCount)
                                                 .Select(i => driver.AsioInputChannelName(i))
                                                 .ToArray(),

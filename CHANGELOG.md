@@ -1,3 +1,12 @@
+## Alpha 21 — broader audio compatibility (28 September 2026)
+
+- Added WASAPI shared input with channel selection, float format negotiation and bounded preallocated processing blocks using the existing NAudio dependency.
+- Added a modular React audio setup form with ASIO/Windows choices, device refresh, automatic ASIO channel discovery, saved endpoint IDs and unavailable-device handling.
+- Kept direct ASIO output separate from the Windows output queue; capture DSP and model-rate conversion are shared, with no new model approximations.
+- Updated the setup wizard, latency explanations and Windows microphone-permission guidance. Device changes require Stop; audio never starts automatically.
+- Added packet-continuity/channel-isolation regressions, Windows preference/calibration coverage and a hardware-free UI fixture.
+- Live WASAPI/FlexASIO listening and round-trip latency qualification remain hardware checks; offline tests do not establish them.
+
 ## Project onboarding — 28 September 2026
 
 - Added a concise Freerig project brief and ready-to-use project instructions with source location, architecture, verification limits and priorities.

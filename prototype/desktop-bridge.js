@@ -152,6 +152,10 @@ window.NativeDesktop = (() => {
     if ($('#output-options')) $('#output-options').hidden = !separate;
   }
   function setup() {
+    if (window.FreeRigReact?.audioSetup) {
+      window.FreeRigReact.audioSetup();
+      return;
+    }
     if (!host) {
       modal(
         'WINDOWS PROGRAM',
@@ -218,12 +222,12 @@ window.NativeDesktop = (() => {
         if (line) line.textContent = message.message;
         document.querySelector('.statusbar').firstElementChild.textContent = message.message;
         document.querySelector('.statusbar').children[1].textContent = running
-          ? 'ASIO active'
-          : 'ASIO ready';
+          ? 'Audio active'
+          : 'Audio ready';
         document.querySelector('.chain-footer').firstElementChild.textContent = running
           ? 'Native audio engine running'
           : 'Native audio engine stopped';
-        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 19';
+        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 21';
       }
       if (message.type === 'error') {
         toast(message.message);
@@ -453,6 +457,16 @@ window.NativeDesktop = (() => {
     face,
     boot,
     send,
+    prepareAudio: (choice) => {
+      audioChoice = { ...choice };
+      activeAudioChoice = { ...choice };
+      try {
+        localStorage.setItem('guitar-suite-audio-choice', JSON.stringify(audioChoice));
+      } catch {}
+      clearTimeout(timer);
+      sync(state, true);
+    },
+    audioRunning: () => running,
     audioChoice: () => ({ ...((running && activeAudioChoice) || audioChoice) }),
     exportPatch: (value) => send({ type: 'exportPatch', value }),
   };

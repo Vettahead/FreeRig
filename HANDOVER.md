@@ -1,3 +1,9 @@
+## 28 September 2026 — Alpha 21 audio compatibility
+
+Audio setup now lives in modular React files under ui/src/audio. Added Windows WASAPI shared input, selected-channel float packet assembly and the existing drift-corrected Windows output path; direct ASIO still avoids that queue. Endpoint choices persist on Start, ASIO channels load on selection, missing devices remain unavailable, and settings lock while running. No driver is installed automatically. Native model/effects DLLs are unchanged from Alpha 20.
+
+Read docs/AUDIO-SETUP.md for timing and privacy limits. Offline packet/engine tests and all 12 JavaScript suites pass; browser fixture checks cover ASIO/Windows start/stop, saved channels, unavailable endpoints and the compact layout. Real Windows/ASIO/FlexASIO listening and round-trip measurements have not been performed. The initial sandbox self-test failed at Windows DPAPI user-profile access; the same full test passed outside the sandbox. Play-along loopback was discussed and recorded as a proposal, not implemented. Source remains canonical here; native/deps is a local junction to the existing cached toolchain and is excluded from Git.
+
 ## 28 September 2026 — Alpha 20 source refactor
 
 Readable source now has native Model/Interop/Audio/Host/Services/Tests folders, ordered legacy UI compatibility modules, one descriptor per stock effect and a central native factory registry. Start at README, CONTRIBUTING and docs/ARCHITECTURE.md. AGENTS.md establishes modularity, useful comments and verification rules. All 12 JS suites and native offline self-tests pass; browser checks verified knob edits, contextual amp replacement and cabinet navigation. DSP maths/parameter definitions are preserved. Actual live ASIO listening was not repeated. Remaining React migration, clean-machine sharing checks, Powercab USB latency, live-use qualification and MIDI remain separate work.

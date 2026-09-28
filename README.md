@@ -1,10 +1,14 @@
 # FreeRig
 
-A Windows guitar suite with a WebView2/React interface, native ASIO audio, NAM captures, cabinet IRs, stock effects, patches/scenes and optional TONE3000 downloads. Local models and effects work offline.
+A Windows guitar suite with a WebView2/React interface, native ASIO / Windows audio, NAM captures, cabinet IRs, stock effects, patches/scenes and optional TONE3000 downloads. Local models and effects work offline.
 
 ## Run
 
-Open `releases/FreeRig-alpha-20/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
+Open `releases/FreeRig-alpha-21/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
+
+## Audio compatibility
+
+Audio setup now offers ASIO or Windows audio (WASAPI shared input). Select a recording device/channel and output, then press Start. Manufacturer ASIO remains the recommended route for responsive playing; Windows audio broadens compatibility without another driver installation. Installed universal ASIO drivers such as FlexASIO appear in the ASIO list. See [Audio setup](docs/AUDIO-SETUP.md) for latency, privacy and testing limits.
 
 ## Project setup
 

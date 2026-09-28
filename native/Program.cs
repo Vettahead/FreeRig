@@ -56,6 +56,13 @@ namespace GuitarSuite
                     results);
                 return results.Any(s => s.StartsWith("FAIL")) ? 1 : 0;
             }
+            if (args.Length > 0 && args[0] == "--inputs")
+            {
+                File.WriteAllText(
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "inputs.json"),
+                    new JavaScriptSerializer().Serialize(WindowsInput.List()));
+                return 0;
+            }
             if (args.Length > 0 && args[0] == "--outputs")
             {
                 File.WriteAllText(

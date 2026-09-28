@@ -8,7 +8,7 @@ using NAudio.Dsp;
 
 namespace GuitarSuite
 {
-    // Owns the ASIO session. Graph edits must not reset the selected audio driver.
+    // Owns the selected audio session. Graph edits must not reset the selected audio driver.
     sealed class AudioEngine : IDisposable
     {
         float masterDb = -12;
@@ -77,10 +77,19 @@ namespace GuitarSuite
         public string OutputError
         {
             get {
-                return separate == null ? null : separate.Error;
+                return windows != null && windows.Error != null
+                           ? windows.Error
+                           : (separate == null ? null : separate.Error);
             }
         }
         AsioOut asio;
+        WindowsInput windows;
+        public string Backend
+        {
+            get {
+                return windows == null ? "ASIO" : "Windows audio";
+            }
+        }
         LiveGraph graph;
         LiveProvider provider;
         readonly float[] input = new float[4096];
@@ -88,7 +97,8 @@ namespace GuitarSuite
         public bool Running
         {
             get {
-                return asio != null && asio.PlaybackState == PlaybackState.Playing;
+                return windows != null ||
+                       (asio != null && asio.PlaybackState == PlaybackState.Playing);
             }
         }
         public int BufferSize;
@@ -145,6 +155,50 @@ namespace GuitarSuite
                 throw;
             }
         }
+        // Windows compatibility route shares the same DSP and output queue as ASIO.
+        // Its 128-frame processing blocks are not a hardware latency measurement.
+        public void StartWindows(string device, int channel, int rate, Patch patch, string assets,
+                                 string outputDevice, int latency, bool exclusive)
+        {
+            Stop();
+            if (rate != 44100 && rate != 48000 && rate != 96000)
+                throw new Exception("Choose 44.1, 48 or 96 kHz.");
+            if (String.IsNullOrEmpty(outputDevice))
+                throw new Exception("Choose a Windows output device.");
+            if (latency != 5 && latency != 10 && latency != 20)
+                throw new Exception("Choose a supported output buffer.");
+            try
+            {
+                sampleRate = rate;
+                inputTrim.Reset();
+                tuner = Effects.tuner_load(rate);
+                if (tuner == IntPtr.Zero)
+                    throw new Exception("Tuner could not initialise.");
+                BufferSize = WindowsInput.BlockFrames;
+                provider = new LiveProvider(rate);
+                SetMaster(masterDb);
+                graph = new LiveGraph(patch, rate, assets, BufferSize);
+                separate = new SeparateOutput(outputDevice, rate, latency, exclusive);
+                windows = new WindowsInput(device, channel, rate, OnWindowsAudio);
+                Error = null;
+                Overruns = 0;
+                CallbackLoad = 0;
+                Stats.Reset();
+                separate.Play();
+                windows.Start();
+            }
+            catch
+            {
+                Stop();
+                throw;
+            }
+        }
+        void OnWindowsAudio(float[] samples, int count)
+        {
+            long started = System.Diagnostics.Stopwatch.GetTimestamp();
+            Array.Copy(samples, input, count);
+            ProcessInput(count, started);
+        }
         void OnDriverReset(object sender, EventArgs e)
         {
             Error =
@@ -162,6 +216,26 @@ namespace GuitarSuite
         void OnAudio(object sender, AsioAudioAvailableEventArgs e)
         {
             long started = System.Diagnostics.Stopwatch.GetTimestamp();
+            if (e.SamplesPerBuffer != BufferSize)
+            {
+                Error = "The ASIO buffer changed. Stop and restart audio to prepare the models.";
+                provider.Count = 0;
+                return;
+            }
+            try
+            {
+                e.GetAsInterleavedSamples(input);
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+                provider.Count = 0;
+                return;
+            }
+            ProcessInput(e.SamplesPerBuffer, started);
+        }
+        void ProcessInput(int count, long started)
+        {
             try
             {
                 if (Error != null)
@@ -169,27 +243,22 @@ namespace GuitarSuite
                     provider.Count = 0;
                     return;
                 }
-                if (e.SamplesPerBuffer != BufferSize)
-                    throw new Exception(
-                        "The ASIO buffer changed. Stop and restart audio to prepare " +
-                        "the models for the new size.");
-                e.GetAsInterleavedSamples(input);
-                Stats.Input(input, e.SamplesPerBuffer);
+                Stats.Input(input, count);
                 if (TunerEnabled)
                 {
-                    Effects.tuner_process(tuner, input, e.SamplesPerBuffer);
+                    Effects.tuner_process(tuner, input, count);
                     TunerHz = Effects.tuner_hz(tuner);
                     TunerConfidence = Effects.tuner_confidence(tuner);
                 }
-                Peak = inputTrim.Process(input, e.SamplesPerBuffer, sampleRate);
-                graph.Render(input, e.SamplesPerBuffer);
+                Peak = inputTrim.Process(input, count, sampleRate);
+                graph.Render(input, count);
                 provider.RightSamples = graph.Right;
                 provider.Samples = graph.Left;
-                provider.Count = e.SamplesPerBuffer;
+                provider.Count = count;
                 if (separate != null)
                 {
-                    provider.Read(outputBytes, 0, e.SamplesPerBuffer * 8);
-                    separate.Queue.Push(outputBytes, e.SamplesPerBuffer);
+                    provider.Read(outputBytes, 0, count * 8);
+                    separate.Queue.Push(outputBytes, count);
                 }
             }
             catch (Exception ex)
@@ -204,7 +273,7 @@ namespace GuitarSuite
             {
                 double seconds = (double)(System.Diagnostics.Stopwatch.GetTimestamp() - started) /
                                  System.Diagnostics.Stopwatch.Frequency;
-                CallbackLoad = (float)(seconds * sampleRate / e.SamplesPerBuffer);
+                CallbackLoad = (float)(seconds * sampleRate / count);
                 Stats.Load(CallbackLoad);
                 if (CallbackLoad > 1)
                     System.Threading.Interlocked.Increment(ref Overruns);
@@ -217,6 +286,11 @@ namespace GuitarSuite
         }
         public void Stop()
         {
+            if (windows != null)
+            {
+                windows.Dispose();
+                windows = null;
+            }
             if (asio != null)
             {
                 asio.AudioAvailable -= OnAudio;

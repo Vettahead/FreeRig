@@ -484,3 +484,86 @@ textarea {
   font-size: 10px;
   order: -1;
 }
+
+.audio-setup {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.audio-setup fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.audio-setup label {
+  display: grid;
+  gap: 6px;
+}
+.audio-setup select {
+  width: 100%;
+  min-width: 0;
+  padding: 9px;
+}
+.audio-setup .audio-buttons,
+.audio-meters {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+.audio-meters label {
+  flex: 1;
+  min-width: 0;
+}
+.audio-meters meter {
+  width: 100%;
+}
+.audio-setup fieldset label:has(input[type='checkbox']) {
+  display: flex;
+  align-items: center;
+}
+.audio-setup button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.audio-setup p {
+  line-height: 1.5;
+}
+
+/* Compact two-column setup keeps the essentials visible on laptop screens. */
+.audio-setup {
+  width: min(840px, calc(100vw - 32px));
+}
+.audio-setup fieldset {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: end;
+}
+.audio-setup fieldset > p {
+  grid-column: 1 / -1;
+  margin: 2px 0;
+}
+.audio-setup label {
+  margin: 0;
+  padding: 0;
+}
+.audio-setup .audio-buttons {
+  margin: 0;
+  flex-wrap: wrap;
+}
+.audio-setup h2 {
+  margin: 12px 0;
+}
+.audio-setup > p {
+  margin: 12px 0;
+}
+.audio-setup > .audio-buttons {
+  position: sticky;
+  bottom: -24px;
+  background: #1c2527;
+  padding: 12px 0;
+}
+@media (max-width: 600px) {
+  .audio-setup fieldset {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

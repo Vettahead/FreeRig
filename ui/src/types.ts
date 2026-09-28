@@ -56,7 +56,15 @@ declare global {
   interface Window {
     SlotBoard: { slots(s: Rig): Slot[]; label(slot: Slot): string };
     GearLooks: { art(b: Block, on?: boolean): string };
-    NativeDesktop: { face(d: Definition, b: Block, v: Sound): string; controls(b: Block): string };
+    NativeDesktop: {
+      face(d: Definition, b: Block, v: Sound): string;
+      controls(b: Block): string;
+      installed(): boolean;
+      audioRunning(): boolean;
+      audioChoice(): import('./audio/types').AudioChoice;
+      prepareAudio(choice: import('./audio/types').AudioChoice): void;
+      send(message: object): void;
+    };
     DeviceShelf: { definition(b: Block): Definition; selector(b: Block): string };
     EffectTools: { controls(b: Block): string; faceState(d: Definition, v: Sound): Sound };
     FreeRigReact: {
@@ -64,6 +72,7 @@ declare global {
       clearBoard(): void;
       editor(props: EditorProps | null): void;
       connect(actions: Actions): void;
+      audioSetup(): void;
     };
   }
 }

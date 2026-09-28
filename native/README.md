@@ -1,3 +1,7 @@
+## Alpha 21 — Windows input and React audio setup
+
+Run `releases/FreeRig-alpha-21/FreeRig.exe`. Audio setup supports manufacturer/universal ASIO drivers or Windows shared-mode input with a selected Windows output. See [Audio setup](../docs/AUDIO-SETUP.md). `FreeRig.exe --inputs` enumerates active Windows capture devices without starting recording. The NAM/effects DLLs are unchanged from Alpha 20; the managed host and UI are rebuilt.
+
 ## Alpha 20 source layout
 
 Run `releases/FreeRig-alpha-20/FreeRig.exe`. Native source is split into Model, Interop, Audio, Host, Services and Tests. See [Contributing](../CONTRIBUTING.md) for build/check commands and [Adding a pedal](../docs/ADDING-A-PEDAL.md) for extension guidance. Earlier release notes below are historical.

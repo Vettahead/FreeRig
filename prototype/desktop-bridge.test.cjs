@@ -145,3 +145,29 @@ assert.equal(sent[0].type, 'sync');
 console.log(
   'PASS: immediate scene dispatch and independent interface calibration in native sync payload.',
 );
+
+// The React setup adapter must preserve backend/device IDs and synchronise
+// calibration before Start; old ASIO choices remain valid without a backend key.
+const windowsChoice = {
+  ...ui.audioChoice(),
+  backend: 'windows',
+  driver: 'WASAPI:test-endpoint',
+  inputDevice: 'test-endpoint',
+  input: 1,
+  outputDevice: 'speakers-id',
+  rate: 48000,
+};
+context.window.CalibrationUI = {
+  reference: (c) => (c.driver === 'WASAPI:test-endpoint' ? 12 : null),
+};
+sent.length = 0;
+ui.prepareAudio(windowsChoice);
+assert.equal(sent.at(-1).type, 'sync');
+assert.equal(sent.at(-1).patch.calibrationDbU, 12);
+assert.equal(ui.audioChoice().inputDevice, 'test-endpoint');
+assert.equal(JSON.parse(saved.get('guitar-suite-audio-choice')).backend, 'windows');
+assert.equal(
+  sent.some((m) => m.type === 'start' || m.type === 'startWindows'),
+  false,
+);
+console.log('PASS: React audio adapter saves Windows identity and calibration without auto-start.');

@@ -7,7 +7,7 @@ const pages = [
     items: [
       'Plug your guitar into the instrument / Hi-Z input on your audio interface. Select instrument mode if it has a switch.',
       'Connect headphones or speakers to that same interface for the simplest low-delay setup. Start with their volume low.',
-      'Install the interface manufacturer’s Windows ASIO driver, then reconnect the interface and restart FreeRig if it is missing from Audio setup.',
+      'Install your interface manufacturer’s ASIO driver for responsive playing. If no driver is available, choose Windows audio in Audio setup and allow desktop microphone access in Windows privacy settings.',
     ],
     tip: 'Turn direct monitoring down when listening to FreeRig, otherwise you may hear the dry guitar mixed with the processed sound.',
   },
@@ -15,7 +15,7 @@ const pages = [
     name: 'Audio',
     title: 'Choose where sound comes in and goes out.',
     items: [
-      'Open Audio setup. Choose your interface’s ASIO driver, then press Read channels.',
+      'Open Audio setup and Refresh devices. Choose ASIO and your driver, or Windows audio and your recording device. ASIO channel names load when you select the driver.',
       'Choose the input your guitar is plugged into and the output pair connected to your headphones or speakers. Use Same ASIO interface for the lowest-delay route.',
       'Choose a sample rate supported by your interface. Start at 48,000 Hz; use the model’s rate when a loaded capture asks for one. Press Start audio when ready.',
     ],
@@ -25,7 +25,7 @@ const pages = [
     name: 'Feel',
     title: 'Find a buffer that feels right.',
     items: [
-      'In Audio setup, open Driver / buffer settings. This buffer is measured in samples; it is different from sample rate (Hz).',
+      'For ASIO, open Driver / buffer settings in Audio setup. The buffer is measured in samples, separately from sample rate (Hz). Windows audio uses different capture and output queues; its processing block size does not measure total latency.',
       'Try 64 samples first, or 32 if your interface and rig handle it cleanly. Smaller buffers feel quicker but leave less processing time.',
       'Play hard and test your busiest patch. If you hear clicks or crackling, try 128 samples and check the performance meter. A smaller buffer does not make the capture more accurate.',
     ],

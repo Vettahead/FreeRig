@@ -1,4 +1,5 @@
-﻿import { SetupWizard } from './SetupWizard';
+import { AudioSetup } from './audio/AudioSetup';
+import { SetupWizard } from './SetupWizard';
 import { createRoot, type Root } from 'react-dom/client';
 import { flushSync } from 'react-dom';
 import { Board } from './Board';
@@ -11,7 +12,17 @@ const chain = document.getElementById('chain')!,
   editor = document.getElementById('editor')!;
 // Synchronous commits are limited to this legacy-host boundary: its routing and
 // gesture handlers inspect the rendered DOM immediately after render() returns.
+let audioRoot: Root | null = null;
+let audioSession = 0;
 window.FreeRigReact = {
+  audioSetup() {
+    if (!audioRoot) {
+      const host = document.createElement('div');
+      document.body.append(host);
+      audioRoot = createRoot(host);
+    }
+    audioRoot.render(<AudioSetup key={++audioSession} onClose={() => audioRoot!.render(null)} />);
+  },
   board(rig, selected) {
     if (!boardRoot) {
       chain.replaceChildren();

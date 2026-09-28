@@ -27,7 +27,7 @@ namespace GuitarSuite
         readonly Timer timer = new Timer { Interval = 100 };
         public MainWindow()
         {
-            Text = "FreeRig — Desktop Alpha 20";
+            Text = "FreeRig — Desktop Alpha 21";
             Width = 1280;
             Height = 850;
             MinimumSize = new System.Drawing.Size(850, 650);
@@ -87,8 +87,8 @@ namespace GuitarSuite
                     audio.Error = null;
                     Send(new { type = "error", message = err });
                 }
-                string status = audio.Running ? "ASIO running · " + audio.BufferSize +
-                                                    " samples → " + audio.OutputName
+                string status = audio.Running ? audio.Backend + " running · " + audio.BufferSize +
+                                                    " processing samples → " + audio.OutputName
                                               : "Audio stopped";
                 if (status != lastStatus)
                 {
