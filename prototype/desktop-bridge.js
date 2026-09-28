@@ -69,6 +69,21 @@ window.NativeDesktop = (() => {
     } catch {}
   });
   const dbLabel = (value) => (value > 0 ? '+' : '') + value + ' dB';
+  // React's overload action changes the same saved master as the workspace slider.
+  // Capture input/drive, per-device values and calibration are deliberately untouched.
+  function reduceOutput(peak) {
+    if (!Number.isFinite(peak) || peak <= 0.95) return masterDb;
+    masterDb = Math.max(-30, masterDb - Math.ceil(20 * Math.log10(peak / 0.8)));
+    send({ type: 'master', db: masterDb });
+    const slider = document.querySelector('#workspace-output');
+    const label = document.querySelector('#workspace-output-label');
+    if (slider) slider.value = masterDb;
+    if (label) label.textContent = dbLabel(masterDb);
+    try {
+      localStorage.setItem('guitar-suite-master-db', String(masterDb));
+    } catch {}
+    return masterDb;
+  }
   let audioChoice = {
     driver: '',
     input: 0,
@@ -227,7 +242,7 @@ window.NativeDesktop = (() => {
         document.querySelector('.chain-footer').firstElementChild.textContent = running
           ? 'Native audio engine running'
           : 'Native audio engine stopped';
-        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 22';
+        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 23';
       }
       if (message.type === 'error') {
         toast(message.message);
@@ -424,7 +439,7 @@ window.NativeDesktop = (() => {
       escapeHTML(
         b.assetName ||
           (b.key === 'cab'
-            ? 'Built-in filtered cabinet'
+            ? 'No IR loaded · low/high cuts only'
             : b.key === 'nampedal'
               ? 'No capture loaded · dry pass-through'
               : 'Built-in Amplitron amp'),
@@ -457,6 +472,7 @@ window.NativeDesktop = (() => {
     face,
     boot,
     send,
+    reduceOutput,
     prepareAudio: (choice) => {
       audioChoice = { ...choice };
       activeAudioChoice = { ...choice };

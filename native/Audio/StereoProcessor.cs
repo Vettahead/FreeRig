@@ -178,7 +178,10 @@ namespace GuitarSuite
         {
             if (Double.IsNaN(x) || Double.IsInfinity(x))
                 throw new Exception("Non-finite audio.");
-            return (float)Math.Max(-8, Math.Min(8, x));
+            // Internal floating-point audio may exceed full scale legitimately.
+            // A later cab/output trim can restore headroom; clipping here permanently
+            // changes captures before that attenuation. LiveProvider guards the output.
+            return (float)x;
         }
         public void Dispose()
         {

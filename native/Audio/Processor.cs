@@ -205,9 +205,9 @@ namespace GuitarSuite
                 }
                 wet += blend * (target - wet);
                 double result = original * (1 - wet) + x * wet;
-                Buffer[i] = (float)(Double.IsNaN(result) || Double.IsInfinity(result)
-                                        ? 0
-                                        : Clamp(result, -8, 8));
+                // Preserve finite floating-point headroom for downstream gain/cab stages.
+                // Only the device's intentional distortion and final output may clip.
+                Buffer[i] = (float)(Double.IsNaN(result) || Double.IsInfinity(result) ? 0 : result);
             }
         }
         public void Dispose()

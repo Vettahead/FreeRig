@@ -15,6 +15,7 @@ namespace GuitarSuite
         public int Count;
         public WaveFormat WaveFormat { get; private set; }
         public volatile BackingMixer Backing;
+        public readonly PeakHold BeforeCeiling = new PeakHold();
         readonly float[] backingSamples = new float[8192];
         readonly float[] interleaved = new float[8192];
         public LiveProvider(int rate)
@@ -32,7 +33,7 @@ namespace GuitarSuite
             var backing = Backing;
             if (backing != null)
                 backing.Read(backingSamples, frames);
-            float peak = 0;
+            float peak = 0, beforeCeiling = 0;
             bool clipped = false;
             float targetGain = Gain;
             double blend = 1 - Math.Exp(-1.0 / (WaveFormat.SampleRate * .01));
@@ -45,6 +46,7 @@ namespace GuitarSuite
                 if (Single.IsNaN(v) || Single.IsInfinity(v))
                     v = 0;
                 clipped |= Math.Abs(v) > .95f;
+                beforeCeiling = Math.Max(beforeCeiling, Math.Abs(v));
                 v = Math.Max(-.95f, Math.Min(.95f, v));
                 peak = Math.Max(peak, Math.Abs(v));
                 interleaved[i * 2] = v;
@@ -54,11 +56,13 @@ namespace GuitarSuite
                 if (Single.IsNaN(r) || Single.IsInfinity(r))
                     r = 0;
                 clipped |= Math.Abs(r) > .95f;
+                beforeCeiling = Math.Max(beforeCeiling, Math.Abs(r));
                 r = Math.Max(-.95f, Math.Min(.95f, r));
                 peak = Math.Max(peak, Math.Abs(r));
                 interleaved[i * 2 + 1] = r;
             }
             Peak = peak;
+            BeforeCeiling.Add(beforeCeiling);
             Clipped |= clipped;
             Buffer.BlockCopy(interleaved, 0, target, offset, bytes);
             return bytes;

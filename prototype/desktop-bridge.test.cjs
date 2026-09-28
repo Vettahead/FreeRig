@@ -171,3 +171,18 @@ assert.equal(
   false,
 );
 console.log('PASS: React audio adapter saves Windows identity and calibration without auto-start.');
+// An overload correction changes only the master, preserving drive/calibration.
+sent.length = 0;
+const oldMaster = Number(saved.get('guitar-suite-master-db') ?? -12);
+const corrected = ui.reduceOutput(2);
+assert.equal(corrected, Math.max(-30, oldMaster - 8));
+assert.equal(sent.length, 1);
+assert.equal(sent[0].type, 'master');
+assert.equal(sent[0].db, corrected);
+assert.equal(Number(saved.get('guitar-suite-master-db')), corrected);
+ui.reduceOutput(NaN);
+ui.reduceOutput(0.5);
+assert.equal(sent.length, 1);
+console.log(
+  'PASS: headroom correction changes only saved master, rejects invalid/non-overloaded peaks.',
+);

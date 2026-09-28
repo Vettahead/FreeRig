@@ -1,3 +1,9 @@
+## 28 September 2026 — Alpha 23 capture fidelity and output headroom
+
+Removed unintended ±8 floating-point clipping between devices, preserving hot capture waveforms until downstream attenuation. Intentional drive algorithms and final output protection remain. Added held pre-ceiling peak measurement and a React overload action that reduces only the saved master output. Unloaded cabinet blocks are labelled cuts-only, and capture editors distinguish head-only from amp+cab metadata.
+
+Audited the two local Hendrix captures against a separate generic NAM build at 32/64/128 samples: maximum error 2.09e-7. Marshall Greenback/V30/Creamback IRs match independent direct WAV convolution within 5.85e-8. Six NAM/IR combinations match a separately constructed reference chain exactly at all three buffer sizes. Synthetic unity-gain chain peaks ranged 1.006–2.986, demonstrating possible output overload, not proving the user's live settings clipped. New headroom/bypass tests cover 44.1/48/96 kHz. See docs/CAPTURE-FIDELITY.md for reproducible commands and limitations. No model weights, NAM quality, sample-buffer setting or saved patch parameters were changed.
+
 ## 28 September 2026 — Alpha 22 play-along input
 
 Added a React Play along toolbar dialog and independent stereo WASAPI loopback input. Backing volume/mute/meter sit after guitar effects and before the global master/ceiling. Two bounded SPSC queues isolate capture and worker resampling from the guitar callback. Source choices persist, connection does not; known output feedback routes are blocked and direct ASIO requires separate-device confirmation. Stopping guitar disconnects backing. No new dependencies or NAM/effects DLL changes.

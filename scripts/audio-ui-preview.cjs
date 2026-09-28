@@ -36,6 +36,11 @@ const fixture = `<script>
     button.style = 'position:fixed;bottom:0;right:0;z-index:99999';
     button.onclick = () => { connected = !connected; button.textContent = connected ? 'TEST: devices connected' : 'TEST: devices disconnected'; };
     document.body.append(button);
+    const overload = document.createElement('button');
+    overload.textContent = 'TEST: output overload';
+    overload.style = 'position:fixed;bottom:0;left:0;z-index:99999';
+    overload.onclick = () => reply({type:'meter',beforeCeiling:2,peak:.2,output:.95,clipped:true});
+    document.body.append(overload);
   });
 })();
 </script>`;

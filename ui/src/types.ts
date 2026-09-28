@@ -10,7 +10,7 @@ export interface Block {
   slot: Slot;
   assetId?: string;
   assetName?: string;
-  tone3000?: { title?: string; user?: { username?: string; avatar_url?: string } };
+  tone3000?: { title?: string; gear?: string; user?: { username?: string; avatar_url?: string } };
   appearance?: { style?: string; colour?: string; cabFormat?: string };
 }
 export interface Sound {
@@ -64,6 +64,7 @@ declare global {
       audioChoice(): import('./audio/types').AudioChoice;
       prepareAudio(choice: import('./audio/types').AudioChoice): void;
       send(message: object): void;
+      reduceOutput(peak: number): number;
     };
     DeviceShelf: { definition(b: Block): Definition; selector(b: Block): string };
     EffectTools: { controls(b: Block): string; faceState(d: Definition, v: Sound): Sound };

@@ -627,3 +627,33 @@ textarea {
 .play-along summary {
   cursor: pointer;
 }
+.capture-notice {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-left: 3px solid #d6b77e;
+  background: #d6b77e0d;
+  color: #ded6c5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.react-board .cab-unloaded {
+  color: #d6b77e;
+}
+.output-headroom {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 80;
+  max-width: min(520px, calc(100vw - 40px));
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #bf9061;
+  border-radius: 10px;
+  background: #242b2a;
+  box-shadow: 0 4px 22px #0008;
+  color: #eee0cd;
+  font-size: 13px;
+}

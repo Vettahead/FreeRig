@@ -54,6 +54,7 @@ namespace GuitarSuite
                 PlayAlongTests.Run(lines);
                 WindowsInputTests.Run(lines);
                 PerformanceTests.Run(lines);
+                CaptureHeadroomTests.Run(lines);
                 LiveSwitchTests(lines);
                 EffectsTests.Run(lines);
                 ToneTests.Run(lines);
@@ -78,6 +79,8 @@ namespace GuitarSuite
                 for (int i = 0; i < 100; i++)
                     provider.Read(bytes, 0, bytes.Length);
                 Check(provider.Clipped && provider.Peak <= .95f, "Output ceiling failed");
+                Check(provider.BeforeCeiling.Take() > 3.9f && provider.BeforeCeiling.Take() == 0,
+                      "Pre-ceiling meter failed to hold/reset the actual overload.");
                 provider.Count = 0;
                 provider.Read(bytes, 0, bytes.Length);
                 Check(BitConverter.ToSingle(bytes, 0) == 0, "Empty output not silent");

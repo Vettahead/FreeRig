@@ -129,6 +129,9 @@ function Card({ slot, rig, selected }: { slot: Slot; rig: Rig; selected: string 
         <span>
           <strong>{d.name}</strong>
           <small>{window.SlotBoard.label(slot)}</small>
+          {block.key === 'cab' && !block.assetId && (
+            <small className="cab-unloaded">No IR · cuts only</small>
+          )}
         </span>
       </button>
       <button

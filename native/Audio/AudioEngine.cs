@@ -54,6 +54,10 @@ namespace GuitarSuite
             provider.Clipped = false;
             return clipped;
         }
+        public float TakeBeforeCeiling()
+        {
+            return provider == null ? 0 : provider.BeforeCeiling.Take();
+        }
         SeparateOutput separate;
         readonly byte[] outputBytes = new byte[32768];
         public object[] CalibrationInfo

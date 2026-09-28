@@ -1,5 +1,6 @@
 // Selected-device view. Legacy control islands retain import/preset handlers during migration.
 import { CreatorCredit } from './CreatorCredit';
+import { CaptureNotice } from './CaptureNotice';
 
 import type { CSSProperties } from 'react';
 import type { EditorProps } from './types';
@@ -57,6 +58,7 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
         </div>
       </div>
       <LegacyControls html={window.EffectTools.controls(b)} />
+      <CaptureNotice block={b} />
       <div className="editor-body">
         <Hardware html={face} d={d} v={faceState} />
       </div>

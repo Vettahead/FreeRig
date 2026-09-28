@@ -27,7 +27,7 @@ namespace GuitarSuite
         readonly Timer timer = new Timer { Interval = 100 };
         public MainWindow()
         {
-            Text = "FreeRig — Desktop Alpha 22";
+            Text = "FreeRig — Desktop Alpha 23";
             Width = 1280;
             Height = 850;
             MinimumSize = new System.Drawing.Size(850, 650);
@@ -101,6 +101,7 @@ namespace GuitarSuite
                                confidence = audio.TunerConfidence, running = audio.Running });
                 if (audio.Running)
                     Send(new { type = "meter", peak = audio.Peak, output = audio.OutputPeak,
+                               beforeCeiling = audio.TakeBeforeCeiling(),
                                clipped = audio.TakeClip(), load = audio.Stats.TakeLoad(),
                                rawPeak = audio.Stats.TakeInput(), overruns = audio.Overruns,
                                outputDropouts = audio.OutputDropouts });

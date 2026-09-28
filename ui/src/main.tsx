@@ -1,4 +1,5 @@
 import { PlayAlong } from './audio/PlayAlong';
+import { OutputHeadroom } from './audio/OutputHeadroom';
 import { AudioSetup } from './audio/AudioSetup';
 import { SetupWizard } from './SetupWizard';
 import { createRoot, type Root } from 'react-dom/client';
@@ -49,6 +50,9 @@ window.FreeRigReact = {
     musicHost.className = 'play-along-host';
     document.getElementById('settings')!.before(musicHost);
     createRoot(musicHost).render(<PlayAlong />);
+    const healthHost = document.createElement('div');
+    document.body.append(healthHost);
+    createRoot(healthHost).render(<OutputHeadroom />);
     const host = document.createElement('div');
     host.id = 'device-menu-root';
     document.body.append(host);

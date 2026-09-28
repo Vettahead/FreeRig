@@ -1,3 +1,7 @@
+## Alpha 23 — capture headroom audit
+
+Run `releases/FreeRig-alpha-23/FreeRig.exe`. Removed unintended internal clipping before downstream level controls, added pre-ceiling peak hold and a master-only overload correction. NAM weights/quality and the 32-sample driver setting are unchanged. See [Capture fidelity](../docs/CAPTURE-FIDELITY.md). The actual cause of the reported live harshness is not confirmed by offline tests.
+
 ## Alpha 22 — play-along input
 
 Run `releases/FreeRig-alpha-22/FreeRig.exe`. Start guitar audio, then open **Play along** to connect a separate Windows playback source. See [Play-along setup](../docs/PLAY-ALONG.md). Guitar capture/processing remains independent of backing capture and resampling. NAM/effects DLLs are unchanged from Alpha 21; the managed host and React interface are rebuilt.
