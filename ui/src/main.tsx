@@ -1,3 +1,4 @@
+import { ReleaseHistory } from './release-history/ReleaseHistory';
 import './interface.css';
 import { PlayAlong } from './audio/PlayAlong';
 import { OutputHeadroom } from './audio/OutputHeadroom';
@@ -86,6 +87,7 @@ window.FreeRigReact = {
     document.body.append(host);
     createRoot(host).render(
       <>
+        <ReleaseHistory />
         <ContextMenu actions={actions} />
         <SetupWizard actions={actions} />
         <OverviewBypassGesture actions={actions} />

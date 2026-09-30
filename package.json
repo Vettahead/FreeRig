@@ -2,14 +2,14 @@
   "name": "freerig-development",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-legacy.mjs && node scripts/build-effects.mjs && npm --prefix ui run build",
+    "build": "node scripts/build-release.mjs && node scripts/build-legacy.mjs && node scripts/build-effects.mjs && npm --prefix ui run build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "node scripts/test.mjs",
     "check": "npm run format:check && npm run generated:check && npm --prefix ui run build && npm test",
     "format:native": "powershell -NoProfile -File scripts/format-native.ps1",
     "format:native:check": "powershell -NoProfile -File scripts/format-native.ps1 -Check",
-    "generated:check": "node scripts/build-legacy.mjs --check && node scripts/build-effects.mjs --check"
+    "generated:check": "node scripts/build-release.mjs --check && node scripts/build-legacy.mjs --check && node scripts/build-effects.mjs --check"
   },
   "devDependencies": {
     "prettier": "3.6.2"

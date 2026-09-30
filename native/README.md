@@ -1,3 +1,7 @@
+# Alpha 27 — complete release history
+
+Click FreeRig · Alpha 27 at the bottom-left for the full searchable offline changelog, backfilled to Alpha 01. Escape or clicking outside closes it. The release number is shared with the native title and checked during packaging. Audio processing is unchanged from Alpha 26.
+
 # Alpha 26 — circuit amps and recorded cabinets
 
 Run FreeRig.exe from this complete release folder. Collection → Amps contains 13 new Tamgamp circuit preamp channels. Collection → Cabs contains five recorded speaker configurations with two-microphone blending, polarity and scene recall. All work offline. These are preamps rather than complete power-amp simulations; the cabinet bank contains 21 recordings across two enclosure families. Source, original assets and licences are included. See docs/CIRCUIT-AMPS-AND-CABS.md in the source archive for controls, scope and reproducible tests.

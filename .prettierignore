@@ -16,3 +16,4 @@ HANDOVER.md
 docs/screenshots/
 native/effects_air_entries.inc
 native/cabinet-data.inc
+ui/src/release-history/history.generated.json

@@ -17,6 +17,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument("version", type=int)
 parser.add_argument("--dependency-source", type=Path, required=True)
 args = parser.parse_args()
+current = json.loads((root / "release.json").read_text())["version"]
+if args.version != current:
+    raise SystemExit("Requested package version does not match release.json")
+subprocess.run(["node", str(root / "scripts/build-release.mjs"), "--check"], check=True)
+if (root / "native/dist/release-version.txt").read_text().strip() != str(current):
+    raise SystemExit("Desktop version is stale; rebuild native/build.ps1")
 release = root / "releases" / f"FreeRig-alpha-{args.version}"
 if release.exists():
     raise SystemExit(f"Release already exists: {release}; choose a new version or inspect it.")
@@ -24,7 +30,7 @@ dist = root / "native/dist"
 release.mkdir(parents=True)
 # Explicit application-only files. Diagnostics, WebView profiles, accounts,
 # recordings, captures and machine-specific audio settings are never included.
-files = ["FreeRig.exe", "GuitarEffects.dll", "GuitarNam.dll", "effect-presets.json", "README.md",
+files = ["release-version.txt", "FreeRig.exe", "GuitarEffects.dll", "GuitarNam.dll", "effect-presets.json", "README.md",
          "Microsoft.Web.WebView2.Core.dll", "Microsoft.Web.WebView2.WinForms.dll",
          "Microsoft.Win32.Registry.dll", "NAudio.Asio.dll", "NAudio.Core.dll", "NAudio.Wasapi.dll",
          "System.Security.AccessControl.dll", "System.Security.Principal.Windows.dll", "WebView2Loader.dll"]

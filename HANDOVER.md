@@ -1,3 +1,9 @@
+## 30 September 2026 — Alpha 27: complete in-app release history
+
+Added a fixed bottom-left React version button and searchable offline changelog dialog with release navigation, keyboard focus restoration, Escape and outside dismissal. Backfilled Alpha 01–04 and 03.1 headings using the existing historical records; retained all later release and source-only notes. release.json is now the single current-version source for the UI and native window title. Native builds and packaging validate matching, current release history; AGENTS.md and docs/RELEASING.md require updates every version. No new dependencies or audio/patch arithmetic changes.
+
+Validation: npm run check (13 suites), native formatting/build and complete offline self-test passed. Browser checks cover search for 03.1, oldest-release navigation, Enter/Escape/focus return and 1080p layout. Release target: releases/FreeRig-alpha-27/FreeRig.exe and portable ZIP with source; Alpha 26 preserved. Audio DLLs are identical to Alpha 26. Mission Control remains unavailable; local handover retained.
+
 ## 30 September 2026 — Alpha 26: circuit amps and recorded cabinets
 
 Imported all 13 Tamgamp DK preamp channels with actual source controls, original arithmetic/tables and 96 kHz internal resampling. Added five cabinet/speaker configurations (two physical enclosure families) using 21 verified CC0 Jester Dyne recordings. React editor offers two real recorded setup selectors, blend, polarity and output, saved per scene. No continuous invented mic positions, full power-amp stage or ten unrelated cabinets claimed. All source/handbooks/WAVs/licences retained; see docs/CIRCUIT-AMPS-AND-CABS.md.

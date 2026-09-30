@@ -27,7 +27,10 @@ namespace GuitarSuite
         readonly Timer timer = new Timer { Interval = 100 };
         public MainWindow()
         {
-            Text = "FreeRig — Desktop Alpha 26";
+            Text = "FreeRig — Desktop Alpha " +
+                   File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                                                 "release-version.txt"))
+                       .Trim();
             Width = 1280;
             Height = 850;
             MinimumSize = new System.Drawing.Size(850, 650);

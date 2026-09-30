@@ -1,7 +1,12 @@
 ﻿$ErrorActionPreference='Stop'
+# Refuse stale release history before copying any application files.
+& node (Join-Path $PSScriptRoot '../scripts/build-release.mjs') --check
+if($LASTEXITCODE -ne 0){throw 'Release history is stale. Run npm run build.'}
 $deps=Join-Path $PSScriptRoot 'deps'
 $out=Join-Path $PSScriptRoot 'dist'
 New-Item -ItemType Directory -Force $out,(Join-Path $out 'ui'),(Join-Path $out 'licenses') | Out-Null
+$releaseInfo=Get-Content (Join-Path $PSScriptRoot '../release.json') -Raw | ConvertFrom-Json
+[IO.File]::WriteAllText((Join-Path $out 'release-version.txt'),[string]$releaseInfo.version)
 $references=@('System.dll','System.Core.dll','System.Drawing.dll','System.Windows.Forms.dll','System.Web.Extensions.dll','System.Web.dll','System.Net.Http.dll','System.Security.dll',(Join-Path $deps 'net48/build/.NETFramework/v4.8/Facades/netstandard.dll'))
 foreach($item in @('naudio.core/lib/netstandard2.0/NAudio.Core.dll','naudio.asio/lib/netstandard2.0/NAudio.Asio.dll','naudio.wasapi/lib/netstandard2.0/NAudio.Wasapi.dll','webview2/lib/net462/Microsoft.Web.WebView2.Core.dll','webview2/lib/net462/Microsoft.Web.WebView2.WinForms.dll')){$source=Join-Path $deps $item;$references+=$source;Copy-Item -LiteralPath $source -Destination $out -Force}
 Copy-Item -LiteralPath (Join-Path $deps 'webview2/runtimes/win-x64/native/WebView2Loader.dll') -Destination $out -Force

@@ -62,3 +62,7 @@ No patch/scene keys, effect arithmetic or native DSP binaries change. Backing se
 ## Circuit amps and cabinet bank
 
 Tamgamp adaptation lives in `native/effects_tamgamp.cpp`; recorded cabinet processing is split between `effects_cabinets.cpp` and `cabinet_convolution.h`. `scripts/build-cabinet-data.py` reproducibly embeds the original CC0 bank. The React cabinet editor uses the existing scene parameter command contract. See [models and invariants](CIRCUIT-AMPS-AND-CABS.md).
+
+## Release metadata
+
+`release.json` and `CHANGELOG.md` feed `scripts/build-release.mjs`. Its generated JSON is bundled by the focused React `ui/src/release-history/ReleaseHistory.tsx` component. The native build writes the same version to `release-version.txt`, read by the window title. Packaging validates these contracts. See [release workflow](RELEASING.md).

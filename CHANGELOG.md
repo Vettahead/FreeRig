@@ -1,3 +1,10 @@
+## Alpha 27 — 30 September 2026
+
+- Added a bottom-left version button that opens the complete offline changelog, with release navigation and search.
+- Backfilled Alpha 01–26 and the 03.1 hotfix from the existing project records; retained source-only diagnostics and early prototype history.
+- Centralised the current release number. Builds and packaging reject missing release notes or mismatched version metadata.
+- Keyboard, Escape and outside-click dismissal return focus to the version button. No audio processing or saved-patch changes.
+
 ## Alpha 26 — 30 September 2026
 
 - Import all 13 Tamgamp circuit preamp channels with their actual controls and independent stereo state.
@@ -241,8 +248,7 @@ See **native/EFFECTS-RESEARCH.md** for source comparisons, dated GitHub adoption
 
 Source, revision pins and licences accompany this GPL-3.0-or-later release. Private pedal test captures and account data are excluded.
 
-## 2026-09-26
-- Desktop alpha 04: added persistent TONE3000 devices with whole selected-architecture packs, offline model variants, amp/cab/pedal support, capture-pedal DSP, custom enclosure looks/colours, previous-download recovery, progress/cancellation and cached retry. Verified library and native audio regressions plus fixture UI; real pack download/listening check remains pending.
+## Early design and prototype — 26 September 2026
 - Defined Guitar Suite as a free desktop application for Chris and friends.
 - Recorded NAM A2, pedalboard, cabinet, presets and TONE3000 scope.
 - Planned a playable audio prototype before interface polish and distribution.
@@ -254,12 +260,26 @@ Source, revision pins and licences accompany this GPL-3.0-or-later release. Priv
 - Build 04: replaced fixed A/B lanes with explicit patch cables, free board placement, fan-out/summing connections, cycle prevention and a pre-amp delay example. Added named/copyable scenes within patches, v3 migration preserving old connections/settings, and Drive/Delay/Modulation/Reverb/Dynamics/Utility library filters. Verified routing, dragging, scene recall and persistence; audio remains unconnected.
 
 - Build 05: organised the cable graph into four pre-amp effect slots, stacked amp/cab section and four post-cab slots. Added plus-slot picker, snapped placement, parallel cab insertion and undoable off-board drag removal with neighbour reconnection. Preserved existing oversized rigs as overflow rows.
-- Desktop alpha 01: built an x64 Windows executable using WinForms/WebView2 and NAudio ASIO. Added Amplitron-derived clean/crunch voices, basic effects and filtered cabinet; compiled official NAM Core with A2 support for local NAM/WAV imports; added Guitar Suite JSON preset import/export. Bundled licences and unmodified Eigen sources. Offline graph/effect/WaveNet/A2/LSTM/IR tests pass; physical ASIO and listening validation remain pending.
+
+## Alpha 04 — 26 September 2026
+
+- Desktop alpha 04: added persistent TONE3000 devices with whole selected-architecture packs, offline model variants, amp/cab/pedal support, capture-pedal DSP, custom enclosure looks/colours, previous-download recovery, progress/cancellation and cached retry. Verified library and native audio regressions plus fixture UI; real pack download/listening check remains pending.
+
+## Alpha 03.1 — 26 September 2026
+
+- Alpha 03.1: explicitly use TLS 1.2 for the .NET Framework API client; the compiled executable passed a live OAuth preflight. Packaged separately to preserve the open alpha 03 session.
+
+## Alpha 03 — 26 September 2026
+
+- Desktop alpha 03: connected TONE3000 hosted Select OAuth flow using the supplied publishable key, PKCE/state validation and a separate bridge-free WebView. Added native encrypted token persistence/refresh, model picker, validated individual NAM/IR downloads, attribution/licence metadata, model variants and official branding. Live key/callback preflight reached sign-in; mocked token/refresh/redirect/download tests and core audio tests pass. Real account sign-in/download/playback remains to verify.
+
+## Alpha 02 — 26 September 2026
 
 - Desktop alpha 02: added remembered, smoothed master output (−30 to +12 dB), input/output meters and ceiling indication after quiet Mackie playback was reported. Remember ASIO driver/channels/rate, automatically restart running audio after topology changes, and support compatible device replacement via library drop or editor picker while retaining routing/scene bypass and Undo. Offline engine, settings persistence and replacement tests passed; hardware retest pending.
 
-- Desktop alpha 03: connected TONE3000 hosted Select OAuth flow using the supplied publishable key, PKCE/state validation and a separate bridge-free WebView. Added native encrypted token persistence/refresh, model picker, validated individual NAM/IR downloads, attribution/licence metadata, model variants and official branding. Live key/callback preflight reached sign-in; mocked token/refresh/redirect/download tests and core audio tests pass. Real account sign-in/download/playback remains to verify.
-- Alpha 03.1: explicitly use TLS 1.2 for the .NET Framework API client; the compiled executable passed a live OAuth preflight. Packaged separately to preserve the open alpha 03 session.
+## Alpha 01 — 26 September 2026
+
+- Desktop alpha 01: built an x64 Windows executable using WinForms/WebView2 and NAudio ASIO. Added Amplitron-derived clean/crunch voices, basic effects and filtered cabinet; compiled official NAM Core with A2 support for local NAM/WAV imports; added Guitar Suite JSON preset import/export. Bundled licences and unmodified Eigen sources. Offline graph/effect/WaveNet/A2/LSTM/IR tests pass; physical ASIO and listening validation remain pending.
 
 ## Alpha 05 — stereo effects and tuner (26 September 2026)
 

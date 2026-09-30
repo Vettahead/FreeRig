@@ -4,7 +4,7 @@ A Windows guitar suite with a WebView2/React interface, native ASIO / Windows au
 
 ## Run
 
-Open `releases/FreeRig-alpha-26/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
+Open `releases/FreeRig-alpha-27/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
 
 ## Audio compatibility
 
@@ -66,3 +66,7 @@ Alpha 25 adds Studio factory tags, detailed effect guides and measured DSP-cost 
 ## Circuit amps and recorded cabinets
 
 Alpha 26 adds all 13 Tamgamp circuit preamps/channels and five cabinet/speaker configurations with 21 recorded microphone setups. Open Collection → Amps or Cabs. Cabinets offer two microphone selectors, blend, polarity and output; settings belong to scenes. See [the models, controls and validation](docs/CIRCUIT-AMPS-AND-CABS.md).
+
+## Release history
+
+Click the version at the bottom-left to read and search the complete offline changelog. The current version comes from `release.json`; update its number and add matching release notes to `CHANGELOG.md` for every release, then run `npm run build`. Builds/package checks reject stale history or mismatched numbers. See [the release workflow](docs/RELEASING.md).

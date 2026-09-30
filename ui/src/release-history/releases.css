@@ -1,0 +1,111 @@
+.release-version {
+  position: fixed;
+  left: 10px;
+  bottom: 7px;
+  z-index: 40;
+  padding: 6px 10px;
+  border: 1px solid #64746d;
+  border-radius: 7px;
+  background: #192124;
+  color: #d9e8df;
+  font-size: 11px;
+  cursor: pointer;
+}
+.release-version:hover {
+  background: #30413a;
+}
+.release-history {
+  width: min(1040px, calc(100vw - 48px));
+  max-width: none;
+  height: min(820px, calc(100dvh - 64px));
+  max-height: none;
+  padding: 24px;
+  box-sizing: border-box;
+  border: 1px solid #596960;
+  border-radius: 16px;
+  background: #192124;
+  color: #e2eae5;
+}
+.release-history[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.release-history::backdrop {
+  background: #080c10bb;
+}
+.release-history header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 20px;
+}
+.release-history h1 {
+  margin: 6px 0;
+  font-size: 28px;
+}
+.release-history header p {
+  margin: 0;
+  color: #b6c4bd;
+}
+.release-history input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+}
+.release-history-content {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 24px;
+  min-height: 0;
+  flex: 1;
+}
+.release-history nav,
+.release-notes {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.release-history nav button {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+.release-notes {
+  padding-right: 12px;
+}
+.release-notes section {
+  padding: 0 0 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #3d4c46;
+}
+.release-notes h2 {
+  font-size: 20px;
+  margin-top: 0;
+  scroll-margin-top: 8px;
+}
+.release-note-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+  font-size: 14px;
+  color: #cad7d0;
+}
+.release-history :focus-visible,
+.release-version:focus-visible {
+  outline: 2px solid #b7dcca;
+  outline-offset: 3px;
+}
+@media (max-width: 720px) {
+  .release-history {
+    padding: 16px;
+  }
+  .release-history-content {
+    grid-template-columns: 1fr;
+  }
+  .release-history nav {
+    max-height: 100px;
+  }
+}

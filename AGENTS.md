@@ -23,3 +23,7 @@ Verify that the working directory is this FreeRig repository, not `G8-website` o
 Run `npm run check`. For native edits also run `npm run format:native:check`, build the desktop app and run its offline self-test. For DSP edits rebuild effects and test relevant sample rates, small buffers and transitions. Exercise affected UI interactions in the browser or desktop; do not claim live ASIO listening was tested by an offline render.
 
 Update documentation and CHANGELOG for behaviour or architecture changes. Keep commits focused. Do not add new dependencies without explaining their purpose and licence.
+
+## Every release
+
+Update `release.json` and add dated notes at the top of `CHANGELOG.md` for every version. Run `npm run build` to regenerate the in-app history, then rebuild the desktop host. Never hand-edit the generated history or hard-code a separate UI version. Follow `docs/RELEASING.md`; package validation must pass.
