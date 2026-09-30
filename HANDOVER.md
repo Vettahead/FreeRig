@@ -1,3 +1,8 @@
+## 30 September 2026 — Alpha 31: four pedals per rail
+
+Corrected the remaining two-column grid: every board now keeps four positions on one row, with closer spacing and more width assigned to pre/post boards. Narrow boards scroll horizontally rather than wrap. Cable anchor measurements include scroll offset. Audio processing and routing contracts unchanged.
+
+Validation: npm run check (13 suites) and desktop build pass. Browser verified four loaded pre-amp pedals share the same row at 1920×1080 and 1280×720, with no horizontal page overflow at 1280. Preview: docs/screenshots/alpha31-board.png. Release: releases/FreeRig-alpha-31/FreeRig.exe and matching source/portable archives. Mission Control unavailable; local handover retained.
 ## 30 September 2026 — Alpha 30: short patch leads and realistic plug ends
 
 Kept the Alpha 29 stage layout, increased pedal artwork size, tightened neighbour spacing and broadened board rails. Replaced perimeter wires and floating striped blocks with short curved leads, metallic right-angle plugs, collars and strain relief. Only occupied neighbours on the same rail receive a lead; blank slots have no sockets and row transitions are tucked beneath the board. Legacy SVG canvas margins and raster enclosure margins are accounted for in attachment positions. No audio or patch contracts changed.

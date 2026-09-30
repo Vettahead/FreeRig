@@ -1,3 +1,8 @@
+## Alpha 31 — 30 September 2026
+
+- All pedalboards use four positions on a single rail with tighter spacing. Narrow windows scroll the board horizontally instead of wrapping pedals into a second row.
+- Short patch leads retain their attachment positions when a board scrolls. Audio processing and saved routing are unchanged.
+
 ## Alpha 30 — 30 September 2026
 
 - Tighter pedal spacing and larger enclosures on broader board rails, following the supplied pedalboard reference.

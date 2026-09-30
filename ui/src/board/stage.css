@@ -507,9 +507,9 @@
 /* Closely packed hardware on broad rails. Patch leads connect enclosures;
    the plus targets remain quiet and never acquire fictitious jack sockets. */
 .physical-rig .physical-deck .deck-slots {
-  grid-template-columns: repeat(2, minmax(0, 150px));
+  grid-template-columns: repeat(4, minmax(104px, 124px));
   justify-content: center;
-  gap: 12px 12px;
+  gap: 8px;
 }
 .physical-rig .physical-deck .deck-rail {
   background: repeating-linear-gradient(#242729 0 56px, #111315 57px 68px, #34383a 69px 71px);
@@ -528,23 +528,23 @@
   border-color: #b9ad7966;
 }
 .physical-rig .physical-deck .board-gear {
-  height: 172px;
+  height: 148px;
   justify-content: flex-end;
   gap: 8px;
 }
 .physical-rig .physical-deck .board-gear .gear-svg {
-  width: 170px;
-  height: 136px;
+  width: 144px;
+  height: 115px;
   max-width: none;
 }
 .physical-rig .physical-deck:not(.deck-loop) .board-gear .rendered-thumb {
-  width: 90px;
+  width: 76px;
 }
 .physical-rig .physical-deck:not(.deck-loop) .board-gear .thumb-delay {
-  width: 140px;
+  width: 104px;
 }
 .physical-rig .physical-deck:not(.deck-loop) .board-gear .thumb-reverb {
-  width: 96px;
+  width: 80px;
 }
 .physical-rig .deck-loop .deck-slots {
   grid-template-columns: repeat(4, minmax(0, 150px));
@@ -578,6 +578,26 @@
 }
 @media (max-width: 650px) {
   .physical-rig .deck-loop .deck-slots {
-    grid-template-columns: repeat(2, minmax(0, 150px));
+    grid-template-columns: repeat(4, minmax(104px, 124px));
+  }
+}
+
+/* Four positions remain on one rail. Narrow windows scroll the board rather
+   than wrapping into a misleading second signal row. */
+.physical-rig .physical-deck .deck-rail {
+  overflow-x: auto;
+}
+.physical-rig .physical-deck .deck-slots {
+  justify-content: start;
+  width: max-content;
+  min-width: 100%;
+}
+.physical-rig .physical-deck .patch-leads {
+  min-width: 464px;
+}
+@media (min-width: 1401px) {
+  .rig-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.7fr) minmax(0, 1fr);
+    gap: 20px;
   }
 }

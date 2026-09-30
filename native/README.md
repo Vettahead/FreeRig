@@ -1,4 +1,8 @@
-# FreeRig Alpha 30
+# FreeRig Alpha 31
+
+Four closely spaced pedal positions per row; narrow boards scroll instead of wrapping. Audio processing is unchanged.
+
+## FreeRig Alpha 30
 
 Tighter pedal spacing, larger hardware and short patch leads with right-angle metal plugs. Audio processing is unchanged.
 

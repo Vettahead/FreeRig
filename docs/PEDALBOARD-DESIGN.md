@@ -29,3 +29,5 @@ Changing arrangement must continue through the existing command/drag model. Cust
 ## Alpha 30 cable detail
 
 The supplied pedalboard reference calls for closely spaced hardware and short right-angle leads. Cables now connect only occupied neighbours on the same rail. Empty positions have no sockets; row changes are visually routed beneath the board. The numbered stages remain authoritative for signal order. Legacy SVG anchors compensate for transparent canvas margins; raster anchors follow the enclosure profile. Plug bodies use a metallic gradient, collar and dark strain relief.
+
+Alpha 31 keeps all four positions on one rail. Narrow boards scroll horizontally rather than wrap; plug measurements include the board scroll offset.

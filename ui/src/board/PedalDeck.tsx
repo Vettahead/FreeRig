@@ -40,8 +40,8 @@ export function PedalDeck({
         const wide = image.classList.contains('thumb-delay');
         const inset = gear.width * (legacy ? 0.235 : wide ? 0.045 : 0.1);
         return {
-          left: gear.left - base.left + inset,
-          right: gear.right - base.left - inset,
+          left: gear.left - base.left + host.scrollLeft + inset,
+          right: gear.right - base.left + host.scrollLeft - inset,
           top: r.top - base.top,
           y: gear.top - base.top + gear.height * (legacy ? 0.34 : wide ? 0.5 : 0.44),
         };
