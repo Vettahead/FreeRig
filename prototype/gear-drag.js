@@ -16,7 +16,8 @@ window.installGearDrag = function ({ root, library, resolveTarget, onDrop, onRem
       target = lastTarget;
     active = null;
     lastTarget = null;
-    ghost?.remove();
+    if (ghost?.finish) ghost.finish(target?.element || null, cancel);
+    else ghost?.remove();
     ghost = null;
     clear();
     document.body.classList.remove('dragging-gear');
@@ -49,16 +50,19 @@ window.installGearDrag = function ({ root, library, resolveTarget, onDrop, onRem
     if (!active.started) {
       active.started = true;
       active.area.setPointerCapture(e.pointerId);
-      ghost = active.el.cloneNode(true);
-      ghost.classList.add('drag-ghost');
-      ghost.removeAttribute('id');
-      ghost.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(ghost);
+      if (window.FreeRigReact?.liftHardware) {
+        ghost = window.FreeRigReact.liftHardware(active.el, active.x, active.y);
+      } else {
+        ghost = active.el.cloneNode(true);
+        ghost.classList.add('drag-ghost');
+        ghost.removeAttribute('id');
+        ghost.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(ghost);
+      }
       document.body.classList.add('dragging-gear');
     }
     e.preventDefault();
-    ghost.style.left = e.clientX + 14 + 'px';
-    ghost.style.top = e.clientY + 14 + 'px';
+
     const hit = document.elementFromPoint(e.clientX, e.clientY);
     clear();
     lastTarget =
@@ -66,10 +70,21 @@ window.installGearDrag = function ({ root, library, resolveTarget, onDrop, onRem
         ? resolveTarget({ target: hit, clientX: e.clientX, clientY: e.clientY })
         : null;
     active.outside = !!hit && !root.contains(hit);
-    ghost.classList.toggle('remove-ghost', active.outside && !!active.payload.id);
+    if (ghost.move)
+      ghost.move(
+        e.clientX,
+        e.clientY,
+        lastTarget?.element || null,
+        active.outside && !!active.payload.id,
+      );
+    else {
+      ghost.style.left = e.clientX + 14 + 'px';
+      ghost.style.top = e.clientY + 14 + 'px';
+      ghost.classList.toggle('remove-ghost', active.outside && !!active.payload.id);
+    }
     if (lastTarget) lastTarget.element.classList.add(lastTarget.side);
     // Scroll the hovered chain near its edge so long rigs remain reorderable.
-    const strip = hit?.closest('.lane-devices'),
+    const strip = hit?.closest('.lane-devices, .deck-rail'),
       canvas = hit?.closest('.route-scroll');
     for (const scroller of [strip, canvas])
       if (scroller) {

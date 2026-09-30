@@ -1,3 +1,4 @@
+import { liftHardware } from './board/DragPreview';
 import { hardwareArt } from './hardware/legacyArtwork';
 import { ReleaseHistory } from './release-history/ReleaseHistory';
 import './interface.css';
@@ -27,6 +28,7 @@ let audioSession = 0;
 let tagsRoot: Root | null = null;
 let pickerFiltersRoot: Root | null = null;
 window.FreeRigReact = {
+  liftHardware,
   hardwareArt,
   matchesCost,
   mountEffectFilters(host) {

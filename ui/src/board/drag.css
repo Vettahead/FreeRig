@@ -1,0 +1,59 @@
+/* The moving layer contains hardware only; it never participates in hit testing. */
+.hardware-lift {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  pointer-events: none;
+  will-change: transform;
+}
+.lift-object {
+  width: 100%;
+  height: 100%;
+  transform: translateY(-12px) scale(1.06);
+  filter: drop-shadow(0 22px 12px #0009);
+  transition: transform 90ms ease-out;
+}
+.hardware-lift .lift-object > .rendered-thumb,
+.hardware-lift .lift-object > .gear-svg {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+}
+.lift-hint {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #111b1ef0;
+  color: #e4d3a9;
+  border: 1px solid #baa36b;
+  font: 11px system-ui;
+}
+.lift-removing .lift-hint {
+  color: #ffd1ca;
+  border-color: #ed897b;
+}
+.hardware-picked-up {
+  opacity: 0.2 !important;
+}
+.hardware-drop-target {
+  outline: 2px solid #e0c78e !important;
+  outline-offset: 3px;
+  background-color: #ddc18518 !important;
+}
+.dragging-gear,
+.dragging-gear * {
+  cursor: grabbing !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lift-object {
+    transition: none;
+    transform: none;
+  }
+}

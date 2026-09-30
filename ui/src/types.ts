@@ -97,6 +97,11 @@ declare global {
     DeviceShelf: { definition(b: Block): Definition; selector(b: Block): string };
     EffectTools: { controls(b: Block): string; faceState(d: Definition, v: Sound): Sound };
     FreeRigReact: {
+      liftHardware(
+        source: HTMLElement,
+        x: number,
+        y: number,
+      ): import('./board/DragPreview').DragPreview;
       hardwareArt(block: Block, on?: boolean): string;
       matchesCost(definition: Pick<Definition, 'dspCost'>): boolean;
       mountEffectFilters(host: HTMLElement | null): void;

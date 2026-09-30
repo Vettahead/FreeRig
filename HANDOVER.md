@@ -1,3 +1,7 @@
+## 30 September 2026 — Alpha 34: hardware pickup feedback
+
+Added focused React hardware drag previews: original-size artwork and grab offset, lift shadow/tilt, source dimming, drop outline and place/replace/remove hints, short landing or cancel animation, reduced-motion support. Legacy adapter retains routing, drop/remove and click suppression. No DSP or native contract changes. Browser verified delay movement into the loop, pedal replacement and library amp replacement without opening controls, preview cleanup and no console errors. npm run check (15 tests) and desktop build pass. Release target: releases/FreeRig-alpha-34/FreeRig.exe and matching portable/source archives. Mission Control remains unavailable; local handover retained.
+
 ## 30 September 2026 — Alpha 33: effects loop above the rig
 
 Moved the loop tray above the main rig in React DOM order, keeping its send/return labels underneath. Routing and DSP are unchanged. npm run check and desktop build passed. Browser verified adding Tape Echo to the upper loop, returning to routing, and placement without horizontal page overflow at 1920×1080 and 1280×720. Preview: docs/screenshots/alpha33-board.png. Release target: releases/FreeRig-alpha-33/FreeRig.exe with portable/source archives. Mission Control remains unavailable; local handover retained.

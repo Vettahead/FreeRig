@@ -1,3 +1,9 @@
+## Alpha 34 — 30 September 2026
+
+- Dragging lifts the hardware artwork at its original size and grab point, with a raised shadow, gentle tilt and short landing animation. The original position fades during pickup.
+- Highlighted targets and place/replace/remove hints clarify the result before release. Narrow pedal rails can scroll during dragging.
+- Reduced-motion preferences disable lift/landing animation. Existing routing, replacement, cancellation and click suppression remain owned by the gesture adapter; audio processing is unchanged.
+
 ## Alpha 33 — 30 September 2026
 
 - Moved the effects-loop pedalboard above the main rig, centred over the amp/cab stack, with send/return labels pointing towards the stack below.

@@ -35,3 +35,7 @@ Alpha 31 keeps all four positions on one rail. Narrow boards scroll horizontally
 ## Alpha 33 loop placement
 
 The loop tray sits above the main rig in DOM and visual order. Its send/return labels sit underneath and point towards the amp/cab station below. This is presentation only: section IDs, drag targets and amp → loop → cab processing order are unchanged.
+
+## Alpha 34 hardware pickup
+
+`ui/src/board/DragPreview.tsx` owns a short-lived React artwork layer, original-size grab offsets, shadow/tilt, target feedback and landing/cancel cleanup. The existing `prototype/gear-drag.js` gesture adapter calls this presentation bridge and remains the sole owner of drop/remove commands, pointer capture and click suppression. The preview is inert, ignores hit testing and never moves the actual board DOM. Reduced-motion preferences skip lift/landing animations; pointer tracking is immediate. Horizontal auto-scroll also recognises the physical deck rails.
