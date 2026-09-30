@@ -87,19 +87,11 @@ namespace GuitarSuite
                     tonePreviousAsset = block.assetId;
                     string architecture = Convert.ToString(message["architecture"]);
                     if (type == "toneBrowse")
-                        await tones.Select(this, webEnvironment,
-                                           block.key == "cab" ? "cab"
-                                           : block.key == "amp" || block.key == "cleanamp"
-                                               ? "amp"
-                                               : "pedal",
+                        await tones.Select(this, webEnvironment, Tone3000.KindForDevice(block.key),
                                            architecture);
                     else
                         await tones.LoadTone(Convert.ToInt64(message["toneId"]),
-                                             block.key == "cab" ? "cab"
-                                             : block.key == "amp" || block.key == "cleanamp"
-                                                 ? "amp"
-                                                 : "pedal",
-                                             architecture);
+                                             Tone3000.KindForDevice(block.key), architecture);
                     VerifyToneTarget();
                     var user = await tones.User();
                     Send(new { type = "toneDetails", blockId = toneBlock, tone = tones.SelectedTone,

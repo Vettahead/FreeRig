@@ -62,6 +62,16 @@ namespace GuitarSuite
                       "credential origin restriction.");
             Check(Tone3000.AuthorizeUrl("verifier", state, "pedal", "2").Contains("gears=pedal"),
                   "Pedal filter missing");
+            foreach (string key in new[] { "amp", "cleanamp", "fx-AmpJCM800High", "fx-AmpDC3Lead",
+                                           "fx-Amp5150Lead" })
+                Check(Tone3000.AuthorizeUrl("verifier", state, Tone3000.KindForDevice(key), "2")
+                          .Contains("gears=amp_amp-cab"),
+                      "Amp incorrectly filtered: " + key);
+            foreach (string key in new[] { "cab", "fx-CabJesterV30", "fx-CabJesterGreenback" })
+                Check(Tone3000.AuthorizeUrl("verifier", state, Tone3000.KindForDevice(key), "2")
+                          .Contains("gears=cab&format=ir"),
+                      "Cab incorrectly filtered: " + key);
+            Check(Tone3000.KindForDevice("fx-Centaur") == "pedal", "Stock drive misclassified");
             TestLibrary();
             lines.Add(
                 "PASS: saved pack grouping, restart persistence, duplicate prevention, missing " +

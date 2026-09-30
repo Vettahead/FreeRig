@@ -79,7 +79,7 @@ window.ToneLibrary = (() => {
     setBusy();
   }
   function architecturePicker() {
-    return block()?.key === 'cab'
+    return block()?.key === 'cab' || block()?.key?.startsWith('fx-Cab')
       ? ''
       : '<label>NAM models<select id="tone-architecture"><option value="2" ' +
           (architecture === '2' ? 'selected' : '') +

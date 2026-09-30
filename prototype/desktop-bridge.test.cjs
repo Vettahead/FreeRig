@@ -186,3 +186,54 @@ assert.equal(sent.length, 1);
 console.log(
   'PASS: headroom correction changes only saved master, rejects invalid/non-overloaded peaks.',
 );
+
+// Use the real patch/slot model to verify a downloaded capture replaces the
+// stock DSP while preserving scene bypass and routing.
+const PatchRig = require('./patch-model.js');
+vm.runInNewContext(fs.readFileSync(__dirname + '/slot-board.js', 'utf8'), {
+  window: context.window,
+  PatchRig,
+});
+context.SlotBoard = context.window.SlotBoard;
+context.PatchRig = PatchRig;
+context.checkpoint = () => {};
+context.toast = () => {};
+elements['#modal'] = { close() {} };
+for (const [oldKey, gear, newKey] of [
+  ['fx-AmpJCM800High', 'amp', 'amp'],
+  ['fx-CabJesterV30', 'cab', 'cab'],
+  ['drive', 'pedal', 'nampedal'],
+]) {
+  context.state = PatchRig.createDefault();
+  const target = context.state.blocks.find(
+    (b) => b.key === (gear === 'cab' ? 'cab' : gear === 'amp' ? 'amp' : 'drive'),
+  );
+  target.key = oldKey;
+  const wiring = JSON.stringify(context.state.connections);
+  const on = context.state.scenes.map((scene) => scene[target.id].on);
+  receive({
+    data: {
+      type: 'asset',
+      blockId: target.id,
+      expectedKey: oldKey,
+      expectedAsset: null,
+      assetId: 'fixture.nam',
+      assetName: 'Test capture',
+      tone: { gear },
+      modelId: 7,
+    },
+  });
+  assert.equal(target.key, newKey);
+  assert.equal(target.assetId, 'fixture.nam');
+  assert.equal(JSON.stringify(context.state.connections), wiring);
+  assert.deepEqual(
+    context.state.scenes.map((scene) => scene[target.id].on),
+    on,
+  );
+  if (gear === 'amp')
+    for (const scene of context.state.scenes)
+      assert.deepEqual(Array.from(scene[target.id].values.slice(1, 4)), [0, 0, 0]);
+}
+console.log(
+  'PASS: modelled amp/cab and stock pedal downloads select capture DSP, preserving wiring and bypass.',
+);

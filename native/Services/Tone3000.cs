@@ -152,6 +152,17 @@ namespace GuitarSuite
                 throw new Exception("TONE3000 did not return a selected tone.");
             return q["code"];
         }
+        // Stock circuit amps/cabinets share the fx registry with pedals. Their
+        // stable registry prefixes identify the hosted library category.
+        public static string KindForDevice(string key)
+        {
+            if (key == "amp" || key == "cleanamp" ||
+                key.StartsWith("fx-Amp", StringComparison.Ordinal))
+                return "amp";
+            if (key == "cab" || key.StartsWith("fx-Cab", StringComparison.Ordinal))
+                return "cab";
+            return "pedal";
+        }
         public static string AuthorizeUrl(string verifier, string state, string kind,
                                           string architecture)
         {

@@ -308,6 +308,16 @@ window.NativeDesktop = (() => {
           return;
         }
         checkpoint();
+        // Attaching a capture also replaces the stock circuit processor.
+        if (message.tone) {
+          const captureKey =
+            message.tone.gear === 'cab'
+              ? 'cab'
+              : message.tone.gear === 'pedal'
+                ? 'nampedal'
+                : 'amp';
+          if (b.key !== captureKey) SlotBoard.replace(state, b.id, captureKey);
+        }
         if (!b.assetId && ['amp', 'cleanamp'].includes(b.key))
           state.scenes.forEach((scene) => {
             scene[b.id].values[1] = scene[b.id].values[2] = scene[b.id].values[3] = 0;
@@ -315,8 +325,6 @@ window.NativeDesktop = (() => {
         b.assetId = message.assetId;
         b.assetName = message.assetName;
         if (message.tone) {
-          if (message.tone.gear === 'pedal' && b.key !== 'nampedal')
-            SlotBoard.replace(state, b.id, 'nampedal');
           b.assetId = message.assetId;
           b.assetName = message.assetName;
           b.tone3000 = {
