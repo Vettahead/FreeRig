@@ -2,7 +2,7 @@
 import { createElement, useLayoutEffect, useMemo, useRef } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import type { Definition, Param, Sound } from './types';
-function Knob({
+export function Knob({
   p,
   index,
   value,

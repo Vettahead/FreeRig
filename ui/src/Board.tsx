@@ -1,6 +1,8 @@
 // Pedalboard presentation and drag targets. Patch mutations go through the command adapter.
 import { Fragment, useMemo, useRef, useLayoutEffect } from 'react';
 import type { Rig, Slot } from './types';
+import { hardwareProfile } from './hardware/profiles';
+import { RenderedThumbnail } from './hardware/RenderedHardware';
 export function Board({ rig, selected }: { rig: Rig; selected: string | null }) {
   const slots = window.SlotBoard.slots(rig);
   const positions = useRef(new Map<string, DOMRect>());
@@ -97,8 +99,10 @@ export function Board({ rig, selected }: { rig: Rig; selected: string | null }) 
 function Artwork({ block, on }: { block: Rig['blocks'][number]; on: boolean }) {
   const html = useMemo(
     () => window.GearLooks.art(block, on),
-    [block.key, block.appearance?.style, block.appearance?.colour, on],
+    [block.key, block.appearance?.style, block.appearance?.colour, block.appearance?.cabFormat, on],
   );
+  const profile = hardwareProfile(block);
+  if (profile) return <RenderedThumbnail profile={profile} block={block} on={on} />;
   return <span className="react-art" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 

@@ -44,4 +44,5 @@ Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'vendor/SOURCES.json') -Destinat
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'effect-presets.json') -Destination $out -Force
 
 $reactNotice=Join-Path (Split-Path $PSScriptRoot) 'ui/THIRD_PARTY_NOTICES.md'
+Copy-Item -LiteralPath (Join-Path $uiRoot 'hardware') -Destination (Join-Path $out 'ui') -Recurse -Force
 if(Test-Path $reactNotice){Copy-Item -LiteralPath $reactNotice -Destination (Join-Path $out 'licenses/React-MIT.md') -Force}

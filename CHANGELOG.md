@@ -1,3 +1,10 @@
+## Alpha 28 — 30 September 2026
+
+- First hardware artwork pass: British amp head, green Moss Drive, blue Tape Echo, violet Open Space, horizontal 2×12 and straight 4×12 cabinet bodies.
+- Working React knobs, numeric values and bypass switches sit on the hardware. Parameter ranges, scenes and audio processing are unchanged.
+- Cleaner pedalboard shelves and compact spacing; device guides collapse beneath the editor. Existing custom colours, cabinet formats and other devices keep their established artwork.
+- Original artwork is bundled for offline use. This is the first selected device set, not a reskin of the entire collection.
+
 ## Alpha 27 — 30 September 2026
 
 - Added a bottom-left version button that opens the complete offline changelog, with release navigation and search.

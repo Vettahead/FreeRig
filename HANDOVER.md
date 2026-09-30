@@ -1,3 +1,11 @@
+## 30 September 2026 — Alpha 28: first hardware artwork set
+
+Added original image-generated amp, drive, delay, reverb and 2×12/4×12 chassis assets with React parameter/bypass overlays. Profile mapping is intentionally limited to British Bloom/JCM800, Moss Drive, Tape Echo, Open Space, unloaded default 2×12 and recorded Jester 4×12 cabinets. Custom finishes/formats use the existing renderer; switching back to a mapped factory look recognises its saved factory colour. Board shelves and spacing are cleaner; longer guides collapse below controls. No audio arithmetic, patch/native contract or dependency changes. See docs/HARDWARE-DESIGN.md for modular extension points, scope and generation prompts.
+
+Validation: npm run check (13 suites), native formatting, desktop build and complete offline self-test passed (218 processors, 265 presets). Browser checked numeric edits/scene recall, bypass, selection, drag from after-cab into FX loop without opening the editor, mic selection, factory-appearance fallback/return and 1080p views. Smaller 1280×720/1536×864 windows remain scrollable; no horizontal overflow observed at 1536. Screenshots: docs/screenshots/alpha28-amp.png and alpha28-board.png. No live ASIO listening performed. First art set only; the wider catalogue and collection thumbnails still use previous designs.
+
+Release target: releases/FreeRig-alpha-28/FreeRig.exe and portable ZIP with matching source. Existing releases preserved. Mission Control remains unavailable; local handover retained.
+
 ## 30 September 2026 — Alpha 27: complete in-app release history
 
 Added a fixed bottom-left React version button and searchable offline changelog dialog with release navigation, keyboard focus restoration, Escape and outside dismissal. Backfilled Alpha 01–04 and 03.1 headings using the existing historical records; retained all later release and source-only notes. release.json is now the single current-version source for the UI and native window title. Native builds and packaging validate matching, current release history; AGENTS.md and docs/RELEASING.md require updates every version. No new dependencies or audio/patch arithmetic changes.

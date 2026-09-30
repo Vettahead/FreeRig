@@ -1,0 +1,584 @@
+/* Chassis art supplies fixed lighting; only dial pointers rotate. All readable
+   text remains DOM text. No render loop, canvas or continuous animation. */
+.rendered-stage {
+  width: 100%;
+  padding: 24px 12px;
+  display: grid;
+  place-items: center;
+}
+#editor .rendered-stage .physical-control {
+  gap: 3px;
+}
+#editor .rendered-stage .physical-control label {
+  order: 0;
+}
+#editor .rendered-stage .dial-hit {
+  order: 1;
+}
+#editor .rendered-stage .param-value {
+  order: 2;
+}
+#editor .rendered-stage input.rotary-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  touch-action: none;
+  cursor: ns-resize;
+}
+#editor .rendered-stage .knob {
+  padding: 0;
+  margin: 0;
+  transform: none !important;
+}
+#editor .rendered-stage .knob-face {
+  position: absolute;
+  width: auto;
+  height: auto;
+}
+.rendered-device {
+  position: relative;
+  width: min(100%, 1180px);
+}
+.rendered-device .chassis {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.rendered-badge {
+  position: absolute;
+  top: 26%;
+  left: 12%;
+  right: 12%;
+  text-align: center;
+  color: #f3e5c7;
+  text-shadow: 0 2px 2px #000;
+}
+.rendered-badge > span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.rendered-badge > strong {
+  font:
+    italic 600 clamp(22px, 2.6vw, 38px) Georgia,
+    serif;
+}
+.rendered-controls {
+  position: absolute;
+  left: 8%;
+  right: 14%;
+  top: 60%;
+  height: 23%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+}
+#editor .rendered-stage .physical-control {
+  min-width: 0;
+  width: auto;
+  flex: 1;
+  max-width: 118px;
+  padding: 0;
+}
+#editor .rendered-stage .physical-control label {
+  font:
+    600 10px system-ui,
+    sans-serif;
+  color: #292821;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+#editor .rendered-stage .dial-hit {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
+#editor .rendered-stage .knob {
+  width: 48px;
+  height: 48px;
+  background: repeating-conic-gradient(#151515 0 8deg, #3c3c38 8deg 12deg);
+  border: 2px solid #1d1d1b;
+  box-shadow:
+    0 5px 6px #0007,
+    inset 0 1px 2px #fff9;
+}
+#editor .rendered-stage .knob-face {
+  inset: 5px;
+  background: radial-gradient(ellipse at 30% 20%, #b4aea1, #66635d 45%, #292a28 80%);
+  border: 1px solid #aaa38f;
+  transform: none;
+}
+#editor .rendered-stage .knob-face::after {
+  background: #f5ead2;
+  width: 3px;
+  height: 11px;
+  top: 3px;
+  left: calc(50% - 1.5px);
+  transform-origin: 50% 15px;
+  transform: rotate(var(--rotate));
+}
+#editor .rendered-stage .param-value {
+  margin-top: 2px;
+  color: #25251f;
+  font-size: 10px;
+}
+#editor .rendered-stage .param-value input {
+  color: inherit;
+  font-size: 11px;
+  width: 48px;
+  background: transparent;
+  border: none;
+}
+.rendered-switch {
+  position: absolute;
+  right: 5.4%;
+  top: 62%;
+  width: 62px;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+.rendered-switch > i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #322c23;
+  border: 1px solid #5c4934;
+}
+.rendered-switch > i.lit {
+  background: #ffbe68;
+  box-shadow: 0 0 7px #ff9c4266;
+}
+.metal-switch {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 25%,
+    #f9f8ee,
+    #a4a8a7 45%,
+    #373e41 70%,
+    #a0a4a3 76%,
+    #333 87%
+  );
+  box-shadow: 0 3px 4px #0008;
+}
+.rendered-switch small {
+  font-size: 8px;
+  color: #28271e;
+  letter-spacing: 0.4px;
+}
+.rendered-drive .rendered-device {
+  width: 280px;
+}
+.rendered-delay .rendered-device {
+  width: 580px;
+}
+.rendered-reverb .rendered-device {
+  width: 330px;
+}
+.rendered-cab2 .rendered-device {
+  width: min(100%, 540px);
+  padding-bottom: 120px;
+}
+.rendered-cab2 .rendered-badge {
+  top: 19%;
+}
+.rendered-cab2 .rendered-controls {
+  top: auto;
+  bottom: 0;
+  height: 105px;
+  background: #b9ad8d;
+  left: 3%;
+  right: 15%;
+  border-radius: 6px;
+}
+.rendered-cab2 .rendered-switch {
+  top: auto;
+  bottom: 28px;
+  right: 3%;
+}
+.rendered-cab2 .rendered-switch small {
+  color: #ddd;
+}
+.rendered-drive .rendered-controls,
+.rendered-reverb .rendered-controls {
+  top: 12%;
+  left: 12%;
+  right: 12%;
+  height: 25%;
+  flex-wrap: wrap;
+}
+.rendered-delay .rendered-controls {
+  top: 18%;
+  left: 10%;
+  right: 10%;
+  height: 23%;
+}
+.rendered-drive .rendered-badge,
+.rendered-reverb .rendered-badge {
+  top: 44%;
+  left: 10%;
+  right: 10%;
+}
+.rendered-delay .rendered-badge {
+  top: 49%;
+}
+.rendered-drive .rendered-badge > strong,
+.rendered-delay .rendered-badge > strong,
+.rendered-reverb .rendered-badge > strong {
+  font:
+    700 26px system-ui,
+    sans-serif;
+  letter-spacing: -1px;
+}
+.rendered-drive .rendered-switch,
+.rendered-delay .rendered-switch,
+.rendered-reverb .rendered-switch {
+  top: 73%;
+  right: calc(50% - 31px);
+}
+#editor .rendered-drive .physical-control label,
+#editor .rendered-delay .physical-control label,
+#editor .rendered-reverb .physical-control label,
+#editor .rendered-drive .param-value,
+#editor .rendered-delay .param-value,
+#editor .rendered-reverb .param-value,
+.rendered-drive .rendered-switch small,
+.rendered-delay .rendered-switch small,
+.rendered-reverb .rendered-switch small {
+  color: #f1efe3;
+}
+.rendered-thumb {
+  display: block;
+  position: relative;
+  width: 92px;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+.rendered-thumb > img {
+  width: 100%;
+  display: block;
+}
+.thumb-delay {
+  width: 132px;
+}
+.thumb-reverb {
+  width: 100px;
+}
+.thumb-knobs {
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  top: 18%;
+  display: flex;
+  justify-content: space-around;
+  gap: 3px;
+}
+.thumb-knobs i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #aaa699, #191d1c 65%);
+  box-shadow: 0 2px 2px #0008;
+  border: 1px solid #87877d;
+}
+.thumb-knobs i::after {
+  content: '';
+  width: 1px;
+  height: 4px;
+  display: block;
+  margin: 0 auto;
+  background: #eee9d8;
+}
+.thumb-badge {
+  position: absolute;
+  top: 45%;
+  left: 10%;
+  right: 10%;
+  text-align: center;
+  color: #f4ead2;
+  font-size: 9px;
+  font-weight: 700;
+  text-shadow: 0 1px #000;
+}
+.thumb-switch {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  left: calc(50% - 5px);
+  top: 76%;
+  background: linear-gradient(120deg, #fafaf2, #555);
+  box-shadow: 0 2px 3px #0008;
+}
+.thumb-switch.lit::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffc778;
+}
+.thumb-amp {
+  width: min(100%, 390px);
+}
+.thumb-amp .thumb-knobs {
+  top: 65%;
+  left: 10%;
+  right: 16%;
+}
+.thumb-amp .thumb-badge {
+  top: 31%;
+  font:
+    italic 600 22px Georgia,
+    serif;
+}
+.thumb-amp .thumb-switch {
+  left: auto;
+  right: 8%;
+  top: 68%;
+}
+.thumb-cab {
+  width: 132px;
+}
+.thumb-cab2 {
+  width: 180px;
+}
+.thumb-cab .thumb-badge,
+.thumb-cab2 .thumb-badge {
+  top: 14%;
+}
+.board-gear.bypassed .rendered-thumb {
+  opacity: 0.45;
+}
+
+/* The board is a shelf, not a grid of heavy cards. Mutations and route order
+   stay with SlotBoard; these rows are a visual hierarchy only. */
+.react-board {
+  background: radial-gradient(ellipse at 50% 0, #303235, #141617 70%);
+}
+.react-board .amp-cab-shelf {
+  background: linear-gradient(#202223, #151718);
+  border-color: #ffffff0c;
+  padding: 10px 20px;
+  margin-bottom: 12px;
+}
+.react-board .board-card {
+  background: transparent;
+  box-shadow: none;
+  border-color: transparent;
+}
+.react-board .board-card:hover,
+.react-board .board-card.selected {
+  border-color: #c4ae7966;
+  box-shadow: none;
+  background: #ffffff04;
+}
+.react-board .board-gear {
+  gap: 16px;
+  min-height: 110px;
+}
+.react-board .stack-devices .board-gear {
+  min-height: 146px;
+}
+.react-board .pedal-deck {
+  border-radius: 8px;
+  background: repeating-linear-gradient(#1c1e20 0 29px, #0e1011 30px 40px);
+  padding: 0 14px;
+  border-color: #444647;
+}
+.react-board .pedal-row {
+  padding: 9px 0;
+  grid-template-columns: 132px minmax(0, 1fr);
+}
+.react-board .pedal-row header {
+  background: #161819e8;
+  padding: 8px;
+  border-radius: 4px;
+}
+.react-board .board-empty {
+  min-height: 110px;
+  background: #16181966;
+  border-color: #8883;
+}
+.react-board .board-bypass {
+  min-width: 25px;
+  min-height: 25px;
+  border-radius: 50%;
+  top: 3px;
+  right: 3px;
+  color: #ffd58c;
+}
+.react-board .board-flow {
+  color: #c5bdad;
+  letter-spacing: 0.5px;
+}
+.react-board .stage-number {
+  border-color: #c4ae7955;
+  color: #dfc894;
+  background: #c4ae7910;
+}
+/* Retain the established controls, but give the board back vertical space. */
+.app > main {
+  padding-top: 10px;
+}
+.app .bank-bar {
+  margin-bottom: 6px;
+}
+.app .rig-heading {
+  padding: 0;
+  margin: 4px 0 8px;
+}
+.app .rig-heading .eyebrow {
+  display: none;
+}
+.app .rig-name {
+  font-size: 21px;
+}
+.app .patch-tags-host {
+  margin: 2px 0;
+}
+.app .patch-tags-host button {
+  padding: 4px 8px;
+  min-height: 24px;
+}
+.app .scene-section {
+  margin: 0 0 8px;
+  padding: 0;
+}
+.app .scene-section .section-top {
+  margin-bottom: 4px;
+}
+.app .scene-section .scene {
+  padding: 6px 10px;
+  min-height: 34px;
+}
+.app .workspace-levels {
+  padding: 5px 12px;
+}
+.app .engine-strip {
+  margin: 5px 0;
+}
+.editing-device .bank-bar {
+  display: none;
+}
+.editing-device #editor .editor-body {
+  padding: 12px 20px;
+}
+.editing-device .rendered-stage {
+  padding: 14px 10px;
+}
+.editing-device #device-overview {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.hardware-about {
+  margin: 4px 18px;
+  padding: 10px 12px;
+  font-size: 11px;
+  background: #ffffff03;
+  border-radius: 6px;
+}
+.hardware-about summary {
+  cursor: pointer;
+  color: #acb3b2;
+}
+@media (max-width: 1400px) {
+  #editor .rendered-amp .dial-hit,
+  #editor .rendered-amp .knob {
+    width: 34px;
+    height: 34px;
+  }
+  #editor .rendered-amp .physical-control label {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+  #editor .rendered-amp .param-value input {
+    font-size: 9px;
+    padding: 0;
+  }
+}
+.react-board .amp-cab-shelf {
+  margin-bottom: 8px;
+}
+.react-board .stack-devices .board-gear {
+  min-height: 122px;
+}
+.react-board .thumb-amp {
+  width: min(65%, 360px);
+}
+.react-board .thumb-cab {
+  width: 110px;
+}
+.react-board .pedal-row {
+  padding: 6px 0;
+}
+.react-board .rendered-thumb.thumb-drive {
+  width: 72px;
+}
+.react-board .rendered-thumb.thumb-reverb {
+  width: 82px;
+}
+.react-board .pedal-deck {
+  background: repeating-linear-gradient(#242628 0 28px, #101213 29px 35px);
+}
+@media (max-width: 1200px) {
+  .react-board .board-gear {
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+  }
+  .react-board .board-gear > span:last-child {
+    text-align: center;
+  }
+  .react-board .thumb-delay {
+    width: 100px;
+  }
+  .react-board .pedal-row {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+  .react-board .board-gear strong {
+    font-size: 10px;
+  }
+  #editor .rendered-amp .dial-hit,
+  #editor .rendered-amp .knob {
+    width: 38px;
+    height: 38px;
+  }
+  #editor .rendered-amp .physical-control label {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+}
+@media (max-width: 800px) {
+  .rendered-amp .rendered-controls {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    background: #bfaa76;
+    padding: 16px 10px;
+    flex-wrap: wrap;
+    border-radius: 6px;
+  }
+  .rendered-amp .rendered-switch {
+    top: 60%;
+  }
+  .react-board .pedal-row {
+    grid-template-columns: 1fr;
+  }
+}

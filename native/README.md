@@ -1,4 +1,8 @@
-# Alpha 27 — complete release history
+# Alpha 28 — hardware artwork preview
+
+Original amp, cabinet and pedal artwork with working controls on the hardware. This first set covers British Bloom/JCM800, Moss Drive, Tape Echo, Open Space and default 2×12/recorded 4×12 cabinets. Custom finishes and other devices retain their existing artwork. Guides collapse under the editor; all artwork is included offline. Audio processing is unchanged from Alpha 27.
+
+## Alpha 27 — complete release history
 
 Click FreeRig · Alpha 27 at the bottom-left for the full searchable offline changelog, backfilled to Alpha 01. Escape or clicking outside closes it. The release number is shared with the native title and checked during packaging. Audio processing is unchanged from Alpha 26.
 

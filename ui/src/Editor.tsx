@@ -6,6 +6,8 @@ import { CaptureLevels } from './CaptureLevels';
 import { EffectInfo } from './EffectInfo';
 import { GraphicEqualizer } from './GraphicEqualizer';
 import { CabinetEditor } from './cabinets/CabinetEditor';
+import { RenderedHardware } from './hardware/RenderedHardware';
+import { hardwareProfile } from './hardware/profiles';
 
 import type { CSSProperties } from 'react';
 import type { EditorProps } from './types';
@@ -37,6 +39,7 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
   })();
   const face = window.NativeDesktop.face(d, b, v),
     faceState = window.EffectTools.faceState(d, v);
+  const profile = hardwareProfile(b);
   return (
     <article
       data-context-block={b.id}
@@ -65,17 +68,24 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
       <LegacyControls html={window.EffectTools.controls(b)} />
       <CaptureNotice block={b} />
       <CaptureLevels rig={rig} block={b} sound={v} />
-      <TagEditor rig={rig} block={b} />
-      <EffectInfo block={b} definition={d} sound={v} />
+      {b.key === 'fx-PhraseLooper' && <EffectInfo block={b} definition={d} sound={v} />}
       <div className="editor-body">
         {d.cabinetChoices ? (
           <CabinetEditor block={b} definition={d} sound={v} />
+        ) : profile ? (
+          <RenderedHardware profile={profile} definition={d} sound={faceState} />
         ) : b.key === 'fx-GraphicEQ' ? (
           <GraphicEqualizer block={b} definition={d} sound={v} />
         ) : (
           <Hardware html={face} d={d} v={faceState} />
         )}
       </div>
+      {b.key !== 'fx-PhraseLooper' && (d.description || d.guide || d.source) && (
+        <details className="hardware-about">
+          <summary>About this device &amp; playing guide</summary>
+          <EffectInfo block={b} definition={d} sound={v} />
+        </details>
+      )}
       <details className="device-options" open={optionsOpen}>
         <summary>
           Device options <span>Models, appearance &amp; placement</span>
@@ -107,6 +117,7 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
         </div>
       </details>
       <footer className="device-footer">
+        <TagEditor rig={rig} block={b} />
         <div className="control-hint">
           Drag a knob · Shift for fine adjustment · Top strip: drag up to bypass, down to enable
         </div>

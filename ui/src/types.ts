@@ -76,7 +76,10 @@ declare global {
   interface Window {
     EffectsCatalogue?: Definition[];
     SlotBoard: { slots(s: Rig): Slot[]; label(slot: Slot): string };
-    GearLooks: { art(b: Block, on?: boolean): string };
+    GearLooks: {
+      art(b: Block, on?: boolean): string;
+      list(b: Block): { id: string; body: string }[];
+    };
     NativeDesktop: {
       face(d: Definition, b: Block, v: Sound): string;
       controls(b: Block): string;
