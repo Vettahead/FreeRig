@@ -1,3 +1,7 @@
+## 30 September 2026 — Alpha 33: effects loop above the rig
+
+Moved the loop tray above the main rig in React DOM order, keeping its send/return labels underneath. Routing and DSP are unchanged. npm run check and desktop build passed. Browser verified adding Tape Echo to the upper loop, returning to routing, and placement without horizontal page overflow at 1920×1080 and 1280×720. Preview: docs/screenshots/alpha33-board.png. Release target: releases/FreeRig-alpha-33/FreeRig.exe with portable/source archives. Mission Control remains unavailable; local handover retained.
+
 ## 30 September 2026 — Alpha 32: complete hardware artwork coverage
 
 Expanded the original six chassis to 26 shared assets covering every catalogue entry: eight amplifier families, eight pedal families and ten cabinet geometries. React owns family selection, control placement, saved-finish tinting and decorative thumbnails; a small static-markup bridge updates compatibility library/picker/overview hosts. Imported amp names can select a default family without overriding explicit saved looks. Actual processor parameter order/ranges, EQ faders, mic choices and scene/bypass contracts remain intact. All images are local. Source references and prompts: docs/HARDWARE-DESIGN.md and docs/hardware-artwork-prompts.json.

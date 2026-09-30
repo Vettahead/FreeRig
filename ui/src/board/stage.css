@@ -253,7 +253,7 @@
   justify-content: space-between;
   width: 230px;
   margin: 0 auto;
-  padding: 14px 8px 7px;
+  padding: 7px 8px 14px;
   color: #b6a37c;
   font-size: 8px;
   border-inline: 3px double #9b8e70;
@@ -319,9 +319,6 @@
   .amplifier-station {
     width: min(100%, 440px);
     margin: auto;
-  }
-  .loop-station {
-    margin-top: 16px;
   }
   .physical-rig .board-flow {
     flex-wrap: wrap;

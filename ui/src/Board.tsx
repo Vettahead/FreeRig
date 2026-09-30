@@ -36,6 +36,21 @@ export function Board({ rig, selected }: { rig: Rig; selected: string | null }) 
           ),
         )}
       </div>
+      <div className="loop-station">
+        <PedalDeck
+          title="Effects loop"
+          subtitle="After the complete amp model · before the cabinet"
+          number="3"
+          section="loop"
+          empty={!slots.some((s) => s.section === 'loop' && s.block)}
+        >
+          {cards('loop')}
+        </PedalDeck>
+        <div className="loop-lead" aria-hidden="true">
+          <span>AMP SEND ↑</span>
+          <span>↓ TO CAB</span>
+        </div>
+      </div>
       <div className="rig-stage">
         <PedalDeck
           title="Before the amp"
@@ -87,21 +102,6 @@ export function Board({ rig, selected }: { rig: Rig; selected: string | null }) 
           section="post"
         >
           {cards('post')}
-        </PedalDeck>
-      </div>
-      <div className="loop-station">
-        <div className="loop-lead" aria-hidden="true">
-          <span>AMP SEND ↓</span>
-          <span>↑ TO CAB</span>
-        </div>
-        <PedalDeck
-          title="Effects loop"
-          subtitle="After the complete amp model · before the cabinet"
-          number="3"
-          section="loop"
-          empty={!slots.some((s) => s.section === 'loop' && s.block)}
-        >
-          {cards('loop')}
         </PedalDeck>
       </div>
       <div className="rig-stage-help">

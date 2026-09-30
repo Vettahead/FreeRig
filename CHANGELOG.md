@@ -1,3 +1,8 @@
+## Alpha 33 — 30 September 2026
+
+- Moved the effects-loop pedalboard above the main rig, centred over the amp/cab stack, with send/return labels pointing towards the stack below.
+- Four-slot rails, device dragging and audio routing are unchanged: the loop still processes after the complete amp and before the cabinet.
+
 ## Alpha 32 — 30 September 2026
 
 - Extended realistic artwork across the complete device catalogue, collection, replacement picker, chain strip and editor using 26 shared chassis assets.
