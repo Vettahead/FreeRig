@@ -44,3 +44,7 @@ std::unique_ptr<Effect> makeShimmer(int);
 
 std::unique_ptr<Effect> makeHothouse(const std::string &, int);
 std::unique_ptr<Effect> makeCloudSeed(int);
+
+std::unique_ptr<Effect> makeCircuitAmp(const std::string &, int);
+
+std::unique_ptr<Effect> makeRecordedCabinet(const std::string &, int);

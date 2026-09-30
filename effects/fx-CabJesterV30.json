@@ -1,0 +1,31 @@
+{
+  "key": "fx-CabJesterV30",
+  "name": "BG412S · Vintage 30",
+  "type": "Cabs",
+  "category": "Cabs",
+  "engine": "Jester Dyne · CC0 IR",
+  "detail": "4 × 12 · recorded cabinet",
+  "icon": "▦",
+  "colour": "#819684",
+  "source": "https://darwinscat.com/sound-utils/cabinet-ir-utility",
+  "sync": false,
+  "defaults": [0, 1, 0, 0, -12],
+  "presets": [
+    {
+      "name": "First microphone",
+      "values": [0, 1, 0, 0, -12]
+    },
+    {
+      "name": "Two-mic blend",
+      "values": [0, 1, 35, 0, -12]
+    }
+  ],
+  "factoryTags": ["Recorded cabinet"],
+  "cabinetChoices": [
+    "SM57 · Cookie Monster",
+    "PDMIC75 · Devils Cunnilingus",
+    "SM57 · World Collider",
+    "SM57 · Cathode Ray Fleshburn"
+  ],
+  "description": "BG412S · Vintage 30 recorded cabinet by Jester Dyne Productions. Choose two real recorded mic setups and blend them; Invert B reverses the second setup’s polarity. These recordings include the original microphone and preamp character. Upper/lower speaker positions are labelled where documented; no unrecorded cap/edge or distance positions are invented. Responses retain up to 200 ms with leading silence trimmed and a 10 ms tail fade, at their original gain. Continuous convolution histories and smoothed blending avoid reset gaps when changing microphones. No NAM model is used. Output starts at -12 dB for headroom; the stored IR gain is not normalised."
+}

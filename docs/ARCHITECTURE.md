@@ -58,3 +58,7 @@ No patch/scene keys, effect arithmetic or native DSP binaries change. Backing se
 ## Floating-point headroom
 
 `Processor` and `StereoProcessor` preserve finite samples above full scale; clipping between devices would permanently alter the waveform before later gain or cabinet stages. Intentional effect nonlinearities remain part of their sound. `LiveProvider` retains final protection and publishes pre-ceiling overload peaks through `PeakHold`. `OutputHeadroom.tsx` holds the warning and invokes the compatibility adapter's master-only correction when clicked; it never changes capture input, calibration or patch values. Final protection is still a hard ceiling, not a transparent limiter, so overload should be corrected with output gain.
+
+## Circuit amps and cabinet bank
+
+Tamgamp adaptation lives in `native/effects_tamgamp.cpp`; recorded cabinet processing is split between `effects_cabinets.cpp` and `cabinet_convolution.h`. `scripts/build-cabinet-data.py` reproducibly embeds the original CC0 bank. The React cabinet editor uses the existing scene parameter command contract. See [models and invariants](CIRCUIT-AMPS-AND-CABS.md).

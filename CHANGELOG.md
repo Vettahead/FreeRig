@@ -1,3 +1,12 @@
+## Alpha 26 — 30 September 2026
+
+- Import all 13 Tamgamp circuit preamp channels with their actual controls and independent stereo state.
+- Add five recorded cabinet/speaker configurations, 21 CC0 microphone setups, dual-mic blend, polarity and output controls saved per scene.
+- Add allocation-free direct-head/FFT-tail cabinet convolution with staggered work and smooth microphone changes.
+- Recognise all cabinet device types in placement/parallel routing; use appropriate amp-family artwork and corrected amp/cab preset labels.
+- Preserve upstream sources/notices, original cabinet WAVs/handbooks and deterministic embedding. New native total: 218 processors.
+- Document scope: preamps, not full power-amp models; five configurations from two enclosure families, not ten distinct cabinets.
+
 ## Alpha 25 — 30 September 2026
 
 - Studio factory tags group 41 recording-oriented processors without losing effect categories or user tags.

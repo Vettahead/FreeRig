@@ -1,0 +1,4 @@
+Jester Dyne Productions - Brutal and Emerald packs, 2022.
+CC0 public-domain dedication, as stated in each included original handbook.
+Downloaded from https://darwinscat.com/sound-utils/cabinet-ir-utility/samples/
+Original WAV files retained unchanged. Generated runtime data removes leading silence below -80 dB relative to peak, retains up to 200 ms and fades the final 10 ms. No loudness normalisation.

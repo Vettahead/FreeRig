@@ -2,808 +2,880 @@
   "sampleRate": 48000,
   "frames": 128,
   "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
-  "dllSha256": "ae7be8cc98b950ee3ce80da94a87cd52bd79c6565b67bbab34c97db8b5c04599",
+  "dllSha256": "21804cb8bdad43242fa5021bc7e71aa4fd4ed624c760f175e1d42a164b38aa5a",
   "method": "Median of five warmed 500-block runs at factory defaults; includes Python input copy and DLL overhead. Light <25 us, Moderate <100 us, Heavy >=100 us. Not ASIO latency or worst-case load.",
   "effects": {
     "fx-ShimmerHall": {
       "tier": "Moderate",
-      "microseconds": 51.07
+      "microseconds": 44.47
     },
     "fx-SurgeFloaty": {
       "tier": "Light",
-      "microseconds": 4.72
+      "microseconds": 3.98
     },
     "fx-SurgeReverb": {
       "tier": "Light",
-      "microseconds": 7.13
+      "microseconds": 5.93
     },
     "fx-GXOrange": {
       "tier": "Moderate",
-      "microseconds": 38.55
+      "microseconds": 31.3
     },
     "fx-GXPlus": {
       "tier": "Light",
-      "microseconds": 17.2
+      "microseconds": 14.86
     },
     "fx-GXFuzz": {
       "tier": "Moderate",
-      "microseconds": 42.32
+      "microseconds": 35.91
     },
     "fx-GXMuff": {
-      "tier": "Moderate",
-      "microseconds": 25.89
+      "tier": "Light",
+      "microseconds": 22.14
     },
     "fx-GXScream": {
       "tier": "Light",
-      "microseconds": 12.3
+      "microseconds": 10.76
     },
     "fx-GXSoft": {
       "tier": "Light",
-      "microseconds": 10.78
+      "microseconds": 9.47
     },
     "fx-Spring": {
       "tier": "Moderate",
-      "microseconds": 42.99
+      "microseconds": 38.12
     },
     "fx-DiffuseDelay": {
       "tier": "Light",
-      "microseconds": 15.56
+      "microseconds": 13.61
     },
     "fx-SurgeDelay": {
       "tier": "Light",
-      "microseconds": 3.48
+      "microseconds": 3.11
     },
     "fx-TapeDelay2": {
       "tier": "Light",
-      "microseconds": 7.73
+      "microseconds": 6.0
     },
     "fx-Doublelay": {
       "tier": "Light",
-      "microseconds": 9.5
+      "microseconds": 8.34
     },
     "fx-PitchDelay": {
       "tier": "Light",
-      "microseconds": 9.38
+      "microseconds": 7.91
     },
     "fx-PurestEcho": {
       "tier": "Light",
-      "microseconds": 4.16
+      "microseconds": 3.59
     },
     "fx-DragonHall": {
-      "tier": "Moderate",
-      "microseconds": 27.53
+      "tier": "Light",
+      "microseconds": 24.01
     },
     "fx-DragonRoom": {
-      "tier": "Moderate",
-      "microseconds": 28.07
+      "tier": "Light",
+      "microseconds": 24.32
     },
     "fx-DragonPlate": {
       "tier": "Light",
-      "microseconds": 5.44
+      "microseconds": 4.7
     },
     "fx-Galactic3": {
       "tier": "Light",
-      "microseconds": 6.5
+      "microseconds": 5.8
     },
     "fx-CreamCoat": {
       "tier": "Light",
-      "microseconds": 6.01
+      "microseconds": 4.99
     },
     "fx-kCathedral5": {
       "tier": "Light",
-      "microseconds": 7.99
+      "microseconds": 6.67
     },
     "fx-kGuitarHall2": {
       "tier": "Light",
-      "microseconds": 8.89
+      "microseconds": 7.13
     },
     "fx-StereoChorus": {
       "tier": "Light",
-      "microseconds": 7.32
+      "microseconds": 5.96
     },
     "fx-StereoEnsemble": {
       "tier": "Light",
-      "microseconds": 4.54
+      "microseconds": 3.72
     },
     "fx-SurgeFlanger": {
       "tier": "Light",
-      "microseconds": 7.15
+      "microseconds": 5.98
     },
     "fx-SurgePhaser": {
       "tier": "Light",
-      "microseconds": 5.62
+      "microseconds": 4.83
     },
     "fx-SurgeRotary": {
       "tier": "Light",
-      "microseconds": 4.4
+      "microseconds": 3.65
     },
     "fx-Vibrato": {
       "tier": "Light",
-      "microseconds": 6.8
+      "microseconds": 5.77
     },
     "fx-Tremolo": {
       "tier": "Light",
-      "microseconds": 8.54
+      "microseconds": 7.4
     },
     "fx-AutoPan": {
       "tier": "Light",
-      "microseconds": 5.47
+      "microseconds": 4.62
     },
     "fx-CloudSeed": {
       "tier": "Heavy",
-      "microseconds": 128.07
+      "microseconds": 115.79
     },
     "fx-EchoKing": {
-      "tier": "Moderate",
-      "microseconds": 26.6
+      "tier": "Light",
+      "microseconds": 24.16
     },
     "fx-PhotonVibe": {
       "tier": "Light",
-      "microseconds": 14.48
+      "microseconds": 13.37
     },
     "fx-TriPhase": {
       "tier": "Light",
-      "microseconds": 20.39
+      "microseconds": 18.34
     },
     "fx-Parametric": {
       "tier": "Light",
-      "microseconds": 6.41
+      "microseconds": 5.79
     },
     "fx-PearEQ": {
       "tier": "Light",
-      "microseconds": 20.15
+      "microseconds": 18.35
     },
     "fx-Baxandall2": {
       "tier": "Light",
-      "microseconds": 3.43
+      "microseconds": 3.12
     },
     "fx-SmoothEQ3": {
       "tier": "Light",
-      "microseconds": 4.55
+      "microseconds": 4.17
     },
     "fx-ToneSlant": {
       "tier": "Light",
-      "microseconds": 3.27
+      "microseconds": 2.99
     },
     "fx-EQ": {
       "tier": "Light",
-      "microseconds": 3.34
+      "microseconds": 3.02
     },
     "fx-Hull2": {
       "tier": "Light",
-      "microseconds": 6.15
+      "microseconds": 5.43
     },
     "fx-BiquadStack": {
       "tier": "Light",
-      "microseconds": 6.08
+      "microseconds": 5.57
     },
     "fx-ResEQ": {
       "tier": "Light",
-      "microseconds": 7.94
+      "microseconds": 7.23
     },
     "fx-Air4": {
       "tier": "Light",
-      "microseconds": 4.85
+      "microseconds": 4.3
     },
     "fx-Energy2": {
       "tier": "Light",
-      "microseconds": 3.51
+      "microseconds": 3.19
     },
     "fx-Stonefire": {
       "tier": "Light",
-      "microseconds": 5.84
+      "microseconds": 5.08
     },
     "fx-Weight": {
       "tier": "Light",
-      "microseconds": 4.77
+      "microseconds": 4.05
     },
     "fx-SubTight": {
       "tier": "Light",
-      "microseconds": 7.43
+      "microseconds": 6.23
     },
     "fx-AngleFilter": {
       "tier": "Light",
-      "microseconds": 22.61
+      "microseconds": 19.21
     },
     "fx-Aura": {
       "tier": "Light",
-      "microseconds": 5.55
+      "microseconds": 4.81
     },
     "fx-BiquadPlus": {
       "tier": "Light",
-      "microseconds": 3.54
+      "microseconds": 3.05
     },
     "fx-BiquadHiLo": {
       "tier": "Light",
-      "microseconds": 3.28
+      "microseconds": 2.89
     },
     "fx-BiquadNonLin": {
       "tier": "Light",
-      "microseconds": 4.36
+      "microseconds": 3.94
     },
     "fx-Capacitor2": {
       "tier": "Light",
-      "microseconds": 5.05
+      "microseconds": 4.53
     },
     "fx-Dattorro": {
       "tier": "Light",
-      "microseconds": 4.43
+      "microseconds": 4.07
     },
     "fx-Donut": {
       "tier": "Light",
-      "microseconds": 6.08
+      "microseconds": 5.09
     },
     "fx-Holt2": {
       "tier": "Light",
-      "microseconds": 6.49
+      "microseconds": 5.56
     },
     "fx-Isolator3": {
       "tier": "Light",
-      "microseconds": 7.59
+      "microseconds": 6.31
     },
     "fx-Suzan": {
       "tier": "Light",
-      "microseconds": 6.68
+      "microseconds": 5.6
     },
     "fx-XRegion": {
       "tier": "Light",
-      "microseconds": 6.05
+      "microseconds": 5.06
     },
     "fx-YLowpass": {
       "tier": "Light",
-      "microseconds": 11.77
+      "microseconds": 10.05
     },
     "fx-ZAcidLowpass": {
       "tier": "Light",
-      "microseconds": 17.04
+      "microseconds": 15.08
     },
     "fx-ZBandpass2": {
       "tier": "Light",
-      "microseconds": 6.49
+      "microseconds": 5.86
     },
     "fx-ZHighpass2": {
       "tier": "Light",
-      "microseconds": 5.7
+      "microseconds": 5.19
     },
     "fx-ZNotch2": {
       "tier": "Light",
-      "microseconds": 6.56
+      "microseconds": 5.92
     },
     "fx-ZRegion2": {
       "tier": "Light",
-      "microseconds": 10.66
+      "microseconds": 9.53
     },
     "fx-Hermepass": {
       "tier": "Light",
-      "microseconds": 5.15
+      "microseconds": 4.65
     },
     "fx-Infrasonic": {
       "tier": "Light",
-      "microseconds": 5.05
+      "microseconds": 4.61
     },
     "fx-BeziComp": {
       "tier": "Light",
-      "microseconds": 3.79
+      "microseconds": 3.43
     },
     "fx-BlockParty": {
       "tier": "Light",
-      "microseconds": 5.24
+      "microseconds": 4.83
     },
     "fx-ButterComp2": {
       "tier": "Light",
-      "microseconds": 6.86
+      "microseconds": 6.71
     },
     "fx-Compresaturator": {
       "tier": "Light",
-      "microseconds": 4.91
+      "microseconds": 4.53
     },
     "fx-DigitalBlack": {
       "tier": "Light",
-      "microseconds": 4.19
+      "microseconds": 3.85
     },
     "fx-Dynamics3": {
       "tier": "Light",
-      "microseconds": 3.67
+      "microseconds": 3.35
     },
     "fx-Gatelope": {
       "tier": "Light",
-      "microseconds": 3.5
+      "microseconds": 3.04
     },
     "fx-Logical4": {
       "tier": "Light",
-      "microseconds": 15.39
+      "microseconds": 13.87
     },
     "fx-Overheads": {
       "tier": "Light",
-      "microseconds": 4.03
+      "microseconds": 3.7
     },
     "fx-Point": {
       "tier": "Light",
-      "microseconds": 4.09
+      "microseconds": 3.66
     },
     "fx-Pop3": {
       "tier": "Light",
-      "microseconds": 3.62
+      "microseconds": 3.33
     },
     "fx-Pressure4": {
       "tier": "Light",
-      "microseconds": 4.26
+      "microseconds": 3.83
     },
     "fx-PurestSquish": {
       "tier": "Light",
-      "microseconds": 5.3
+      "microseconds": 4.81
     },
     "fx-Pyewacket": {
       "tier": "Light",
-      "microseconds": 4.63
+      "microseconds": 4.19
     },
     "fx-Recurve": {
       "tier": "Light",
-      "microseconds": 5.95
+      "microseconds": 5.25
     },
     "fx-SoftGate": {
       "tier": "Light",
-      "microseconds": 3.33
+      "microseconds": 2.94
     },
     "fx-StoneFireComp": {
       "tier": "Light",
-      "microseconds": 4.77
+      "microseconds": 4.28
     },
     "fx-SurgeTide": {
       "tier": "Light",
-      "microseconds": 5.74
+      "microseconds": 4.91
     },
     "fx-Swell": {
       "tier": "Light",
-      "microseconds": 3.69
+      "microseconds": 3.05
     },
     "fx-Thunder": {
       "tier": "Light",
-      "microseconds": 5.8
+      "microseconds": 4.71
     },
     "fx-VariMu": {
       "tier": "Light",
-      "microseconds": 6.21
+      "microseconds": 5.05
     },
     "fx-DeBess": {
       "tier": "Light",
-      "microseconds": 10.05
+      "microseconds": 8.62
     },
     "fx-DeHiss": {
       "tier": "Light",
-      "microseconds": 4.58
+      "microseconds": 4.0
     },
     "fx-DeNoise": {
       "tier": "Moderate",
-      "microseconds": 29.91
+      "microseconds": 25.04
     },
     "fx-Density3": {
       "tier": "Light",
-      "microseconds": 5.69
+      "microseconds": 4.76
     },
     "fx-Dirt": {
       "tier": "Light",
-      "microseconds": 13.21
+      "microseconds": 11.19
     },
     "fx-Distortion": {
       "tier": "Light",
-      "microseconds": 4.99
+      "microseconds": 4.24
     },
     "fx-Drive": {
       "tier": "Light",
-      "microseconds": 3.96
+      "microseconds": 3.3
     },
     "fx-Edge": {
       "tier": "Light",
-      "microseconds": 9.95
+      "microseconds": 8.65
     },
     "fx-HardVacuum": {
       "tier": "Light",
-      "microseconds": 3.64
+      "microseconds": 3.19
     },
     "fx-HighImpact": {
       "tier": "Light",
-      "microseconds": 6.1
+      "microseconds": 5.38
     },
     "fx-Mackity": {
       "tier": "Light",
-      "microseconds": 10.12
+      "microseconds": 8.75
     },
     "fx-MultiBandDistortion": {
       "tier": "Light",
-      "microseconds": 7.49
+      "microseconds": 6.39
     },
     "fx-PurestDrive": {
       "tier": "Light",
-      "microseconds": 4.18
+      "microseconds": 3.51
     },
     "fx-Spiral2": {
       "tier": "Light",
-      "microseconds": 5.01
+      "microseconds": 4.22
     },
     "fx-Tube2": {
       "tier": "Light",
-      "microseconds": 7.3
+      "microseconds": 6.25
     },
     "fx-UnBox": {
       "tier": "Light",
-      "microseconds": 7.3
+      "microseconds": 6.41
     },
     "fx-Coils2": {
       "tier": "Light",
-      "microseconds": 5.79
+      "microseconds": 4.96
     },
     "fx-Creature": {
       "tier": "Light",
-      "microseconds": 6.64
+      "microseconds": 6.03
     },
     "fx-Focus": {
       "tier": "Light",
-      "microseconds": 7.18
+      "microseconds": 6.55
     },
     "fx-Fracture2": {
       "tier": "Light",
-      "microseconds": 4.23
+      "microseconds": 3.8
     },
     "fx-Gringer": {
       "tier": "Light",
-      "microseconds": 5.78
+      "microseconds": 5.24
     },
     "fx-GuitarConditioner": {
       "tier": "Light",
-      "microseconds": 4.19
+      "microseconds": 3.81
     },
     "fx-PowerSag2": {
       "tier": "Light",
-      "microseconds": 4.75
+      "microseconds": 4.33
     },
     "fx-SingleEndedTriode": {
       "tier": "Light",
-      "microseconds": 3.29
+      "microseconds": 2.86
     },
     "fx-Inflamer": {
       "tier": "Light",
-      "microseconds": 13.02
+      "microseconds": 11.7
     },
     "fx-Sweeten": {
       "tier": "Light",
-      "microseconds": 3.38
+      "microseconds": 3.1
     },
     "fx-BussColors4": {
       "tier": "Light",
-      "microseconds": 8.31
+      "microseconds": 7.43
     },
     "fx-Channel9": {
       "tier": "Light",
-      "microseconds": 6.32
+      "microseconds": 5.65
     },
     "fx-CStrip2": {
       "tier": "Light",
-      "microseconds": 4.49
+      "microseconds": 4.02
     },
     "fx-Desk4": {
       "tier": "Light",
-      "microseconds": 8.0
+      "microseconds": 7.09
     },
     "fx-Discontapeity": {
       "tier": "Light",
-      "microseconds": 6.64
+      "microseconds": 6.0
     },
     "fx-Discontinuity": {
       "tier": "Light",
-      "microseconds": 10.85
+      "microseconds": 10.06
     },
     "fx-PurestWarm3": {
       "tier": "Light",
-      "microseconds": 3.84
+      "microseconds": 3.39
     },
     "fx-Exciter": {
       "tier": "Light",
-      "microseconds": 4.06
+      "microseconds": 3.68
     },
     "fx-Acceleration2": {
       "tier": "Light",
-      "microseconds": 4.08
+      "microseconds": 3.75
     },
     "fx-GoldenSlew": {
       "tier": "Light",
-      "microseconds": 7.49
+      "microseconds": 6.83
     },
     "fx-Slew4": {
       "tier": "Light",
-      "microseconds": 6.78
+      "microseconds": 5.87
     },
     "fx-Smooth": {
       "tier": "Light",
-      "microseconds": 8.08
+      "microseconds": 7.29
     },
     "fx-Remap": {
       "tier": "Light",
-      "microseconds": 4.04
+      "microseconds": 3.65
     },
     "fx-WoodenBox": {
       "tier": "Light",
-      "microseconds": 5.56
+      "microseconds": 4.92
     },
     "fx-BitGlitter": {
       "tier": "Light",
-      "microseconds": 11.48
+      "microseconds": 9.86
     },
     "fx-Bite": {
       "tier": "Light",
-      "microseconds": 4.07
+      "microseconds": 3.7
     },
     "fx-ChromeOxide": {
       "tier": "Light",
-      "microseconds": 5.96
+      "microseconds": 5.38
     },
     "fx-Cojones": {
       "tier": "Light",
-      "microseconds": 4.97
+      "microseconds": 4.52
     },
     "fx-CrunchyGrooveWear": {
       "tier": "Light",
-      "microseconds": 9.38
+      "microseconds": 8.58
     },
     "fx-DeBez": {
       "tier": "Light",
-      "microseconds": 4.82
+      "microseconds": 4.49
     },
     "fx-DeRez3": {
       "tier": "Light",
-      "microseconds": 5.72
+      "microseconds": 5.11
     },
     "fx-Deckwrecka": {
       "tier": "Light",
-      "microseconds": 12.75
+      "microseconds": 11.04
     },
     "fx-Dubly3": {
       "tier": "Light",
-      "microseconds": 11.48
+      "microseconds": 9.52
     },
     "fx-Flutter2": {
       "tier": "Light",
-      "microseconds": 6.43
+      "microseconds": 5.36
     },
     "fx-GrooveWear": {
       "tier": "Light",
-      "microseconds": 10.33
+      "microseconds": 8.6
     },
     "fx-HipCrush": {
       "tier": "Light",
-      "microseconds": 4.82
+      "microseconds": 4.1
     },
     "fx-Pockey2": {
       "tier": "Light",
-      "microseconds": 8.46
+      "microseconds": 7.41
     },
     "fx-TapeBias": {
       "tier": "Light",
-      "microseconds": 7.7
+      "microseconds": 6.82
     },
     "fx-TapeDust": {
       "tier": "Light",
-      "microseconds": 6.23
+      "microseconds": 5.74
     },
     "fx-Texturize": {
       "tier": "Light",
-      "microseconds": 6.37
+      "microseconds": 5.65
     },
     "fx-ToVinyl4": {
       "tier": "Light",
-      "microseconds": 13.06
+      "microseconds": 11.07
     },
     "fx-FromTape": {
       "tier": "Light",
-      "microseconds": 18.59
+      "microseconds": 15.62
     },
     "fx-IronOxideClassic2": {
       "tier": "Light",
-      "microseconds": 7.75
+      "microseconds": 6.7
     },
     "fx-Tape": {
       "tier": "Light",
-      "microseconds": 10.49
+      "microseconds": 9.15
     },
     "fx-ToTape8": {
       "tier": "Light",
-      "microseconds": 13.35
+      "microseconds": 12.05
     },
     "fx-TapeHack2": {
       "tier": "Light",
-      "microseconds": 6.01
+      "microseconds": 5.48
     },
     "fx-Ensemble": {
       "tier": "Moderate",
-      "microseconds": 34.49
+      "microseconds": 31.31
     },
     "fx-GalacticVibe": {
       "tier": "Light",
-      "microseconds": 5.45
+      "microseconds": 5.02
     },
     "fx-Melt": {
       "tier": "Light",
-      "microseconds": 8.57
+      "microseconds": 7.64
     },
     "fx-TremoSquare": {
       "tier": "Light",
-      "microseconds": 3.12
+      "microseconds": 2.88
     },
     "fx-RingModulator": {
       "tier": "Light",
-      "microseconds": 6.44
+      "microseconds": 5.81
     },
     "fx-GlitchShifter": {
       "tier": "Light",
-      "microseconds": 5.61
+      "microseconds": 5.02
     },
     "fx-PitchNasty": {
       "tier": "Light",
-      "microseconds": 3.9
+      "microseconds": 3.57
     },
     "fx-StereoDoubler": {
       "tier": "Light",
-      "microseconds": 7.9
+      "microseconds": 7.16
     },
     "fx-TripleSpread": {
       "tier": "Light",
-      "microseconds": 5.42
+      "microseconds": 4.85
     },
     "fx-FathomFive": {
       "tier": "Light",
-      "microseconds": 1.81
+      "microseconds": 1.6
     },
     "fx-DubSub": {
       "tier": "Light",
-      "microseconds": 14.72
+      "microseconds": 13.42
     },
     "fx-Srsly3": {
       "tier": "Light",
-      "microseconds": 5.26
+      "microseconds": 4.8
     },
     "fx-StereoFX": {
       "tier": "Light",
-      "microseconds": 4.55
+      "microseconds": 4.18
     },
     "fx-SweetWide": {
       "tier": "Light",
-      "microseconds": 3.86
+      "microseconds": 3.5
     },
     "fx-Wider": {
       "tier": "Light",
-      "microseconds": 3.27
+      "microseconds": 2.98
     },
     "fx-Sidepass": {
       "tier": "Light",
-      "microseconds": 3.31
+      "microseconds": 3.03
     },
     "fx-SideDull": {
       "tier": "Light",
-      "microseconds": 3.27
+      "microseconds": 2.98
     },
     "fx-ADT": {
       "tier": "Light",
-      "microseconds": 6.58
+      "microseconds": 5.84
     },
     "fx-Hombre": {
       "tier": "Light",
-      "microseconds": 7.32
+      "microseconds": 6.48
     },
     "fx-StarChild2": {
       "tier": "Light",
-      "microseconds": 12.68
+      "microseconds": 11.41
     },
     "fx-kChamberAR": {
       "tier": "Light",
-      "microseconds": 16.41
+      "microseconds": 14.81
     },
     "fx-BrightAmbience3": {
       "tier": "Light",
-      "microseconds": 7.73
+      "microseconds": 6.78
     },
     "fx-Chamber2": {
       "tier": "Light",
-      "microseconds": 5.26
+      "microseconds": 4.66
     },
     "fx-CrunchCoat": {
       "tier": "Light",
-      "microseconds": 6.73
+      "microseconds": 5.97
     },
     "fx-Infinity2": {
       "tier": "Light",
-      "microseconds": 9.35
+      "microseconds": 7.44
     },
     "fx-MatrixVerb": {
-      "tier": "Moderate",
-      "microseconds": 26.25
+      "tier": "Light",
+      "microseconds": 21.6
     },
     "fx-MV2": {
       "tier": "Light",
-      "microseconds": 9.84
+      "microseconds": 8.56
     },
     "fx-NonlinearSpace": {
       "tier": "Light",
-      "microseconds": 15.77
+      "microseconds": 13.91
     },
     "fx-PocketVerbs": {
       "tier": "Moderate",
-      "microseconds": 28.8
+      "microseconds": 25.06
     },
     "fx-Ultralight2": {
       "tier": "Light",
-      "microseconds": 14.63
+      "microseconds": 13.03
     },
     "fx-Verbity2": {
       "tier": "Light",
-      "microseconds": 8.63
+      "microseconds": 7.99
     },
     "fx-kAlienSpaceship": {
       "tier": "Light",
-      "microseconds": 8.66
+      "microseconds": 8.05
     },
     "fx-kCosmos": {
       "tier": "Light",
-      "microseconds": 10.19
+      "microseconds": 9.78
     },
     "fx-kCyberCity": {
       "tier": "Light",
-      "microseconds": 9.6
+      "microseconds": 8.98
     },
     "fx-kPlate140": {
       "tier": "Light",
-      "microseconds": 16.15
+      "microseconds": 14.52
     },
     "fx-kPlate240": {
       "tier": "Light",
-      "microseconds": 14.84
+      "microseconds": 13.85
     },
     "fx-kRockstar": {
       "tier": "Light",
-      "microseconds": 14.86
+      "microseconds": 13.08
     },
     "fx-kStation": {
       "tier": "Light",
-      "microseconds": 8.65
+      "microseconds": 8.0
     },
     "fx-kWoodRoom": {
       "tier": "Light",
-      "microseconds": 8.71
+      "microseconds": 7.97
     },
     "fx-GraphicEQ": {
       "tier": "Light",
-      "microseconds": 4.38
+      "microseconds": 4.09
     },
     "fx-Wah": {
       "tier": "Light",
-      "microseconds": 4.69
+      "microseconds": 4.49
     },
     "fx-EnvelopeFilter": {
       "tier": "Light",
-      "microseconds": 5.31
+      "microseconds": 5.0
     },
     "fx-PitchShift": {
       "tier": "Light",
-      "microseconds": 17.42
+      "microseconds": 16.53
     },
     "fx-GrainCloud": {
       "tier": "Light",
-      "microseconds": 6.9
+      "microseconds": 6.66
     },
     "fx-ReverseEcho": {
       "tier": "Light",
-      "microseconds": 2.06
+      "microseconds": 1.95
     },
     "fx-PhraseLooper": {
       "tier": "Light",
-      "microseconds": 1.06
+      "microseconds": 1.02
     },
     "fx-Vocoder": {
       "tier": "Light",
-      "microseconds": 12.74
+      "microseconds": 12.07
     },
     "fx-Centaur": {
+      "tier": "Moderate",
+      "microseconds": 92.72
+    },
+    "fx-AmpDC3Rhythm": {
+      "tier": "Moderate",
+      "microseconds": 33.1
+    },
+    "fx-AmpDC3Lead": {
+      "tier": "Moderate",
+      "microseconds": 53.9
+    },
+    "fx-AmpJCM800High": {
+      "tier": "Moderate",
+      "microseconds": 40.62
+    },
+    "fx-AmpJCM800Low": {
+      "tier": "Moderate",
+      "microseconds": 39.63
+    },
+    "fx-AmpRectifierOrange": {
+      "tier": "Moderate",
+      "microseconds": 43.32
+    },
+    "fx-AmpRectifierRed": {
+      "tier": "Moderate",
+      "microseconds": 62.53
+    },
+    "fx-AmpPrinceton": {
+      "tier": "Light",
+      "microseconds": 22.99
+    },
+    "fx-AmpTwinNormal": {
+      "tier": "Light",
+      "microseconds": 21.0
+    },
+    "fx-AmpTwinVibrato": {
+      "tier": "Moderate",
+      "microseconds": 27.55
+    },
+    "fx-AmpAC30Normal": {
+      "tier": "Light",
+      "microseconds": 15.07
+    },
+    "fx-AmpAC30Brilliant": {
+      "tier": "Moderate",
+      "microseconds": 30.57
+    },
+    "fx-Amp5150Crunch": {
+      "tier": "Moderate",
+      "microseconds": 42.39
+    },
+    "fx-Amp5150Lead": {
+      "tier": "Moderate",
+      "microseconds": 47.19
+    },
+    "fx-CabJesterV30": {
       "tier": "Heavy",
-      "microseconds": 107.09
+      "microseconds": 215.53
+    },
+    "fx-CabJesterDV77": {
+      "tier": "Heavy",
+      "microseconds": 214.35
+    },
+    "fx-CabJesterRockdriver": {
+      "tier": "Heavy",
+      "microseconds": 107.85
+    },
+    "fx-CabJesterMixed": {
+      "tier": "Heavy",
+      "microseconds": 267.79
+    },
+    "fx-CabJesterGreenback": {
+      "tier": "Heavy",
+      "microseconds": 319.71
     }
   }
 }

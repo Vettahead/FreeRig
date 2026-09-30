@@ -1,0 +1,91 @@
+{
+  "source": "https://darwinscat.com/sound-utils/cabinet-ir-utility",
+  "author": "Jester Dyne Productions",
+  "license": "CC0-1.0, verified in both included handbooks",
+  "recordings": [
+    {
+      "file": "brutal-1_Cookie_Monster.wav",
+      "label": "SM57 \u00b7 Cookie Monster"
+    },
+    {
+      "file": "brutal-2_Darth_Genocider.wav",
+      "label": "SM57 \u00b7 Darth Genocider"
+    },
+    {
+      "file": "brutal-3_Kitten_Slayer.wav",
+      "label": "e606 \u00b7 Kitten Slayer"
+    },
+    {
+      "file": "brutal-4_Kaiju_Tamer.wav",
+      "label": "e606 + SM57 \u00b7 Kaiju Tamer"
+    },
+    {
+      "file": "brutal-5_Iceburn_Suicide.wav",
+      "label": "e606 + PDMIC75 \u00b7 Iceburn Suicide"
+    },
+    {
+      "file": "brutal-6_Vertical_Lip_Stabber.wav",
+      "label": "SM57 pair \u00b7 Vertical Lip Stabber"
+    },
+    {
+      "file": "brutal-7_Manslaughter_Joe.wav",
+      "label": "PDMIC75 + SM57 \u00b7 Manslaughter Joe"
+    },
+    {
+      "file": "brutal-8_Big_Bubba.wav",
+      "label": "e606 + SM57 \u00b7 Big Bubba"
+    },
+    {
+      "file": "brutal-9_Devils_Cunnilingus.wav",
+      "label": "PDMIC75 \u00b7 Devils Cunnilingus"
+    },
+    {
+      "file": "brutal-10_October_32th.wav",
+      "label": "SM57 \u00b7 October 32th"
+    },
+    {
+      "file": "brutal-11_Wumbo.wav",
+      "label": "SM57 \u00b7 Wumbo"
+    },
+    {
+      "file": "brutal-12_World_Collider.wav",
+      "label": "SM57 \u00b7 World Collider"
+    },
+    {
+      "file": "brutal-13_Cannibal_Choir.wav",
+      "label": "SM57 \u00b7 Cannibal Choir"
+    },
+    {
+      "file": "brutal-14_Cathode_Ray_Fleshburn.wav",
+      "label": "SM57 \u00b7 Cathode Ray Fleshburn"
+    },
+    {
+      "file": "brutal-15_Impaler_Jim.wav",
+      "label": "SM57 \u00b7 Impaler Jim"
+    },
+    {
+      "file": "emerald-1_Nacho_Guacamole_48.wav",
+      "label": "SM57 \u00b7 upper left \u00b7 Nacho Guacamole"
+    },
+    {
+      "file": "emerald-2_Pickle_Punisher_48.wav",
+      "label": "SM57 \u00b7 upper left \u00b7 Pickle Punisher"
+    },
+    {
+      "file": "emerald-3_Wasabi_Warrior_48.wav",
+      "label": "SM57 \u00b7 upper left \u00b7 Wasabi Warrior"
+    },
+    {
+      "file": "emerald-4_Pesto_Paladin_48.wav",
+      "label": "e606 \u00b7 upper left \u00b7 Pesto Paladin"
+    },
+    {
+      "file": "emerald-5_Don_Spinacio_48.wav",
+      "label": "SM57 \u00b7 lower left \u00b7 Don Spinacio"
+    },
+    {
+      "file": "emerald-6_Kill_Dill_48.wav",
+      "label": "e606 \u00b7 lower left \u00b7 Kill Dill"
+    }
+  ]
+}

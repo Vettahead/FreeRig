@@ -85,3 +85,7 @@ Prioritise a validated circuit-amp port and a small, properly sourced multi-mic
 cabinet set before expanding to ten each. The current research does not support
 shipping ten supposedly authentic complete amps and ten movable-mic cabinets
 without additional porting, asset verification and listening tests.
+
+## Alpha 26 implementation
+
+All 13 pinned Tamgamp preamps and five Jester cabinet configurations are now implemented. See [the implementation guide](CIRCUIT-AMPS-AND-CABS.md) for exact scope and limitations; the other candidates above remain research.

@@ -124,10 +124,25 @@ namespace GuitarSuite
                        "invalid parameter rejection at 44.1/48/96 kHz."));
             foreach (var key in new[] { "CloudSeed", "EchoKing", "PhotonVibe", "TriPhase",
                                         "GraphicEQ", "Wah", "EnvelopeFilter", "GrainCloud",
-                                        "ReverseEcho", "PhraseLooper", "Vocoder" })
+                                        "ReverseEcho", "PhraseLooper", "Vocoder", "AmpDC3Lead",
+                                        "AmpAC30Normal", "AmpPrinceton", "CabJesterGreenback",
+                                        "CabJesterV30" })
                 foreach (int rate in new[] { 44100, 48000, 96000 })
                 {
                     var entry = entries.First(e => e.key == key);
+                    // Resampled circuit amps preserve dry-path latency in bypass.
+                    // Query the actual rate rather than the 48 kHz catalogue value.
+                    var latencyProbe = Effects.fx_load(key, rate);
+                    int bypassDelay;
+                    try
+                    {
+                        bypassDelay = Effects.fx_latency(latencyProbe);
+                    }
+                    finally
+                    {
+                        Effects.fx_free(latencyProbe);
+                    }
+
                     var controls = new DeviceState {
                         on = false,
                         values = entry.@params.Select(a => Convert.ToDouble(a[3])).ToArray()
@@ -167,13 +182,16 @@ namespace GuitarSuite
                             }
                             if (!controls.on)
                                 Check(
-                                    result.Take(32).Select((x, i) => Math.Abs(x - input[i])).Max() <
-                                        .00001,
+                                    result.Take(32)
+                                            .Select(
+                                                (x, i) => Math.Abs(
+                                                    x - input[((i - bypassDelay) % 32 + 32) % 32]))
+                                            .Max() < .00001,
                                     "Imported bypass not dry " + key);
                         }
                     }
                 }
-            lines.Add("PASS: eleven effects, repeated graph bypass/re-engage at 32 samples " +
+            lines.Add("PASS: sixteen processors, repeated graph bypass/re-engage at 32 samples " +
                       "and 44.1/48/96 kHz; bypass restores dry input.");
             var presets = new JavaScriptSerializer().Deserialize<PresetDevice[]>(
                 System.IO.File.ReadAllText(System.IO.Path.Combine(

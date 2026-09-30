@@ -269,7 +269,7 @@ function addDevice(key, slot = chosenSlot, openEditor = true) {
   const def = PatchRig.definition(key);
   if (!def) return;
   const slots = SlotBoard.slots(state),
-    section = def.type === 'Amps' ? 'amp' : key === 'cab' ? 'cab' : 'pre';
+    section = def.type === 'Amps' ? 'amp' : def.type === 'Cabs' ? 'cab' : 'pre';
   slot =
     slot ||
     slots.find((s) => s.section === section && !s.block) ||

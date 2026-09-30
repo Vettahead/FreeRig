@@ -1,3 +1,13 @@
+## 30 September 2026 — Alpha 26: circuit amps and recorded cabinets
+
+Imported all 13 Tamgamp DK preamp channels with actual source controls, original arithmetic/tables and 96 kHz internal resampling. Added five cabinet/speaker configurations (two physical enclosure families) using 21 verified CC0 Jester Dyne recordings. React editor offers two real recorded setup selectors, blend, polarity and output, saved per scene. No continuous invented mic positions, full power-amp stage or ten unrelated cabinets claimed. All source/handbooks/WAVs/licences retained; see docs/CIRCUIT-AMPS-AND-CABS.md.
+
+Cabinet processing uses a direct 256-sample head and FFT tail with zero added buffering. Histories remain running for 5 ms selection fades. Staggered FFT work reduces small-buffer spikes. At 32 samples, one warmed JCM800+Greenback run stayed within the callback deadline at 48/96 kHz; this is offline evidence, not an ASIO guarantee. Unchanged NAM arithmetic and user buffer preferences.
+
+Validation: npm run check (13 suites), native formatting, effects/desktop builds and complete offline self-test passed (218 processors, 265 presets, 16 bypass cases). The bypass test now correctly expects the actual-rate delayed dry path for resampled amps. Independent audit passes all 18 new processors at 44.1/48/96 kHz and 1/17/32/64/127/4096 blocks, endpoint changes, cabinet stereo checks and all 21 WAV comparisons (max error 1.44e-6). UI tested mic selection, polarity, blend, independent scene recall, presets and source-specific AC30 controls/artwork at 1920x1080. No live listening performed.
+
+Release: releases/FreeRig-alpha-26/FreeRig.exe and FreeRig-alpha-26-win-x64.zip, including matching source/licences. Next: user's monitor/ASIO listening feedback; additional independently licensed cabinet enclosures and full power-amp modelling remain future work. No Git remote configured; Mission Control external update remains unavailable, with handover saved locally.
+
 ## 30 September 2026 — Alpha 25: Studio, guides and DSP cost
 
 Added a factory Studio tag/filter to 41 production-oriented effects without removing their effect categories or user tags. All 200 native descriptors now supply detailed playing/control guides; 156 retain original Airwindows developer notes. Legacy pedal descriptions expanded. React Quality / DSP cost filters work in the collection and replacement picker, with Light/Moderate/Heavy/Unmeasured groups and card badges. These are measured default-setting processing costs, not sound-quality ratings or worst-case performance guarantees.

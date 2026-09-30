@@ -15,7 +15,7 @@ window.SlotBoard = (() => {
     s.blocks.forEach((b, i) => {
       let section =
         b.slot?.section ||
-        (b.key === 'cab'
+        (PatchRig.definition(b.key).type === 'Cabs'
           ? 'cab'
           : PatchRig.definition(b.key).type === 'Amps'
             ? 'amp'
@@ -159,7 +159,9 @@ window.SlotBoard = (() => {
       return;
     }
     // Additional cabs share the first cab's source/destination, creating a branch.
-    const peer = slot.section === 'cab' && s.blocks.find((n) => n.key === 'cab' && n.id !== b.id);
+    const peer =
+      slot.section === 'cab' &&
+      s.blocks.find((n) => PatchRig.definition(n.key).type === 'Cabs' && n.id !== b.id);
     if (peer) {
       const edges = [...s.connections];
       edges.filter((e) => e[1] === peer.id).forEach((e) => PatchRig.connect(s, e[0], b.id));

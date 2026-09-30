@@ -26,6 +26,7 @@ export interface Sound {
 }
 export type Param = [string, number, number, number, string];
 export interface Definition {
+  cabinetChoices?: string[];
   factoryTags?: string[];
   guide?: string;
   manual?: string;

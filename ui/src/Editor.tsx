@@ -5,6 +5,7 @@ import { TagEditor } from './tags/TagEditor';
 import { CaptureLevels } from './CaptureLevels';
 import { EffectInfo } from './EffectInfo';
 import { GraphicEqualizer } from './GraphicEqualizer';
+import { CabinetEditor } from './cabinets/CabinetEditor';
 
 import type { CSSProperties } from 'react';
 import type { EditorProps } from './types';
@@ -67,7 +68,9 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
       <TagEditor rig={rig} block={b} />
       <EffectInfo block={b} definition={d} sound={v} />
       <div className="editor-body">
-        {b.key === 'fx-GraphicEQ' ? (
+        {d.cabinetChoices ? (
+          <CabinetEditor block={b} definition={d} sound={v} />
+        ) : b.key === 'fx-GraphicEQ' ? (
           <GraphicEqualizer block={b} definition={d} sound={v} />
         ) : (
           <Hardware html={face} d={d} v={faceState} />

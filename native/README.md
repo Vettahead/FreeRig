@@ -1,3 +1,7 @@
+# Alpha 26 — circuit amps and recorded cabinets
+
+Run FreeRig.exe from this complete release folder. Collection → Amps contains 13 new Tamgamp circuit preamp channels. Collection → Cabs contains five recorded speaker configurations with two-microphone blending, polarity and scene recall. All work offline. These are preamps rather than complete power-amp simulations; the cabinet bank contains 21 recordings across two enclosure families. Source, original assets and licences are included. See docs/CIRCUIT-AMPS-AND-CABS.md in the source archive for controls, scope and reproducible tests.
+
 ## Alpha 24 — effects collection and tags
 
 200 native stock processors, patch/device tags, capture level comparison and editor-strip bypass gestures. See docs/EFFECTS-COLLECTION.md and docs/TAGS-AND-CAPTURE-LEVELS.md in the repository. Keep all DLLs, UI, presets and licences together.

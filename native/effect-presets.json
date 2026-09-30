@@ -3276,5 +3276,333 @@
         ]
       }
     ]
+  },
+  {
+    "key": "AmpDC3Rhythm",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpDC3Lead",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpJCM800High",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpJCM800Low",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpRectifierOrange",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpRectifierRed",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpPrinceton",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpTwinNormal",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpTwinVibrato",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpAC30Normal",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AmpAC30Brilliant",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Amp5150Crunch",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Amp5150Lead",
+    "presets": [
+      {
+        "name": "Circuit default",
+        "values": [
+          5,
+          5,
+          5,
+          5,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CabJesterV30",
+    "presets": [
+      {
+        "name": "First microphone",
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Two-mic blend",
+        "values": [
+          0,
+          1,
+          35,
+          0,
+          -12
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CabJesterDV77",
+    "presets": [
+      {
+        "name": "First microphone",
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Two-mic blend",
+        "values": [
+          0,
+          1,
+          35,
+          0,
+          -12
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CabJesterRockdriver",
+    "presets": [
+      {
+        "name": "First microphone",
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Two-mic blend",
+        "values": [
+          0,
+          1,
+          35,
+          0,
+          -12
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CabJesterMixed",
+    "presets": [
+      {
+        "name": "First microphone",
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Two-mic blend",
+        "values": [
+          0,
+          1,
+          35,
+          0,
+          -12
+        ]
+      }
+    ]
+  },
+  {
+    "key": "CabJesterGreenback",
+    "presets": [
+      {
+        "name": "First microphone",
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Two-mic blend",
+        "values": [
+          0,
+          1,
+          35,
+          0,
+          -12
+        ]
+      }
+    ]
   }
 ]

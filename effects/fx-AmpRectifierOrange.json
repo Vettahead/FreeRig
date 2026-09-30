@@ -1,0 +1,22 @@
+{
+  "key": "fx-AmpRectifierOrange",
+  "name": "Mesa Rectifier Orange",
+  "type": "Amps",
+  "category": "Amps",
+  "engine": "Tamgamp / Guitarix DK",
+  "detail": "Circuit preamp · no NAM",
+  "icon": "▰",
+  "colour": "#baa375",
+  "source": "https://github.com/sadko4u/tamgamp.lv2",
+  "sync": false,
+  "defaults": [5.0, 5.0, 5.0, 5.0, 0.0, 0.0],
+  "presets": [
+    {
+      "name": "Circuit default",
+      "values": [5.0, 5.0, 5.0, 5.0, 0.0, 0.0]
+    }
+  ],
+  "factoryTags": ["Circuit model"],
+  "description": "Mesa Rectifier Orange preamp circuit from Tamgamp and Guitarix DK Builder. Runs the original stage/filter network at 96 kHz internally, with circuit-positioned tone controls and upstream output-level compensation. Gain adjusts the modelled preamp; Input trim calibrates the incoming signal and Output sets listening level. Use a cabinet after it. This is a preamp/channel model, not a complete hardware clone: power-amp sag, presence, reverb and graphic EQ are not supplied by this circuit. Only controls actually present in the source are shown.",
+  "defaultLook": "look-5"
+}

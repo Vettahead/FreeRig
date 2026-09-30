@@ -1,0 +1,53 @@
+.recorded-cabinet {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(260px, 1fr);
+  gap: 24px;
+  width: 100%;
+  align-items: center;
+  padding: 20px;
+}
+.recorded-cabinet-art {
+  display: flex;
+  justify-content: center;
+}
+.recorded-cabinet-art img {
+  width: min(100%, 340px);
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+}
+.cabinet-microphones {
+  display: grid;
+  gap: 14px;
+  max-width: 520px;
+}
+.cabinet-microphones label {
+  display: grid;
+  gap: 6px;
+}
+.cabinet-microphones p,
+.cabinet-microphones small {
+  color: var(--muted, #aaa);
+  line-height: 1.5;
+}
+.cabinet-microphones select {
+  width: 100%;
+  min-width: 0;
+  padding: 9px;
+}
+.cabinet-microphones input[type='range'] {
+  width: 100%;
+}
+.cabinet-microphones .cabinet-polarity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 800px) {
+  .recorded-cabinet {
+    grid-template-columns: 1fr;
+  }
+  .recorded-cabinet-art img {
+    max-height: 220px;
+  }
+}

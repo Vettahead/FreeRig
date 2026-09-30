@@ -20,6 +20,8 @@ const CabinetLooks = (() => {
       (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
     );
   function get(b, d) {
+    if (b.key.startsWith('fx-CabJester') && !b.appearance?.cabFormat)
+      return formats.find((f) => f[0] === '4x12');
     const explicit = formats.find((f) => f[0] === b.appearance?.cabFormat);
     if (explicit) return explicit;
     const name = ((b.tone3000?.title || '') + ' ' + (b.assetName || ''))

@@ -94,7 +94,11 @@ window.GearLooks = (() => {
     'Strymon',
   ];
   const kind = (b) =>
-    b.key === 'cab' ? 'cab' : PatchRig.definition(b.key)?.type === 'Amps' ? 'amp' : 'pedal';
+    PatchRig.definition(b.key)?.type === 'Cabs'
+      ? 'cab'
+      : PatchRig.definition(b.key)?.type === 'Amps'
+        ? 'amp'
+        : 'pedal';
   function list(b) {
     const pedal = kind(b) === 'pedal';
     return designs.map((d, i) => ({
@@ -124,6 +128,7 @@ window.GearLooks = (() => {
     const all = list(b);
     return (
       all.find((d) => d.id === b.appearance?.style) ||
+      all.find((d) => d.id === PatchRig.definition(b.key)?.defaultLook) ||
       all[
         b.appearance?.style === 'tweed'
           ? 2

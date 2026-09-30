@@ -242,7 +242,7 @@ window.NativeDesktop = (() => {
         document.querySelector('.chain-footer').firstElementChild.textContent = running
           ? 'Native audio engine running'
           : 'Native audio engine stopped';
-        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 25';
+        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 26';
       }
       if (message.type === 'error') {
         toast(message.message);
@@ -459,7 +459,10 @@ window.NativeDesktop = (() => {
     let html = HardwareControls.face(d, window.EffectTools ? EffectTools.faceState(d, v) : v);
     if (host && !b.assetId)
       html = html
-        .replace('NAM A2 / CAPTURE PLAYER', 'BUILT-IN / AMPLITRON')
+        .replace(
+          'NAM A2 / CAPTURE PLAYER',
+          b.key.startsWith('fx-Amp') ? 'TAMGAMP / CIRCUIT PREAMP' : 'BUILT-IN / AMPLITRON',
+        )
         .replace('TRIM & EQ CONTROLS SURROUND THE CAPTURE', 'AMP INPUT / TONE / OUTPUT')
         .replace('CABINET IR / OUTPUT SHAPING', 'FILTERED CABINET / OUTPUT SHAPING');
     return window.DeviceShelf ? DeviceShelf.skin(b, html) : html;

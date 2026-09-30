@@ -29,3 +29,10 @@ Exact revisions are in SOURCES.json; host modifications are documented in each d
 ## Alpha 24 additions
 
 156 additional Airwindows algorithms and original MIT manuals at the existing pinned revision. Centaur circuit source (BSD-3-Clause, Jatin Chowdhury) and chowdsp_wdf (MIT) are documented in centaur/PORTING.md and SOURCES.json. FreeRig adds EQ, wah/envelope, reverse/granular, vocoder, practice looper and standalone Signalsmith pitch adapters. See ../docs/EFFECTS-COLLECTION.md from the repository root.
+
+
+## Alpha 26 additions
+
+Tamgamp source is pinned in SOURCES.json. Unmodified circuit resources and loudness tables are adapted in effects_tamgamp.cpp; LGPL support and original Guitarix GPL notices remain in the source tree with COPYING and COPYING.LESSER.
+
+Jester Dyne's Brutal/Emerald CC0 cabinet packs retain original WAVs and PDF handbooks in jester-cabs. SOURCE hashes, the stable recording manifest and LICENSE.txt document provenance. scripts/build-cabinet-data.py trims leading silence, retains 200 ms and fades the final 10 ms without gain normalisation. The existing MIT Signalsmith FFT powers the partitioned tail. See docs/CIRCUIT-AMPS-AND-CABS.md at the repository root.

@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises';
 // Usage advice describes placement, not a restriction: studio processors can
 // process guitars too. Keep upstream manuals attributed and separate from ours.
 const placement = {
+  Amps: 'Place after drives and before the cabinet. These are circuit preamps; add an IR cabinet for monitor/headphone playback. Tone controls follow the upstream circuit rather than a generic post-EQ.',
+  Cabs: 'Place after the amp, before stereo studio effects. Choose recorded mic setups by their labels, blend gently and compare polarity. Recorded positions are discrete; there is no invented continuous distance control.',
   Drive:
     'Start before the amp. Match bypass loudness with the output/level control before judging the tone; extra level also drives the following amp harder. Keep a cabinet after an amp when monitoring through full-range speakers.',
   Reverb:
