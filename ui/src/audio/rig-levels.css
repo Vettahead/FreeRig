@@ -1,0 +1,38 @@
+/* The old DOM controls remain the native bridge, never a second visible UI. */
+#workspace-levels[hidden] {
+  display: none !important;
+}
+.rig-level-dials {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border: 1px solid #48606966;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #18282e, #101a20);
+}
+.rig-level-caption {
+  text-align: center;
+  max-width: 420px;
+}
+.rig-level-caption > span {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #a4c6ce;
+}
+.rig-level-caption p {
+  font-size: 11px;
+  color: #bec9cb;
+  margin: 8px 0 0;
+}
+@media (max-width: 650px) {
+  .rig-level-dials {
+    padding: 10px;
+    gap: 10px;
+  }
+  .rig-level-caption {
+    max-width: 180px;
+  }
+}

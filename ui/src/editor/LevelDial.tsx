@@ -2,7 +2,14 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 // Mirror the existing host controls so calibration, persistence and native audio
 // messages keep one owner. No second gain stage or meter polling is introduced.
-export function LevelDial({ kind }: { kind: 'input' | 'output' }) {
+export function LevelDial({
+  kind,
+  surface = 'Editor',
+}: {
+  kind: 'input' | 'output';
+  surface?: 'Editor' | 'Rig';
+}) {
+  const controlId = `${surface.toLowerCase()}-${kind}-dial`;
   const slider = () => document.getElementById(`workspace-${kind}`) as HTMLInputElement | null;
   const [value, setValue] = useState(Number(slider()?.value || 0));
   const [peak, setPeak] = useState(0);
@@ -36,7 +43,7 @@ export function LevelDial({ kind }: { kind: 'input' | 'output' }) {
   const level = Math.max(0, Math.min(1, (20 * Math.log10(Math.max(peak, 0.001)) + 60) / 60));
   return (
     <div className={`drawer-level level-${kind}`}>
-      <label htmlFor={`drawer-${kind}`}>{kind === 'input' ? 'INPUT' : 'OUTPUT'}</label>
+      <label htmlFor={controlId}>{kind === 'input' ? 'INPUT' : 'OUTPUT'}</label>
       <div className="level-hardware">
         <div
           className="level-meter"
@@ -55,8 +62,8 @@ export function LevelDial({ kind }: { kind: 'input' | 'output' }) {
         >
           <span className="level-pointer" />
           <input
-            id={`drawer-${kind}`}
-            aria-label={kind === 'input' ? 'Editor input trim' : 'Editor master output'}
+            id={controlId}
+            aria-label={`${surface} ${kind === 'input' ? 'input trim' : 'master output'}`}
             type="range"
             min={min}
             max={max}

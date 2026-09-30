@@ -1,3 +1,7 @@
+## Alpha 37 — 30 September 2026
+
+- The main rig now uses the same compact input/output dials and adjacent meters as the slide-up editor, replacing the long sliders. Both views stay synchronised with saved audio levels; calibration, audio load and overload warnings remain available. Audio processing is unchanged.
+
 ## Alpha 36 — 30 September 2026
 
 - Device controls open in a smooth slide-up panel over the visible rig, with a compact hardware chain across the top. Click outside, press Escape or use Close to slide it away.

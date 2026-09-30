@@ -1,3 +1,4 @@
+import { RigLevels } from './audio/RigLevels';
 import { EditorDrawer } from './editor/EditorDrawer';
 import { liftHardware } from './board/DragPreview';
 import { hardwareArt } from './hardware/legacyArtwork';
@@ -81,6 +82,13 @@ window.FreeRigReact = {
   },
   connect(actions) {
     connectCommands(actions);
+    // Keep transport-owned controls as the compatibility source, visually replaced
+    // by shared React dials. Calibration/load controls remain in their own bar.
+    const legacyLevels = document.getElementById('workspace-levels')!;
+    legacyLevels.hidden = true;
+    const levelsHost = document.createElement('div');
+    legacyLevels.before(levelsHost);
+    createRoot(levelsHost).render(<RigLevels />);
     const filtersHost = document.createElement('div');
     document.getElementById('filters')!.after(filtersHost);
     createRoot(filtersHost).render(<EffectFilters />);

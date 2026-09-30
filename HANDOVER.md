@@ -1,3 +1,9 @@
+## 30 September 2026 — Alpha 37: main rig level dials
+
+Reused the React LevelDial on the main page, replacing the long sliders. Surface-specific IDs keep editor and rig controls distinct. Hidden transport-owned controls remain the compatibility source; RigLevels mirrors their warning and both views observe the same levels/meters. Calibration and load controls remain visible. No native or DSP changes.
+
+Validation: npm run check passes 15 tests; desktop build passes. Browser verified main input changes appearing in the editor, editor output changes appearing on the rig, old sliders hidden, no console errors and no horizontal page overflow at 1280×720. Screenshot: docs/screenshots/alpha37-levels.png. Live audio/meter response not tested. Release target: releases/FreeRig-alpha-37/FreeRig.exe and matching portable/source archives. Local handover retained.
+
 ## 30 September 2026 — Alpha 36: slide-up device editor
 
 Added a focused React editor drawer with animated entrance/exit, dimmed rig backdrop, compact device strip and input/output dials with adjacent meters. Dials reuse the existing input-trim/master-output controls and native metering; no extra gain stage or audio arithmetic changes. Existing editor/overview DOM hosts are retained to preserve delegated events. Outside click, Escape and Close dismiss; keyboard focus stays within the panel, reduced motion is respected, and smaller windows scroll internally.

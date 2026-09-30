@@ -47,3 +47,7 @@ Alpha 35 adds `hardwareSway.ts`: a time-based damped angular spring pivoting at 
 `ui/src/editor/EditorDrawer.tsx` owns the overlay, enter/exit animation, focus and outside/Escape dismissal. It retains the existing editor and overview DOM nodes so delegated native control and bypass handlers continue to work. Editor contents are rendered through a React portal and retained only through exit animation. The rig remains visible behind a backdrop; smaller screens scroll inside the panel.
 
 `LevelDial.tsx` mirrors the existing workspace trim/master sliders through their input events and observes their labels/meters, including host-driven meter updates and replacement of the original control nodes. It adds no gain stage, native messaging contract or audio processing. Meter values are displayed on a −60 to 0 dBFS scale; the original workspace controls remain available when the drawer closes.
+
+## Alpha 37 — shared main-page levels
+
+`audio/RigLevels.tsx` reuses the editor's LevelDial with distinct surface IDs. The original transport controls stay hidden as the compatibility source for persistence, calibration and messages. The main view mirrors the warning text so hiding those controls does not hide overload guidance. Calibration and audio-load controls remain separate.
