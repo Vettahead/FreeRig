@@ -1,3 +1,11 @@
+## 30 September 2026 — Alpha 39: usable editor viewport and FR app icon
+
+Replaced the tall scrolling editor with a viewport-budgeted workspace: compact patch/scenes, chain, persistent actions, and Sound / Device settings / Guide pages. Hardware fits its available area using the source image aspect ratio and ResizeObserver; controls retain descriptor indices and DOM text. Cabinet microphone controls use two columns; EQ faders fit the available height. Optional settings and long guides may scroll, but the primary sound page and navigation stay visible. Clicking the selected chain device returns to the full board.
+
+Added a multi-size Windows FR icon from the existing logo's F/R path outlines (scripts/build-app-icon.py; Pillow is an asset-generation tool only). Compiler embeds the ICO; MainWindow reads that embedded icon for its title bar/taskbar. Audio processing untouched.
+
+Validation: npm run check passes 15 tests; native formatting passes via the direct script (npm's nested PowerShell wrapper is execution-policy blocked); desktop build passes. Browser checked 1920×1080 and 1280×720, amp parameter edit/persistence, direct settings, chain toggle, cabinet mic controls, 12-control Phase Sweep and graphic EQ. No main/sound-page scroll in measured amp views, no console errors. Screenshot: docs/screenshots/alpha39-editor.png. Full offline self-test passed with the normal Windows profile after the sandbox blocked the DPAPI credential fixture. No live ASIO listening. Release target: releases/FreeRig-alpha-39/FreeRig.exe and portable/source archives. Local handover retained.
+
 ## 30 September 2026 — Alpha 38: editor inside the rig
 
 Replaced the full-window modal/backdrop with an in-workspace expansion. Board and editor exchange within the chain shell with slide/scale/fade and height transitions. Selected overview device toggles back to the board; Escape, Close and existing outside-background dismissal remain. No focus trap; toolbar/library stay usable. Duplicate main-level pair hides while editor levels are present. No audio processing changes.

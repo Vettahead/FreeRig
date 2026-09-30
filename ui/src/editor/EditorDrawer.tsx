@@ -58,7 +58,7 @@ export function EditorDrawer({
         ],
         { duration: reduced ? 0 : 320, easing: 'cubic-bezier(.2,.8,.2,1)' },
       );
-      workspace.scrollIntoView({ block: 'nearest', behavior: reduced ? 'instant' : 'smooth' });
+      workspace.closest('main')!.scrollTop = 0;
     }
     const animation = surface.animate(
       open

@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useLayoutEffect, useRef, type CSSProperties } from 'react';
 import type { Block, Definition, Sound } from '../types';
 import { Knob } from '../Hardware';
 import {
@@ -27,9 +27,34 @@ export function RenderedHardware({
   definition: Definition;
   sound: Sound;
 }) {
+  const stage = useRef<HTMLElement>(null);
+  // Fit the enclosure's real aspect ratio into the available sound area. The
+  // overlay stays attached to the same image geometry; no zoomed text or canvas.
+  useLayoutEffect(() => {
+    const host = stage.current!;
+    const art = host.querySelector<HTMLImageElement>('.chassis')!;
+    const device = host.querySelector<HTMLElement>('.rendered-device')!;
+    const fit = () => {
+      if (!host.closest('.showing-device') || !art.naturalWidth || !host.clientHeight) return;
+      const width = Math.min(
+        host.clientWidth - 24,
+        ((host.clientHeight - 24) * art.naturalWidth) / art.naturalHeight,
+      );
+      device.style.setProperty('--fitted-width', `${Math.max(0, width)}px`);
+    };
+    const observer = new ResizeObserver(fit);
+    observer.observe(host);
+    art.addEventListener('load', fit);
+    fit();
+    return () => {
+      observer.disconnect();
+      art.removeEventListener('load', fit);
+    };
+  }, [profile]);
   const count = d.params.filter((p) => p[0]).length;
   return (
     <section
+      ref={stage}
       className={`rendered-stage rendered-${hardwareClass(profile)} family-${profile} ${isCombo(profile) ? 'family-combo' : ''} ${count > 6 ? 'many-controls' : ''}`}
       style={{ '--control-count': Math.min(count, 6) } as CSSProperties}
       aria-label={`${d.name} controls`}

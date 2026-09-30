@@ -1,0 +1,399 @@
+/* Editor mode budgets the actual app viewport. Main actions remain outside the
+   content pages; only optional settings/manual content can scroll. */
+.app:has(.showing-device) > main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 10px 18px;
+  gap: 8px;
+  min-height: 0;
+}
+main:has(.showing-device) > #bank-bar,
+main:has(.showing-device) .rig-heading .eyebrow,
+main:has(.showing-device) .rig-sub,
+main:has(.showing-device) .patch-tags-host,
+main:has(.showing-device) .scene-section > .section-top,
+main:has(.showing-device) .scene-section > p,
+main:has(.showing-device) #rig-view > .section-top,
+main:has(.showing-device) #routing-bar,
+main:has(.showing-device) #cable-hint,
+main:has(.showing-device) .statusbar {
+  display: none !important;
+}
+main:has(.showing-device) .rig-heading {
+  flex: none;
+  margin: 0;
+  padding: 0;
+  min-height: 38px;
+}
+main:has(.showing-device) .rig-name {
+  font-size: 18px;
+}
+main:has(.showing-device) .scene-section {
+  flex: none;
+  margin: 0;
+  padding: 0;
+}
+main:has(.showing-device) .scenes {
+  margin: 0;
+  gap: 6px;
+}
+main:has(.showing-device) .scene {
+  min-height: 32px;
+  padding: 6px 12px;
+}
+main:has(.showing-device) #rig-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 6px;
+}
+main:has(.showing-device) .engine-strip {
+  flex: none;
+  margin: 0;
+  padding: 0;
+  min-height: 25px;
+}
+main:has(.showing-device) .chain-shell {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+.rig-editor-host,
+.showing-device .device-drawer {
+  height: 100%;
+  min-height: 0;
+}
+.showing-device .drawer-panel {
+  height: 100%;
+  max-height: none;
+  border: 0;
+  box-shadow: none;
+}
+.showing-device .drawer-grip {
+  display: none;
+}
+.showing-device .drawer-chain {
+  flex: none;
+  height: 102px;
+  padding: 7px 16px;
+  gap: 12px;
+}
+.showing-device #device-overview {
+  min-height: 0;
+  height: 84px;
+  padding: 0;
+}
+.showing-device .overview-device {
+  gap: 3px;
+  padding: 2px;
+}
+.showing-device .overview-device .rendered-thumb {
+  zoom: 0.42;
+}
+.showing-device .drawer-level label {
+  margin-bottom: 4px;
+}
+.showing-device .drawer-level output {
+  margin-top: 4px;
+}
+.showing-device .level-dial {
+  width: 46px;
+  height: 46px;
+}
+.showing-device .level-meter {
+  height: 44px;
+}
+.showing-device .drawer-contents {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.showing-device #editor:not([hidden]),
+.showing-device .react-editor {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.showing-device #editor .editor-top {
+  flex: none;
+  min-height: 52px;
+  padding: 8px 16px;
+  gap: 12px;
+}
+.showing-device .editor-top .title {
+  min-width: 0;
+}
+.showing-device .editor-top .title strong {
+  font-size: 17px;
+}
+.showing-device .editor-top .title small {
+  font-size: 11px;
+}
+.showing-device .editor-actions {
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+.editor-pages {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 4px;
+  padding: 5px 14px;
+  border-bottom: 1px solid #6f999233;
+  background: #17252a;
+}
+.editor-pages button {
+  border: 0;
+  background: transparent;
+  padding: 8px 12px;
+  color: #aabfc3;
+}
+.editor-pages button[aria-pressed='true'] {
+  color: #e4f6ed;
+  background: #3c5c5966;
+  box-shadow: inset 0 -2px #abddc6;
+}
+.editor-pages > span {
+  margin-left: auto;
+  font-size: 10px;
+  color: #a4b3b6;
+}
+.showing-device .editor-sound {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.showing-device #editor .editor-body {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 12px;
+  display: flex;
+  align-items: stretch;
+  background: radial-gradient(ellipse at center, #32565b88, #101b21 80%);
+}
+.showing-device #editor .rendered-stage {
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.showing-device #editor .rendered-device {
+  width: var(--fitted-width, 70%);
+  max-width: 1180px;
+}
+.showing-device #editor .rendered-stage .rendered-badge > span {
+  margin-bottom: 4px;
+}
+.showing-device #editor .rendered-stage .rendered-badge > strong {
+  font-size: clamp(18px, 2vw, 30px);
+}
+.showing-device #editor .editor-note {
+  display: none;
+}
+.editor-page {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 18px 24px;
+}
+.editor-settings .device-options {
+  margin: 0;
+  border: 0;
+}
+.editor-settings .device-options > summary {
+  display: none;
+}
+.editor-settings .compat-controls {
+  max-width: 100%;
+}
+.editor-settings .device-footer {
+  margin-top: 16px;
+}
+.showing-device [hidden] {
+  display: none !important;
+}
+.showing-device .recorded-cabinet {
+  height: 100%;
+  padding: 8px;
+  gap: 18px;
+  grid-template-columns: minmax(150px, 1fr) minmax(280px, 1fr);
+}
+.showing-device .recorded-cabinet-art {
+  height: 100%;
+  min-height: 0;
+}
+.showing-device .recorded-cabinet-art img {
+  max-height: 100%;
+  object-fit: contain;
+}
+.showing-device .cabinet-microphones {
+  gap: 7px;
+  font-size: 12px;
+}
+.showing-device .cabinet-microphones header p,
+.showing-device .cabinet-microphones > small {
+  display: none;
+}
+@media (max-height: 850px) {
+  .showing-device .drawer-chain {
+    height: 88px;
+  }
+  .showing-device #device-overview {
+    height: 74px;
+  }
+  .showing-device .overview-device .rendered-thumb {
+    zoom: 0.34;
+  }
+  .showing-device #editor .rendered-stage .dial-hit,
+  .showing-device #editor .rendered-stage .knob {
+    width: 36px;
+    height: 36px;
+  }
+  .showing-device #editor .rendered-stage .physical-control label {
+    font-size: 9px;
+  }
+  .showing-device #editor .rendered-stage .param-value {
+    font-size: 10px;
+  }
+  .editor-pages > span {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .showing-device .editor-top .title small {
+    display: none;
+  }
+  .showing-device .editor-actions button {
+    font-size: 11px;
+    padding: 7px;
+  }
+}
+
+.showing-device #device-overview {
+  overflow-y: hidden;
+  align-items: center;
+}
+.showing-device .overview-device {
+  max-height: 100%;
+  flex-shrink: 0;
+}
+.showing-device #editor .rendered-stage .physical-control label,
+.showing-device #editor .rendered-stage .param-value,
+.showing-device #editor .rendered-stage .param-value input {
+  color: #f3f0df;
+  text-shadow:
+    0 1px 3px #000,
+    0 0 2px #000;
+}
+.showing-device #editor .rendered-stage .param-value {
+  gap: 2px;
+  justify-content: center;
+}
+.showing-device #editor .rendered-stage .param-value input {
+  width: 38px;
+  min-width: 0;
+}
+
+.showing-device .editor-sound > .compat-controls {
+  flex: none;
+}
+.showing-device #editor .effect-tools {
+  margin: 0;
+  padding: 5px 14px;
+  min-height: 36px;
+}
+.showing-device #editor .effect-tools select {
+  padding: 5px 8px;
+}
+.showing-device #editor .recorded-cabinet {
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr);
+}
+.showing-device .recorded-cabinet-art {
+  overflow: hidden;
+}
+.showing-device .recorded-cabinet-art img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+.showing-device .cabinet-microphones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 10px;
+}
+.showing-device .cabinet-microphones header {
+  grid-column: 1 / -1;
+}
+.showing-device .cabinet-microphones label {
+  min-width: 0;
+  gap: 4px;
+  margin: 0;
+}
+.showing-device .cabinet-microphones select {
+  padding: 7px 4px;
+  font-size: 11px;
+}
+.showing-device .cabinet-microphones label:nth-of-type(3) {
+  grid-column: 1 / -1;
+}
+
+.chain-shell.showing-device .device-drawer .overview-device .rendered-thumb {
+  zoom: 0.36;
+}
+.chain-shell.showing-device .device-drawer .overview-device {
+  min-height: 0;
+  height: 100%;
+  justify-content: center;
+  gap: 3px;
+}
+.chain-shell.showing-device .device-drawer .overview-device > span:last-child {
+  flex: none;
+  line-height: 13px;
+}
+.showing-device #editor .many-controls .rendered-badge {
+  display: none;
+}
+.showing-device #editor .many-controls .physical-control label {
+  font-size: 8px;
+  letter-spacing: 0;
+}
+@media (max-height: 850px) {
+  .chain-shell.showing-device .device-drawer .overview-device .rendered-thumb {
+    zoom: 0.28;
+  }
+}
+
+.showing-device #editor .graphic-equalizer {
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+  padding: 14px 30px !important;
+  display: flex;
+  flex-direction: column;
+}
+.showing-device #editor .graphic-equalizer header {
+  margin-bottom: 8px;
+}
+.showing-device #editor .eq-faders {
+  flex: 1;
+  min-height: 0;
+}
+.showing-device #editor .eq-faders label {
+  gap: 6px;
+  min-height: 0;
+}
+.showing-device #editor .eq-faders input {
+  height: auto;
+  min-height: 40px;
+  flex: 1;
+}
+.showing-device #editor .graphic-equalizer > button {
+  margin-top: 8px;
+}

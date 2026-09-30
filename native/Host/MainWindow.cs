@@ -31,6 +31,8 @@ namespace GuitarSuite
                    File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                                                  "release-version.txt"))
                        .Trim();
+            // Use the executable's embedded multi-size mark for the running window/taskbar.
+            Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             Width = 1280;
             Height = 850;
             MinimumSize = new System.Drawing.Size(850, 650);

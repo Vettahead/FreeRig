@@ -1,3 +1,10 @@
+## Alpha 39 — 30 September 2026
+
+- The executable and running desktop window use a multi-size FR icon built from the original logo’s script outlines.
+
+- Reworked editor sizing around the available workspace: compact patch/scenes and chain, persistent device actions, and hardware fitted to the remaining height. Main sound controls no longer sit below a scrolling amp image.
+- Sound, Device settings and Guide pages are one click away in a fixed navigation row. Optional settings and long manuals have their own content area. Main rig returns when the selected chain device is clicked again.
+
 ## Alpha 38 — 30 September 2026
 
 - Collection and replacement picker share an Amp source filter: All amps, Modelled, or TONE3000 only. It filters amps without hiding other effect categories; the empty NAM loader appears under All amps.

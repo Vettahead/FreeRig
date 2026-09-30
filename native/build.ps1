@@ -18,7 +18,7 @@ $sources=@((Join-Path $PSScriptRoot 'Program.cs'))
 foreach($folder in @('Model','Interop','Audio','Services','Host','Tests')) {
  $sources += Get-ChildItem (Join-Path $PSScriptRoot $folder) -Filter '*.cs' -File | Select-Object -ExpandProperty FullName
 }
-& 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' '/nologo' '/target:winexe' '/platform:x64' '/optimize+' ('/win32manifest:'+(Join-Path $PSScriptRoot 'FreeRig.manifest')) ('/out:'+(Join-Path $out 'FreeRig.exe')) @refArgs @sources
+& 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe' '/nologo' '/target:winexe' '/platform:x64' '/optimize+' ('/win32icon:'+(Join-Path $PSScriptRoot 'assets/freerig.ico')) ('/win32manifest:'+(Join-Path $PSScriptRoot 'FreeRig.manifest')) ('/out:'+(Join-Path $out 'FreeRig.exe')) @refArgs @sources
 if($LASTEXITCODE -ne 0){throw 'Desktop compilation failed'}
 $uiRoot=Split-Path $PSScriptRoot
 if(Test-Path (Join-Path $uiRoot 'prototype')){$uiRoot=Join-Path $uiRoot 'prototype'}

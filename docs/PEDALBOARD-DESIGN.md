@@ -55,3 +55,9 @@ Alpha 35 adds `hardwareSway.ts`: a time-based damped angular spring pivoting at 
 ## Alpha 38 — workspace expansion
 
 The editor host lives inside the chain shell. Selecting gear folds the board into a compact chain and hardware panel; closing restores the board with a size/fade transition. This is a non-modal region: no backdrop or focus trap, and the collection and toolbar remain available. Clicking the selected overview item toggles it closed. The main level pair hides while the same controls are visible in the expanded chain.
+
+## Alpha 39 — available-space editing
+
+The main workspace switches to a flex layout while a device is selected. Patch name, save actions, scenes and engine status stay available; bank management and routing-only chrome return with the board. The sound page uses the remaining height. RenderedHardware measures its stage and fits the original image aspect ratio without scaling DOM text. Device settings and Guide are separate pages with persistent navigation rather than disclosures below the image. Recorded cabinet controls and EQ faders have compact layouts. Long guides/optional settings may scroll independently. No DSP or saved parameter changes.
+
+The executable icon is generated from the original FreeRig SVG's F/R outlines with `python scripts/build-app-icon.py` (Pillow needed only for regeneration). Multi-size ICO and PNG previews live in `native/assets`; the compiler embeds the ICO and the running form uses the executable resource.
