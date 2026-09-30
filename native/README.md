@@ -1,4 +1,8 @@
-# Alpha 28 — hardware artwork preview
+# Alpha 29 — connected pedalboards
+
+Before-amp and after-cab boards surround the central amp/cab stack, with a compact effects-loop board below. Metal connectors and patch leads make slot order visible. Combo-style artwork retains cabinet processing controls, and multiple cabinets retain their parallel/summed layout. Custom connections remain in Advanced routing. No audio processing changes.
+
+## Alpha 28 — hardware artwork preview
 
 Original amp, cabinet and pedal artwork with working controls on the hardware. This first set covers British Bloom/JCM800, Moss Drive, Tape Echo, Open Space and default 2×12/recorded 4×12 cabinets. Custom finishes and other devices retain their existing artwork. Guides collapse under the editor; all artwork is included offline. Audio processing is unchanged from Alpha 27.
 

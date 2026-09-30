@@ -77,6 +77,7 @@ declare global {
     EffectsCatalogue?: Definition[];
     SlotBoard: { slots(s: Rig): Slot[]; label(slot: Slot): string };
     GearLooks: {
+      get(b: Block): { format: string };
       art(b: Block, on?: boolean): string;
       list(b: Block): { id: string; body: string }[];
     };

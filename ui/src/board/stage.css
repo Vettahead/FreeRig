@@ -1,0 +1,505 @@
+/* Scoped to the physical board so advanced cables and device editors retain
+   their own sizing. Ports are decoration; the model remains the routing owner. */
+.physical-rig {
+  padding: 12px 20px 8px;
+  background: radial-gradient(ellipse at 50% 25%, #343638, #141719 75%);
+}
+.physical-rig .board-flow {
+  margin: 0 0 16px;
+  font-size: 10px;
+}
+.rig-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.physical-deck {
+  min-width: 0;
+  border: 1px solid #5a5a53;
+  border-radius: 12px;
+  background: #1b1e20;
+  box-shadow:
+    0 10px 18px #0008,
+    inset 0 1px #ffffff20,
+    0 5px #090b0c;
+}
+.physical-deck > header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ffffff12;
+  background: linear-gradient(#313437, #24272a);
+  border-radius: 11px 11px 0 0;
+}
+.physical-deck h3 {
+  font: 600 13px system-ui;
+  margin: 0;
+  color: #eee5d6;
+}
+.physical-deck p {
+  font-size: 10px;
+  color: #a7aaa8;
+  margin: 3px 0 0;
+}
+.deck-rail {
+  position: relative;
+  padding: 16px 20px;
+  background: repeating-linear-gradient(#25282a 0 26px, #0c0e10 27px 36px);
+}
+.deck-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 36px;
+}
+.physical-rig .physical-deck .board-card,
+.physical-rig .physical-deck .board-empty {
+  min-height: 132px;
+  border-radius: 6px;
+  background: #0b0e1055;
+  border: 1px solid #9d9b8718;
+  position: relative;
+}
+.physical-rig .physical-deck .board-gear {
+  flex-direction: column;
+  padding: 8px 4px;
+  min-height: 132px;
+  gap: 6px;
+}
+.physical-rig .physical-deck .board-gear > span:last-child {
+  text-align: center;
+}
+.physical-rig .physical-deck .board-gear small {
+  display: none;
+}
+.physical-rig .physical-deck .board-gear strong {
+  font-size: 10px;
+}
+.physical-rig .physical-deck .board-gear .gear-svg {
+  height: 88px;
+  width: 88px;
+}
+.physical-rig .physical-deck .rendered-thumb {
+  width: 60px;
+}
+.physical-rig .physical-deck .thumb-delay {
+  width: 116px;
+}
+.physical-rig .physical-deck .thumb-reverb {
+  width: 72px;
+}
+.physical-deck > footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  color: #c1b189;
+  font-size: 8px;
+  letter-spacing: 1px;
+  border-top: 1px solid #ffffff10;
+}
+.physical-rig .board-card:hover,
+.physical-rig .board-card.selected {
+  border-color: #d9be7f88;
+  background: #d9be7f09;
+}
+.physical-rig button:focus-visible {
+  outline: 2px solid #efcd80;
+  outline-offset: 3px;
+}
+.physical-rig .board-bypass {
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  min-width: 24px;
+  padding: 0;
+  top: 3px;
+  right: 3px;
+}
+.patch-leads {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.patch-leads path {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.lead-shadow {
+  stroke: #000a;
+  stroke-width: 10;
+  transform: translateY(3px);
+}
+.lead-rubber {
+  stroke: #111314;
+  stroke-width: 7;
+}
+.lead-light {
+  stroke: #81796b;
+  stroke-width: 2;
+}
+.amplifier-station {
+  min-width: 0;
+  position: relative;
+}
+.station-caption {
+  text-align: center;
+  color: #d0bc8f;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.station-caption small {
+  display: block;
+  font-size: 9px;
+  color: #929c98;
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.stack-tower {
+  padding: 6px 10px;
+  border-radius: 9px;
+  background: linear-gradient(#272b2c88, #141718);
+  box-shadow: 0 10px 18px #0005;
+}
+.physical-rig .stack-stage > header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.physical-rig .stack-stage h3 {
+  margin: 0;
+  font-size: 10px;
+  color: #afbab4;
+}
+.physical-rig .stack-stage .stage-number {
+  width: 16px;
+  height: 16px;
+  font-size: 8px;
+}
+.physical-rig .stack-devices {
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+}
+.physical-rig .stack-devices > * {
+  flex: 1 0 130px;
+}
+.physical-rig .stack-devices .board-gear {
+  flex-direction: column;
+  min-height: 100px;
+  gap: 2px;
+  padding: 3px;
+}
+.physical-rig .stack-devices .board-gear > span:last-child {
+  text-align: center;
+}
+.physical-rig .stack-devices .board-gear small {
+  display: none;
+}
+.physical-rig .stack-devices .board-gear .cab-unloaded {
+  display: block;
+}
+.physical-rig .stack-devices .thumb-amp {
+  width: min(100%, 310px);
+}
+.physical-rig .stack-devices .thumb-cab2 {
+  width: 210px;
+}
+.physical-rig .stack-devices .thumb-cab {
+  width: 128px;
+}
+.physical-rig .stack-devices .gear-svg {
+  width: 240px;
+  height: 125px;
+}
+.physical-rig .stack-devices strong {
+  font-size: 10px;
+}
+.stack-bridge {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  padding: 7px;
+  color: #b4a172;
+  font-size: 8px;
+  letter-spacing: 0.7px;
+  border-top: 1px solid #cbb27d22;
+  border-bottom: 1px solid #cbb27d22;
+}
+.station-feet {
+  display: flex;
+  justify-content: space-around;
+}
+.station-feet i {
+  width: 30px;
+  height: 7px;
+  background: #080a0b;
+  border-radius: 0 0 3px 3px;
+}
+.loop-station {
+  width: min(100%, 800px);
+  margin: 0 auto;
+}
+.loop-lead {
+  display: flex;
+  justify-content: space-between;
+  width: 230px;
+  margin: 0 auto;
+  padding: 14px 8px 7px;
+  color: #b6a37c;
+  font-size: 8px;
+  border-inline: 3px double #9b8e70;
+}
+.deck-loop > header {
+  padding: 8px 14px;
+}
+.deck-loop .deck-slots {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+.physical-rig .deck-loop .board-card,
+.physical-rig .deck-loop .board-empty,
+.physical-rig .deck-loop .board-gear {
+  min-height: 92px;
+}
+.physical-rig .deck-loop .rendered-thumb {
+  max-height: 65px;
+  width: 42px;
+}
+.physical-rig .deck-loop .thumb-delay {
+  width: 94px;
+}
+.physical-rig .deck-loop .gear-svg {
+  height: 60px;
+  width: 70px;
+}
+.deck-loop .deck-rail {
+  padding-block: 10px;
+}
+.rig-stage-help {
+  text-align: center;
+  color: #8c9793;
+  font-size: 10px;
+  margin-top: 16px;
+}
+@media (max-width: 1400px) {
+  .rig-stage {
+    gap: 18px;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.85fr) minmax(0, 1fr);
+  }
+  .physical-rig {
+    padding-inline: 10px;
+  }
+  .deck-slots {
+    gap: 28px 24px;
+  }
+  .deck-rail {
+    padding-inline: 14px;
+  }
+  .physical-rig .physical-deck .thumb-delay {
+    width: 88px;
+  }
+}
+@media (max-width: 1000px) {
+  .rig-stage {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .physical-rig .deck-slots {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .amplifier-station {
+    width: min(100%, 440px);
+    margin: auto;
+  }
+  .loop-station {
+    margin-top: 16px;
+  }
+  .physical-rig .board-flow {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 650px) {
+  .physical-rig .deck-slots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Keep the whole first rig in view at 1080p, with the head physically above its cab. */
+.physical-rig .physical-deck .board-card,
+.physical-rig .physical-deck .board-empty,
+.physical-rig .physical-deck .board-gear {
+  min-height: 108px;
+}
+.physical-deck > header {
+  padding: 9px 12px;
+}
+.deck-rail {
+  padding-block: 10px;
+}
+.deck-slots {
+  row-gap: 22px;
+}
+.patch-leads {
+  z-index: 1;
+}
+.physical-rig .physical-deck .board-gear {
+  z-index: 2;
+}
+.physical-rig .physical-deck .board-gear .gear-svg {
+  width: 74px;
+  height: 74px;
+}
+.physical-rig .physical-deck .rendered-thumb {
+  width: 50px;
+}
+.physical-rig .physical-deck .thumb-reverb {
+  width: 61px;
+}
+.physical-rig .physical-deck .thumb-delay {
+  width: 100px;
+}
+.stack-tower {
+  display: flex;
+  flex-direction: column;
+}
+.physical-rig .stack-stage > header {
+  display: none;
+}
+.stack-bridge {
+  order: 3;
+  margin-top: 5px;
+}
+.physical-rig .stack-devices .thumb-cab2 {
+  width: 280px;
+}
+.physical-rig .stack-devices .board-gear {
+  min-height: 70px;
+}
+.physical-rig .stack-devices .board-gear .cab-unloaded {
+  font-size: 8px;
+  margin: 0;
+}
+.physical-rig .stack-stage + .stack-bridge + .stack-stage {
+  margin-top: -3px;
+}
+.physical-rig .is-combo .stack-stage:first-child .gear-svg {
+  height: 235px;
+  width: 310px;
+}
+.physical-rig .is-combo .stack-stage:last-child .rendered-thumb,
+.physical-rig .is-combo .stack-stage:last-child .gear-svg {
+  display: none;
+}
+.physical-rig .is-combo .stack-stage:last-child > header {
+  display: flex;
+  padding-top: 8px;
+}
+.physical-rig .is-combo .stack-stage:last-child .board-gear {
+  min-height: 38px;
+}
+.physical-rig .is-combo .stack-stage:last-child .board-card {
+  border: 1px solid #c7b48233;
+}
+.physical-rig .deck-loop .board-card,
+.physical-rig .deck-loop .board-empty,
+.physical-rig .deck-loop .board-gear {
+  min-height: 78px;
+}
+.physical-rig .deck-loop .rendered-thumb {
+  width: 35px;
+}
+.physical-rig .deck-loop .thumb-delay {
+  width: 75px;
+}
+.physical-rig .deck-loop .thumb-reverb {
+  width: 45px;
+}
+.physical-rig .physical-deck .board-gear .rendered-thumb {
+  width: 50px;
+}
+.physical-rig .physical-deck .board-gear .thumb-delay {
+  width: 100px;
+}
+.physical-rig .physical-deck .board-gear .thumb-reverb {
+  width: 61px;
+}
+.physical-rig .deck-loop .board-gear .rendered-thumb {
+  width: 35px;
+}
+.physical-rig .deck-loop .board-gear .thumb-delay {
+  width: 75px;
+}
+.physical-rig .deck-loop .board-gear .thumb-reverb {
+  width: 45px;
+}
+.app .rig-heading > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.app .rig-heading .rig-name {
+  min-width: 0;
+  width: min(32vw, 480px);
+}
+.app .scene-section .section-top {
+  min-height: 20px;
+}
+.app .scene-section .scene {
+  min-height: 34px;
+  padding-block: 5px;
+}
+@media (min-width: 1001px) {
+  .amplifier-station::before,
+  .amplifier-station::after {
+    content: '→';
+    position: absolute;
+    top: 48%;
+    color: #d0b77f;
+    font-size: 24px;
+  }
+  .amplifier-station::before {
+    left: -22px;
+  }
+  .amplifier-station::after {
+    right: -22px;
+  }
+}
+@media (max-width: 1100px) {
+  .app .rig-heading > div:first-child {
+    flex-wrap: wrap;
+  }
+  .app .rig-heading .rig-name {
+    width: 100%;
+  }
+}
+.physical-rig .physical-deck:not(.deck-loop) .board-gear .rendered-thumb {
+  width: 62px;
+}
+.physical-rig .physical-deck:not(.deck-loop) .board-gear .thumb-reverb {
+  width: 72px;
+}
+.physical-rig .physical-deck:not(.deck-loop) .board-gear .thumb-delay {
+  width: 112px;
+}
+.physical-rig .deck-loop.is-empty .board-empty {
+  min-height: 42px;
+}
+.deck-loop.is-empty > footer {
+  display: none;
+}
+.physical-rig .stack-devices .thumb-cab2 {
+  width: 250px;
+}
+.physical-rig .board-flow {
+  padding-block: 0;
+  margin-bottom: 8px;
+}

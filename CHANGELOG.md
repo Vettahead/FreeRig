@@ -1,3 +1,10 @@
+## Alpha 29 — 30 September 2026
+
+- Rebuilt the normal routing workspace as a before-amp pedalboard, central amp/cab stack, after-cab pedalboard and compact send/return board.
+- Added rail surfaces, metal connectors and measured patch leads. Leads follow visible slots and resize with the board; custom graphs remain in Advanced routing.
+- Combo-style appearances show one amp enclosure with accessible cabinet processing below. Multiple cabinets retain their parallel/summed indication and individual controls.
+- Preserved drag-to-move/replace/remove, bypass, device editing and scene behaviour. Empty effects loops are compact; no audio processing or saved-patch changes.
+
 ## Alpha 28 — 30 September 2026
 
 - First hardware artwork pass: British amp head, green Moss Drive, blue Tape Echo, violet Open Space, horizontal 2×12 and straight 4×12 cabinet bodies.

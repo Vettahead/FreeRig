@@ -1,32 +1,16 @@
 // Pedalboard presentation and drag targets. Patch mutations go through the command adapter.
-import { Fragment, useMemo, useRef, useLayoutEffect } from 'react';
+import { Fragment, useMemo } from 'react';
+import { PedalDeck } from './board/PedalDeck';
+import './board/stage.css';
 import type { Rig, Slot } from './types';
 import { hardwareProfile } from './hardware/profiles';
 import { RenderedThumbnail } from './hardware/RenderedHardware';
 export function Board({ rig, selected }: { rig: Rig; selected: string | null }) {
   const slots = window.SlotBoard.slots(rig);
-  const positions = useRef(new Map<string, DOMRect>());
-  useLayoutEffect(() => {
-    const next = new Map<string, DOMRect>(),
-      reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll<HTMLElement>('.react-board [data-block]').forEach((item) => {
-      if (!item.getClientRects().length) return;
-      const rect = item.parentElement!.getBoundingClientRect(),
-        id = item.dataset.block!,
-        old = positions.current.get(id);
-      next.set(id, rect);
-      if (old && !reduced) {
-        const x = old.left - rect.left,
-          y = old.top - rect.top;
-        if (Math.abs(x) + Math.abs(y) > 2 && Math.abs(x) < innerWidth && Math.abs(y) < innerHeight)
-          item.animate(
-            [{ transform: `translate(${x}px,${y}px)` }, { transform: 'translate(0,0)' }],
-            { duration: 180, easing: 'cubic-bezier(.2,.7,.3,1)' },
-          );
-      }
-    });
-    positions.current = next;
-  });
+  const amps = slots.filter((s) => s.section === 'amp' && s.block);
+  const combo = amps.length === 1 && window.GearLooks.get(amps[0].block!).format === 'combo';
+  // Movement settles immediately so measured patch leads cannot retain an
+  // intermediate transform after a drop or viewport resize. Hover still fades.
 
   const cards = (section: string, stack = false) => {
     const all = slots.filter((x) => x.section === section);
@@ -41,7 +25,7 @@ export function Board({ rig, selected }: { rig: Rig; selected: string | null }) 
     ));
   };
   return (
-    <div className="pedalboard react-board">
+    <div className="pedalboard react-board physical-rig">
       <div className="board-flow" aria-label="Signal order">
         {['INPUT', '1 Before amp', '2 Amp', '3 FX loop', '4 Cab', '5 After cab', 'OUTPUT'].map(
           (label, i) => (
@@ -52,45 +36,76 @@ export function Board({ rig, selected }: { rig: Rig; selected: string | null }) 
           ),
         )}
       </div>
-      <div className="amp-cab-shelf">
-        <section className="stack-stage">
-          <header>
-            <span className="stage-number">2</span>
-            <h3>Amplifier</h3>
-          </header>
-          <div className="stack-devices">{cards('amp', true)}</div>
-        </section>
-        <div className="loop-link">
-          SEND <span>↓ FX LOOP ↑</span> RETURN
-        </div>
-        <section className="stack-stage">
-          <header>
-            <span className="stage-number">4</span>
-            <h3>Cabinets</h3>
+      <div className="rig-stage">
+        <PedalDeck
+          title="Before the amp"
+          subtitle="Drive · wah · compression"
+          number="1"
+          section="pre"
+        >
+          {cards('pre')}
+        </PedalDeck>
+        <div className={`amplifier-station ${combo ? 'is-combo' : ''}`}>
+          <div className="station-caption">
+            <span>{combo ? 'COMBO AMPLIFIER' : 'AMP & CABINET STACK'}</span>
+            <small>Input → amp → loop → cabinet</small>
             {slots.filter((s) => s.section === 'cab' && s.block).length > 1 && (
-              <small>PARALLEL · SUMMED</small>
+              <small>Cabinets run in parallel · summed output</small>
             )}
-          </header>
-          <div className="stack-devices">{cards('cab', true)}</div>
-        </section>
+          </div>
+          <div className="stack-tower">
+            <section className="stack-stage">
+              <header>
+                <span className="stage-number">2</span>
+                <h3>Amplifier</h3>
+              </header>
+              <div className="stack-devices">{cards('amp', true)}</div>
+            </section>
+            <div className="stack-bridge">
+              <span>↓</span> <span>3 · FX SEND / RETURN</span> <span>↓</span>
+            </div>
+            <section className="stack-stage">
+              <header>
+                <span className="stage-number">4</span>
+                <h3>{combo ? 'Cabinet / microphone processing' : 'Cabinets'}</h3>
+                {slots.filter((s) => s.section === 'cab' && s.block).length > 1 && (
+                  <small>PARALLEL · SUMMED</small>
+                )}
+              </header>
+              <div className="stack-devices">{cards('cab', true)}</div>
+            </section>
+          </div>
+          <div className="station-feet" aria-hidden="true">
+            <i />
+            <i />
+          </div>
+        </div>
+        <PedalDeck
+          title="After the cabinet"
+          subtitle="Stereo effects · final polish"
+          number="5"
+          section="post"
+        >
+          {cards('post')}
+        </PedalDeck>
       </div>
-      <div className="pedal-deck">
-        {[
-          ['pre', 1, 'Before amp', 'Guitar → pedals → amp'],
-          ['loop', 3, 'Amp FX loop', 'Amp → effects → cabinets'],
-          ['post', 5, 'After cab', 'Cabinets → effects → output'],
-        ].map(([section, num, title, detail]) => (
-          <section className="pedal-row" key={section}>
-            <header>
-              <span className="stage-number">{num}</span>
-              <div>
-                <h3>{title}</h3>
-                <p>{detail}</p>
-              </div>
-            </header>
-            <div className="pedal-slots">{cards(String(section))}</div>
-          </section>
-        ))}
+      <div className="loop-station">
+        <div className="loop-lead" aria-hidden="true">
+          <span>AMP SEND ↓</span>
+          <span>↑ TO CAB</span>
+        </div>
+        <PedalDeck
+          title="Effects loop"
+          subtitle="After the complete amp model · before the cabinet"
+          number="3"
+          section="loop"
+          empty={!slots.some((s) => s.section === 'loop' && s.block)}
+        >
+          {cards('loop')}
+        </PedalDeck>
+      </div>
+      <div className="rig-stage-help">
+        Drag to move · Drop onto a device to replace · Click to edit · Small power button to bypass
       </div>
     </div>
   );
@@ -112,6 +127,7 @@ function Card({ slot, rig, selected }: { slot: Slot; rig: Rig; selected: string 
     return (
       <button
         className="board-empty"
+        data-cable-slot={`${slot.section}:${slot.index}`}
         data-slot={`${slot.section}:${slot.index}`}
         aria-label={`Add device: ${window.SlotBoard.label(slot)}`}
       >
@@ -122,7 +138,10 @@ function Card({ slot, rig, selected }: { slot: Slot; rig: Rig; selected: string 
   const d = window.DeviceShelf.definition(block),
     on = rig.scenes[rig.scene][block.id].on;
   return (
-    <div className={'board-card ' + (selected === block.id ? 'selected' : '')}>
+    <div
+      data-cable-slot={`${slot.section}:${slot.index}`}
+      className={'board-card ' + (selected === block.id ? 'selected' : '')}
+    >
       <button
         className={'board-gear ' + (on ? '' : 'bypassed')}
         data-block={block.id}

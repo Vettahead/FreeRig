@@ -1,3 +1,12 @@
+## 30 September 2026 — Alpha 29: connected pedalboards and amplifier station
+
+Rebuilt the normal routing workspace as a before-amp pedalboard, central amp/cab stack (or appearance-selected combo), after-cab pedalboard and smaller attached FX-loop board. Rails, plugs and measured patch leads convey serial order; stage numbering states the actual amp → loop → cab order. Multiple cabinets retain parallel/summed routing. Combo appearance keeps cabinet/microphone processing separately editable and does not infer capture contents. See docs/PEDALBOARD-DESIGN.md for research, ownership and limits.
+
+React presentation only; no native audio arithmetic, saved parameter keys, routing contracts or dependencies changed. Removed positional FLIP animation because it caused cable positions to retain intermediate coordinates after resize; layout observers now follow artwork sizing without an animation loop. The wider artwork catalogue remains the Alpha 28 scope.
+
+Validation: npm run check (13 suites), desktop build and full offline self-test passed. Browser verified delay drag into the loop without opening controls, drop-on-device replacement, bypass, scene recall, amp editor, combo presentation, multiple cabinets and Advanced routing toggle. No horizontal page overflow at 1280×720 or 1536×864; smaller windows scroll vertically. 1920×1080 preview saved at docs/screenshots/alpha29-board.png. Both DSP DLLs match Alpha 28 byte-for-byte. No live ASIO listening performed.
+
+Release target: releases/FreeRig-alpha-29/FreeRig.exe and portable ZIP with matching source. Previous releases preserved. Mission Control remains unavailable; local handover retained.
 ## 30 September 2026 — Alpha 28: first hardware artwork set
 
 Added original image-generated amp, drive, delay, reverb and 2×12/4×12 chassis assets with React parameter/bypass overlays. Profile mapping is intentionally limited to British Bloom/JCM800, Moss Drive, Tape Echo, Open Space, unloaded default 2×12 and recorded Jester 4×12 cabinets. Custom finishes/formats use the existing renderer; switching back to a mapped factory look recognises its saved factory colour. Board shelves and spacing are cleaner; longer guides collapse below controls. No audio arithmetic, patch/native contract or dependency changes. See docs/HARDWARE-DESIGN.md for modular extension points, scope and generation prompts.
