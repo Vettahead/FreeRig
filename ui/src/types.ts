@@ -73,11 +73,14 @@ export interface Actions {
   add(slot: string): void;
 }
 declare global {
+  const CabinetLooks: {
+    get(b: Block, look: { speakers?: number }): [string, string, ...unknown[]];
+  };
   interface Window {
     EffectsCatalogue?: Definition[];
     SlotBoard: { slots(s: Rig): Slot[]; label(slot: Slot): string };
     GearLooks: {
-      get(b: Block): { format: string };
+      get(b: Block): { format: string; id: string; body: string; speakers?: number };
       art(b: Block, on?: boolean): string;
       list(b: Block): { id: string; body: string }[];
     };
@@ -94,6 +97,7 @@ declare global {
     DeviceShelf: { definition(b: Block): Definition; selector(b: Block): string };
     EffectTools: { controls(b: Block): string; faceState(d: Definition, v: Sound): Sound };
     FreeRigReact: {
+      hardwareArt(block: Block, on?: boolean): string;
       matchesCost(definition: Pick<Definition, 'dspCost'>): boolean;
       mountEffectFilters(host: HTMLElement | null): void;
       deviceTags(block: Pick<Block, 'key' | 'assetId' | 'tone3000' | 'tags'>): string[];

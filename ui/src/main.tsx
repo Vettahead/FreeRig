@@ -1,3 +1,4 @@
+import { hardwareArt } from './hardware/legacyArtwork';
 import { ReleaseHistory } from './release-history/ReleaseHistory';
 import './interface.css';
 import { PlayAlong } from './audio/PlayAlong';
@@ -26,6 +27,7 @@ let audioSession = 0;
 let tagsRoot: Root | null = null;
 let pickerFiltersRoot: Root | null = null;
 window.FreeRigReact = {
+  hardwareArt,
   matchesCost,
   mountEffectFilters(host) {
     pickerFiltersRoot?.unmount();

@@ -1,0 +1,82 @@
+[
+  {
+    "file": "prototype/hardware/combo.png",
+    "prompt": "Fender-inspired blackface two-speaker combo, blank chassis for live controls."
+  },
+  {
+    "file": "prototype/hardware/rectifier.png",
+    "prompt": "ONE isolated photorealistic guitar gear chassis for a premium VST. Wide black Mesa Dual Rectifier-inspired amplifier HEAD, 3:1 width to height, black tolex, large silver diamond-plate steel grille in upper half, completely blank black control strip at y60–87% across the front, carry handle and silver corners. Orthographic straight-on front view, tiny transparent margins, entire object visible. Genuine transparent background. Premium realistic material detail, softly lit from upper left, crisp woven cloth or metal and seams. NO text logos knobs switches sockets or markings on control panels: controls will be live UI overlays. No floor or backdrop. Match high-end BIAS FX realistic artwork."
+  },
+  {
+    "file": "prototype/hardware/vox.png",
+    "prompt": "ONE isolated photorealistic guitar gear chassis for a premium VST. Vox AC30-inspired COMBO amplifier, 1.35:1 width to height, chocolate brown diamond lattice grille across lower 65%, dark burgundy-black tolex, thin gold piping, handle. Blank warm brass control panel across front TOP y12–30%, blank logo area. Orthographic straight-on front view, tiny transparent margins, entire object visible. Genuine transparent background. Premium realistic material detail, softly lit from upper left, crisp woven cloth or metal and seams. NO text logos knobs switches sockets or markings on control panels: controls will be live UI overlays. No floor or backdrop. Match high-end BIAS FX realistic artwork."
+  },
+  {
+    "file": "prototype/hardware/orange.png",
+    "prompt": "ONE isolated photorealistic guitar gear chassis for a premium VST. Orange Rockerverb-inspired amplifier HEAD, 3:1 width to height, bright orange basketweave vinyl, thick white piping, black handle, cream front face with upper blank badge space, completely blank cream control band at y60–87%. Orthographic straight-on front view, tiny transparent margins, entire object visible. Genuine transparent background. Premium realistic material detail, softly lit from upper left, crisp woven cloth or metal and seams. NO text logos knobs switches sockets or markings on control panels: controls will be live UI overlays. No floor or backdrop. Match high-end BIAS FX realistic artwork."
+  },
+  {
+    "file": "prototype/hardware/tweed.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: Fender tweed-era 1x12 combo amplifier, golden diagonal woven tweed covering, oxblood grille cloth, leather handle, landscape 1.25:1, blank warm brown control panel across front TOP at y12–30%. Premium guitar VST artwork. Exact straight-on orthographic FRONT view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/modern.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: Peavey 5150 / ENGL-inspired modern high-gain amplifier head, wide 3:1 silhouette, black rugged tolex, black perforated steel upper grille, chrome corner pieces, black handle, completely blank dark brushed-metal control panel at y60–87%. Premium guitar VST artwork. Exact straight-on orthographic FRONT view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/boutique.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: Matchless boutique combo amplifier, ivory cream tolex, brown woven grille with cream piping, leather handle, landscape 1.4:1, blank warm champagne metal control strip across TOP at y12–30%. Premium guitar VST artwork. Exact straight-on orthographic FRONT view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/pedal-compact.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: MXR-inspired compact cast aluminium guitar stompbox, neutral silver-grey satin paint, portrait 0.62:1, four screws, side audio sockets at 44% height, smooth blank face with room for controls in upper half and footswitch at 78% height. Premium guitar VST artwork. Exact orthographic TOP DOWN flat plan view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/pedal-treadle.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: BOSS compact stompbox enclosure, neutral silver-grey satin enamel, portrait 0.62:1, distinctly stepped front: recessed blank upper control area from y12–42%, lower rectangular black rubber foot tread from y62–88%, side sockets at44% height, no knobs or footswitch. Premium guitar VST artwork. Exact orthographic TOP DOWN flat plan view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/pedal-round.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: Dunlop Fuzz Face-inspired round circular red cast-metal fuzz pedal, top-down orthographic, slightly flattened base, smooth blank face, chrome audio sockets on left and right at44% height, no knobs text or switches, radius edges and realistic enamel. Premium guitar VST artwork. Exact orthographic TOP DOWN flat plan view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/pedal-rat.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: ProCo RAT-inspired low wide black folded-steel distortion stompbox enclosure, landscape 1.2:1, bevelled sloping upper area but top-down view, smooth blank face, four corner screws, chrome side sockets at44% height, no labels knobs or switches. Premium guitar VST artwork. Exact orthographic TOP DOWN flat plan view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/pedal-studio.png",
+    "prompt": "ONE photorealistic isolated product chassis asset: Strymon BigSky / TimeLine inspired wide stereo stompbox, landscape 1.6:1 proportions, neutral silver brushed aluminium, four corner screws, blank flat face with all upper half available for live controls and lowerhalf for label footswitches, small side sockets at50% height. Premium guitar VST artwork. Exact orthographic TOP DOWN flat plan view. Entire object fills frame with tiny transparent margins, genuine transparent alpha background. Crisp fine material texture, soft upper-left studio light, tiny contact shadow only. NO text logos markings knobs switches or controls anywhere. No backdrop or floor. This is a blank chassis for live UI overlays."
+  },
+  {
+    "file": "prototype/hardware/cab-1x10.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. compact 1x10 guitar cabinet, ONE ten-inch speaker, squat nearly square 1.1:1 enclosure. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  },
+  {
+    "file": "prototype/hardware/cab-1x12.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. standard 1x12 guitar cabinet, ONE twelve-inch speaker, landscape 1.15:1 enclosure. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  },
+  {
+    "file": "prototype/hardware/cab-1x15.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. bass 1x15 cabinet, ONE large fifteen-inch speaker, square enclosure. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  },
+  {
+    "file": "prototype/hardware/cab-2x10.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. horizontal 2x10 cabinet, exactly TWO ten-inch speakers side by side, landscape 1.55:1 enclosure. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  },
+  {
+    "file": "prototype/hardware/cab-2x12v.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. vertical 2x12 cabinet, exactly TWO twelve-inch speakers stacked vertically, portrait width:height .65:1. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  },
+  {
+    "file": "prototype/hardware/cab-4x10.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. compact bass 4x10 cabinet, exactly FOUR ten-inch speakers in 2x2 layout, square enclosure, speaker rims smaller with more baffle border than4x12. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  },
+  {
+    "file": "prototype/hardware/cab-4x12s.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. Marshall 1960A-inspired slanted 4x12 cabinet, exactly FOUR twelve-inch speakers in2x2 layout, upper baffle slopes back visibly with horizontal seam halfway, portrait .93:1. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  },
+  {
+    "file": "prototype/hardware/cab-8x10.png",
+    "prompt": "ONE photorealistic isolated speaker cabinet asset for premium guitar VST. Ampeg SVT-inspired tall bass tower 8x10 cabinet, exactly EIGHT ten-inch speakers in TWO columns and FOUR rows. Portrait width:height .54:1; no missing speakers. Straight-on orthographic FRONT view. Black pebbled tolex, charcoal-silver woven grille cloth thin enough that EVERY specified speaker's cone and dustcap is distinctly visible beneath fabric. Realistic cone depth and cloth threads, silver metal corners, cream narrow piping, black feet. Tiny transparent margins and genuine transparent background. No amp head, no knobs, no text logo or badges, no backdrop or floor. Soft upper-left lighting matches realistic guitar gear product renders. Crucial: exact speaker count and physical proportions."
+  }
+]

@@ -1,7 +1,7 @@
 import type { Block, Definition, Sound } from '../types';
 import { commands } from '../commands';
 import './cabinets.css';
-import { hardwareProfile, hardwareImage } from '../hardware/profiles';
+import { hardwareProfile, hardwareImage, cabinetLabel, chassisFilter } from '../hardware/profiles';
 
 // Scene-owned numeric indices refer to the descriptor's stable recorded setup
 // list. Labels describe real source recordings, not interpolated mic positions.
@@ -21,7 +21,11 @@ export function CabinetEditor({
     <section className="recorded-cabinet" aria-label="Recorded cabinet microphones">
       {profile ? (
         <div className="recorded-cabinet-art">
-          <img src={hardwareImage(profile)} alt="Four twelve-inch speakers in a straight cabinet" />
+          <img
+            src={hardwareImage(profile)}
+            alt={cabinetLabel(block)}
+            style={{ filter: chassisFilter(block, profile) }}
+          />
         </div>
       ) : (
         <div

@@ -1,23 +1,47 @@
+import type { CSSProperties } from 'react';
 import type { Block, Definition, Sound } from '../types';
 import { Knob } from '../Hardware';
-import { hardwareImage, type HardwareProfile } from './profiles';
+import {
+  hardwareImage,
+  hardwareClass,
+  isCabinet,
+  isCombo,
+  isAmplifier,
+  cabinetLabel,
+  chassisFilter,
+  type HardwareProfile,
+} from './profiles';
 import './hardware.css';
+import './families.css';
 
 // Only the enclosure is raster artwork. Parameter order, range, labels and
 // scene values come from the processor descriptor, through the existing bridge.
 export function RenderedHardware({
   profile,
+  block,
   definition: d,
   sound: v,
 }: {
   profile: HardwareProfile;
+  block: Block;
   definition: Definition;
   sound: Sound;
 }) {
+  const count = d.params.filter((p) => p[0]).length;
   return (
-    <section className={`rendered-stage rendered-${profile}`} aria-label={`${d.name} controls`}>
+    <section
+      className={`rendered-stage rendered-${hardwareClass(profile)} family-${profile} ${isCombo(profile) ? 'family-combo' : ''} ${count > 6 ? 'many-controls' : ''}`}
+      style={{ '--control-count': Math.min(count, 6) } as CSSProperties}
+      aria-label={`${d.name} controls`}
+    >
       <div className="rendered-device">
-        <img className="chassis" src={hardwareImage(profile)} alt="" draggable={false} />
+        <img
+          className="chassis"
+          style={{ filter: chassisFilter(block, profile) }}
+          src={hardwareImage(profile)}
+          alt=""
+          draggable={false}
+        />
         <div className="rendered-badge">
           <span>FREERIG</span>
           <strong>{d.name}</strong>
@@ -63,25 +87,41 @@ export function RenderedThumbnail({
   on: boolean;
 }) {
   const d = window.DeviceShelf.definition(block);
-  const cabinet = profile === 'cab' || profile === 'cab2';
+  const cabinet = isCabinet(profile);
   return (
-    <span className={`rendered-thumb thumb-${profile}`} aria-hidden="true">
-      <img src={hardwareImage(profile)} alt="" draggable={false} />
+    <span
+      className={`rendered-thumb thumb-${hardwareClass(profile)} family-${profile} ${isCombo(profile) ? 'family-combo' : ''}`}
+      aria-hidden="true"
+      data-jack-inset={profile.startsWith('pedal-') ? 0.025 : undefined}
+      data-jack-y={
+        profile === 'pedal-treadle'
+          ? 0.425
+          : profile === 'pedal-compact'
+            ? 0.455
+            : profile.startsWith('pedal-')
+              ? 0.5
+              : undefined
+      }
+    >
+      <img
+        src={hardwareImage(profile)}
+        style={{ filter: chassisFilter(block, profile) }}
+        alt=""
+        draggable={false}
+        loading="lazy"
+        decoding="async"
+      />
       {!cabinet && (
-        <span className="thumb-knobs">
-          {d.params.map((_, i) => (
-            <i key={i} />
-          ))}
+        <span className={block.key === 'fx-GraphicEQ' ? 'thumb-faders' : 'thumb-knobs'}>
+          {d.params
+            .filter((p) => p[0])
+            .map((_, i) => (
+              <i key={i} />
+            ))}
         </span>
       )}
       <span className="thumb-badge">
-        {profile === 'amp'
-          ? 'FreeRig'
-          : cabinet
-            ? profile === 'cab'
-              ? '4 × 12'
-              : '2 × 12'
-            : d.name}
+        {isAmplifier(profile) ? 'FreeRig' : cabinet ? cabinetLabel(block) : d.name}
       </span>
       {!cabinet && <span className={`thumb-switch ${on ? 'lit' : ''}`} />}
     </span>

@@ -72,10 +72,10 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
       <div className="editor-body">
         {d.cabinetChoices ? (
           <CabinetEditor block={b} definition={d} sound={v} />
-        ) : profile ? (
-          <RenderedHardware profile={profile} definition={d} sound={faceState} />
         ) : b.key === 'fx-GraphicEQ' ? (
           <GraphicEqualizer block={b} definition={d} sound={v} />
+        ) : profile ? (
+          <RenderedHardware block={b} profile={profile} definition={d} sound={faceState} />
         ) : (
           <Hardware html={face} d={d} v={faceState} />
         )}

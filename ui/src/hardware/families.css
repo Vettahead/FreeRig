@@ -1,0 +1,359 @@
+/* Family geometry is presentation-only. Controls retain descriptor order and
+   actual ranges even when the reference hardware has a different knob count. */
+.family-combo .rendered-device {
+  width: min(100%, 800px);
+}
+.family-combo .rendered-controls {
+  top: 12%;
+  height: 14%;
+  left: 8%;
+  right: 15%;
+}
+#editor .family-combo .dial-hit,
+#editor .family-combo .knob {
+  width: 34px;
+  height: 34px;
+}
+#editor .family-combo .physical-control label,
+#editor .family-combo .param-value {
+  font-size: 9px;
+  margin: 0;
+}
+.family-combo .rendered-badge {
+  top: 42%;
+}
+.family-combo .rendered-switch {
+  top: 16%;
+  right: 4%;
+}
+.family-combo .thumb-knobs {
+  top: 20%;
+}
+.family-combo .thumb-switch {
+  top: 20%;
+}
+.family-combo .thumb-badge {
+  top: 44%;
+}
+#editor
+  :is(.family-combo, .family-modern, .family-rectifier)
+  :is(.physical-control label, .param-value, .rendered-switch small) {
+  color: #f7f2df;
+  text-shadow: 0 1px 2px #000;
+}
+.family-modern .rendered-controls,
+.family-rectifier .rendered-controls {
+  top: 60%;
+}
+.family-orange .rendered-badge {
+  color: #191714;
+  text-shadow: none;
+}
+.family-orange .rendered-badge > span {
+  display: none;
+}
+.family-orange .rendered-controls {
+  top: 59%;
+}
+.family-vox .rendered-controls,
+.family-boutique .rendered-controls {
+  top: 13%;
+}
+.family-vox .rendered-badge,
+.family-tweed .rendered-badge {
+  top: 40%;
+}
+.family-pedal-compact .rendered-device,
+.family-pedal-treadle .rendered-device {
+  width: min(100%, 310px);
+}
+.family-pedal-round .rendered-device {
+  width: min(100%, 480px);
+}
+.family-pedal-rat .rendered-device {
+  width: min(100%, 500px);
+}
+.family-pedal-studio .rendered-device {
+  width: min(100%, 680px);
+}
+.family-pedal-compact .rendered-controls,
+.family-pedal-treadle .rendered-controls {
+  top: 9%;
+  height: 32%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.family-pedal-treadle .rendered-badge {
+  top: 45%;
+}
+.family-pedal-treadle .rendered-switch {
+  top: 72%;
+}
+.family-pedal-compact .rendered-switch {
+  top: 72%;
+}
+.family-pedal-compact .rendered-switch .metal-switch {
+  visibility: hidden;
+}
+.family-pedal-compact .thumb-switch {
+  background: none;
+  box-shadow: none;
+}
+.family-pedal-round .rendered-controls,
+.family-pedal-rat .rendered-controls {
+  top: 18%;
+  height: 32%;
+  flex-wrap: wrap;
+}
+.family-pedal-studio .rendered-controls {
+  top: 15%;
+  height: 43%;
+  display: grid;
+  grid-template-columns: repeat(var(--control-count), minmax(0, 1fr));
+}
+.family-pedal-studio.many-controls .rendered-controls {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px 3px;
+}
+.family-pedal-studio .rendered-badge {
+  top: 61%;
+}
+.family-pedal-studio .rendered-badge > span {
+  display: none;
+}
+.family-pedal-studio .rendered-badge > strong {
+  font-size: 23px;
+}
+.family-pedal-studio .rendered-switch {
+  top: 78%;
+}
+.rendered-stage .rendered-device {
+  max-width: 100%;
+}
+.rendered-thumb .thumb-knobs {
+  flex-wrap: wrap;
+}
+.rendered-thumb .thumb-knobs i {
+  flex-shrink: 0;
+}
+.thumb-faders {
+  position: absolute;
+  top: 19%;
+  left: 12%;
+  right: 12%;
+  height: 35%;
+  display: flex;
+  justify-content: space-between;
+}
+.thumb-faders i {
+  width: 2px;
+  height: 100%;
+  background: #181b1c;
+}
+.thumb-faders i::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 3px;
+  margin: 7px 0 0 -1px;
+  background: #ddd;
+}
+.family-pedal-treadle .thumb-knobs,
+.family-pedal-compact .thumb-knobs {
+  top: 12%;
+  gap: 4px;
+}
+.family-pedal-studio .thumb-knobs {
+  top: 19%;
+  left: 12%;
+  right: 12%;
+}
+.family-pedal-studio .thumb-knobs i {
+  width: 8px;
+  height: 8px;
+}
+.family-pedal-studio .thumb-badge {
+  top: 59%;
+  font-size: 7px;
+}
+.family-pedal-studio .thumb-switch {
+  top: 80%;
+}
+.family-pedal-round .thumb-knobs {
+  top: 24%;
+}
+.family-pedal-round .thumb-badge {
+  top: 48%;
+}
+.family-pedal-treadle .thumb-badge,
+.family-pedal-compact .thumb-badge {
+  top: 44%;
+  font-size: 8px;
+}
+.rendered-stage.many-controls:not(.rendered-amp) .rendered-controls {
+  flex-wrap: wrap;
+}
+.rendered-stage.many-controls:is(
+    .family-pedal-compact,
+    .family-pedal-treadle,
+    .rendered-drive,
+    .rendered-reverb
+  )
+  .rendered-device {
+  width: min(100%, 480px);
+}
+.rendered-stage.many-controls:is(
+    .family-pedal-compact,
+    .family-pedal-treadle,
+    .rendered-drive,
+    .rendered-reverb
+  )
+  .rendered-controls {
+  top: 7%;
+  height: 47%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.rendered-stage.many-controls:is(
+    .family-pedal-compact,
+    .family-pedal-treadle,
+    .rendered-drive,
+    .rendered-reverb
+  )
+  .rendered-badge {
+  top: 58%;
+}
+.rendered-cab2 .chassis {
+  max-height: 370px;
+  object-fit: contain;
+}
+.physical-rig .stack-devices .rendered-thumb.family-cab-8x10 {
+  width: 100px;
+}
+.physical-rig .stack-devices .rendered-thumb.family-cab-2x12v {
+  width: 125px;
+}
+.physical-rig .stack-devices .rendered-thumb:is(.family-cab, .family-cab-4x12s, .family-cab-4x10) {
+  width: 190px;
+}
+.physical-rig .rendered-thumb.family-combo {
+  width: min(100%, 280px);
+}
+/* Shared thumbnails also replace the compatibility library's older SVGs. */
+.device-card .rendered-thumb,
+.picker-item .rendered-thumb {
+  margin: auto;
+}
+.library-gear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.library-gear .rendered-thumb,
+.overview-device .rendered-thumb {
+  width: 85px;
+  zoom: 0.4;
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+.library-gear .thumb-amp,
+.overview-device .thumb-amp {
+  width: 140px;
+}
+.library-gear .thumb-cab2,
+.overview-device .thumb-cab2 {
+  width: 100px;
+}
+.library-gear .thumb-delay,
+.overview-device .thumb-delay {
+  width: 130px;
+}
+.library-gear .family-combo,
+.overview-device .family-combo {
+  width: 125px;
+}
+.library-gear .family-cab-8x10,
+.overview-device .family-cab-8x10 {
+  width: 65px;
+}
+.overview-device .rendered-thumb .thumb-knobs {
+  display: flex;
+  overflow: visible;
+}
+.overview-device .rendered-thumb .thumb-badge {
+  display: block;
+  line-height: 1.1;
+  font-size: 9px;
+}
+.overview-device .rendered-thumb .thumb-switch {
+  display: block;
+  overflow: visible;
+}
+.overview-device.bypassed .rendered-thumb {
+  opacity: 0.4;
+}
+.slot-picker .rendered-thumb {
+  width: 64px;
+  margin: auto;
+}
+.slot-picker .thumb-amp,
+.slot-picker .thumb-delay {
+  width: 130px;
+}
+.slot-picker .thumb-cab2,
+.slot-picker .family-combo {
+  width: 100px;
+}
+.slot-picker .family-cab-8x10 {
+  width: 54px;
+}
+.slot-picker .thumb-badge {
+  font-size: 8px;
+}
+.slot-picker .thumb-knobs i {
+  width: 8px;
+  height: 8px;
+}
+.graphic-equalizer {
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 42px !important;
+  color: #141819;
+}
+.graphic-equalizer :is(header, output, label) {
+  color: #141819;
+  text-shadow: 0 1px #fff6;
+}
+#editor .graphic-equalizer {
+  border: none;
+  box-shadow: none;
+}
+#editor .graphic-equalizer header {
+  padding-inline: 20px;
+}
+#editor .graphic-equalizer button {
+  color: #f4efe5;
+  background: #252a2c;
+  border: 1px solid #727777;
+}
+.overview-device .rendered-thumb .thumb-faders {
+  display: flex;
+  overflow: visible;
+}
+@media (max-width: 900px) {
+  .family-combo .rendered-controls {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    height: auto;
+    background: #242424;
+    padding: 16px;
+  }
+  .family-combo .rendered-switch {
+    top: 17%;
+  }
+}

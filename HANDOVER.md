@@ -1,3 +1,11 @@
+## 30 September 2026 — Alpha 32: complete hardware artwork coverage
+
+Expanded the original six chassis to 26 shared assets covering every catalogue entry: eight amplifier families, eight pedal families and ten cabinet geometries. React owns family selection, control placement, saved-finish tinting and decorative thumbnails; a small static-markup bridge updates compatibility library/picker/overview hosts. Imported amp names can select a default family without overriding explicit saved looks. Actual processor parameter order/ranges, EQ faders, mic choices and scene/bypass contracts remain intact. All images are local. Source references and prompts: docs/HARDWARE-DESIGN.md and docs/hardware-artwork-prompts.json.
+
+Validation: npm run check passes 15 tests including full catalogue × 20 appearance mappings, cabinet format uniqueness, explicit capture-look override and non-mutation. Desktop build and offline self-test pass. Browser exercised amp replacement, blackface/rectifier appearances, 4×10/8×10 cabinet selection, recorded mic choice, 12-control Phase Sweep numeric edit/scene recall/bypass, EQ faders/reset, picker thumbnails and four occupied positions per row. No horizontal page overflow at 1280×720. Final 1080p screenshots: docs/screenshots/alpha32-board.png and alpha32-amp.png. No live ASIO listening; DSP arithmetic and audio DLLs unchanged.
+
+Release target: releases/FreeRig-alpha-32/FreeRig.exe plus portable/source archives. Previous releases preserved. Family-inspired illustrations are not 228 bespoke chassis or new audio models. Mission Control remains unavailable; local handover retained.
+
 ## 30 September 2026 — Alpha 31: four pedals per rail
 
 Corrected the remaining two-column grid: every board now keeps four positions on one row, with closer spacing and more width assigned to pre/post boards. Narrow boards scroll horizontally rather than wrap. Cable anchor measurements include scroll offset. Audio processing and routing contracts unchanged.

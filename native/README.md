@@ -1,4 +1,8 @@
-# FreeRig Alpha 31
+# FreeRig Alpha 32
+
+Realistic artwork across the catalogue, library, picker and editors; eight amp families, eight pedal families and ten cabinet formats. Four-pedal rows remain. Audio processing is unchanged.
+
+## FreeRig Alpha 31
 
 Four closely spaced pedal positions per row; narrow boards scroll instead of wrapping. Audio processing is unchanged.
 

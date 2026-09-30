@@ -1,3 +1,11 @@
+## Alpha 32 — 30 September 2026
+
+- Extended realistic artwork across the complete device catalogue, collection, replacement picker, chain strip and editor using 26 shared chassis assets.
+- Distinct British, blackface, tweed, diamond-grille, orange, rectifier, modern and boutique amp families; compact cast, treadle, round fuzz, folded-steel and wide studio pedals.
+- All ten cabinet formats now have matching rendered speaker counts and proportions, including vertical 2×12, slanted 4×12 and eight-speaker bass towers.
+- Saved appearances and custom finishes remain available. Live knobs, EQ faders, scene values, bypass and recorded mic selection retain their existing processor contracts.
+- Four-pedal rows and measured patch leads remain. Images are bundled for offline use. These are original family-inspired illustrations, not new audio models or exact branded replicas.
+
 ## Alpha 31 — 30 September 2026
 
 - All pedalboards use four positions on a single rail with tighter spacing. Narrow windows scroll the board horizontally instead of wrapping pedals into a second row.

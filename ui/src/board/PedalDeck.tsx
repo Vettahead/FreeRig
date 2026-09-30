@@ -32,18 +32,22 @@ export function PedalDeck({
         host.querySelectorAll<HTMLElement>('.board-card[data-cable-slot]'),
       ).map((e) => {
         const r = e.getBoundingClientRect();
-        const image = e.querySelector('.rendered-thumb, .gear-svg')!;
+        const image = e.querySelector<HTMLElement>('.rendered-thumb, .gear-svg')!;
         const gear = image.getBoundingClientRect();
         const legacy = image.classList.contains('gear-svg');
         // Legacy illustrations use a 200-unit canvas with the pedal at x=46..151.
         // Anchor to that enclosure, not the transparent edges of its SVG canvas.
         const wide = image.classList.contains('thumb-delay');
-        const inset = gear.width * (legacy ? 0.235 : wide ? 0.045 : 0.1);
+        const inset =
+          gear.width * Number(image.dataset.jackInset ?? (legacy ? 0.235 : wide ? 0.045 : 0.1));
         return {
           left: gear.left - base.left + host.scrollLeft + inset,
           right: gear.right - base.left + host.scrollLeft - inset,
           top: r.top - base.top,
-          y: gear.top - base.top + gear.height * (legacy ? 0.34 : wide ? 0.5 : 0.44),
+          y:
+            gear.top -
+            base.top +
+            gear.height * Number(image.dataset.jackY ?? (legacy ? 0.34 : wide ? 0.5 : 0.44)),
         };
       });
       const next: string[] = [];

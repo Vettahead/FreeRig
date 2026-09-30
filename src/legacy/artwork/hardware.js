@@ -147,13 +147,14 @@ window.GearLooks = (() => {
     return (
       (kind(b) === 'cab' ? CabinetLooks.selector(b, selected) : '') +
       '<label>Hardware look<select id="device-look" aria-label="Hardware look">' +
+      (!b.appearance?.style ? '<option selected disabled>Automatic · device family</option>' : '') +
       list(b)
         .map(
           (d) =>
             '<option value="' +
             d.id +
             '" ' +
-            (d.id === selected.id ? 'selected' : '') +
+            (b.appearance?.style && d.id === selected.id ? 'selected' : '') +
             '>' +
             esc(d.name + ' · ' + d.brand + '-style') +
             '</option>',
@@ -164,6 +165,8 @@ window.GearLooks = (() => {
   }
   let seq = 0;
   function art(b, on = true) {
+    // React owns the shared chassis renderer; retain SVG only before its bridge loads.
+    if (window.FreeRigReact?.hardwareArt) return window.FreeRigReact.hardwareArt(b, on);
     if (kind(b) === 'cab') return CabinetLooks.image(b, get(b));
     if (kind(b) === 'pedal' && !b.appearance) return GearArt.svg(b.key, on);
     const d = get(b),

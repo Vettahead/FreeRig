@@ -12,7 +12,11 @@ export function GraphicEqualizer({
   sound: Sound;
 }) {
   return (
-    <section className="graphic-equalizer" aria-label="Ten Band EQ controls">
+    <section
+      className="graphic-equalizer"
+      style={{ background: 'url(hardware/pedal-studio.png) center / 100% 100% no-repeat' }}
+      aria-label="Ten Band EQ controls"
+    >
       <header>
         <strong>TEN BAND EQ</strong>
         <span>OCTAVE EQUALIZER · ±12 dB</span>

@@ -1,4 +1,31 @@
-# Hardware artwork — Alpha 28
+# Hardware artwork — Alpha 32
+
+The complete catalogue now uses original generated chassis artwork with live React controls. There are **26 shared assets**: eight amplifier families, eight pedal families and ten cabinet geometries. This is full catalogue coverage through families, not one bespoke image per processor or an assertion of exact hardware emulation.
+
+`ui/src/hardware/profiles.ts` owns classification, saved appearance mapping and cosmetic finish filters. `families.css` owns panel placement and thumbnail geometry. `RenderedHardware.tsx` owns the live descriptor-driven controls; `RenderedThumbnail` is inert. `legacyArtwork.tsx` exposes that same React thumbnail to compatibility library/overview hosts via escaped static markup. No new dependency: static rendering uses the existing react-dom package.
+
+Downloaded amplifier names can choose a default family when there is no explicitly saved look; a chosen look always wins. The selector labels this automatic state rather than claiming the first manual option is selected.
+
+Cabinet geometry still comes from the established CabinetLooks resolver and persisted cabFormat, including downloaded metadata inference. Artwork never changes convolution or adds a cabinet to a capture. Ten Band EQ keeps its actual faders and recorded cabinets keep their actual mic selectors. Saved keys, scenes, parameter order and audio arithmetic are unchanged. The desktop build bundles all images for offline use.
+
+The 20 existing appearance choices map to families and cosmetic colourways. Custom colour affects the chassis, not DOM text or controls. Higher parameter counts use a wider panel; family references never introduce controls unsupported by the processor. Small library/chain thumbnails reuse the same artwork and are sized independently from the board. New chassis include jack anchor metadata for the measured leads.
+
+## Reference audit
+
+The supplied BIAS-style pedalboard and realistic stock illustrations guided material detail, proportion and hardware placement. Official product references consulted for the family distinctions:
+
+- [Fender Twin Reverb](https://www.fender.com/products/65-twin-reverb/) — blackface combo, silver cloth and twin-speaker proportion.
+- [Marshall JCM800](https://www.marshall.com/ca/en/product/jcm800-2203-vintage-reissue-head?pid=1007097) — black head and lower gold panel.
+- [Mesa Dual Rectifier](https://production.mesaboogie.com/amplifiers/electric/rectifier-series/dual-rectifier/head.html) — diamond plate and black control strip.
+- [VOX AC30](https://voxamps.com/product/ac30-custom/) — diamond grille and contrasting upper panel.
+- [BOSS DS-1W](https://www.boss.info/global/products/ds-1w/) — stepped compact chassis and rubber tread.
+- [Dunlop Fuzz Face](https://www.jimdunlop.com/fuzz-face-distortion/) — round enclosure and side jacks.
+- [Strymon BigSky](https://www.strymon.net/support/bigsky/) — wide enclosure for larger control sets.
+- [Ampeg SVT-810E](https://ampeg.com/products/heritage/svt810e/) — two columns of four speakers in a tall cabinet.
+
+Twenty additional PNGs were generated with the built-in image tool on 30 September 2026. See [asset prompts](hardware-artwork-prompts.json). No vendor photos, logos or stock watermarks were copied into the app. The compact cast asset includes a fixed metal switch; its live hit target overlays that switch rather than drawing a second one.
+
+## Original Alpha 28 set and prompts
 
 This first implementation uses original generated product artwork beneath live React controls. No runtime 3D renderer, new dependency, animation loop or audio-thread work is introduced. Labels and numeric values remain selectable, sharp DOM text. The images are not photographs of real products or copies of the supplied reference screenshots.
 

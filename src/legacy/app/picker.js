@@ -64,7 +64,7 @@ function renderDevicePicker() {
             '<button data-picker="' +
             d.key +
             '">' +
-            GearArt.svg(d.key) +
+            GearLooks.art({ key: d.key }) +
             '<strong>' +
             escapeHTML(d.name) +
             '</strong><small>' +
