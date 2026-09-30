@@ -7,7 +7,9 @@ export function Knob({
   index,
   value,
   locked,
+  legend,
 }: {
+  legend?: string;
   p: Param;
   index: number;
   value: number;
@@ -38,7 +40,7 @@ export function Knob({
   const angle = ((value - p[1]) / (p[2] - p[1])) * 270;
   return (
     <div className="parameter physical-control">
-      <label htmlFor={`p${index}`}>{p[0].toUpperCase()}</label>
+      <label htmlFor={`p${index}`}>{(legend || p[0]).toUpperCase()}</label>
       <div className="dial-hit">
         <div
           className="knob"

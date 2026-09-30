@@ -63,3 +63,13 @@ Browser validation covers live values, bypass and scene recall, device selection
 `ui/src/hardware/control-face.css` owns the selected amp/pedal control regions. Compact pedals preserve a portrait silhouette with controls, identity and footswitch zones; dense processors use a wide control grid and a shared name/switch footer. Amps use a dedicated aligned control strip. Decorative thumbnails retain their existing geometry. Descriptor indices, values and gesture handlers remain the source of truth.
 
 The editor places optional settings beside the hardware (`editor-workbench`), with independent scrolling for long settings and an inline guide. Primary sound controls remain visible.
+
+## Alpha 42: controls belong to the artwork
+
+Alpha 40's generic grid stretched the art and covered its faceplates. That implementation is replaced, not layered over. `faceLayout.ts` owns original-image percentage regions for controls, identity and bypass for each amp/pedal family. `RenderedHardware` measures the available area and image dimensions, preserves aspect ratio and derives knob sizes from the real control region. `control-face.css` renders transparent control groups on that surface; it does not add a panel background.
+
+The editor frames the top 48% of combo artwork only when the sound area is below 450 pixels high. At larger sizes the complete combo is visible; board thumbnails always retain the complete enclosure. This close-up avoids shrinking controls to fit an entire speaker cabinet into a short editor. It does not change the amp/cab signal chain.
+
+Amp rockers and pedal footswitches share the existing bypass contract. The compact cast enclosure's existing switch is the hit target, with no duplicate drawn over it. Labels and values remain DOM controls; shortened face legends retain full accessible parameter names. No raster assets, new dependencies, parameter indices or DSP arithmetic changed.
+
+When adding an enclosure, inspect its image, author its safe regions, and verify the actual live descriptor at both 1280x720 and 1920x1080. Keep labels, values, badge and switch inside the enclosure and check the original image aspect ratio. Do not restore the Alpha 40 generic cover panel.

@@ -435,3 +435,21 @@ main:has(.showing-device) .chain-shell {
 .showing-device #editor .graphic-equalizer > button {
   margin-top: 8px;
 }
+
+.editor-workbench .editor-settings .device-options {
+  padding: 0;
+}
+.editor-workbench .editor-settings .device-options .compat-controls {
+  display: block;
+}
+.editor-workbench .editor-settings label {
+  min-width: 0;
+  width: 100%;
+}
+.editor-workbench .editor-settings select {
+  width: 100%;
+  min-width: 0;
+}
+.editor-workbench .editor-settings {
+  overflow-x: hidden;
+}

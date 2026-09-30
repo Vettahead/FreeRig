@@ -1,251 +1,216 @@
-/* Live faces use explicit, non-overlapping zones. Artwork remains decorative;
-   label/knob/value cells retain descriptor order and never scale as a bitmap. */
-.showing-device #editor .control-face .rendered-device {
-  width: min(100%, 760px);
-  height: min(100%, 550px);
-  padding: 24px 32px;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto 66px;
-  gap: 12px;
-  isolation: isolate;
+/* Selected faces use artwork coordinates from faceLayout.ts. The image keeps its
+   aspect ratio; controls sit directly on the authored metal, never on a cover. */
+.showing-device #editor .control-face.rendered-stage .rendered-device {
+  position: relative;
+  width: var(--fitted-width);
+  height: var(--view-height);
+  max-width: 100%;
+  max-height: none;
+  padding: 0;
+  display: block;
+  overflow: hidden;
 }
-.showing-device #editor .control-face .chassis {
+.showing-device #editor .control-face.rendered-stage .rendered-face-art {
+  position: relative;
+  width: 100%;
+  height: var(--face-height);
+}
+.showing-device #editor .control-face.rendered-stage .chassis {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-.showing-device #editor .control-face .rendered-controls {
-  position: static;
-  width: auto;
   height: auto;
+}
+.showing-device #editor .control-face.rendered-stage .rendered-controls {
+  position: absolute;
+  left: var(--controls-left);
+  top: var(--controls-top);
+  width: var(--controls-width);
+  height: var(--controls-height);
+  right: auto;
+  bottom: auto;
   display: grid;
   grid-template-columns: repeat(var(--control-count), minmax(0, 1fr));
-  align-content: center;
   align-items: center;
-  gap: 14px 12px;
-  padding: 12px;
-  border-radius: 12px;
-  background: #111b16c9;
-  box-shadow:
-    inset 0 2px 6px #0008,
-    0 1px #ffffff24;
-  grid-row: 1;
-}
-.showing-device #editor .control-face .physical-control {
-  display: grid;
-  grid-template-rows: 28px 46px 24px;
-  justify-items: center;
-  align-items: center;
-  gap: 4px;
-  min-width: 0;
-  max-width: none;
-  width: 100%;
-  margin: 0;
-}
-.showing-device #editor .control-face .physical-control label {
-  font-size: 11px;
-  line-height: 14px;
-  letter-spacing: 0.035em;
-  white-space: normal;
-  text-align: center;
-  margin: 0;
-}
-.showing-device #editor .control-face .dial-hit,
-.showing-device #editor .control-face .knob {
-  width: 46px;
-  height: 46px;
-  margin: 0;
-}
-.showing-device #editor .control-face .param-value {
-  font-size: 11px;
-  line-height: 20px;
-  white-space: nowrap;
-  margin: 0;
-}
-.showing-device #editor .control-face .param-value input {
-  width: 58px;
-  font-size: 12px;
-  padding: 0 2px;
-  text-align: right;
-}
-.showing-device #editor .control-face .rendered-badge {
-  position: static;
-  display: block;
-  grid-row: 2;
-  padding: 2px 8px;
-  text-align: center;
-  min-width: 0;
-}
-.showing-device #editor .control-face .rendered-badge strong {
-  font-size: clamp(18px, 1.8vw, 28px);
-  line-height: 1.15;
-  overflow-wrap: anywhere;
-}
-.showing-device #editor .control-face .rendered-switch {
-  position: static;
-  transform: none;
-  justify-self: center;
-  align-self: center;
-  width: 94px;
-  height: 62px;
-  margin: 0;
-  grid-row: 3;
-}
-.showing-device #editor .control-face-pedal .rendered-device {
-  max-width: 460px;
-  padding: 8% 9% 6%;
-}
-.showing-device #editor .control-face-pedal.many-controls .rendered-device {
-  max-width: 760px;
-  padding: 18px 24px;
-  gap: 6px;
-  grid-template-rows: minmax(0, 1fr) auto 54px;
-}
-.showing-device #editor .control-face-amp .rendered-device {
-  grid-template-rows: minmax(44px, 1fr) auto 62px;
-  max-height: 440px;
-}
-.showing-device #editor .control-face-amp .rendered-badge {
-  grid-row: 1;
-  align-self: center;
-}
-.showing-device #editor .control-face-amp .rendered-controls {
-  grid-row: 2;
-}
-.showing-device #editor .control-face-amp .rendered-switch {
-  grid-row: 3;
-}
-@media (max-height: 850px) {
-  .showing-device #editor .control-face .rendered-device {
-    padding: 14px 22px;
-    gap: 6px;
-  }
-  .showing-device #editor .control-face .physical-control {
-    grid-template-rows: 26px 40px 20px;
-    gap: 2px;
-  }
-  .showing-device #editor .control-face .dial-hit,
-  .showing-device #editor .control-face .knob {
-    width: 40px;
-    height: 40px;
-  }
-  .showing-device #editor .control-face .rendered-controls {
-    gap: 6px 10px;
-    padding: 6px;
-  }
-  .showing-device #editor .control-face.many-controls .rendered-device {
-    grid-template-rows: minmax(0, 1fr) auto 48px;
-  }
-  .showing-device #editor .control-face.many-controls .rendered-controls {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-}
-
-/* Compact stompboxes preserve their tall enclosure and the reference's three
-   zones. Multi-control processors use their wider console enclosure instead. */
-.showing-device #editor .control-face-pedal:not(.many-controls) .rendered-device {
-  width: min(100%, max(240px, var(--fitted-width)));
-  height: 100%;
-  max-height: 680px;
-  padding: 24px 24px 18px;
-  grid-template-rows: 42% 20% minmax(0, 1fr);
-  gap: 0;
-}
-.showing-device #editor .control-face-pedal:not(.many-controls) .rendered-controls {
-  background: transparent;
-  box-shadow: none;
+  align-content: space-around;
+  gap: 0 8px;
   padding: 0;
-  align-content: center;
-}
-.showing-device #editor .control-face-pedal:not(.many-controls) .rendered-badge {
-  align-self: center;
-}
-.showing-device #editor .control-face-pedal:not(.many-controls) .rendered-switch {
-  align-self: center;
-}
-.editor-workbench .editor-settings .device-options {
-  padding: 0;
-}
-.editor-workbench .editor-settings .device-options .compat-controls {
-  display: block;
-}
-.editor-workbench .editor-settings label {
-  min-width: 0;
-  width: 100%;
-}
-.editor-workbench .editor-settings select {
-  width: 100%;
-  min-width: 0;
-}
-.editor-workbench .editor-settings {
-  overflow-x: hidden;
-}
-
-.showing-device #editor .control-face-amp .rendered-device {
-  height: min(100%, 360px);
-  padding: 32px 42px 48px;
-  grid-template-rows: minmax(50px, 1fr) auto;
-  gap: 10px;
-}
-.showing-device #editor .control-face-amp .rendered-badge {
-  padding-right: 80px;
-}
-.showing-device #editor .control-face-amp .rendered-controls {
-  background: linear-gradient(#32332d, #161b19);
-  border: 1px solid #b3ad7955;
-  border-radius: 4px;
-}
-.showing-device #editor .control-face-amp .rendered-switch {
-  position: absolute;
-  right: 44px;
-  top: 58px;
-  bottom: auto;
-  left: auto;
-}
-
-.showing-device #editor .control-face-amp .rendered-switch {
-  grid-area: auto;
-}
-.showing-device #editor .control-face.many-controls .physical-control label {
-  font-size: 11px;
-}
-.showing-device #editor .control-face-pedal.many-controls .rendered-device {
-  grid-template-rows: minmax(0, 1fr) 54px;
-}
-.showing-device #editor .control-face-pedal.many-controls .rendered-badge {
-  display: block;
-  grid-row: 2;
-  justify-self: start;
-  align-self: center;
-  max-width: calc(100% - 110px);
-  text-align: left;
-}
-.showing-device #editor .control-face-pedal.many-controls .rendered-badge > span {
-  display: none;
-}
-.showing-device #editor .control-face-pedal.many-controls .rendered-switch {
-  grid-row: 2;
-  grid-column: 1;
-  justify-self: end;
-}
-
-.showing-device #editor .control-face .rendered-badge,
-.showing-device #editor .control-face .rendered-controls {
-  grid-column: 1;
-}
-.showing-device #editor .control-face .rendered-switch {
-  background: transparent;
+  background: none;
   border: 0;
   box-shadow: none;
-  color: #f3f0df;
 }
-.showing-device #editor .control-face .rendered-switch small {
-  color: #f3f0df;
-  text-shadow: 0 1px 3px #000;
+.showing-device #editor .control-face.rendered-stage .physical-control {
+  display: grid;
+  grid-template-rows: 12px var(--face-knob) 13px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
 }
-.showing-device #editor .control-face .rendered-switch:focus-visible {
-  outline: 2px solid #e9d9a2;
-  outline-offset: 3px;
+.showing-device #editor .control-face.rendered-stage .physical-control label {
+  font-size: var(--face-label);
+  line-height: 13px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-align: center;
+  margin: 0;
+  color: var(--face-ink);
+  text-shadow: none;
+}
+.showing-device #editor .control-face.rendered-stage .dial-hit,
+.showing-device #editor .control-face.rendered-stage .knob {
+  width: var(--face-knob);
+  height: var(--face-knob);
+  margin: 0;
+}
+/* Rotate the whole inset cap around its own centre. A fixed 15px pivot caused
+   pointers to orbit off-centre when the knob was made smaller. */
+.showing-device #editor .control-face.rendered-stage .knob-face {
+  inset: 15%;
+  transform: rotate(var(--rotate));
+}
+.showing-device #editor .control-face.rendered-stage .knob-face::after {
+  top: 5%;
+  height: 33%;
+  width: 3px;
+  left: calc(50% - 1.5px);
+  transform: none;
+}
+.showing-device #editor .control-face.rendered-stage .param-value,
+.showing-device #editor .control-face.rendered-stage .param-value input {
+  color: var(--face-ink);
+  text-shadow: none;
+  font-size: var(--face-label);
+  line-height: 16px;
+  margin: 0;
+  padding: 0;
+}
+.showing-device #editor .control-face.rendered-stage .param-value input {
+  width: 38px;
+  text-align: right;
+  border-radius: 2px;
+}
+.showing-device #editor .control-face.rendered-stage .param-value input:focus {
+  color: #fff;
+  background: #172326;
+  outline: 1px solid #b9c686;
+}
+.showing-device #editor .control-face.rendered-stage .rendered-badge {
+  position: absolute;
+  left: var(--badge-left);
+  top: var(--badge-top);
+  width: var(--badge-width);
+  height: var(--badge-height);
+  right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+}
+.showing-device #editor .control-face.rendered-stage .rendered-badge span {
+  display: block;
+  font-size: 9px;
+  margin: 0;
+}
+.showing-device #editor .control-face.rendered-stage .rendered-badge strong {
+  font-size: clamp(15px, 2vw, 30px);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.showing-device #editor .control-face-pedal .rendered-badge strong {
+  font-family: system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+}
+.showing-device #editor .control-face.rendered-stage .rendered-switch {
+  position: absolute;
+  left: var(--switch-left);
+  top: var(--switch-top);
+  width: var(--switch-width);
+  height: var(--switch-height);
+  right: auto;
+  bottom: auto;
+  transform: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--face-ink);
+}
+.showing-device #editor .control-face.rendered-stage .rendered-switch small {
+  color: var(--face-ink);
+  text-shadow: none;
+  font-size: 8px;
+}
+.showing-device #editor .control-face.rendered-stage .metal-switch {
+  display: block;
+  width: 27px;
+  height: 27px;
+  flex-shrink: 0;
+}
+.showing-device #editor .control-face.rendered-stage .rendered-switch:focus-visible {
+  outline: 2px solid #b9c686;
+  outline-offset: 2px;
+}
+/* The cast compact already contains a photographed footswitch. */
+.showing-device #editor .family-pedal-compact.control-face.rendered-stage .metal-switch {
+  visibility: hidden;
+}
+.showing-device #editor .family-pedal-compact.control-face.rendered-stage .rendered-switch {
+  justify-content: space-between;
+}
+.showing-device #editor .control-face-amp.control-face.rendered-stage .metal-switch {
+  width: 17px;
+  height: 24px;
+  border-radius: 3px;
+  border: 3px solid #171717;
+  background: linear-gradient(#ee7055, #9f241d 48%, #b93e29 52%, #7e1e18);
+  box-shadow:
+    0 2px 3px #0009,
+    inset 0 1px #ffb297;
+}
+.showing-device
+  #editor
+  .control-face-amp.control-face.rendered-stage
+  .rendered-switch[aria-pressed='true']
+  .metal-switch {
+  background: linear-gradient(#401d1a, #72291f);
+}
+.showing-device #editor .family-orange.control-face.rendered-stage .rendered-badge {
+  color: #28231a;
+  text-shadow: none;
+}
+.showing-device #editor .family-orange.control-face.rendered-stage .rendered-badge strong {
+  font:
+    800 clamp(12px, 1.4vw, 21px) system-ui,
+    sans-serif;
+}
+.showing-device #editor .family-orange.control-face.rendered-stage .rendered-badge span {
+  display: none;
+}
+.showing-device #editor .family-pedal-studio .rendered-badge,
+.showing-device #editor .family-delay .rendered-badge {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.showing-device #editor .family-modern .rendered-badge strong,
+.showing-device #editor .family-rectifier .rendered-badge strong {
+  font-family: system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 850;
+  letter-spacing: -0.035em;
 }

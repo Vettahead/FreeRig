@@ -1,3 +1,11 @@
+## Alpha 42 — 30 September 2026
+
+- Removed the generic panels covering amp and pedal artwork. Live controls now use measured faceplate positions for each enclosure family, with the image's original proportions preserved.
+- Kept pedal names and bypass switches inside their enclosures; amps use a rocker switch on their control strip. Shortened EchoKing legends without changing parameter names, values or ordering.
+- Corrected knob-pointer pivots at smaller sizes. Small-window combo editing frames the upper chassis so the controls stay accessible; larger windows show the full combo.
+- Capture appearance inference prioritises a named 5150/Peavey amp over a Mesa cabinet in combined titles. Explicit saved looks remain respected.
+- Same-page device settings and all audio processing are unchanged.
+
 ## Alpha 41 — 30 September 2026
 
 - Fixed TONE3000 opening the pedal library from stock modelled amps and recorded cabinets. These now open the amp and IR cabinet categories respectively.

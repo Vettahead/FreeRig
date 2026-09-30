@@ -97,9 +97,10 @@ export function hardwareProfile(block: Block): HardwareProfile {
       if (/tweed|bassman/i.test(name)) return 'tweed';
       if (/fender|twin|princeton|deluxe reverb/i.test(name)) return 'combo';
       if (/vox|ac[ -]?(15|30)/i.test(name)) return 'vox';
+      // A combined title can name a Peavey amp and a Mesa cab; prefer the amp identity.
+      if (/peavey|5150|6505|engl|diezel|soldano/i.test(name)) return 'modern';
       if (/mesa|rectifier|boogie/i.test(name)) return 'rectifier';
       if (/orange|rockerverb/i.test(name)) return 'orange';
-      if (/peavey|5150|6505|engl|diezel|soldano/i.test(name)) return 'modern';
       if (/matchless|dumble|two[ -]?rock/i.test(name)) return 'boutique';
     }
     return ampFamilies[index] || 'amp';
