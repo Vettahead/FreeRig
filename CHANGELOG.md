@@ -1,3 +1,9 @@
+## Alpha 30 — 30 September 2026
+
+- Tighter pedal spacing and larger enclosures on broader board rails, following the supplied pedalboard reference.
+- Short curved patch leads with shaded right-angle metal plugs seated against the hardware. Empty slots no longer have fake sockets or long perimeter wires; row-to-row wiring is tucked beneath the board.
+- The Alpha 29 layout, drag targets, scenes and audio processing remain unchanged.
+
 ## Alpha 29 — 30 September 2026
 
 - Rebuilt the normal routing workspace as a before-amp pedalboard, central amp/cab stack, after-cab pedalboard and compact send/return board.

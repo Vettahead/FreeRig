@@ -1,3 +1,7 @@
+# FreeRig Alpha 30
+
+Tighter pedal spacing, larger hardware and short patch leads with right-angle metal plugs. Audio processing is unchanged.
+
 # Alpha 29 — connected pedalboards
 
 Before-amp and after-cab boards surround the central amp/cab stack, with a compact effects-loop board below. Metal connectors and patch leads make slot order visible. Combo-style artwork retains cabinet processing controls, and multiple cabinets retain their parallel/summed layout. Custom connections remain in Advanced routing. No audio processing changes.

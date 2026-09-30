@@ -503,3 +503,81 @@
   padding-block: 0;
   margin-bottom: 8px;
 }
+
+/* Closely packed hardware on broad rails. Patch leads connect enclosures;
+   the plus targets remain quiet and never acquire fictitious jack sockets. */
+.physical-rig .physical-deck .deck-slots {
+  grid-template-columns: repeat(2, minmax(0, 150px));
+  justify-content: center;
+  gap: 12px 12px;
+}
+.physical-rig .physical-deck .deck-rail {
+  background: repeating-linear-gradient(#242729 0 56px, #111315 57px 68px, #34383a 69px 71px);
+}
+.physical-rig .physical-deck .board-card,
+.physical-rig .physical-deck .board-empty {
+  background: transparent;
+  border-color: transparent;
+}
+.physical-rig .physical-deck .board-empty {
+  min-height: 54px;
+  opacity: 0.55;
+}
+.physical-rig .physical-deck .board-empty:hover {
+  opacity: 1;
+  border-color: #b9ad7966;
+}
+.physical-rig .physical-deck .board-gear {
+  height: 172px;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.physical-rig .physical-deck .board-gear .gear-svg {
+  width: 170px;
+  height: 136px;
+  max-width: none;
+}
+.physical-rig .physical-deck:not(.deck-loop) .board-gear .rendered-thumb {
+  width: 90px;
+}
+.physical-rig .physical-deck:not(.deck-loop) .board-gear .thumb-delay {
+  width: 140px;
+}
+.physical-rig .physical-deck:not(.deck-loop) .board-gear .thumb-reverb {
+  width: 96px;
+}
+.physical-rig .deck-loop .deck-slots {
+  grid-template-columns: repeat(4, minmax(0, 150px));
+}
+.physical-rig .deck-loop .board-gear {
+  height: 112px;
+}
+.physical-rig .deck-loop .board-gear .gear-svg {
+  width: 120px;
+  height: 96px;
+}
+.physical-rig .deck-loop .board-gear .rendered-thumb {
+  width: 54px;
+}
+.physical-rig .deck-loop .board-gear .thumb-delay {
+  width: 105px;
+}
+.physical-rig .deck-loop .board-gear .thumb-reverb {
+  width: 58px;
+}
+.physical-rig .lead-shadow {
+  stroke-width: 6;
+}
+.physical-rig .lead-rubber {
+  stroke: #292e30;
+  stroke-width: 4;
+}
+.physical-rig .lead-light {
+  stroke: #b0b4ae;
+  stroke-width: 1;
+}
+@media (max-width: 650px) {
+  .physical-rig .deck-loop .deck-slots {
+    grid-template-columns: repeat(2, minmax(0, 150px));
+  }
+}

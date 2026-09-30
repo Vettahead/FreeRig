@@ -25,3 +25,7 @@ No competitor artwork or assets were copied. Existing original Alpha 28 artwork 
 `stage.css` is scoped to the physical board. The old positional slide animation was removed because transformed intermediate rectangles can leave patch leads at the wrong position after a resize/drop. Hover and focus feedback remains; motion is not required to understand routing.
 
 Changing arrangement must continue through the existing command/drag model. Custom graphs are shown by Advanced routing and are not represented by the decorative serial leads. Do not add cables to the audio graph from the presentation layer.
+
+## Alpha 30 cable detail
+
+The supplied pedalboard reference calls for closely spaced hardware and short right-angle leads. Cables now connect only occupied neighbours on the same rail. Empty positions have no sockets; row changes are visually routed beneath the board. The numbered stages remain authoritative for signal order. Legacy SVG anchors compensate for transparent canvas margins; raster anchors follow the enclosure profile. Plug bodies use a metallic gradient, collar and dark strain relief.

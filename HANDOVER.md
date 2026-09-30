@@ -1,3 +1,8 @@
+## 30 September 2026 — Alpha 30: short patch leads and realistic plug ends
+
+Kept the Alpha 29 stage layout, increased pedal artwork size, tightened neighbour spacing and broadened board rails. Replaced perimeter wires and floating striped blocks with short curved leads, metallic right-angle plugs, collars and strain relief. Only occupied neighbours on the same rail receive a lead; blank slots have no sockets and row transitions are tucked beneath the board. Legacy SVG canvas margins and raster enclosure margins are accounted for in attachment positions. No audio or patch contracts changed.
+
+Validation: npm run check passes all 13 suites; desktop build passes. Browser verified the final 1080p appearance, no horizontal overflow at 1280×720, pedal selection, slot movement and cable removal/reflow after moving a pedal to another rail; no console errors observed. Screenshot: docs/screenshots/alpha30-board.png. No DSP changes or live ASIO listening. Release target: releases/FreeRig-alpha-30/FreeRig.exe with portable ZIP and source. Mission Control remains unavailable; handover retained locally.
 ## 30 September 2026 — Alpha 29: connected pedalboards and amplifier station
 
 Rebuilt the normal routing workspace as a before-amp pedalboard, central amp/cab stack (or appearance-selected combo), after-cab pedalboard and smaller attached FX-loop board. Rails, plugs and measured patch leads convey serial order; stage numbering states the actual amp → loop → cab order. Multiple cabinets retain parallel/summed routing. Combo appearance keeps cabinet/microphone processing separately editable and does not infer capture contents. See docs/PEDALBOARD-DESIGN.md for research, ownership and limits.
