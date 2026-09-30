@@ -1,3 +1,8 @@
+## Alpha 35 — 30 September 2026
+
+- Lifted hardware now sways with damped momentum around the grab point, gently overshooting and settling when movement stops. Wide amp heads lean more subtly than pedals.
+- Pointer tracking remains immediate; reduced-motion preferences disable sway. Animation stops on release/cancel and pauses when settled. Audio and routing are unchanged.
+
 ## Alpha 34 — 30 September 2026
 
 - Dragging lifts the hardware artwork at its original size and grab point, with a raised shadow, gentle tilt and short landing animation. The original position fades during pickup.

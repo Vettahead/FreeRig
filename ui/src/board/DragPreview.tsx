@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { flushSync } from 'react-dom';
 import './drag.css';
+import { hardwareSway } from './hardwareSway';
 
 export interface DragPreview {
   move(x: number, y: number, target: HTMLElement | null, removing: boolean): void;
@@ -34,7 +35,7 @@ export function liftHardware(source: HTMLElement, x: number, y: number): DragPre
   const origin = source.closest('.board-card') || source;
   origin.classList.add('hardware-picked-up');
   let highlight: HTMLElement | null = null;
-  let previousX = x;
+  const sway = hardwareSway(object, x, y, bounds, reduced);
   let left = bounds.left;
   let top = bounds.top;
   const place = () => {
@@ -55,9 +56,7 @@ export function liftHardware(source: HTMLElement, x: number, y: number): DragPre
       left = bounds.left + px - x;
       top = bounds.top + py - y;
       place();
-      const tilt = reduced ? 0 : Math.max(-4, Math.min(4, (px - previousX) * 0.2));
-      previousX = px;
-      object.style.transform = `translateY(${reduced ? 0 : -12}px) rotate(${tilt}deg) scale(${reduced ? 1 : 1.06})`;
+      sway.move(px);
       highlight?.classList.remove('hardware-drop-target');
       highlight = target;
       highlight?.classList.add('hardware-drop-target');
@@ -74,6 +73,7 @@ export function liftHardware(source: HTMLElement, x: number, y: number): DragPre
       host.classList.toggle('lift-removing', removing);
     },
     finish(target, cancelled) {
+      sway.stop();
       highlight?.classList.remove('hardware-drop-target');
       origin.classList.remove('hardware-picked-up');
       hint.hidden = true;

@@ -39,3 +39,5 @@ The loop tray sits above the main rig in DOM and visual order. Its send/return l
 ## Alpha 34 hardware pickup
 
 `ui/src/board/DragPreview.tsx` owns a short-lived React artwork layer, original-size grab offsets, shadow/tilt, target feedback and landing/cancel cleanup. The existing `prototype/gear-drag.js` gesture adapter calls this presentation bridge and remains the sole owner of drop/remove commands, pointer capture and click suppression. The preview is inert, ignores hit testing and never moves the actual board DOM. Reduced-motion preferences skip lift/landing animations; pointer tracking is immediate. Horizontal auto-scroll also recognises the physical deck rails.
+
+Alpha 35 adds `hardwareSway.ts`: a time-based damped angular spring pivoting at the grab point. Wide heads use a gentler angle and slower response. The visual spring pauses at rest and cancels on release; the host follows the pointer immediately. Reduced motion skips the spring.

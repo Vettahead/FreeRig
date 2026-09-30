@@ -12,7 +12,7 @@
   height: 100%;
   transform: translateY(-12px) scale(1.06);
   filter: drop-shadow(0 22px 12px #0009);
-  transition: transform 90ms ease-out;
+  will-change: transform;
 }
 .hardware-lift .lift-object > .rendered-thumb,
 .hardware-lift .lift-object > .gear-svg {

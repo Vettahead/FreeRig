@@ -1,3 +1,7 @@
+## 30 September 2026 — Alpha 35: natural drag sway
+
+Added a focused damped angular spring around the grab point, with gentler wide-head motion and immediate cursor tracking. Spring pauses at rest, cancels on release and respects reduced motion. Simulated movement verifies lean, overshoot, settling and cancellation; browser verifies loop drop without editor opening or console errors. npm run check and desktop build pass. Release target: releases/FreeRig-alpha-35/FreeRig.exe with source/portable archives. Audio unchanged; Mission Control unavailable, local handover retained.
+
 ## 30 September 2026 — Alpha 34: hardware pickup feedback
 
 Added focused React hardware drag previews: original-size artwork and grab offset, lift shadow/tilt, source dimming, drop outline and place/replace/remove hints, short landing or cancel animation, reduced-motion support. Legacy adapter retains routing, drop/remove and click suppression. No DSP or native contract changes. Browser verified delay movement into the loop, pedal replacement and library amp replacement without opening controls, preview cleanup and no console errors. npm run check (15 tests) and desktop build pass. Release target: releases/FreeRig-alpha-34/FreeRig.exe and matching portable/source archives. Mission Control remains unavailable; local handover retained.
