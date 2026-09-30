@@ -30,7 +30,7 @@ document.addEventListener('pointerdown', (e) => {
     !selected ||
     document.querySelector('dialog[open]') ||
     e.target.closest(
-      '#editor,#device-overview,#scenes,#performance-scenes,.scene-tools,[data-block],button,input,select,label,a,summary',
+      '.device-drawer,#editor,#device-overview,#scenes,#performance-scenes,.scene-tools,[data-block],button,input,select,label,a,summary',
     )
   )
     return;

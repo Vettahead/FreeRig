@@ -1,3 +1,8 @@
+## 30 September 2026 — Alpha 36: slide-up device editor
+
+Added a focused React editor drawer with animated entrance/exit, dimmed rig backdrop, compact device strip and input/output dials with adjacent meters. Dials reuse the existing input-trim/master-output controls and native metering; no extra gain stage or audio arithmetic changes. Existing editor/overview DOM hosts are retained to preserve delegated events. Outside click, Escape and Close dismiss; keyboard focus stays within the panel, reduced motion is respected, and smaller windows scroll internally.
+
+Validation: npm run check (15 tests) and desktop build pass. Browser verified outside-coordinate click, Close/Escape, device switching/replacement, parameter persistence after reopening, and both level controls updating their existing workspace counterparts. Layout checked at 1920×1080 and 1280×720 with no horizontal page overflow; no console errors observed. Screenshot: docs/screenshots/alpha36-editor.png. Live ASIO listening and live meter response were not tested; audio engine unchanged. Release target: releases/FreeRig-alpha-36/FreeRig.exe with portable/source archives. Local handover retained.
 ## 30 September 2026 — Alpha 35: natural drag sway
 
 Added a focused damped angular spring around the grab point, with gentler wide-head motion and immediate cursor tracking. Spring pauses at rest, cancels on release and respects reduced motion. Simulated movement verifies lean, overshoot, settling and cancellation; browser verifies loop drop without editor opening or console errors. npm run check and desktop build pass. Release target: releases/FreeRig-alpha-35/FreeRig.exe with source/portable archives. Audio unchanged; Mission Control unavailable, local handover retained.

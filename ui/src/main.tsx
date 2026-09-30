@@ -1,3 +1,4 @@
+import { EditorDrawer } from './editor/EditorDrawer';
 import { liftHardware } from './board/DragPreview';
 import { hardwareArt } from './hardware/legacyArtwork';
 import { ReleaseHistory } from './release-history/ReleaseHistory';
@@ -9,7 +10,6 @@ import { SetupWizard } from './SetupWizard';
 import { createRoot, type Root } from 'react-dom/client';
 import { flushSync } from 'react-dom';
 import { Board } from './Board';
-import { Editor } from './Editor';
 import { ContextMenu } from './ContextMenu';
 import type { EditorProps } from './types';
 import { connectCommands } from './commands';
@@ -65,9 +65,19 @@ window.FreeRigReact = {
   editor(props: EditorProps | null) {
     if (!editorRoot) {
       editor.replaceChildren();
-      editorRoot = createRoot(editor);
+      const host = document.createElement('div');
+      document.body.append(host);
+      editorRoot = createRoot(host);
     }
-    flushSync(() => editorRoot!.render(props ? <Editor key={props.block.id} {...props} /> : null));
+    flushSync(() =>
+      editorRoot!.render(
+        <EditorDrawer
+          selection={props}
+          editor={editor}
+          overview={document.getElementById('device-overview')!}
+        />,
+      ),
+    );
   },
   connect(actions) {
     connectCommands(actions);

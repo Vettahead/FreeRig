@@ -61,7 +61,7 @@ export function Editor({ rig, block: b, definition: d, sound: v, optionsOpen, no
             Replace device…
           </button>
           <button id="close-editor" aria-label="Close device controls">
-            Routing ↗
+            Close ×
           </button>
         </div>
       </div>

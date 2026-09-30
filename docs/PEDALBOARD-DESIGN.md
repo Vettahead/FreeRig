@@ -41,3 +41,9 @@ The loop tray sits above the main rig in DOM and visual order. Its send/return l
 `ui/src/board/DragPreview.tsx` owns a short-lived React artwork layer, original-size grab offsets, shadow/tilt, target feedback and landing/cancel cleanup. The existing `prototype/gear-drag.js` gesture adapter calls this presentation bridge and remains the sole owner of drop/remove commands, pointer capture and click suppression. The preview is inert, ignores hit testing and never moves the actual board DOM. Reduced-motion preferences skip lift/landing animations; pointer tracking is immediate. Horizontal auto-scroll also recognises the physical deck rails.
 
 Alpha 35 adds `hardwareSway.ts`: a time-based damped angular spring pivoting at the grab point. Wide heads use a gentler angle and slower response. The visual spring pauses at rest and cancels on release; the host follows the pointer immediately. Reduced motion skips the spring.
+
+## Alpha 36 slide-up editor
+
+`ui/src/editor/EditorDrawer.tsx` owns the overlay, enter/exit animation, focus and outside/Escape dismissal. It retains the existing editor and overview DOM nodes so delegated native control and bypass handlers continue to work. Editor contents are rendered through a React portal and retained only through exit animation. The rig remains visible behind a backdrop; smaller screens scroll inside the panel.
+
+`LevelDial.tsx` mirrors the existing workspace trim/master sliders through their input events and observes their labels/meters, including host-driven meter updates and replacement of the original control nodes. It adds no gain stage, native messaging contract or audio processing. Meter values are displayed on a −60 to 0 dBFS scale; the original workspace controls remain available when the drawer closes.

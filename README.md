@@ -4,11 +4,13 @@ A Windows guitar suite with a WebView2/React interface, native ASIO / Windows au
 
 ## Run
 
-Open `releases/FreeRig-alpha-35/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
+Open `releases/FreeRig-alpha-36/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
 
 Alpha 29 arranges the rig as connected physical pedalboards around an amp/cab stack, with an attached effects loop. Alpha 33 places that loop above the main rig. Alpha 35 adds natural, damped sway to the hardware pickup and landing feedback. See [pedalboard design](docs/PEDALBOARD-DESIGN.md).
 
 Alpha 32 extends realistic hardware artwork across the complete collection, with distinct amp/pedal families, ten cabinet geometries and live controls. See [hardware design](docs/HARDWARE-DESIGN.md) for scope, extension points and artwork provenance.
+
+Alpha 36 opens device controls in a slide-up editor with a compact chain, input/output dials and meters. Click outside or press Escape to return to the rig.
 
 ## Audio compatibility
 

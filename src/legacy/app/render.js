@@ -70,30 +70,31 @@ function renderEditor() {
     optionsOpen = same && panel.querySelector('.device-options')?.open,
     scroll = same ? panel.scrollTop : 0;
   panel.dataset.device = selected || '';
-  if (!same && selected) document.querySelector('main').scrollTop = 0;
+  if (!window.FreeRigReact && !same && selected) document.querySelector('main').scrollTop = 0;
   const b = state.blocks.find((x) => x.id === selected);
-  document.body.classList.toggle('editing-device', !!b);
+  document.body.classList.toggle('editing-device', !!b && !window.FreeRigReact);
   $('#device-overview').hidden = !b;
-  $('#device-overview').innerHTML = b
-    ? '<span class=overview-label>DEVICES</span>' +
-      state.blocks
-        .map(
-          (item) =>
-            '<button data-block="' +
-            item.id +
-            '" aria-pressed="' +
-            (item.id === selected) +
-            '" class="overview-device ' +
-            (current(item).on ? '' : 'bypassed') +
-            '">' +
-            GearLooks.art(item, current(item).on) +
-            '<span>' +
-            escapeHTML(DeviceShelf.definition(item).name) +
-            '</span></button>',
-        )
-        .join('') +
-      '<button id=overview-routing>Routing ↗</button>'
-    : '';
+  if (b || !window.FreeRigReact)
+    $('#device-overview').innerHTML = b
+      ? '<span class=overview-label>DEVICES</span>' +
+        state.blocks
+          .map(
+            (item) =>
+              '<button data-block="' +
+              item.id +
+              '" aria-pressed="' +
+              (item.id === selected) +
+              '" class="overview-device ' +
+              (current(item).on ? '' : 'bypassed') +
+              '">' +
+              GearLooks.art(item, current(item).on) +
+              '<span>' +
+              escapeHTML(DeviceShelf.definition(item).name) +
+              '</span></button>',
+          )
+          .join('') +
+        '<button id=overview-routing>Routing ↗</button>'
+      : '';
   $('#editor').hidden = !b;
   if (!b) {
     if (window.FreeRigReact) FreeRigReact.editor(null);

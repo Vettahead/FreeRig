@@ -1,3 +1,9 @@
+## Alpha 36 — 30 September 2026
+
+- Device controls open in a smooth slide-up panel over the visible rig, with a compact hardware chain across the top. Click outside, press Escape or use Close to slide it away.
+- Input trim and master output dials flank the chain, each with a live level meter. They mirror the existing saved audio controls without adding gain stages.
+- Device switching, capture selection, replacement, knob edits and strip bypass gestures retain their existing handlers. The panel scrolls on smaller screens and respects reduced-motion preferences.
+
 ## Alpha 35 — 30 September 2026
 
 - Lifted hardware now sways with damped momentum around the grab point, gently overshooting and settling when movement stops. Wide amp heads lean more subtly than pedals.
