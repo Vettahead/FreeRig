@@ -279,7 +279,7 @@ $('#performance-scenes').onclick = (e) => {
 };
 $('#device-overview').onclick = (e) => {
   const b = e.target.closest('[data-block]');
-  selected = b ? b.dataset.block : null;
+  selected = b && b.dataset.block !== selected ? b.dataset.block : null;
   renderEditor();
 };
 $('#stomps').onclick = (e) => {

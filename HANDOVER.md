@@ -1,3 +1,9 @@
+## 30 September 2026 — Alpha 38: editor inside the rig
+
+Replaced the full-window modal/backdrop with an in-workspace expansion. Board and editor exchange within the chain shell with slide/scale/fade and height transitions. Selected overview device toggles back to the board; Escape, Close and existing outside-background dismissal remain. No focus trap; toolbar/library stay usable. Duplicate main-level pair hides while editor levels are present. No audio processing changes.
+
+Release target: releases/FreeRig-alpha-38/FreeRig.exe with matching source/portable archives. npm run check passes all 15 tests and desktop build passes. Browser verified selected-device toggle back to board, switching devices, Escape, main/chain level visibility and amp-source filter exclusions. Modelled keeps circuit amps; TONE3000 only removes stock amps; All restores them. No downloaded packs were available in the browser fixture, so real-account browsing was not tested. Source filter is shared by Collection/replacement picker and leaves other categories unaffected. No live ASIO test. Local handover retained.
+
 ## 30 September 2026 — Alpha 37: main rig level dials
 
 Reused the React LevelDial on the main page, replacing the long sliders. Surface-specific IDs keep editor and rig controls distinct. Hidden transport-owned controls remain the compatibility source; RigLevels mirrors their warning and both views observe the same levels/meters. Calibration and load controls remain visible. No native or DSP changes.

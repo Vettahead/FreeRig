@@ -109,6 +109,7 @@ function renderLibrary() {
         libraryCategory(d) === filter ||
         (filter === 'Studio' && d.factoryTags?.includes('Studio'))) &&
       (window.FreeRigReact?.matchesCost(d) ?? true) &&
+      (window.FreeRigReact?.matchesAmpSource(libraryCategory(d), false, d.key === 'amp') ?? true) &&
       (
         d.name +
         ' ' +
@@ -379,6 +380,7 @@ function renderDevicePicker() {
         libraryCategory(d) === category ||
         (category === 'Studio' && d.factoryTags?.includes('Studio'))) &&
       (window.FreeRigReact?.matchesCost(d) ?? true) &&
+      (window.FreeRigReact?.matchesAmpSource(libraryCategory(d), false, d.key === 'amp') ?? true) &&
       (
         d.name +
         ' ' +
@@ -725,7 +727,7 @@ $('#performance-scenes').onclick = (e) => {
 };
 $('#device-overview').onclick = (e) => {
   const b = e.target.closest('[data-block]');
-  selected = b ? b.dataset.block : null;
+  selected = b && b.dataset.block !== selected ? b.dataset.block : null;
   renderEditor();
 };
 $('#stomps').onclick = (e) => {

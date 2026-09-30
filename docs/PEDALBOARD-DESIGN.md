@@ -51,3 +51,7 @@ Alpha 35 adds `hardwareSway.ts`: a time-based damped angular spring pivoting at 
 ## Alpha 37 — shared main-page levels
 
 `audio/RigLevels.tsx` reuses the editor's LevelDial with distinct surface IDs. The original transport controls stay hidden as the compatibility source for persistence, calibration and messages. The main view mirrors the warning text so hiding those controls does not hide overload guidance. Calibration and audio-load controls remain separate.
+
+## Alpha 38 — workspace expansion
+
+The editor host lives inside the chain shell. Selecting gear folds the board into a compact chain and hardware panel; closing restores the board with a size/fade transition. This is a non-modal region: no backdrop or focus trap, and the collection and toolbar remain available. Clicking the selected overview item toggles it closed. The main level pair hides while the same controls are visible in the expanded chain.

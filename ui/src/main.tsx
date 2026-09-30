@@ -1,3 +1,4 @@
+import { matchesAmpSource } from './library/AmpSourceFilter';
 import { RigLevels } from './audio/RigLevels';
 import { EditorDrawer } from './editor/EditorDrawer';
 import { liftHardware } from './board/DragPreview';
@@ -32,6 +33,7 @@ window.FreeRigReact = {
   liftHardware,
   hardwareArt,
   matchesCost,
+  matchesAmpSource,
   mountEffectFilters(host) {
     pickerFiltersRoot?.unmount();
     pickerFiltersRoot = host ? createRoot(host) : null;
@@ -67,7 +69,8 @@ window.FreeRigReact = {
     if (!editorRoot) {
       editor.replaceChildren();
       const host = document.createElement('div');
-      document.body.append(host);
+      host.className = 'rig-editor-host';
+      document.querySelector('.chain-shell')!.append(host);
       editorRoot = createRoot(host);
     }
     flushSync(() =>

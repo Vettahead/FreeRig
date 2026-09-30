@@ -37,6 +37,10 @@ export function EditorDrawer({
     if (!open && !retained) return;
     const host = shell.current!,
       surface = panel.current!;
+    const workspace = host.closest<HTMLElement>('.chain-shell')!;
+    const board = workspace.querySelector<HTMLElement>('#chain')!;
+    const previousHeight = workspace.getBoundingClientRect().height;
+    workspace.classList.add('showing-device');
     host.hidden = false;
     editor.hidden = false;
     overview.hidden = false;
@@ -46,15 +50,25 @@ export function EditorDrawer({
       editor.querySelector<HTMLButtonElement>('#close-editor')?.focus({ preventScroll: true });
     }
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (open) {
+      workspace.animate(
+        [
+          { height: `${previousHeight}px` },
+          { height: `${workspace.getBoundingClientRect().height}px` },
+        ],
+        { duration: reduced ? 0 : 320, easing: 'cubic-bezier(.2,.8,.2,1)' },
+      );
+      workspace.scrollIntoView({ block: 'nearest', behavior: reduced ? 'instant' : 'smooth' });
+    }
     const animation = surface.animate(
       open
         ? [
-            { transform: 'translateY(70px)', opacity: 0 },
+            { transform: 'translateY(90px) scale(.97)', opacity: 0 },
             { transform: 'translateY(0)', opacity: 1 },
           ]
         : [
             { transform: getComputedStyle(surface).transform, opacity: 1 },
-            { transform: 'translateY(70px)', opacity: 0 },
+            { transform: 'translateY(90px) scale(.97)', opacity: 0 },
           ],
       {
         duration: reduced ? 0 : open ? 280 : 200,
@@ -68,6 +82,22 @@ export function EditorDrawer({
           host.hidden = true;
           editor.hidden = true;
           overview.hidden = true;
+          const height = workspace.getBoundingClientRect().height;
+          workspace.classList.remove('showing-device');
+          workspace.animate(
+            [
+              { height: `${height}px` },
+              { height: `${workspace.getBoundingClientRect().height}px` },
+            ],
+            { duration: reduced ? 0 : 300, easing: 'cubic-bezier(.2,.8,.2,1)' },
+          );
+          board.animate(
+            [
+              { transform: 'translateY(-20px) scale(.97)', opacity: 0 },
+              { transform: 'none', opacity: 1 },
+            ],
+            { duration: reduced ? 0 : 300 },
+          );
           retain(false);
           if (returnFocus.current?.isConnected) returnFocus.current.focus({ preventScroll: true });
         }
@@ -85,22 +115,6 @@ export function EditorDrawer({
         e.stopPropagation();
         close();
       }
-      if (e.key === 'Tab') {
-        const controls = Array.from(
-          panel.current!.querySelectorAll<HTMLElement>(
-            'button, input, select, summary, [tabindex="0"]',
-          ),
-        ).filter((el) => !el.hasAttribute('disabled') && el.getClientRects().length > 0);
-        const first = controls[0],
-          end = controls[controls.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          end?.focus();
-        } else if (!e.shiftKey && document.activeElement === end) {
-          e.preventDefault();
-          first?.focus();
-        }
-      }
     };
     document.addEventListener('keydown', key, true);
     return () => document.removeEventListener('keydown', key, true);
@@ -108,19 +122,7 @@ export function EditorDrawer({
   const shown = selection || (retained ? last.current : null);
   return (
     <div ref={shell} className="device-drawer" hidden={!open && !retained}>
-      <button
-        className="drawer-backdrop"
-        aria-label="Close device editor"
-        tabIndex={-1}
-        onClick={close}
-      />
-      <section
-        ref={panel}
-        className="drawer-panel"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Device editor"
-      >
+      <section ref={panel} className="drawer-panel" role="region" aria-label="Device editor">
         <div className="drawer-grip" aria-hidden="true" />
         <div className="drawer-chain">
           {shown && <LevelDial kind="input" />}

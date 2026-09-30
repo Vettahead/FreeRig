@@ -103,6 +103,7 @@ declare global {
         y: number,
       ): import('./board/DragPreview').DragPreview;
       hardwareArt(block: Block, on?: boolean): string;
+      matchesAmpSource(category: string, tone3000: boolean, namLoader?: boolean): boolean;
       matchesCost(definition: Pick<Definition, 'dspCost'>): boolean;
       mountEffectFilters(host: HTMLElement | null): void;
       deviceTags(block: Pick<Block, 'key' | 'assetId' | 'tone3000' | 'tags'>): string[];

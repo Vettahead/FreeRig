@@ -1,3 +1,10 @@
+## Alpha 38 — 30 September 2026
+
+- Collection and replacement picker share an Amp source filter: All amps, Modelled, or TONE3000 only. It filters amps without hiding other effect categories; the empty NAM loader appears under All amps.
+
+- Device editing now expands inside the pedalboard workspace instead of covering and dimming the whole app. The chain and hardware controls slide up together; the library, toolbar and scenes remain usable.
+- Click the selected device in the top chain again, Close or Escape to fold back to the full pedalboard with a size/fade transition. No audio processing changes.
+
 ## Alpha 37 — 30 September 2026
 
 - The main rig now uses the same compact input/output dials and adjacent meters as the slide-up editor, replacing the long sliders. Both views stay synchronised with saved audio levels; calibration, audio load and overload warnings remain available. Audio processing is unchanged.

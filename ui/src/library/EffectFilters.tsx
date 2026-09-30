@@ -1,3 +1,4 @@
+import { AmpSourceFilter } from './AmpSourceFilter';
 import { useSyncExternalStore } from 'react';
 import type { Definition } from '../types';
 import { commands } from '../commands';
@@ -20,22 +21,25 @@ export function matchesCost(definition: Pick<Definition, 'dspCost'>) {
 export function EffectFilters() {
   const selected = useSyncExternalStore(subscribe, () => cost);
   return (
-    <label className="effect-cost-filter">
-      Quality · DSP cost
-      <select
-        aria-label="Quality / DSP cost"
-        value={selected}
-        onChange={(event) => {
-          cost = event.target.value as Cost;
-          listeners.forEach((listener) => listener());
-          commands().refreshLibrary();
-        }}
-      >
-        {(['All', 'Light', 'Moderate', 'Heavy', 'Unmeasured'] as Cost[]).map((value) => (
-          <option key={value}>{value}</option>
-        ))}
-      </select>
-      <small>Reference processing cost, not sound quality. 48 kHz / 128 samples.</small>
-    </label>
+    <>
+      <AmpSourceFilter />
+      <label className="effect-cost-filter">
+        Quality · DSP cost
+        <select
+          aria-label="Quality / DSP cost"
+          value={selected}
+          onChange={(event) => {
+            cost = event.target.value as Cost;
+            listeners.forEach((listener) => listener());
+            commands().refreshLibrary();
+          }}
+        >
+          {(['All', 'Light', 'Moderate', 'Heavy', 'Unmeasured'] as Cost[]).map((value) => (
+            <option key={value}>{value}</option>
+          ))}
+        </select>
+        <small>Reference processing cost, not sound quality. 48 kHz / 128 samples.</small>
+      </label>
+    </>
   );
 }

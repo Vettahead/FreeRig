@@ -15,6 +15,7 @@ function renderLibrary() {
         libraryCategory(d) === filter ||
         (filter === 'Studio' && d.factoryTags?.includes('Studio'))) &&
       (window.FreeRigReact?.matchesCost(d) ?? true) &&
+      (window.FreeRigReact?.matchesAmpSource(libraryCategory(d), false, d.key === 'amp') ?? true) &&
       (
         d.name +
         ' ' +

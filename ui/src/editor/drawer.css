@@ -1,38 +1,35 @@
+.chain-shell {
+  position: relative;
+}
+.chain-shell.showing-device {
+  overflow: hidden;
+}
+.chain-shell.showing-device > #chain,
+.chain-shell.showing-device > .chain-footer,
+.chain-shell.showing-device > .path-label {
+  display: none;
+}
 .device-drawer {
-  position: fixed;
-  inset: 0;
-  z-index: 45;
-  display: grid;
-  align-items: end;
-  justify-items: center;
-  padding: 70px 26px 24px;
+  position: relative;
+  width: 100%;
 }
 .device-drawer[hidden] {
   display: none;
 }
-.drawer-backdrop {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 0;
-  background: #050c12aa;
-  cursor: default;
-}
 .drawer-panel {
   position: relative;
-  width: min(1280px, 100%);
-  max-height: 100%;
+  width: 100%;
+  height: clamp(360px, 65vh, 680px);
+  max-height: 720px;
   min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border: 1px solid #90c5d24d;
-  border-radius: 20px;
+  border-radius: 12px;
   background: #152229;
   box-shadow:
-    0 25px 90px #000a,
+    0 8px 24px #0005,
     0 -1px 25px #72cce522;
 }
 .drawer-grip {
@@ -197,7 +194,7 @@
 }
 @media (max-width: 800px) {
   .device-drawer {
-    padding: 45px 10px 10px;
+    padding: 0;
   }
   .drawer-chain {
     padding: 8px;
@@ -224,4 +221,19 @@
 }
 .device-drawer .overview-device .thumb-cab2 {
   width: 110px;
+}
+
+.device-drawer #editor .rendered-device {
+  max-width: 1000px;
+}
+
+/* The chain owns the same levels while expanded; show one pair at a time. */
+#rig-view:has(.showing-device) .rig-level-dials {
+  display: none;
+}
+
+@media (max-height: 850px) {
+  .device-drawer #editor .rendered-amp .rendered-device {
+    max-width: 640px;
+  }
 }

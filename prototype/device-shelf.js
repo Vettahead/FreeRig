@@ -34,6 +34,7 @@ window.DeviceShelf = (() => {
     const list = devices.filter(
       (d) =>
         (filter === 'All' || filter === category(d)) &&
+        (window.FreeRigReact?.matchesAmpSource(category(d), true) ?? true) &&
         (
           d.tone.title +
           ' ' +
@@ -75,6 +76,7 @@ window.DeviceShelf = (() => {
       .filter(
         (d) =>
           (filter === 'All' || filter === category(d)) &&
+          (window.FreeRigReact?.matchesAmpSource(category(d), true) ?? true) &&
           (
             d.tone.title +
             ' ' +
