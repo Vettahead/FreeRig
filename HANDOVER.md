@@ -1,3 +1,7 @@
+## 30 September 2026 — NAM breakup recheck (no new build)
+
+Re-audited local Hendrix head/JTM captures against generic NAM at 48 kHz and 32/64/128 samples: <=2.09e-7 error, in-place identical. Hendrix head plus Greenback/M201 IR matches sequential reference exactly; unity synthetic post-IR peak 1.648087. Capture mode has no added built-in amp saturation; gain staging and user's actual patch remain unconfirmed. Asked which model and whether all pedals bypassed. No DSP adjustment or support report added; Alpha 41 remains current. See docs/CAPTURE-FIDELITY.md. No live listening.
+
 ## 30 September 2026 — Alpha 41: TONE3000 category fix
 
 Native browsing classified all fx- processors as pedals. Tone3000.KindForDevice now recognises fx-Amp/fx-Cab keys for browsing and tone validation. Successful downloads replace modelled processor keys with the correct capture loader, preserving routing and scene bypass; new amp capture EQ is neutralised. Recorded cabinets hide the NAM architecture selector.
