@@ -1,3 +1,4 @@
+import './interface.css';
 import { PlayAlong } from './audio/PlayAlong';
 import { OutputHeadroom } from './audio/OutputHeadroom';
 import { AudioSetup } from './audio/AudioSetup';
@@ -12,6 +13,7 @@ import { connectCommands } from './commands';
 import { deviceTags, editTags } from './tags/store';
 import { TagEditor } from './tags/TagEditor';
 import { OverviewBypassGesture } from './OverviewBypassGesture';
+import { EffectFilters, matchesCost } from './library/EffectFilters';
 let boardRoot: Root | null = null,
   editorRoot: Root | null = null;
 const chain = document.getElementById('chain')!,
@@ -21,7 +23,14 @@ const chain = document.getElementById('chain')!,
 let audioRoot: Root | null = null;
 let audioSession = 0;
 let tagsRoot: Root | null = null;
+let pickerFiltersRoot: Root | null = null;
 window.FreeRigReact = {
+  matchesCost,
+  mountEffectFilters(host) {
+    pickerFiltersRoot?.unmount();
+    pickerFiltersRoot = host ? createRoot(host) : null;
+    pickerFiltersRoot?.render(<EffectFilters />);
+  },
   deviceTags,
   editTags,
   updated(rig) {
@@ -57,6 +66,9 @@ window.FreeRigReact = {
   },
   connect(actions) {
     connectCommands(actions);
+    const filtersHost = document.createElement('div');
+    document.getElementById('filters')!.after(filtersHost);
+    createRoot(filtersHost).render(<EffectFilters />);
     const tagsHost = document.createElement('div');
     tagsHost.className = 'patch-tags-host';
     document.querySelector('.rig-sub')!.after(tagsHost);

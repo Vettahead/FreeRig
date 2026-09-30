@@ -18,5 +18,7 @@
       "values": [25, 50, 60, 100]
     }
   ],
-  "defaults": [25, 50, 60, 70]
+  "defaults": [25, 50, 60, 70],
+  "description": "Moves the signal across the stereo field. Rate sets travel speed and depth sets movement; use two speakers or headphones and check how the result folds to mono.",
+  "factoryTags": []
 }

@@ -18,5 +18,7 @@
       "values": [380, 570, 33.75, 35, 80, 8000, 0.5, 40, 0, 0, 48, 0]
     }
   ],
-  "defaults": [380, 380, 25, 0, 80, 8000, 0.5, 40, 0, 0, 30, 0]
+  "defaults": [380, 380, 25, 0, 80, 8000, 0.5, 40, 0, 0, 30, 0],
+  "description": "Stereo delay with separate left/right times and cross-feedback. Low/High Cut filter the repeats; modulation adds movement. The unlabelled reserved parameter is not an extra musical control.",
+  "factoryTags": []
 }

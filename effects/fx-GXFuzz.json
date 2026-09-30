@@ -18,5 +18,7 @@
       "values": [0.75, 0.5]
     }
   ],
-  "defaults": [0.5, 0.5]
+  "defaults": [0.5, 0.5],
+  "description": "Guitarix fuzz algorithm. Fuzz controls the clipping character and Level sets output strength. Begin with a clean or mildly driven amp to hear the pedal itself.",
+  "factoryTags": []
 }

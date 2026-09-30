@@ -105,7 +105,10 @@ function renderLibrary() {
     .join('');
   const items = catalogue.filter(
     (d) =>
-      (filter === 'All' || libraryCategory(d) === filter) &&
+      (filter === 'All' ||
+        libraryCategory(d) === filter ||
+        (filter === 'Studio' && d.factoryTags?.includes('Studio'))) &&
+      (window.FreeRigReact?.matchesCost(d) ?? true) &&
       (
         d.name +
         ' ' +
@@ -122,11 +125,11 @@ function renderLibrary() {
   $('#library-count').textContent = String(catalogue.length + DeviceShelf.count()).padStart(2, '0');
   $('#library-label').textContent = filter === 'All' ? 'ALL DEVICES' : filter.toUpperCase();
   $('#library').innerHTML =
-    DeviceShelf.cards(filter, q) +
+    ((window.FreeRigReact?.matchesCost({}) ?? true) ? DeviceShelf.cards(filter, q) : '') +
       items
         .map(
           (d) =>
-            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small><small>${escapeHTML((window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' · '))}</small></span><span class="plus">＋</span></button>`,
+            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small>${d.dspCost ? `<small>DSP · ${escapeHTML(d.dspCost.tier)}</small>` : ''}<small>${escapeHTML((window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' · '))}</small></span><span class="plus">＋</span></button>`,
         )
         .join('') || '<div class="empty">No matching devices. Try another search.</div>';
 }
@@ -347,9 +350,10 @@ function openDevicePicker(blockId, category) {
     block
       ? 'REPLACE / ' + DeviceShelf.definition(block).name.toUpperCase()
       : 'ADD / ' + SlotBoard.label(chosenSlot).toUpperCase(),
-    '<h2>Choose your sound.</h2><div id="picker-filters" class="filters" aria-label="Device categories"></div><label class="picker-search">Search devices<input id="picker-search" type="search" placeholder="Search this category…" autocomplete="off"></label><div id="picker-results" class="slot-picker"></div>',
+    '<h2>Choose your sound.</h2><div id="picker-filters" class="filters" aria-label="Device categories"></div><div id="picker-cost"></div><label class="picker-search">Search devices<input id="picker-search" type="search" placeholder="Search this category…" autocomplete="off"></label><div id="picker-results" class="slot-picker"></div>',
   );
   renderDevicePicker();
+  window.FreeRigReact?.mountEffectFilters($('#picker-cost'));
 }
 function renderDevicePicker() {
   if (!devicePicker) return;
@@ -370,7 +374,10 @@ function renderDevicePicker() {
     .join('');
   const items = catalogue.filter(
     (d) =>
-      (category === 'All' || libraryCategory(d) === category) &&
+      (category === 'All' ||
+        libraryCategory(d) === category ||
+        (category === 'Studio' && d.factoryTags?.includes('Studio'))) &&
+      (window.FreeRigReact?.matchesCost(d) ?? true) &&
       (
         d.name +
         ' ' +
@@ -385,7 +392,9 @@ function renderDevicePicker() {
         .includes(query),
   );
   $('#picker-results').innerHTML =
-    DeviceShelf.pickerCards(category, query) +
+    ((window.FreeRigReact?.matchesCost({}) ?? true)
+      ? DeviceShelf.pickerCards(category, query)
+      : '') +
       items
         .map(
           (d) =>
@@ -939,6 +948,7 @@ $('#modal-content').addEventListener('input', (e) => {
   }
 });
 $('#modal').addEventListener('close', () => {
+  window.FreeRigReact?.mountEffectFilters(null);
   devicePicker = null;
   chosenSlot = null;
   $('#modal').classList.remove('device-picker-modal');
@@ -946,6 +956,10 @@ $('#modal').addEventListener('close', () => {
 
 // Explicit command adapter: all mutations keep the existing Undo/save/native sync path.
 window.FreeRigReact?.connect({
+  refreshLibrary: () => {
+    renderLibrary();
+    if (devicePicker) renderDevicePicker();
+  },
   setTags: (id, tags, propagate) => {
     const next = FreeRigReact.editTags(state, id, tags, propagate);
     checkpoint();

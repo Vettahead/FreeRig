@@ -6,7 +6,7 @@
   "colour": "#79a69b",
   "type": "Pedals",
   "detail": "Delay · Grain Cloud",
-  "description": "Four overlapping grains with pitch, stereo spread and feedback.",
+  "description": "Four overlapping windowed grains taken from a rolling audio buffer. Grain sets fragment length, Pitch transposes them, Spread separates stereo voices and Feedback recirculates the texture. Small grains sound more synthetic; large grains retain longer fragments.",
   "icon": "◈",
   "sync": false,
   "defaults": [120, 0, 15, 50, 30],
@@ -15,5 +15,6 @@
       "name": "Starting point",
       "values": [120, 0, 15, 50, 30]
     }
-  ]
+  ],
+  "factoryTags": []
 }

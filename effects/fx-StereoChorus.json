@@ -18,5 +18,7 @@
       "values": [45, 40]
     }
   ],
-  "defaults": [30, 40]
+  "defaults": [30, 40],
+  "description": "A modulated stereo delay blended with the dry guitar to produce chorus. Rate controls motion and depth controls pitch variation; extreme depth sounds more obviously detuned.",
+  "factoryTags": []
 }

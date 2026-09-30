@@ -1,3 +1,12 @@
+## 30 September 2026 — Alpha 25: Studio, guides and DSP cost
+
+Added a factory Studio tag/filter to 41 production-oriented effects without removing their effect categories or user tags. All 200 native descriptors now supply detailed playing/control guides; 156 retain original Airwindows developer notes. Legacy pedal descriptions expanded. React Quality / DSP cost filters work in the collection and replacement picker, with Light/Moderate/Heavy/Unmeasured groups and card badges. These are measured default-setting processing costs, not sound-quality ratings or worst-case performance guarantees.
+
+Offline reference benchmark: 48 kHz / 128 frames, warmed five-run medians, 186 Light / 12 Moderate / 2 Heavy. Report and reproducible tool committed; no audio processing arithmetic changed. Fixed the UI build overwriting component CSS. Native version label advanced to Alpha 25.
+
+Validation: npm run check (13 suites), native formatting, desktop build and full offline self-test pass. Self-test needed the normal Windows profile for DPAPI credential tests. Browser checks covered Studio, shared cost filters, replacement, descriptions and guides at 1920x1080 without horizontal overflow. Screenshot: docs/screenshots/alpha25-studio-guides.png. No live ASIO listening claimed.
+
+Release target: releases/FreeRig-alpha-25/FreeRig.exe and FreeRig-alpha-25-win-x64.zip, including source/licences. See docs/EFFECT-BROWSING.md. Non-NAM amp and multi-mic cabinet research is in docs/AMP-CAB-RESEARCH.md: Guitarix/Tamgamp preamps, SwankyAmp architecture, real measured mic-position IR sets. Ten complete hardware-equivalent amps and ten qualified multi-mic cabinets are NOT implemented or promised as already sourced. Next: qualify licences/assets, port a representative amp with faithful controls, validate against references, then expand. Mission Control external update remains blocked; handover retained locally.
 ## 28 September 2026 — Alpha 24: 200 effects and tags
 
 Expanded to 200 separately registered native effects: 156 pinned MIT Airwindows imports plus Centaur, ten-band EQ, manual/envelope wah, standalone studio pitch, granular/reverse delay, vocoder and a temporary stereo practice looper. Preserved existing pedal presets/keys. Added category/description search, source notes, EQ faders and looper buttons. Bird Treble Boost corrects the misleading Scream Drive display name without changing its DSP. Includes the earlier patch/device tags, optional propagation, captured-pedal level comparisons, combined-cab guidance and up/down strip bypass gestures.

@@ -19,5 +19,6 @@
     }
   ],
   "defaults": [0.5],
-  "description": "Guitarix Screaming Bird treble booster. This is not a Tube Screamer circuit; use NAM Tube Screamer captures for that sound."
+  "description": "Guitarix Screaming Bird treble-booster algorithm. This is not a Tube Screamer model: it emphasizes the upper frequencies and can make an already bright amp sound sharper.",
+  "factoryTags": []
 }

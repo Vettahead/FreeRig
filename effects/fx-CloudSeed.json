@@ -22,5 +22,7 @@
   "detail": "Reverb · Cloud Seed Core / Ghost Note Audio",
   "icon": "✧",
   "sync": false,
-  "defaults": [6, 20, 30, 6500, 25, 15]
+  "defaults": [6, 20, 30, 6500, 25, 15],
+  "description": "Cloud Seed algorithmic space with modulated delay networks. Decay controls persistence, Pre-delay separates the first reflections, Damping softens the tail and Early reflections adds definition. Modulation gives movement to sustained ambience.",
+  "factoryTags": []
 }

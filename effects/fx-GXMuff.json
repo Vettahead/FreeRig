@@ -18,5 +18,7 @@
       "values": [0.75, 0.5]
     }
   ],
-  "defaults": [0.5, 0.5]
+  "defaults": [0.5, 0.5],
+  "description": "Guitarix Muff-style fuzz with tone and volume controls. The tone control changes the balance of the saturated sound; this exposed model has no separate sustain knob.",
+  "factoryTags": []
 }

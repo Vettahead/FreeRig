@@ -6,7 +6,7 @@
   "colour": "#79a69b",
   "type": "Pedals",
   "detail": "EQ · Ten Band EQ",
-  "description": "Ten octave bands with ±12 dB adjustment and output trim.",
+  "description": "Ten octave-spaced bell filters from 31.25 Hz to 16 kHz, each with ±12 dB gain. Output trim compensates overall level. Cut unwanted bands before boosting others; this is a generic graphic EQ, not the interacting tone stack of a particular amp.",
   "icon": "◈",
   "sync": false,
   "defaults": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -15,5 +15,6 @@
       "name": "Flat",
       "values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
-  ]
+  ],
+  "factoryTags": []
 }

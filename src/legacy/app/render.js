@@ -11,7 +11,10 @@ function renderLibrary() {
     .join('');
   const items = catalogue.filter(
     (d) =>
-      (filter === 'All' || libraryCategory(d) === filter) &&
+      (filter === 'All' ||
+        libraryCategory(d) === filter ||
+        (filter === 'Studio' && d.factoryTags?.includes('Studio'))) &&
+      (window.FreeRigReact?.matchesCost(d) ?? true) &&
       (
         d.name +
         ' ' +
@@ -28,11 +31,11 @@ function renderLibrary() {
   $('#library-count').textContent = String(catalogue.length + DeviceShelf.count()).padStart(2, '0');
   $('#library-label').textContent = filter === 'All' ? 'ALL DEVICES' : filter.toUpperCase();
   $('#library').innerHTML =
-    DeviceShelf.cards(filter, q) +
+    ((window.FreeRigReact?.matchesCost({}) ?? true) ? DeviceShelf.cards(filter, q) : '') +
       items
         .map(
           (d) =>
-            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small><small>${escapeHTML((window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' · '))}</small></span><span class="plus">＋</span></button>`,
+            `<button draggable="false" class="library-item" data-add="${d.key}" aria-label="Add ${d.name}"><span class="library-gear">${GearLooks.art({ key: d.key })}</span><span><strong>${d.name}</strong><small>${d.detail}</small>${d.dspCost ? `<small>DSP · ${escapeHTML(d.dspCost.tier)}</small>` : ''}<small>${escapeHTML((window.FreeRigReact?.deviceTags({ key: d.key }) || []).join(' · '))}</small></span><span class="plus">＋</span></button>`,
         )
         .join('') || '<div class="empty">No matching devices. Try another search.</div>';
 }

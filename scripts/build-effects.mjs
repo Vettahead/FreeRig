@@ -1,11 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
+import { guideFor } from './effect-guides.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const readJson = async (path) =>
   JSON.parse((await readFile(resolve(root, path), 'utf8')).replace(/^\uFEFF/, ''));
 const native = await readJson('native/effects-catalogue.json');
 const order = await readJson('effects/index.json');
+const costs = await readJson('effects/dsp-costs.json');
 const seen = new Set();
 const data = [];
 // Native DSP owns parameter ranges/order. Human-authored descriptors own presentation.
@@ -20,6 +22,16 @@ for (const file of order) {
     throw new Error(`${file}: native fields must not be duplicated`);
   if (!descriptor.name || !descriptor.category)
     throw new Error(`${file}: name and category are required`);
+  if (!descriptor.description?.trim())
+    throw new Error(`${file}: a playing description is required`);
+  const cost = costs.effects[descriptor.key];
+  if (
+    cost &&
+    (!['Light', 'Moderate', 'Heavy'].includes(cost.tier) ||
+      !Number.isFinite(cost.microseconds) ||
+      cost.microseconds < 0)
+  )
+    throw new Error(`${file}: invalid DSP benchmark`);
   // Browser defaults are curated playable starting settings, not necessarily raw DSP defaults.
   const { defaults, ...presentation } = descriptor;
   if (!Array.isArray(defaults)) throw new Error(`${file}: defaults are required`);
@@ -39,6 +51,8 @@ for (const file of order) {
       parameter.map((value, field) => (field === 3 ? defaults[index] : value)),
     ),
     ...descriptor,
+    ...(await guideFor(descriptor, engine)),
+    dspCost: costs.effects[descriptor.key] ?? null,
   });
 }
 if (seen.size !== native.length)

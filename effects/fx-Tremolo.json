@@ -18,5 +18,7 @@
       "values": [67.5, 50]
     }
   ],
-  "defaults": [45, 50]
+  "defaults": [45, 50],
+  "description": "Amplitude modulation changes loudness rhythmically without intentionally changing pitch. Rate sets pulse speed; depth sets how far the volume falls on each cycle.",
+  "factoryTags": []
 }

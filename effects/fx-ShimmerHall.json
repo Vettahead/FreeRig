@@ -22,5 +22,7 @@
       "values": [5, 50, 4500, 30, -12]
     }
   ],
-  "defaults": [6, 45, 7000, 30, 12]
+  "defaults": [6, 45, 7000, 30, 12],
+  "description": "A hall reverb with a pitch-shifted shimmer layer. Decay sets the tail length, Shimmer adds the pitched layer, Pitch selects its interval and High cut softens its top end.",
+  "factoryTags": []
 }

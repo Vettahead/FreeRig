@@ -16,5 +16,6 @@
       "values": [50, 50, 50]
     }
   ],
-  "defaults": [50, 50, 50]
+  "defaults": [50, 50, 50],
+  "factoryTags": []
 }

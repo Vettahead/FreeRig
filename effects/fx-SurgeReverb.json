@@ -22,5 +22,7 @@
       "values": [25, 20, 8, 100, 100, 50, 20, 20, 0, 45]
     }
   ],
-  "defaults": [25, 0, 4, 100, 100, 50, 20, 20, 0, 30]
+  "defaults": [25, 0, 4, 100, 100, 50, 20, 20, 0, 30],
+  "description": "Surge algorithmic reverb with independent diffusion, buildup, modulation and low/high-frequency damping. Pre-delay separates the attack from the room; decay sets the sustained ambience.",
+  "factoryTags": []
 }

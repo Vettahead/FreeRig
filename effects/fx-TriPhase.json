@@ -22,5 +22,7 @@
   "detail": "Modulation · Cleveland Music Co. / FreeRig port",
   "icon": "∿",
   "sync": false,
-  "defaults": [1, 0.6000000238418579, 0, 100, 0]
+  "defaults": [1, 0.6000000238418579, 0, 100, 0],
+  "description": "Selectable 45, 90 and Stone phaser algorithms. Choose a model, set the sweep rate, then adjust Colour and Mix. Output trims level without changing the selected model. The choices are algorithm ports, not a measured guarantee of physical-pedal equivalence.",
+  "factoryTags": []
 }

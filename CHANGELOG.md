@@ -1,3 +1,11 @@
+## Alpha 25 — 30 September 2026
+
+- Studio factory tags group 41 recording-oriented processors without losing effect categories or user tags.
+- Detailed playing guides and control ranges for 200 native effects, including 156 attributed Airwindows manuals; expanded legacy pedal descriptions.
+- React Quality / DSP cost filters in Collection and replacement picker, with measured per-device costs and explicit Unmeasured state.
+- Component CSS now bundles correctly; no DSP arithmetic or patch contracts changed.
+- Documented non-NAM circuit-amp and multi-mic cabinet research; these prospective ports are not included in this release.
+
 ## 28 September 2026 — Alpha 24: 200 effects and tags
 
 Expanded to 200 separately registered native effects: 156 pinned MIT Airwindows imports plus Centaur, ten-band EQ, manual/envelope wah, standalone studio pitch, granular/reverse delay, vocoder and a temporary stereo practice looper. Preserved existing pedal presets/keys. Added category/description search, source notes, EQ faders and looper buttons. Bird Treble Boost corrects the misleading Scream Drive display name without changing its DSP. Includes the earlier patch/device tags, optional propagation, captured-pedal level comparisons, combined-cab guidance and up/down strip bypass gestures.

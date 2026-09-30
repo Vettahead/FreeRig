@@ -18,5 +18,7 @@
       "values": [67.5, 55]
     }
   ],
-  "defaults": [45, 55]
+  "defaults": [45, 55],
+  "description": "Ensemble modulation layers shifting delays for a broader chorus texture. Use gently for width or increase modulation for an obvious multi-voice swirl.",
+  "factoryTags": []
 }

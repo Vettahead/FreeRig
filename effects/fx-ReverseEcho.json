@@ -6,7 +6,7 @@
   "colour": "#79a69b",
   "type": "Pedals",
   "detail": "Delay · Reverse Echo",
-  "description": "Reversed slices with edge fades. Slice changes apply at the next boundary.",
+  "description": "Plays captured slices backwards with short edge fades. Slice sets the phrase length and updates at a boundary; Feedback repeats the reversed sound and Mix retains your immediate dry attack. The reversed wet phrase necessarily arrives later.",
   "icon": "◈",
   "sync": false,
   "defaults": [500, 25, 30],
@@ -15,5 +15,6 @@
       "name": "Starting point",
       "values": [500, 25, 30]
     }
-  ]
+  ],
+  "factoryTags": []
 }

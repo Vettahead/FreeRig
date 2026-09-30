@@ -18,5 +18,7 @@
       "values": [3.375, 100, 8000, 40]
     }
   ],
-  "defaults": [2.5, 100, 8000, 25]
+  "defaults": [2.5, 100, 8000, 25],
+  "description": "Dragonfly hall reverb for large, diffuse spaces. Adjust size, decay and damping to move between a defined room and a long, softer concert-hall tail.",
+  "factoryTags": []
 }

@@ -15,7 +15,11 @@ try {
   /* Unavailable storage must not prevent playing. Writes report failure. */
 }
 export function deviceTags(block: Pick<Block, 'key' | 'assetId' | 'tone3000' | 'tags'>): string[] {
-  return normaliseTags(block.tags ?? entries[deviceIdentity(block)] ?? []);
+  const factory =
+    typeof window !== 'undefined' && !block.assetId && !block.tone3000
+      ? (window.EffectsCatalogue?.find((d) => d.key === block.key)?.factoryTags ?? [])
+      : [];
+  return normaliseTags([...factory, ...(block.tags ?? entries[deviceIdentity(block)] ?? [])]);
 }
 export function saveDeviceTags(changes: Array<{ block: Block; tags: string[] }>) {
   const next = { ...entries };

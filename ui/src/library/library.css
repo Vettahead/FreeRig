@@ -1,0 +1,37 @@
+.effect-cost-filter {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  padding: 10px 0;
+  font-size: 12px;
+}
+.effect-cost-filter small {
+  grid-column: 1 / -1;
+  color: var(--muted, #aeb9b8);
+  font-size: 11px;
+}
+.effect-cost-filter select {
+  background: #202a2b;
+  color: #eee;
+  border: 1px solid #596365;
+  border-radius: 5px;
+  padding: 4px;
+}
+.effect-guide {
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.effect-guide summary {
+  cursor: pointer;
+}
+.effect-guide p {
+  white-space: pre-wrap;
+}
+.effect-guide .developer-manual {
+  max-height: 280px;
+  overflow: auto;
+  white-space: pre-wrap;
+  padding: 12px;
+  background: #152021;
+}

@@ -11,6 +11,10 @@ export function TagEditor({ rig, block }: { rig: Rig; block?: Block }) {
     [pending, setPending] = useState(''),
     [error, setError] = useState('');
   const tags = block ? deviceTags(block) : normaliseTags(rig.tags);
+  const factoryTags =
+    block && !block.assetId && !block.tone3000
+      ? (window.EffectsCatalogue?.find((d) => d.key === block.key)?.factoryTags ?? [])
+      : [];
   useEffect(() => {
     if (open) dialog.current?.showModal();
     else dialog.current?.close();
@@ -59,10 +63,12 @@ export function TagEditor({ rig, block }: { rig: Rig; block?: Block }) {
             {tags.map((tag) => (
               <button
                 key={tag}
+                disabled={factoryTags.includes(tag)}
                 onClick={() => change(tags.filter((t) => t !== tag))}
-                aria-label={`Remove tag ${tag}`}
+                aria-label={factoryTags.includes(tag) ? `Factory tag ${tag}` : `Remove tag ${tag}`}
               >
-                {tag} ×
+                {tag}
+                {factoryTags.includes(tag) ? ' · factory' : ' ×'}
               </button>
             ))}
           </div>

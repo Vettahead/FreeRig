@@ -26,6 +26,10 @@ export interface Sound {
 }
 export type Param = [string, number, number, number, string];
 export interface Definition {
+  factoryTags?: string[];
+  guide?: string;
+  manual?: string;
+  dspCost?: { tier: string; microseconds: number };
   description?: string;
   source?: string;
   key: string;
@@ -53,6 +57,7 @@ export interface EditorProps {
   note: string;
 }
 export interface Actions {
+  refreshLibrary(): void;
   setTags(id: string | null, tags: string[], propagate?: string): void;
   setParameter(id: string, index: number, value: number): void;
   setBypass(id: string, on: boolean): void;
@@ -68,6 +73,7 @@ export interface Actions {
 }
 declare global {
   interface Window {
+    EffectsCatalogue?: Definition[];
     SlotBoard: { slots(s: Rig): Slot[]; label(slot: Slot): string };
     GearLooks: { art(b: Block, on?: boolean): string };
     NativeDesktop: {
@@ -83,6 +89,8 @@ declare global {
     DeviceShelf: { definition(b: Block): Definition; selector(b: Block): string };
     EffectTools: { controls(b: Block): string; faceState(d: Definition, v: Sound): Sound };
     FreeRigReact: {
+      matchesCost(definition: Pick<Definition, 'dspCost'>): boolean;
+      mountEffectFilters(host: HTMLElement | null): void;
       deviceTags(block: Pick<Block, 'key' | 'assetId' | 'tone3000' | 'tags'>): string[];
       updated(rig: Rig): void;
       editTags(rig: Rig, id: string | null, tags: string[], propagate?: string): Rig;

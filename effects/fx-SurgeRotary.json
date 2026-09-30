@@ -18,5 +18,7 @@
       "values": [0.5, 40, 40, 0.7, 0, 0, 0, 48]
     }
   ],
-  "defaults": [0.5, 40, 40, 0.7, 0, 0, 0, 30]
+  "defaults": [0.5, 40, 40, 0.7, 0, 0, 0, 30],
+  "description": "Surge rotary-speaker effect creates rotating modulation and stereo movement. This is a rotating-speaker effect rather than a static microphone-positioned cabinet IR.",
+  "factoryTags": []
 }

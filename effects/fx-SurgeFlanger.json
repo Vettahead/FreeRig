@@ -18,5 +18,7 @@
       "values": [0, 0, 0.5, 40, 4, 60, 0, 33.75, 10, 0, 48]
     }
   ],
-  "defaults": [0, 0, 0.5, 40, 4, 60, 0, 25, 10, 0, 30]
+  "defaults": [0, 0, 0.5, 40, 4, 60, 0, 25, 10, 0, 30],
+  "description": "Surge flanging uses short modulated delays to create moving comb-filter notches. Feedback emphasizes the sweep; rate and depth govern movement.",
+  "factoryTags": []
 }

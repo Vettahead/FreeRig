@@ -6,7 +6,7 @@
   "colour": "#79a69b",
   "type": "Pedals",
   "detail": "Synth · Sixteen Band Vocoder",
-  "description": "Guitar envelopes control sixteen bands on a sawtooth carrier. Carrier is a fixed synth note, not automatic pitch tracking.",
+  "description": "Sixteen envelope-controlled bands transfer guitar articulation onto a sawtooth carrier. Carrier is a fixed oscillator frequency, not automatic guitar pitch tracking. Formant shifts the band relationship, Release smooths the envelopes and Mix blends the synthetic result.",
   "icon": "◈",
   "sync": false,
   "defaults": [110, 1, 80, 70],
@@ -15,5 +15,6 @@
       "name": "Starting point",
       "values": [110, 1, 80, 70]
     }
-  ]
+  ],
+  "factoryTags": []
 }

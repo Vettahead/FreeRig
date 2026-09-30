@@ -18,5 +18,7 @@
       "values": [50, 67.5, 100, 0, 40]
     }
   ],
-  "defaults": [50, 50, 100, 0, 25]
+  "defaults": [50, 50, 100, 0, 25],
+  "description": "Airwindows reverb for a smooth coating of ambience. Use a restrained wet balance for space around the dry guitar, or increase it for a more enveloping tail.",
+  "factoryTags": []
 }

@@ -18,5 +18,7 @@
       "values": [67.5, 60, 24, 50, 50, 40]
     }
   ],
-  "defaults": [50, 60, 24, 50, 50, 25]
+  "defaults": [50, 60, 24, 50, 50, 25],
+  "description": "Airwindows cathedral-style reverb builds a large, sustained space. Long tails suit sparse playing; dense chords and high wet levels can overlap into a wash.",
+  "factoryTags": []
 }

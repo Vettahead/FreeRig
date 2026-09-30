@@ -25,6 +25,7 @@ function load(name, imports = {}) {
     module: { exports },
     exports,
     localStorage: storage,
+    window: { EffectsCatalogue: require('./effects-catalogue.js') },
     require: (id) => {
       if (!(id in imports)) throw new Error(id);
       return imports[id];
@@ -36,6 +37,14 @@ function load(name, imports = {}) {
 const model = load('model');
 let store = load('store', { './model': model });
 const plain = (value) => JSON.parse(JSON.stringify(value));
+assert.deepEqual(plain(store.deviceTags({ key: 'fx-DeBess', tags: ['Vocals'] })), [
+  'Studio',
+  'Vocals',
+]);
+assert.deepEqual(
+  plain(store.deviceTags({ key: 'fx-DeBess', assetId: 'custom', tags: ['Vocals'] })),
+  ['Vocals'],
+);
 let rig = P.createStarter();
 const untouched = JSON.stringify(rig.scenes),
   wiring = JSON.stringify(rig.connections);

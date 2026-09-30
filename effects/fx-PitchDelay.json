@@ -18,5 +18,7 @@
       "values": [40, 33.75, 50, 0, 58, 40]
     }
   ],
-  "defaults": [40, 25, 50, 0, 58, 25]
+  "defaults": [40, 25, 50, 0, 58, 25],
+  "description": "Airwindows delay with pitch manipulation in the repeat path. Use restrained feedback first: pitch changes can accumulate into increasingly extreme textures.",
+  "factoryTags": []
 }

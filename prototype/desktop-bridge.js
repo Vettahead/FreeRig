@@ -242,7 +242,7 @@ window.NativeDesktop = (() => {
         document.querySelector('.chain-footer').firstElementChild.textContent = running
           ? 'Native audio engine running'
           : 'Native audio engine stopped';
-        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 24';
+        document.querySelector('.version').textContent = 'FREERIG / DESKTOP ALPHA 25';
       }
       if (message.type === 'error') {
         toast(message.message);

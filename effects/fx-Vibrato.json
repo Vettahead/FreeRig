@@ -18,5 +18,7 @@
       "values": [30, 25, 40, 0, 100]
     }
   ],
-  "defaults": [30, 25, 40, 0, 100]
+  "defaults": [30, 25, 40, 0, 100],
+  "description": "Pitch modulation for a wavering sustained note. Rate changes how quickly pitch moves; depth changes its excursion. Use small depth for a more natural movement.",
+  "factoryTags": []
 }

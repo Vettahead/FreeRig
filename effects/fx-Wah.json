@@ -6,7 +6,7 @@
   "colour": "#79a69b",
   "type": "Pedals",
   "detail": "Filter · Sweep Wah",
-  "description": "Resonant wah with manual position control.",
+  "description": "A resonant manually positioned wah filter. Position sweeps its range; resonance emphasizes the peak. It does not automatically follow your picking or claim a particular vintage wah circuit.",
   "icon": "◈",
   "sync": false,
   "defaults": [40, 3, 100],
@@ -15,5 +15,6 @@
       "name": "Starting point",
       "values": [40, 3, 100]
     }
-  ]
+  ],
+  "factoryTags": []
 }

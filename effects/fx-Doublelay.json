@@ -18,5 +18,7 @@
       "values": [20, 20, 30, 25, 48]
     }
   ],
-  "defaults": [20, 20, 30, 25, 30]
+  "defaults": [20, 20, 30, 25, 30],
+  "description": "Airwindows stereo double delay with detuning. Independent left/right delays create width; feedback extends the repeats and Dry/Wet blends the processed paths with your input.",
+  "factoryTags": []
 }

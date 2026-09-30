@@ -18,5 +18,7 @@
       "values": [50, 67.5, 70, 50, 50, 0, 40]
     }
   ],
-  "defaults": [50, 50, 70, 50, 50, 0, 25]
+  "defaults": [50, 50, 70, 50, 50, 0, 25],
+  "description": "Surge spring-style reverb. Size, decay and reflections shape the spring response; Spin and Chaos introduce motion while Damping controls the brightness of the tail.",
+  "factoryTags": []
 }

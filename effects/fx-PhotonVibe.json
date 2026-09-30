@@ -22,5 +22,7 @@
   "detail": "Modulation · Cleveland Music Co. / FreeRig port",
   "icon": "∿",
   "sync": false,
-  "defaults": [1.2000000476837158, 65, 50, 50, 0, 0, 0]
+  "defaults": [1.2000000476837158, 65, 50, 50, 0, 0, 0],
+  "description": "Photocell-style vibe with rate, depth and photocell lag. Lag changes how the simulated cells follow the modulation; Vibrato switches the dry/wet behaviour. Feedback emphasizes the sweep and Output allows a level-matched comparison.",
+  "factoryTags": []
 }

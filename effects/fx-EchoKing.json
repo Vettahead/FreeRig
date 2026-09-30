@@ -22,5 +22,7 @@
   "detail": "Delay · Cleveland Music Co. / FreeRig port",
   "icon": "≈",
   "sync": false,
-  "defaults": [320, 35, 70, 50, 25, 30, 2, 1]
+  "defaults": [320, 35, 70, 50, 25, 30, 2, 1],
+  "description": "Tape-echo port with selectable EP1, EP2 and EP3 characters and new/stock/worn tape modes. Record level changes drive into the echo, Tone colours repeats and Wow and flutter adds speed instability. Feedback and Mix control persistence and balance.",
+  "factoryTags": []
 }

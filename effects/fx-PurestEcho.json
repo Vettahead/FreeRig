@@ -18,5 +18,7 @@
       "values": [52.5, 30, 20, 12, 8]
     }
   ],
-  "defaults": [35, 30, 20, 12, 8]
+  "defaults": [35, 30, 20, 12, 8],
+  "description": "Airwindows multi-tap echo for distinct rhythmic repeats. Balance the taps and dry signal to build a pattern without an unnecessarily dense wash.",
+  "factoryTags": []
 }

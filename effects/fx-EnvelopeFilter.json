@@ -6,7 +6,7 @@
   "colour": "#79a69b",
   "type": "Pedals",
   "detail": "Filter · Envelope Wah",
-  "description": "Pick-sensitive wah. Sensitivity controls how strongly your playing opens the filter.",
+  "description": "A pick-sensitive resonant filter. Sensitivity sets how strongly input level opens the wah, so guitar output and preceding boosts affect its motion. Start before distortion with consistent picking, then adjust the envelope response.",
   "icon": "◈",
   "sync": false,
   "defaults": [40, 3, 100],
@@ -15,5 +15,6 @@
       "name": "Starting point",
       "values": [40, 3, 100]
     }
-  ]
+  ],
+  "factoryTags": []
 }

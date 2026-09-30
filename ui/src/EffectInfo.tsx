@@ -15,6 +15,26 @@ export function EffectInfo({
   return (
     <>
       {definition.description && <p className="effect-description">{definition.description}</p>}
+      {definition.factoryTags?.includes('Studio') && <small>Studio · also usable on guitar</small>}
+      {definition.dspCost && (
+        <p className="effect-description">
+          DSP: {definition.dspCost.tier} · {definition.dspCost.microseconds} μs per 128-sample block
+          at 48 kHz on the reference PC. Settings and hardware change actual load; this is not
+          latency.
+        </p>
+      )}
+      {definition.guide && (
+        <details className="effect-guide">
+          <summary>Playing guide &amp; controls</summary>
+          <p>{definition.guide}</p>
+          {definition.manual && (
+            <details>
+              <summary>Original Airwindows developer notes</summary>
+              <div className="developer-manual">{definition.manual}</div>
+            </details>
+          )}
+        </details>
+      )}
       {definition.source?.startsWith('https://github.com/') && (
         <a className="effect-source" href={definition.source} target="_blank" rel="noreferrer">
           Algorithm notes &amp; source ↗

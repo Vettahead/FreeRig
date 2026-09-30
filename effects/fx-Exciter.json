@@ -16,5 +16,6 @@
       "values": [60, 0]
     }
   ],
-  "defaults": [60, 0]
+  "defaults": [60, 0],
+  "factoryTags": ["Studio"]
 }

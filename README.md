@@ -4,7 +4,7 @@ A Windows guitar suite with a WebView2/React interface, native ASIO / Windows au
 
 ## Run
 
-Open `releases/FreeRig-alpha-24/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
+Open `releases/FreeRig-alpha-25/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
 
 ## Audio compatibility
 
@@ -60,3 +60,5 @@ This refactor preserves patch keys, parameter order, processing maths and the ex
 ## History and licences
 
 See [CHANGELOG](CHANGELOG.md) for changes and [earlier release notes](docs/RELEASE-HISTORY.md) for the detailed development history. Upstream effect licences and revisions are recorded in `native/vendor`; packaged notices are in each release's `licenses` folder. The project licence is in [LICENSE](LICENSE).
+
+Alpha 25 adds Studio factory tags, detailed effect guides and measured DSP-cost filters. See [effect browsing](docs/EFFECT-BROWSING.md) and [non-NAM amp/cab research](docs/AMP-CAB-RESEARCH.md).

@@ -18,5 +18,7 @@
       "values": [3.375, 100, 8000, 40]
     }
   ],
-  "defaults": [2.5, 100, 8000, 25]
+  "defaults": [2.5, 100, 8000, 25],
+  "description": "Dragonfly room reverb for a smaller acoustic space. Early reflections give position and depth; decay and damping shape the later room sound.",
+  "factoryTags": []
 }

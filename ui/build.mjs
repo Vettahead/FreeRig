@@ -1,5 +1,4 @@
 import { build } from 'esbuild';
-import { copyFile } from 'node:fs/promises';
 await build({
   entryPoints: ['src/main.tsx'],
   bundle: true,
@@ -11,4 +10,3 @@ await build({
   outfile: '../prototype/react-ui.js',
   define: { 'process.env.NODE_ENV': '"production"' },
 });
-await copyFile('src/interface.css', '../prototype/react-ui.css');

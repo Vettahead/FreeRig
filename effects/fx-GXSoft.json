@@ -18,5 +18,7 @@
       "values": [1.99]
     }
   ],
-  "defaults": [1.5]
+  "defaults": [1.5],
+  "description": "Guitarix soft-fuzz algorithm with a single fuzz control. It changes the nonlinear character rather than offering an independent output-level adjustment.",
+  "factoryTags": []
 }

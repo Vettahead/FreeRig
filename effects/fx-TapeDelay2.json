@@ -18,5 +18,7 @@
       "values": [40, 40.5, 50, 0, 12, 40]
     }
   ],
-  "defaults": [40, 30, 50, 0, 12, 25]
+  "defaults": [40, 30, 50, 0, 12, 25],
+  "description": "Airwindows tape-style delay with regeneration, resonant filtering and flutter. Regen feeds repeats back, Freq and Reso shape them, and Flutter adds tape-speed instability.",
+  "factoryTags": []
 }

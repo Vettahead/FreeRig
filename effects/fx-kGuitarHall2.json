@@ -18,5 +18,7 @@
       "values": [60.75000000000001, 60, 50, 50, 50, 40]
     }
   ],
-  "defaults": [45, 60, 50, 50, 50, 25]
+  "defaults": [45, 60, 50, 50, 50, 25],
+  "description": "Airwindows guitar-oriented hall reverb. Keep the dry attack audible with a moderate mix, then adjust the room character and tail to suit the phrase.",
+  "factoryTags": []
 }

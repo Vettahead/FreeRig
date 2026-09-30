@@ -18,5 +18,7 @@
       "values": [0.75, 0.5]
     }
   ],
-  "defaults": [0.5, 0.5]
+  "defaults": [0.5, 0.5],
+  "description": "Guitarix distortion-plus algorithm. Drive increases saturation while Volume sets the resulting level; the two controls affect how hard the following amplifier is driven.",
+  "factoryTags": []
 }

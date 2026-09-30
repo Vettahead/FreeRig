@@ -10,6 +10,8 @@
     {
       key: 'nampedal',
       name: 'Capture Pedal',
+      description:
+        'Loads a saved NAM pedal capture. Its distortion is determined by the recorded pedal settings, not an extra virtual gain knob. Input trim changes the level hitting the capture; Output changes how hard it drives the following amp. Begin at 0 dB trim and compare bypass at matched loudness. Use a separate amp and cabinet unless the capture explicitly includes them.',
       type: 'Pedals',
       icon: '↯',
       colour: '#8f7f9e',
@@ -22,6 +24,8 @@
     {
       key: 'gate',
       name: 'Quiet Gate',
+      description:
+        'Reduces noise between phrases. Set Threshold just above the idle noise floor, then use Release to let notes fade naturally. Place early in the chain to avoid cutting off delay and reverb tails. Too high a threshold removes quiet notes; too short a release chops sustain.',
       type: 'Utility',
       icon: '⊣',
       colour: '#a7b995',
@@ -34,6 +38,8 @@
     {
       key: 'drive',
       name: 'Moss Drive',
+      description:
+        'A stock overdrive with Drive, Tone and Level. Drive increases saturation, Tone adjusts brightness and Level sets the signal sent into the following amp. Start before the amp and level-match bypass before comparing. A low Drive setting with high Level still pushes the amplifier into distortion.',
       type: 'Pedals',
       icon: '↯',
       colour: '#bdcf80',
@@ -90,6 +96,8 @@
     {
       key: 'delay',
       name: 'Tape Echo',
+      description:
+        'Stereo echo with Time, Feedback and Mix. Time sets repeat spacing, Feedback sets persistence and Mix balances repeats against the dry guitar. Start after the amp for clear echoes; before a driven amp, the repeats also distort. Raise feedback gradually to avoid a dense wash.',
       type: 'Pedals',
       icon: '≈',
       colour: '#82b7ba',
@@ -103,6 +111,8 @@
     {
       key: 'reverb',
       name: 'Open Space',
+      description:
+        'Stock algorithmic reverb. Decay sets the tail length, Tone changes its brightness and Mix sets the wet balance. Start after the amp or cabinet with a low mix; longer decay works best with room between phrases. It is a creative room effect, not a cabinet IR.',
       type: 'Pedals',
       icon: '✧',
       colour: '#b8a0c8',
@@ -116,6 +126,8 @@
     {
       key: 'chorus',
       name: 'Slow Tide',
+      description:
+        'Chorus adds a modulated delayed voice to the guitar. Rate sets movement speed, Depth sets the modulation excursion and Mix blends the moving voice with dry signal. Start slow and subtle for width, or raise depth for an obvious detuned shimmer.',
       type: 'Pedals',
       icon: '∿',
       colour: '#79b5ad',
@@ -129,6 +141,8 @@
     {
       key: 'compressor',
       name: 'Soft Press',
+      description:
+        'Stock compressor for controlling dynamics. Threshold selects where compression begins, Ratio sets its strength and Attack controls how quickly peaks are reduced. A slower attack preserves pick definition. Before the amp it changes how the amp is driven; after the cabinet it evens out the finished sound.',
       type: 'Utility',
       icon: '⇥',
       colour: '#d5a591',

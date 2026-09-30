@@ -18,5 +18,7 @@
       "values": [3.375, 100, 8000, 40]
     }
   ],
-  "defaults": [2.5, 100, 8000, 25]
+  "defaults": [2.5, 100, 8000, 25],
+  "description": "Dragonfly plate reverb provides a dense, smooth tail rather than a literal speaker cabinet. Useful for adding sustain and space while preserving a distinct dry attack.",
+  "factoryTags": []
 }

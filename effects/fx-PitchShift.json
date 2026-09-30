@@ -15,5 +15,6 @@
       "name": "Starting point",
       "values": [12, 0, 100]
     }
-  ]
+  ],
+  "factoryTags": ["Studio"]
 }

@@ -51,6 +51,7 @@ $('#modal-content').addEventListener('input', (e) => {
   }
 });
 $('#modal').addEventListener('close', () => {
+  window.FreeRigReact?.mountEffectFilters(null);
   devicePicker = null;
   chosenSlot = null;
   $('#modal').classList.remove('device-picker-modal');
@@ -58,6 +59,10 @@ $('#modal').addEventListener('close', () => {
 
 // Explicit command adapter: all mutations keep the existing Undo/save/native sync path.
 window.FreeRigReact?.connect({
+  refreshLibrary: () => {
+    renderLibrary();
+    if (devicePicker) renderDevicePicker();
+  },
   setTags: (id, tags, propagate) => {
     const next = FreeRigReact.editTags(state, id, tags, propagate);
     checkpoint();

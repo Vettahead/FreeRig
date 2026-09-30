@@ -18,5 +18,7 @@
       "values": [380, 47.25, 45, 35, 44.800000000000004]
     }
   ],
-  "defaults": [380, 35, 45, 35, 28]
+  "defaults": [380, 35, 45, 35, 28],
+  "description": "A stereo delay that smears repeats through diffusion. Time and feedback set the echo pattern; Diffusion moves from distinct repeats toward a wash and Width spreads the result.",
+  "factoryTags": []
 }

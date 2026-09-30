@@ -22,5 +22,7 @@
       "values": [450, -1, 40, 8000, 50, 0.5, 0, 0, 0, 80, 45]
     }
   ],
-  "defaults": [450, 1, 25, 8000, 50, 0.5, 0, 0, 0, 80, 30]
+  "defaults": [450, 1, 25, 8000, 50, 0.5, 0, 0, 0, 80, 30],
+  "description": "Surge floating-delay processing combines variable playback rate, feedback and a resonant filter. Pitch Depth and Filter Depth animate the repeats; negative playback rates create reversed textures.",
+  "factoryTags": []
 }

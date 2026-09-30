@@ -18,5 +18,7 @@
       "values": [50, 50, 35, 100, 80, 48]
     }
   ],
-  "defaults": [50, 50, 35, 100, 80, 30]
+  "defaults": [50, 50, 35, 100, 80, 30],
+  "description": "Airwindows spacious reverb for broad, sustained ambience. Its deliberately coloured diffusion is useful for ambient guitar rather than a literal measured room.",
+  "factoryTags": []
 }
