@@ -13,6 +13,7 @@ import {
 } from './profiles';
 import './hardware.css';
 import './families.css';
+import './control-face.css';
 
 // Only the enclosure is raster artwork. Parameter order, range, labels and
 // scene values come from the processor descriptor, through the existing bridge.
@@ -38,7 +39,7 @@ export function RenderedHardware({
       if (!host.closest('.showing-device') || !art.naturalWidth || !host.clientHeight) return;
       const width = Math.min(
         host.clientWidth - 24,
-        ((host.clientHeight - 24) * art.naturalWidth) / art.naturalHeight,
+        ((host.clientHeight - 16) * art.naturalWidth) / art.naturalHeight,
       );
       device.style.setProperty('--fitted-width', `${Math.max(0, width)}px`);
     };
@@ -55,8 +56,15 @@ export function RenderedHardware({
   return (
     <section
       ref={stage}
-      className={`rendered-stage rendered-${hardwareClass(profile)} family-${profile} ${isCombo(profile) ? 'family-combo' : ''} ${count > 6 ? 'many-controls' : ''}`}
-      style={{ '--control-count': Math.min(count, 6) } as CSSProperties}
+      className={`rendered-stage rendered-${hardwareClass(profile)} family-${profile} ${isCombo(profile) ? 'family-combo' : ''} ${count > 3 && !isAmplifier(profile) ? 'many-controls' : ''} ${!isCabinet(profile) ? `control-face ${isAmplifier(profile) ? 'control-face-amp' : 'control-face-pedal'}` : ''}`}
+      style={
+        {
+          '--control-count': Math.min(
+            count,
+            isAmplifier(profile) ? 6 : count > 6 ? 4 : count > 3 ? 3 : count,
+          ),
+        } as CSSProperties
+      }
       aria-label={`${d.name} controls`}
     >
       <div className="rendered-device">

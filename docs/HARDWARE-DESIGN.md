@@ -57,3 +57,9 @@ Drive/delay edit prompt: remove the entire background outside the enclosure and 
 ## Validation limits
 
 Browser validation covers live values, bypass and scene recall, device selection and the first artwork layouts. 1080p is the primary view; smaller windows retain scrolling. This is a first selected set, not a finished visual overhaul of every effect. Audio validation is offline only; no live ASIO listening was performed for this visual release.
+
+## Alpha 40 control faces
+
+`ui/src/hardware/control-face.css` owns the selected amp/pedal control regions. Compact pedals preserve a portrait silhouette with controls, identity and footswitch zones; dense processors use a wide control grid and a shared name/switch footer. Amps use a dedicated aligned control strip. Decorative thumbnails retain their existing geometry. Descriptor indices, values and gesture handlers remain the source of truth.
+
+The editor places optional settings beside the hardware (`editor-workbench`), with independent scrolling for long settings and an inline guide. Primary sound controls remain visible.

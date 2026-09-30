@@ -1,3 +1,9 @@
+## Alpha 40 � 30 September 2026
+
+- Reworked amp and pedal control faces into distinct control, identity and bypass regions with aligned labels, knobs and numeric values.
+- Restored device settings beside the hardware on the same page; the device guide expands inline. Sound controls remain visible while optional settings scroll.
+- Preserved audio processing, parameter indices, saved patches and scene behaviour.
+
 ## Alpha 39 — 30 September 2026
 
 - The executable and running desktop window use a multi-size FR icon built from the original logo’s script outlines.

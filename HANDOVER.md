@@ -1,3 +1,9 @@
+## 30 September 2026 — Alpha 40: readable device faces and same-page settings
+
+Reworked selected amp/pedal controls into explicit label/knob/value cells and separate identity/bypass regions. Compact stompboxes follow the supplied Quiet Gate reference, while more than three controls use the wide layout. Amps retain a single aligned strip up to six controls. Same-page settings column replaces the Sound/Settings/Guide page switch; long options scroll independently and the guide expands inline. No DSP, native code, parameter indices or saved contracts changed.
+
+Validation: npm run check passes 15 tests; desktop build passes. Browser checked 1280x720 and 1920x1080, compact gate, amp, 12-control Phase Sweep, numeric edits, bypass and same-page appearance controls. No live audio listening. Preview: docs/screenshots/alpha40-controls.png. Release target: releases/FreeRig-alpha-40/FreeRig.exe and matching portable/source archives. Mission Control unavailable; handover retained locally.
+
 ## 30 September 2026 â€” Alpha 39: usable editor viewport and FR app icon
 
 Replaced the tall scrolling editor with a viewport-budgeted workspace: compact patch/scenes, chain, persistent actions, and Sound / Device settings / Guide pages. Hardware fits its available area using the source image aspect ratio and ResizeObserver; controls retain descriptor indices and DOM text. Cabinet microphone controls use two columns; EQ faders fit the available height. Optional settings and long guides may scroll, but the primary sound page and navigation stay visible. Clicking the selected chain device returns to the full board.

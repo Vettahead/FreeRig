@@ -1,5 +1,50 @@
-/* Editor mode budgets the actual app viewport. Main actions remain outside the
-   content pages; only optional settings/manual content can scroll. */
+/* The hardware and settings share a workspace. Only the settings column can
+   scroll; the selected device and its primary sound controls stay in view. */
+.editor-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  flex: 1;
+  min-height: 0;
+}
+.editor-workbench > .editor-sound {
+  min-width: 0;
+}
+.editor-workbench > .editor-settings {
+  border-left: 1px solid #ffffff18;
+  background: #19262a;
+  padding: 14px;
+  font-size: 12px;
+}
+.editor-settings > h3 {
+  margin: 0 0 14px;
+  font-size: 13px;
+}
+.editor-settings .compat-controls > *,
+.editor-settings .placement-tools,
+.editor-settings .device-footer {
+  max-width: 100%;
+  min-width: 0;
+}
+.editor-settings .placement-tools {
+  display: grid;
+  gap: 10px;
+}
+.editor-settings select {
+  max-width: 100%;
+}
+.editor-settings .editor-guide {
+  margin-top: 18px;
+  border-top: 1px solid #ffffff18;
+  padding-top: 14px;
+}
+.editor-settings .editor-guide summary {
+  cursor: pointer;
+}
+@media (max-width: 1400px) {
+  .editor-workbench {
+    grid-template-columns: minmax(0, 1fr) 250px;
+  }
+}
 .app:has(.showing-device) > main {
   display: flex;
   flex-direction: column;
@@ -356,13 +401,6 @@ main:has(.showing-device) .chain-shell {
 .chain-shell.showing-device .device-drawer .overview-device > span:last-child {
   flex: none;
   line-height: 13px;
-}
-.showing-device #editor .many-controls .rendered-badge {
-  display: none;
-}
-.showing-device #editor .many-controls .physical-control label {
-  font-size: 8px;
-  letter-spacing: 0;
 }
 @media (max-height: 850px) {
   .chain-shell.showing-device .device-drawer .overview-device .rendered-thumb {

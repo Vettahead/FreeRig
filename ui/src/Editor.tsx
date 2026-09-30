@@ -9,7 +9,7 @@ import { CabinetEditor } from './cabinets/CabinetEditor';
 import { RenderedHardware } from './hardware/RenderedHardware';
 import { hardwareProfile } from './hardware/profiles';
 
-import { useState, type CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 import './editor/workspace-editor.css';
 import type { EditorProps } from './types';
 import { Hardware } from './Hardware';
@@ -18,7 +18,6 @@ function LegacyControls({ html }: { html: string }) {
   return <div className="compat-controls" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 export function Editor({ rig, block: b, definition: d, sound: v, note }: EditorProps) {
-  const [page, setPage] = useState<'Sound' | 'Device settings' | 'Guide'>('Sound');
   const pieces = (() => {
     const t = document.createElement('template');
     t.innerHTML = window.NativeDesktop.controls(b) + window.DeviceShelf.selector(b);
@@ -67,87 +66,77 @@ export function Editor({ rig, block: b, definition: d, sound: v, note }: EditorP
           </button>
         </div>
       </div>
-      <nav className="editor-pages" aria-label="Device editor sections">
-        {(['Sound', 'Device settings', 'Guide'] as const).map((item) => (
-          <button key={item} aria-pressed={page === item} onClick={() => setPage(item)}>
-            {item}
-          </button>
-        ))}
-        <span>Click the selected chain device to return to your pedalboard</span>
-      </nav>
-      <div className="editor-sound" hidden={page !== 'Sound'}>
-        <LegacyControls html={window.EffectTools.controls(b)} />
-        <div className="editor-body">
-          {d.cabinetChoices ? (
-            <CabinetEditor block={b} definition={d} sound={v} />
-          ) : b.key === 'fx-GraphicEQ' ? (
-            <GraphicEqualizer block={b} definition={d} sound={v} />
-          ) : profile ? (
-            <RenderedHardware block={b} profile={profile} definition={d} sound={faceState} />
-          ) : (
-            <Hardware html={face} d={d} v={faceState} />
-          )}
+      <div className="editor-workbench">
+        <div className="editor-sound">
+          <LegacyControls html={window.EffectTools.controls(b)} />
+          <div className="editor-body">
+            {d.cabinetChoices ? (
+              <CabinetEditor block={b} definition={d} sound={v} />
+            ) : b.key === 'fx-GraphicEQ' ? (
+              <GraphicEqualizer block={b} definition={d} sound={v} />
+            ) : profile ? (
+              <RenderedHardware block={b} profile={profile} definition={d} sound={faceState} />
+            ) : (
+              <Hardware html={face} d={d} v={faceState} />
+            )}
+          </div>
         </div>
+        <section className="editor-settings editor-page" aria-label="Device settings">
+          <h3>Device settings</h3>
+          <CaptureNotice block={b} />
+          <CaptureLevels rig={rig} block={b} sound={v} />
+          <details className="device-options" open>
+            <summary>
+              Device options <span>Models, appearance &amp; placement</span>
+            </summary>
+            <LegacyControls html={pieces.options} />
+            <div className="placement-tools">
+              <label>
+                Move to{' '}
+                <select
+                  id="device-slot"
+                  aria-label="Device slot"
+                  value={`${b.slot.section}:${b.slot.index}`}
+                  onChange={() => {}}
+                >
+                  {window.SlotBoard.slots(rig).map((slot) => (
+                    <option
+                      key={`${slot.section}:${slot.index}`}
+                      value={`${slot.section}:${slot.index}`}
+                    >
+                      {window.SlotBoard.label(slot)}
+                      {slot.block && slot.block.id !== b.id ? ' (replace)' : ''}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button id="remove" aria-label="Remove device">
+                Remove from rig
+              </button>
+            </div>
+          </details>
+          <footer className="device-footer">
+            <TagEditor rig={rig} block={b} />
+            <div className="control-hint">
+              Drag a knob · Shift for fine adjustment · Top strip: drag up to bypass, down to enable
+            </div>
+            {b.tone3000 && (
+              <CreatorCredit key={JSON.stringify(b.tone3000.user)} tone={b.tone3000} />
+            )}
+          </footer>
+          <details className="editor-guide">
+            <summary>Device guide</summary>
+            <h3>{d.name}</h3>
+            <EffectInfo block={b} definition={d} sound={v} />
+            {!(d.description || d.guide || d.source) && (
+              <p>
+                Drag the hardware knobs to adjust the sound. Hold Shift for finer adjustment. Each
+                scene remembers its own settings and bypass state.
+              </p>
+            )}
+          </details>
+        </section>
       </div>
-      <section
-        className="editor-guide editor-page"
-        hidden={page !== 'Guide'}
-        aria-label="Device guide"
-      >
-        <h3>{d.name}</h3>
-        <EffectInfo block={b} definition={d} sound={v} />
-        {!(d.description || d.guide || d.source) && (
-          <p>
-            Drag the hardware knobs to adjust the sound. Hold Shift for finer adjustment. Each scene
-            remembers its own settings and bypass state.
-          </p>
-        )}
-      </section>
-      <section
-        className="editor-settings editor-page"
-        hidden={page !== 'Device settings'}
-        aria-label="Device settings"
-      >
-        <CaptureNotice block={b} />
-        <CaptureLevels rig={rig} block={b} sound={v} />
-        <details className="device-options" open>
-          <summary>
-            Device options <span>Models, appearance &amp; placement</span>
-          </summary>
-          <LegacyControls html={pieces.options} />
-          <div className="placement-tools">
-            <label>
-              Move to{' '}
-              <select
-                id="device-slot"
-                aria-label="Device slot"
-                value={`${b.slot.section}:${b.slot.index}`}
-                onChange={() => {}}
-              >
-                {window.SlotBoard.slots(rig).map((slot) => (
-                  <option
-                    key={`${slot.section}:${slot.index}`}
-                    value={`${slot.section}:${slot.index}`}
-                  >
-                    {window.SlotBoard.label(slot)}
-                    {slot.block && slot.block.id !== b.id ? ' (replace)' : ''}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <button id="remove" aria-label="Remove device">
-              Remove from rig
-            </button>
-          </div>
-        </details>
-        <footer className="device-footer">
-          <TagEditor rig={rig} block={b} />
-          <div className="control-hint">
-            Drag a knob · Shift for fine adjustment · Top strip: drag up to bypass, down to enable
-          </div>
-          {b.tone3000 && <CreatorCredit key={JSON.stringify(b.tone3000.user)} tone={b.tone3000} />}
-        </footer>
-      </section>
       <div className="editor-note">
         <span>{note}</span>
         <span>PATCH DEVICE / {String(rig.blocks.indexOf(b) + 1).padStart(2, '0')}</span>
