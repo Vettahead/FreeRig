@@ -104,6 +104,7 @@ namespace GuitarSuite
                 node.Update(patch.scenes[patch.scene][node.Block.id], patch.tempo,
                             patch.calibrationDbU);
             }
+            Update(patch);
             int finalMax =
                 finalSources.Select(i => i < 0 ? 0 : nodes[i].TotalLatency).DefaultIfEmpty(0).Max();
             finalAlign =
@@ -113,23 +114,30 @@ namespace GuitarSuite
         }
         public readonly float[] Right = new float[4096];
         StereoDelay[] finalAlign;
+        volatile StereoProcessor.ControlSnapshot[] controls;
         public void Update(Patch patch)
         {
-            foreach (var pair in patch.scenes[patch.scene])
+            // Allocate/derive every scene control on the control thread, then publish
+            // the whole scene atomically. A render never combines two scene snapshots.
+            var previous = controls;
+            var next = new StereoProcessor.ControlSnapshot[nodes.Length];
+            for (int i = 0; i < nodes.Length; i++)
             {
-                StereoProcessor p;
-                if (byId.TryGetValue(pair.Key, out p))
-                {
-                    p.Update(pair.Value, patch.tempo, patch.calibrationDbU);
-                }
+                DeviceState state;
+                next[i] = patch.scenes[patch.scene].TryGetValue(nodes[i].Block.id, out state)
+                              ? nodes[i].Prepare(state, patch.tempo, patch.calibrationDbU)
+                              : previous[i];
             }
+            controls = next;
         }
         public float[] Run(float[] source, int count)
         {
             if (count < 1 || count > maxFrames)
                 throw new Exception("Audio block exceeds the prepared buffer size. Restart audio " +
                                     "after changing the driver buffer.");
+            var snapshot = controls;
             Array.Copy(source, input, count);
+            int nodeIndex = 0;
             foreach (var node in nodes)
             {
                 Array.Clear(node.Buffer, 0, count);
@@ -141,7 +149,7 @@ namespace GuitarSuite
                                       index < 0 ? input : nodes[index].Right, node.Buffer,
                                       node.Right, count);
                 }
-                node.Process(count);
+                node.Process(count, snapshot[nodeIndex++]);
             }
             Array.Clear(output, 0, count);
             Array.Clear(Right, 0, count);

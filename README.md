@@ -80,3 +80,7 @@ Alpha 26 adds all 13 Tamgamp circuit preamps/channels and five cabinet/speaker c
 ## Release history
 
 Click the version at the bottom-left to read and search the complete offline changelog. The current version comes from `release.json`; update its number and add matching release notes to `CHANGELOG.md` for every release, then run `npm run build`. Builds/package checks reject stale history or mismatched numbers. See [the release workflow](docs/RELEASING.md).
+
+## Audio robustness investigation
+
+The Mackie 32-sample regression reported after Alpha 39 is under investigation. Graph rendering now avoids control-thread locks, scene updates publish together, and unchanged effect parameters skip native setters. See [the full path audit](docs/AUDIO-ROBUSTNESS.md) for evidence, remaining work and live-testing limits.

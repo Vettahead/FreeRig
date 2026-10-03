@@ -389,3 +389,10 @@ Validation: seven JavaScript suites; native tests for 22 effects at 44.1/48/96 k
 Graph/asset edits still briefly restart audio on the saved ASIO configuration. Complete smoothing, spillover, MIDI, looper and recording are not finished. Old A/B mixer-junction patches are still refused by the native engine; use a current starter patch. Output has the existing gain ramp and ceiling.
 
 The source and licences for this GPL-3.0-or-later build accompany the portable release. Third-party copyrights and their original licences are retained. No downloaded user captures or account credentials are included.
+
+## 3 October 2026 — Audio callback robustness (source candidate)
+
+- Removed the graph control monitor from rendering; native graph retirement waits only on the control thread.
+- Publish complete scene snapshots per audio block and skip unchanged native effect parameter setters.
+- Added small-buffer concurrency, disposal and coherent-scene regressions. Full-path audit records remaining EQ allocations, separate-output locking and incomplete timing telemetry.
+- Mackie 32-sample regression remains unconfirmed by live hardware. No driver buffer/rate, DSP arithmetic or saved patch migration changed. Alpha 42 release folders remain intact.

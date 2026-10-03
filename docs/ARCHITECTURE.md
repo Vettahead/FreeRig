@@ -66,3 +66,7 @@ Tamgamp adaptation lives in `native/effects_tamgamp.cpp`; recorded cabinet proce
 ## Release metadata
 
 `release.json` and `CHANGELOG.md` feed `scripts/build-release.mjs`. Its generated JSON is bundled by the focused React `ui/src/release-history/ReleaseHistory.tsx` component. The native build writes the same version to `release-version.txt`, read by the window title. Packaging validates these contracts. See [release workflow](RELEASING.md).
+
+## Callback publication
+
+LiveGraph has one audio reader. Atomic graph announcement/recheck protects native lifetime; only the control thread waits for retirement. Graph publishes complete prepared scene snapshots in one array, read once per block. Rendering takes no control monitor. See [the robustness audit](AUDIO-ROBUSTNESS.md) for remaining callback allocation, separate-output contention and timing limits.

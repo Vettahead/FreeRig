@@ -12,7 +12,7 @@ namespace GuitarSuite
         public int[] Sources;
         public StereoDelay[] Align;
         public int Latency, TotalLatency;
-        sealed class ControlSnapshot
+        public sealed class ControlSnapshot
         {
             public DeviceState State;
             public double[] Values;
@@ -30,7 +30,11 @@ namespace GuitarSuite
         readonly double calibrationBlend;
         public void Update(DeviceState state, int tempo, double? reference = null)
         {
-            controls = new ControlSnapshot {
+            controls = Prepare(state, tempo, reference);
+        }
+        public ControlSnapshot Prepare(DeviceState state, int tempo, double? reference)
+        {
+            return new ControlSnapshot {
                 State = state, Values = effect != IntPtr.Zero ? Effective(state, tempo) : null,
                 InputGain = Block.key == "cab" ? 1 : calibration.InputGain(reference),
                 OutputGain = Block.key == "nampedal" ? calibration.OutputGain(reference) : 1
@@ -107,13 +111,22 @@ namespace GuitarSuite
             if (Object.ReferenceEquals(next, applied))
                 return;
             var p = next.Values;
-            if (Effects.fx_set(effect, p, p.Length) == 0)
+            // Scene/UI sync can publish a fresh snapshot with identical values. Avoid
+            // repeating native setters (some rebuild coefficients) in that callback.
+            bool changed = applied == null || p.Length != applied.Values.Length;
+            if (!changed)
+                for (int i = 0; i < p.Length; i++)
+                    changed |= p[i] != applied.Values[i];
+            if (changed && Effects.fx_set(effect, p, p.Length) == 0)
                 throw new Exception("Invalid effect parameters for " + Block.key);
             applied = next;
         }
         public void Process(int count)
         {
-            var snapshot = controls;
+            Process(count, controls);
+        }
+        public void Process(int count, ControlSnapshot snapshot)
+        {
             var s = snapshot.State;
             Array.Clear(dryL, 0, count);
             Array.Clear(dryR, 0, count);
