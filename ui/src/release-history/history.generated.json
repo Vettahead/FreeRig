@@ -318,6 +318,12 @@
       "title": "3 October 2026 — Audio callback robustness (source candidate)",
       "body": "- Removed the graph control monitor from rendering; native graph retirement waits only on the control thread.\r\n- Publish complete scene snapshots per audio block and skip unchanged native effect parameter setters.\r\n- Added small-buffer concurrency, disposal and coherent-scene regressions. Full-path audit records remaining EQ allocations, separate-output locking and incomplete timing telemetry.\r\n- Mackie 32-sample regression remains unconfirmed by live hardware. No driver buffer/rate, DSP arithmetic or saved patch migration changed. Alpha 42 release folders remain intact.",
       "version": 0
+    },
+    {
+      "id": "release-53",
+      "title": "3 October 2026 — Supplied patch timing and steady callback allocations",
+      "body": "- Added an offline serial-patch profiler with per-stage and complete graph/output deadline statistics at 32/64/128 samples.\n- Removed per-block enumerable allocations from unchanged legacy amp/cab EQ comparisons, preserving parameter comparison and DSP arithmetic; added zero-allocation steady render/output regression checks.\n- Supplied patch loop allocation fell from 2,688,000 bytes to zero over seven seconds at 32 frames. Timing remains subject to scheduling; this does not establish a live driver fix.\n- Existing logs show recent Mackie ASIO input routed to a separate BIG KNOB Windows output, adding buffering, plus repeated driver resets. Documented direct-ASIO comparison steps and unresolved cause in docs/AUDIO-ROBUSTNESS.md.",
+      "version": 0
     }
   ]
 }

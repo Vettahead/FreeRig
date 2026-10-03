@@ -98,7 +98,7 @@ namespace GuitarSuite
             // Coefficient changes are bounded to block boundaries. Device state is published
             // atomically by the UI, never mutated underneath this callback.
             if ((Block.key == "amp" || Block.key == "cleanamp" || Block.key == "cab") &&
-                !previous.SequenceEqual(p))
+                !ParametersEqual(previous, p))
                 Filters(p);
             Array.Copy(Buffer, dry, count);
             if (model != IntPtr.Zero)
@@ -209,6 +209,17 @@ namespace GuitarSuite
                 // Only the device's intentional distortion and final output may clip.
                 Buffer[i] = (float)(Double.IsNaN(result) || Double.IsInfinity(result) ? 0 : result);
             }
+        }
+        // .NET Framework's enumerable SequenceEqual creates array enumerators.
+        // This check runs twice per stereo device per callback, even at unchanged EQ.
+        static bool ParametersEqual(double[] a, double[] b)
+        {
+            if (a.Length != b.Length)
+                return false;
+            for (int i = 0; i < a.Length; i++)
+                if (!a[i].Equals(b[i]))
+                    return false;
+            return true;
         }
         public void Dispose()
         {

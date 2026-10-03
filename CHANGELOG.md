@@ -396,3 +396,10 @@ The source and licences for this GPL-3.0-or-later build accompany the portable r
 - Publish complete scene snapshots per audio block and skip unchanged native effect parameter setters.
 - Added small-buffer concurrency, disposal and coherent-scene regressions. Full-path audit records remaining EQ allocations, separate-output locking and incomplete timing telemetry.
 - Mackie 32-sample regression remains unconfirmed by live hardware. No driver buffer/rate, DSP arithmetic or saved patch migration changed. Alpha 42 release folders remain intact.
+
+## 3 October 2026 — Supplied patch timing and steady callback allocations
+
+- Added an offline serial-patch profiler with per-stage and complete graph/output deadline statistics at 32/64/128 samples.
+- Removed per-block enumerable allocations from unchanged legacy amp/cab EQ comparisons, preserving parameter comparison and DSP arithmetic; added zero-allocation steady render/output regression checks.
+- Supplied patch loop allocation fell from 2,688,000 bytes to zero over seven seconds at 32 frames. Timing remains subject to scheduling; this does not establish a live driver fix.
+- Existing logs show recent Mackie ASIO input routed to a separate BIG KNOB Windows output, adding buffering, plus repeated driver resets. Documented direct-ASIO comparison steps and unresolved cause in docs/AUDIO-ROBUSTNESS.md.

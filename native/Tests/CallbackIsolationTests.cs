@@ -10,6 +10,7 @@ namespace GuitarSuite
     {
         public static void Run(List<string> lines)
         {
+            SteadyRenderAllocation();
             foreach (int rate in new[] { 44100, 48000, 96000 })
                 foreach (int frames in new[] { 32, 64, 128 })
                 {
@@ -107,6 +108,50 @@ namespace GuitarSuite
             ScenePublication();
             lines.Add(
                 "PASS: callback independent of held control lock; 100 concurrent swaps, updates and disposal at 44.1/48/96 kHz and 32/64/128 frames.");
+        }
+        static void SteadyRenderAllocation()
+        {
+            foreach (int frames in new[] { 32, 64, 128 })
+            {
+                var patch = new Patch {
+                    blocks = new[] { new Block { id = "a", key = "amp" },
+                                     new Block { id = "c", key = "cab" } },
+                    connections = new[] { new[] { "input", "a" }, new[] { "a", "c" },
+                                          new[] { "c", "output" } },
+                    scenes =
+                        Enumerable.Range(0, 4)
+                            .Select(i => new Dictionary<string, DeviceState> {
+                                { "a",
+                                  new DeviceState { on = true,
+                                                    values = new[] { 0.0, 0.0, 0.0, 0.0, -6.0 } } },
+                                { "c", new DeviceState { on = true,
+                                                         values = new[] { 80.0, 8000.0, -3.0 } } }
+                            })
+                            .ToArray()
+                };
+                using (var live = new LiveGraph(patch, 48000, "", frames))
+                {
+                    var input = Enumerable.Repeat(.1f, frames).ToArray();
+                    var bytes = new byte[frames * 8];
+                    var provider = new LiveProvider(
+                        48000) { Samples = live.Left, RightSamples = live.Right, Count = frames };
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        live.Render(input, frames);
+                        provider.Read(bytes, 0, bytes.Length);
+                    }
+                    long before = GC.GetAllocatedBytesForCurrentThread();
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        live.Render(input, frames);
+                        provider.Read(bytes, 0, bytes.Length);
+                    }
+                    long allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+                    if (allocated != 0)
+                        throw new Exception("Unchanged amp/cab rendering allocated " + allocated +
+                                            " bytes.");
+                }
+            }
         }
         static void ScenePublication()
         {

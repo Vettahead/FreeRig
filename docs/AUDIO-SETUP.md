@@ -29,3 +29,5 @@ Browser testing checks ASIO discovery, Windows selection, explicit start/stop, l
 Alpha 22 includes stereo Windows loopback capture. Open **Play along** in the toolbar after starting guitar audio. See [Play-along setup](PLAY-ALONG.md) for routing, separate source selection and limitations.
 
 A hardware version could prioritise USB audio-in and optionally offer Bluetooth for backing tracks; this remains future work. Live guitar monitoring should remain local. PipeWire alone does not guarantee low latency; scheduling and hardware still require measurement.
+
+Offline timing diagnosis: `FreeRig.exe --profile-patch <export.json> <asset-directory>` profiles the saved scene of a serial patch at 48 kHz and 32/64/128 frames. It opens no hardware and writes `patch-performance-audit.txt` beside the executable. Results include warmed complete graph/output timing and separate device-stage timing; OS pre-emption contributes to peaks. See the [robustness audit](AUDIO-ROBUSTNESS.md) for interpretation and the supplied-patch findings.
