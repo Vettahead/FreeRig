@@ -6,7 +6,7 @@ FreeRig is a Windows desktop guitar suite with a visual pedalboard, native audio
 
 ![FreeRig Alpha 42: hardware controls and pedalboard workspace](docs/screenshots/alpha42-echoking.png)
 
-> **Alpha software:** the packaged baseline is Alpha 42. Small-buffer audio dropouts are under investigation. Offline tests do not establish live performance on every interface. See [known limitations](docs/FAQ.md#what-are-the-known-limitations).
+> **Alpha software:** the packaged baseline is Alpha 43. Small-buffer audio dropouts are under investigation. Offline tests do not establish live performance on every interface. See [known limitations](docs/FAQ.md#what-are-the-known-limitations).
 
 FreeRig depends on open-source audio engines and recorded assets. See [Credits, upstream code and provenance](docs/CREDITS.md) for named projects, licences, revisions, adaptations and AI artwork disclosure.
 
@@ -19,6 +19,8 @@ FreeRig depends on open-source audio engines and recorded assets. See [Credits, 
 - Use manufacturer ASIO or Windows audio, and mix a separate backing source with Play along.
 
 Hardware artwork represents families of equipment. Changing its appearance does not change the processor or loaded capture. Circuit amps model preamps; they are not complete power-amp simulations.
+
+Alpha 43 adds [automatic audio-performance logging](docs/AUDIO-PERFORMANCE-LOG.md) for reviewing load peaks and deadline misses.
 
 ## Get started
 

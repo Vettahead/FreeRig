@@ -56,6 +56,12 @@ namespace GuitarSuite
                         Convert.ToInt32(message["rate"]), patch, assets,
                         (string)message["outputDevice"], Convert.ToInt32(message["outputLatency"]),
                         Convert.ToBoolean(message["outputExclusive"]));
+                    PerformanceStart(
+                        new { backend = "Windows", inputDevice = message["inputDevice"],
+                              inputChannel = message["input"], rateHz = message["rate"],
+                              outputDevice = message["outputDevice"],
+                              outputLatencyMs = message["outputLatency"],
+                              outputExclusive = message["outputExclusive"] });
                     lastStatus = "";
                     return;
                 }
@@ -77,6 +83,7 @@ namespace GuitarSuite
                         audio.Update(next);
                     patch = next;
                     signature = nextSignature;
+                    PerformanceRig();
                     if (changed && audio.Running)
                         LogAudio("Rig switched with ASIO open; blocks=" + next.blocks.Length +
                                  "; overruns=" + audio.Overruns);
@@ -119,6 +126,17 @@ namespace GuitarSuite
                             Convert.ToBoolean(message["outputExclusive"]));
                     LogAudio("Start: " + activeDriver + "; rate=" + activeRate +
                              "; buffer=" + audio.BufferSize + "; output=" + audio.OutputName);
+                    PerformanceStart(new {
+                        backend = "ASIO", driver = activeDriver, inputChannel = activeInput,
+                        outputChannel = activeOutput, rateHz = activeRate,
+                        outputDevice =
+                            message.ContainsKey("outputDevice") ? message["outputDevice"] : "",
+                        outputLatencyMs =
+                            message.ContainsKey("outputLatency") ? message["outputLatency"] : null,
+                        outputExclusive = message.ContainsKey("outputExclusive")
+                                              ? message["outputExclusive"]
+                                              : null
+                    });
                     lastStatus = "";
                     return;
                 }
@@ -140,6 +158,10 @@ namespace GuitarSuite
                 }
                 if (type == "stop")
                 {
+                    PerformanceSample(audio.Stats.TakeLoad(), audio.Stats.TakeInput(),
+                                      audio.OutputPeak, true);
+                    PerformanceEvent("audio-stop", new { overruns = audio.Overruns,
+                                                         outputDropouts = audio.OutputDropouts });
                     audio.Stop();
                     lastStatus = "";
                     return;

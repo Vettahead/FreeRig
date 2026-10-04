@@ -39,6 +39,12 @@ namespace GuitarSuite
             BackColor = System.Drawing.Color.FromArgb(16, 20, 17);
             assets = Path.Combine(data, "Library");
             Directory.CreateDirectory(assets);
+            performanceLog = new AudioPerformanceLog(Path.Combine(data, "audio-performance.jsonl"));
+            PerformanceEvent("app-start", new {
+                version = Text, executable = Application.ExecutablePath,
+                processors = Environment.ProcessorCount,
+                note = "Load measures callback deadline utilisation, not total process CPU."
+            });
             tones = new Tone3000(data, assets);
             web.Dock = DockStyle.Fill;
             Controls.Add(web);
@@ -88,6 +94,9 @@ namespace GuitarSuite
                 if (audio.Error != null)
                 {
                     string err = audio.Error;
+                    PerformanceSample(audio.Stats.TakeLoad(), audio.Stats.TakeInput(),
+                                      audio.OutputPeak, true);
+                    PerformanceEvent("fault", new { message = err, overruns = audio.Overruns });
                     LogAudio("Fault: " + err);
                     audio.Stop();
                     audio.Error = null;
@@ -104,16 +113,21 @@ namespace GuitarSuite
                 if (audio.TunerEnabled)
                     Send(new { type = "tuner", hz = audio.TunerHz,
                                confidence = audio.TunerConfidence, running = audio.Running });
+                float load = audio.Stats.TakeLoad(), rawPeak = audio.Stats.TakeInput();
+                PerformanceSample(load, rawPeak, audio.OutputPeak);
                 if (audio.Running)
                     Send(new { type = "meter", peak = audio.Peak, output = audio.OutputPeak,
                                beforeCeiling = audio.TakeBeforeCeiling(),
-                               clipped = audio.TakeClip(), load = audio.Stats.TakeLoad(),
-                               rawPeak = audio.Stats.TakeInput(), overruns = audio.Overruns,
-                               outputDropouts = audio.OutputDropouts });
+                               clipped = audio.TakeClip(), load = load, rawPeak = rawPeak,
+                               overruns = audio.Overruns, outputDropouts = audio.OutputDropouts });
             };
             FormClosing += delegate
             {
                 timer.Stop();
+                PerformanceSample(audio.Stats.TakeLoad(), audio.Stats.TakeInput(), audio.OutputPeak,
+                                  true);
+                PerformanceEvent("app-close", new { overruns = audio.Overruns });
+                performanceLog.Dispose();
                 audio.Dispose();
                 tones.Dispose();
             };

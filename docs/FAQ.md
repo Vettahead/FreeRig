@@ -1,6 +1,6 @@
 # FreeRig FAQ
 
-Answers reflect the Alpha 42 packaged baseline and current source as of 4 October 2026. Features still under investigation or planned are identified below.
+Answers reflect the Alpha 43 packaged baseline and current source as of 4 October 2026. Features still under investigation or planned are identified below.
 
 ## Contents
 
@@ -221,6 +221,10 @@ Stop audio and compare the same manufacturer's ASIO input and output. Try a simp
 - Circuit amps are preamps, cabinet microphones are discrete recordings and artwork is representative.
 
 Current source contains audio investigation changes beyond the preserved Alpha 42 package. A development executable carrying the same label is not proof that it matches the published package. Consult [HANDOVER](../HANDOVER.md) for provenance.
+
+### Can FreeRig log load and deadline misses?
+
+Yes. Alpha 43 automatically writes local performance snapshots and rig/route context to `%LOCALAPPDATA%\GuitarSuite\audio-performance.jsonl`. Stop audio to flush the final interval, then ask for a review. See [Audio performance logging](AUDIO-PERFORMANCE-LOG.md) for fields, rotation and privacy details. Load is callback deadline utilisation, not total PC CPU.
 
 ### How do I report a problem?
 

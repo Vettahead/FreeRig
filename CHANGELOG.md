@@ -1,3 +1,9 @@
+## Alpha 43 — 4 October 2026
+
+- Added automatic local audio-performance logging: one-second peak/load snapshots, new missed deadlines/output dropouts, route/rate/buffer context, scene/device settings, faults and UI timer gaps.
+- Writes on a dedicated background worker with a bounded queue and two capped files. Audio processing arithmetic and callbacks are unchanged; existing meter readings are shared rather than consumed twice.
+- Added log rotation/failure tests and a review guide. Logging does not prove the cause of the reported Mackie idle load or resolve live dropouts; no live ASIO listening is claimed.
+
 ## Alpha 42 — 30 September 2026
 
 - Removed the generic panels covering amp and pedal artwork. Live controls now use measured faceplate positions for each enclosure family, with the image's original proportions preserved.

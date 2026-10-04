@@ -1,3 +1,7 @@
+# FreeRig Alpha 43
+
+Adds automatic local audio-performance logging. Run this complete release folder, start audio, reproduce idle/playing load for a minute and stop audio. Records are saved to `%LOCALAPPDATA%\GuitarSuite\audio-performance.jsonl` with one rotated `.1` backup. The source guide `docs/AUDIO-PERFORMANCE-LOG.md` explains the measurements. Audio processing runs even while not playing; load is callback deadline utilisation, not whole-PC CPU. Reported live dropouts remain under investigation. Earlier release folders are preserved.
+
 # FreeRig Alpha 32
 
 Realistic artwork across the catalogue, library, picker and editors; eight amp families, eight pedal families and ten cabinet formats. Four-pedal rows remain. Audio processing is unchanged.
