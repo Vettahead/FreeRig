@@ -1,3 +1,7 @@
+## 4 October 2026 — Alpha 44 ASIO setup reopening
+
+User reports Mackie analog outputs 1/2 selected, input/output meters active but no sound, and blank channel fields after Start, close and reopen. Confirmed React hook lost discovery on unmount and correctly skipped driver inspection during playback. Cache channel discovery for the UI session, add saved-name/index fallback and unavailable options. No route indices, persisted contract or processing arithmetic changed. Mock browser verification: Test ASIO, non-default input 2, direct output Left+Right, Start, close and reopen retain both selected labels with controls locked. Physical Mackie listening remains unverified; do not equate blank UI with active route loss.
+
 ## 4 October 2026 — Processing/scheduling investigation
 
 Reviewed user live runs: same scene/route, effectively silent; visible 32 frames 17 misses/174.487 s, mostly minimised 32 frames 20/296.777 s, visible 64 frames 5/284.773 s. Latest-snapshot medians ~25–27%; interval peaks ~70.5/77.9/52%. 64-frame miss rate ~82% lower than first visible run. Do not blame WebView2, separate output or GC from these measurements.
@@ -418,3 +422,5 @@ Important alpha limits: mono processing duplicated to stereo outputs; stereo IR 
 Full licence and source links are in native/README.md; release includes required notices and Eigen source archive. No imported NAM captures are bundled. Do not claim the engine is production ready or that ASIO hardware has been verified. Mission Control bb78c32c-d021-44ed-b02c-0cad6ae65576.
 
 Live follow-up: Chris signed in and selected a tone in alpha 03, then got 'An error occurred while sending the request' at native token exchange. Alpha 03.1 explicitly enables TLS 1.2; a native .NET Framework GET auth preflight and POST to the token endpoint with a deliberately invalid diagnostic code both reached TONE3000 (307 and expected 400). Chris is retrying 03.1. Actual model download remains unverified.
+
+Alpha44 validation: npm run check passes all 15 tests; native format check passed via the documented script with process-only ExecutionPolicy Bypass; desktop build and full offline self-test pass. Browser also verified input 2/output pair persistence after stopped interface reload. No live ASIO listening claim. Package and push follow standing instruction; original Alpha43 remains intact.

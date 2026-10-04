@@ -1,6 +1,6 @@
 # FreeRig FAQ
 
-Answers reflect the Alpha 43 packaged baseline and current source as of 4 October 2026. Features still under investigation or planned are identified below.
+Answers reflect the Alpha 44 packaged baseline and current source as of 4 October 2026. Features still under investigation or planned are identified below.
 
 ## Contents
 
@@ -47,6 +47,10 @@ Local effects, local NAM models and local cabinet IRs work offline. TONE3000 bro
 Use **Setup wizard** in the toolbar. It guides you through connections, audio setup, first sound, optional TONE3000 downloads and saving. Audio starts only when you explicitly press Start.
 
 ## Audio setup and latency
+
+### Why did ASIO input and output appear blank when reopening Audio setup?
+
+Before Alpha 44, closing the dialog discarded discovered channel names. Reopening during playback could show blank selectors because driver discovery is intentionally disabled while running. Alpha 44 retains the names and displays saved selections when names are unavailable. A blank selector did not itself prove the active route changed. Stop audio to refresh channel names or change the route. Missing sound still requires checking the actual output and hardware monitoring path.
 
 ### Should I choose ASIO or Windows audio?
 

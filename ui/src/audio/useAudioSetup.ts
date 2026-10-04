@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import type { AudioChoice, Device, Message, Bridge } from './types';
 
+type AsioChannels = { driver: string; inputs: string[]; outputs: string[] };
+// Discovery belongs to the desktop session, not the lifetime of its settings dialog.
+// Reopening while running must not instantiate a second ASIO driver to recover labels.
+const discoveredChannels = new Map<string, AsioChannels>();
+
 // Owns device discovery and session state; never opens audio without Start.
 export function useAudioSetup() {
   const api = window.NativeDesktop;
@@ -13,8 +18,8 @@ export function useAudioSetup() {
     inputs: Device[];
     outputs: Device[];
   }>({ drivers: [], inputs: [], outputs: [] });
-  const [channels, setChannels] = useState<{ driver: string; inputs: string[]; outputs: string[] }>(
-    { driver: '', inputs: [], outputs: [] },
+  const [channels, setChannels] = useState<AsioChannels>(
+    () => discoveredChannels.get(choice.driver) || { driver: '', inputs: [], outputs: [] },
   );
   const [running, setRunning] = useState(api.audioRunning());
   const [pending, setPending] = useState(false);
@@ -55,12 +60,15 @@ export function useAudioSetup() {
         if (!api.audioRunning() && c.backend !== 'windows' && m.drivers?.includes(c.driver))
           api.send({ type: 'driver', driver: c.driver });
       }
-      if (m.type === 'driver' && m.driver === selected.current.driver)
-        setChannels({
+      if (m.type === 'driver' && m.driver === selected.current.driver) {
+        const found = {
           driver: m.driver,
           inputs: (m.inputs || []) as string[],
           outputs: (m.outputs || []) as string[],
-        });
+        };
+        discoveredChannels.set(m.driver, found);
+        setChannels(found);
+      }
       if (m.type === 'error' || m.type === 'status') {
         setPending(false);
         if (m.type === 'error') lastError.current = m.message || 'Audio device error.';

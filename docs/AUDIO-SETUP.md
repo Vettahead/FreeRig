@@ -1,6 +1,6 @@
 # Audio setup
 
-Open Alpha 22 and choose **Audio setup**. Audio starts only after **Start audio**. Stop before changing devices, channels, sample rate or driver settings. Input trim and master output remain on the routing workspace.
+Open FreeRig and choose **Audio setup**. Audio starts only after **Start audio**. Stop before changing devices, channels, sample rate or driver settings. Input trim and master output remain on the routing workspace.
 
 ## Choose a route
 
@@ -9,6 +9,8 @@ Open Alpha 22 and choose **Audio setup**. Audio starts only after **Start audio*
 - **Universal ASIO:** an installed, registered driver such as FlexASIO appears in the ASIO list. FreeRig does not install or configure it automatically. FlexASIO defaults to DirectSound with a preferred 20 ms buffer; consult its [configuration guide](https://github.com/dechamps/FlexASIO/blob/master/CONFIGURATION.md) for an appropriate backend and buffer. Compatibility and performance require testing with the actual hardware.
 
 Refresh devices after connecting hardware or installing a driver. Saved missing endpoints remain marked unavailable; FreeRig does not silently switch to another microphone or speaker. Choices are saved when Start is pressed. Existing ASIO preferences migrate without resetting the selected driver, channels or rate.
+
+Alpha 44 retains discovered ASIO channel names across dialog dismissal. Reopening while playing displays the selected input and output pair without opening another driver instance. When channel names are unavailable, the saved selection is shown instead. Stop audio before refreshing names after hardware changes. This display correction does not prove that reported missing hardware sound is resolved.
 
 ## Latency and troubleshooting
 

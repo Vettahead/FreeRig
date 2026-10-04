@@ -179,6 +179,11 @@ export function AudioSetup({ onClose }: { onClose(): void }) {
                   })
                 }
               >
+                {channels.inputs.length > 0 && choice.input >= channels.inputs.length && (
+                  <option value={choice.input}>
+                    {choice.inputName || `Input ${choice.input + 1}`} (unavailable)
+                  </option>
+                )}
                 {channels.inputs.length ? (
                   channels.inputs.map((name, i) => (
                     <option key={i} value={i}>
@@ -186,7 +191,10 @@ export function AudioSetup({ onClose }: { onClose(): void }) {
                     </option>
                   ))
                 ) : (
-                  <option value={choice.input}>{choice.inputName} — read channels</option>
+                  <option value={choice.input}>
+                    {choice.inputName || `Input ${choice.input + 1}`} —{' '}
+                    {locked ? 'selected' : 'read channels'}
+                  </option>
                 )}
               </select>
             </label>
@@ -202,6 +210,17 @@ export function AudioSetup({ onClose }: { onClose(): void }) {
                     })
                   }
                 >
+                  {(channels.outputs.length < 2 ||
+                    choice.output + 1 >= channels.outputs.length) && (
+                    <option value={choice.output}>
+                      {choice.outputName || `Outputs ${choice.output + 1} + ${choice.output + 2}`}
+                      {channels.outputs.length >= 2
+                        ? ' (unavailable)'
+                        : locked
+                          ? ' — selected'
+                          : ' — read channels'}
+                    </option>
+                  )}
                   {channels.outputs.slice(0, -1).map((name, i) => (
                     <option key={i} value={i}>
                       {name} + {channels.outputs[i + 1]}

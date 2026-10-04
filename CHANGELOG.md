@@ -1,3 +1,8 @@
+## Alpha 44 — 4 October 2026
+
+- Fixed blank ASIO input/output selectors after closing and reopening Audio setup while audio is running. Discovered channel names now survive dialog dismissal; saved selections remain visible when names are unavailable.
+- Keeps driver discovery stopped during playback and preserves saved channel indices and audio processing. Browser reopen verification passed; this UI fix does not establish a resolution of reported missing Mackie sound.
+
 ## Alpha 43 — 4 October 2026
 
 - Added automatic local audio-performance logging: one-second peak/load snapshots, new missed deadlines/output dropouts, route/rate/buffer context, scene/device settings, faults and UI timer gaps.
