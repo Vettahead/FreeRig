@@ -1,3 +1,8 @@
+## 4 October 2026 — Public GitHub documentation
+
+User authorised public Vettahead/FreeRig repository and requested graphics, explanations, full FAQ and transparent upstream attribution. Reworked README with existing Alpha42 screenshots, GitHub signal-flow diagram, quick start and guide index. Added docs/FAQ.md and docs/CREDITS.md covering imported engines/assets, licences, pinned provenance, adaptations, AI artwork/code assistance and current live-audio limitations. Publication is source/documentation only; no new binary release or version bump. Regenerated in-app history through npm run build; existing release folders preserved.
+
+Validation: npm run build and npm run check pass, including all 15 JavaScript tests, with normal filesystem access after the sandbox prevented bundler parent reads. Local README/FAQ/credits file links resolve. Tracked history checked for common credential patterns and oversized GitHub blobs; none found. Native source/audio unchanged, no new live listening claim. Publishing target: https://github.com/Vettahead/FreeRig. Mission Control not updated in this session; local handover retained.
 ## 3 October 2026 — Supplied patch: route change and callback allocation fix
 
 User confirmed 256% peak in development candidate and supplied Desktop/FreeRig patch.json. Saved scene 3 has TS9 + Hendrix NAM, V30 IR and EchoKing on; Dragon Room off. Added --profile-patch offline serial stage/whole-chain timing audit. Candidate initially reproduced 247.6% isolated peak at 32 frames with ~24% median; old Alpha39 engine has similar ~24% median. No sustained overload or definite version-specific DSP cause proved.
@@ -396,3 +401,4 @@ Important alpha limits: mono processing duplicated to stereo outputs; stereo IR 
 Full licence and source links are in native/README.md; release includes required notices and Eigen source archive. No imported NAM captures are bundled. Do not claim the engine is production ready or that ASIO hardware has been verified. Mission Control bb78c32c-d021-44ed-b02c-0cad6ae65576.
 
 Live follow-up: Chris signed in and selected a tone in alpha 03, then got 'An error occurred while sending the request' at native token exchange. Alpha 03.1 explicitly enables TLS 1.2; a native .NET Framework GET auth preflight and POST to the token endpoint with a deliberately invalid diagnostic code both reached TONE3000 (307 and expected 400). Chris is retrying 03.1. Actual model download remains unverified.
+

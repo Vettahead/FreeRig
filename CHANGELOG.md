@@ -6,6 +6,13 @@
 - Capture appearance inference prioritises a named 5150/Peavey amp over a Mesa cabinet in combined titles. Explicit saved looks remain respected.
 - Same-page device settings and all audio processing are unchanged.
 
+## 4 October 2026 — GitHub documentation preparation
+
+- Reworked README as a project landing page with existing Alpha 42 screenshots, standard signal-flow diagram, setup steps and linked guides.
+- Added a comprehensive FAQ covering setup, latency, captures/IRs, effects, scenes, backing audio, troubleshooting, privacy, licences and development.
+- Added prominent upstream credits with named projects, retained licences, revisions, adaptation notes and AI artwork/code disclosure.
+- Distinguished source downloads from portable packages and documented unresolved live-audio limitations. No app version, DSP or saved-data changes.
+
 ## Alpha 41 — 30 September 2026
 
 - Fixed TONE3000 opening the pedal library from stock modelled amps and recorded cabinets. These now open the amp and IR cabinet categories respectively.
@@ -403,3 +410,6 @@ The source and licences for this GPL-3.0-or-later build accompany the portable r
 - Removed per-block enumerable allocations from unchanged legacy amp/cab EQ comparisons, preserving parameter comparison and DSP arithmetic; added zero-allocation steady render/output regression checks.
 - Supplied patch loop allocation fell from 2,688,000 bytes to zero over seven seconds at 32 frames. Timing remains subject to scheduling; this does not establish a live driver fix.
 - Existing logs show recent Mackie ASIO input routed to a separate BIG KNOB Windows output, adding buffering, plus repeated driver resets. Documented direct-ASIO comparison steps and unresolved cause in docs/AUDIO-ROBUSTNESS.md.
+
+
+

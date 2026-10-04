@@ -1,56 +1,73 @@
 # FreeRig
 
-A Windows guitar suite with a WebView2/React interface, native ASIO / Windows audio, NAM captures, cabinet IRs, stock effects, patches/scenes and optional TONE3000 downloads. Local models and effects work offline.
+**Build a guitar rig. Keep it local. Make it yours.**
 
-## Run
+FreeRig is a Windows desktop guitar suite with a visual pedalboard, native audio processing, NAM captures, cabinet impulse responses, stock effects and eight scenes per patch. Local models and effects work offline; TONE3000 downloads are optional.
 
-Open `releases/FreeRig-alpha-42/FreeRig.exe`. Keep the whole release folder together. Use **Setup wizard** in the toolbar for audio and TONE3000 setup. Older releases remain available for comparison.
+![FreeRig Alpha 42: hardware controls and pedalboard workspace](docs/screenshots/alpha42-echoking.png)
 
-Alpha 29 arranges the rig as connected physical pedalboards around an amp/cab stack, with an attached effects loop. Alpha 33 places that loop above the main rig. Alpha 35 adds natural, damped sway to the hardware pickup and landing feedback. See [pedalboard design](docs/PEDALBOARD-DESIGN.md).
+> **Alpha software:** the packaged baseline is Alpha 42. Small-buffer audio dropouts are under investigation. Offline tests do not establish live performance on every interface. See [known limitations](docs/FAQ.md#what-are-the-known-limitations).
 
-Alpha 32 extends realistic hardware artwork across the complete collection, with distinct amp/pedal families, ten cabinet geometries and live controls. See [hardware design](docs/HARDWARE-DESIGN.md) for scope, extension points and artwork provenance.
+FreeRig depends on open-source audio engines and recorded assets. See [Credits, upstream code and provenance](docs/CREDITS.md) for named projects, licences, revisions, adaptations and AI artwork disclosure.
 
-Alpha 38 keeps editing inside the pedalboard workspace, with a slide-up chain and hardware controls. Click the selected chain device again to return to the full layout. Alpha 36 introduced device controls in a slide-up editor with a compact chain, input/output dials and meters. Click outside or press Escape to return to the rig. Alpha 37 brings the same input/output dials and meters to the main rig, replacing the long sliders.
+## What you can do
 
-Collection and the replacement picker offer **Amp source**: All amps, Modelled, or TONE3000 only.
+- Arrange pedals before the amp, in its effects loop and after the cabinet, with advanced routing available.
+- Load local NAM captures and cabinet IRs, or use stock processors without an online account.
+- Explore 200 native stock effects, 13 circuit preamp channels and five recorded cabinet configurations with 21 microphone recordings.
+- Edit controls on illustrated hardware; save patches, banks, scene settings and artist/style tags.
+- Use manufacturer ASIO or Windows audio, and mix a separate backing source with Play along.
 
-Alpha 40 keeps device settings alongside the hardware on one page. Pedals group labels, knobs and values above the name and footswitch; amps use a dedicated control strip. The optional guide expands in the settings column.
+Hardware artwork represents families of equipment. Changing its appearance does not change the processor or loaded capture. Circuit amps model preamps; they are not complete power-amp simulations.
 
-## Audio compatibility
+## Get started
 
-Audio setup now offers ASIO or Windows audio (WASAPI shared input). Select a recording device/channel and output, then press Start. Manufacturer ASIO remains the recommended route for responsive playing; Windows audio broadens compatibility without another driver installation. Installed universal ASIO drivers such as FlexASIO appear in the ASIO list. See [Audio setup](docs/AUDIO-SETUP.md) for latency, privacy and testing limits.
+This repository contains source and documentation. **A source ZIP is not a ready-to-run Windows app.** Packaged builds are not included in Git history. Until a validated GitHub release is published, build using [Contributing](CONTRIBUTING.md), or use an existing complete portable release folder.
 
-## Capture sound and levels
+1. Extract the complete portable folder and open `FreeRig.exe`. Keep its DLLs, UI files and licences together.
+2. Connect your guitar to an instrument/Hi-Z input on your audio interface and connect headphones or monitors.
+3. Open **Setup wizard**, then **Audio setup**. Choose the manufacturer's ASIO driver, guitar input and preferably **Same ASIO interface** output.
+4. Press **Start audio** explicitly. Start with a simple amp/cab rig and comfortable output level.
+5. Add pedals from **Collection**, adjust controls, save the patch and use scenes for variations.
 
-Alpha 23 preserves floating-point headroom between devices and holds output-overload readings. If **Output clipped** appears, **Lower master output** reduces listening level without changing capture drive. See [the capture audit](docs/CAPTURE-FIDELITY.md).
+For Windows audio, missing devices, buffer settings and first-sound problems, follow [Audio setup](docs/AUDIO-SETUP.md). See the [full FAQ](docs/FAQ.md) for everyday questions and troubleshooting.
 
-That guide also documents the drive-before-amp investigation and offline comparisons. A captured pedal's **Input trim** changes its input level, not its original physical Drive setting.
+## How the rig works
 
-## Tags and capture controls
+```mermaid
+flowchart LR
+    I["Guitar / mono input"] --> P["Before-amp pedals"]
+    P --> A["Amp / NAM capture"]
+    A --> L["Effects-loop pedals"]
+    L --> C["Cabinet / IR"]
+    C --> F["After-cab pedals"]
+    F --> M["Master output"]
+    B["Separate backing source"] --> M
+    M --> O["Stereo headphones / monitors"]
+```
 
-Tag patches and devices by artist, band or style, search tags in Collection, and optionally apply a patch tag to its devices. Captured pedals offer explicit level comparison; drag devices up/down in the editor strip to bypass/enable them. See [the guide](docs/TAGS-AND-CAPTURE-LEVELS.md). Included in Alpha 24.
+This diagram shows the standard serial route. Multiple cabinets and advanced connections need their own routing interpretation. Backing audio joins after guitar processing and before master output.
 
-## Effects collection
+An amp capture reproduces the recorded model at its captured settings. Its input trim changes the signal driving that model; it does not recreate the original amplifier's physical knobs. A cabinet IR represents a recorded speaker/microphone response. If a capture already includes a cabinet, adding another IR may double-filter the sound. [Capture levels and fidelity](docs/CAPTURE-FIDELITY.md) explain the distinction.
 
-Alpha 24 includes **200 native stock processors**, plus the existing built-in devices. EQ, studio dynamics, drive/fuzz, filters/wah, chorus/phaser/flanger/rotary, delay/reverse/granular, reverb/shimmer, pitch, synth, stereo, tape/lo-fi and a practice looper are covered. Each has its own descriptor and source credit. See [the collection and research](docs/EFFECTS-COLLECTION.md) for coverage, licences and limitations.
+![Alpha 42 amplifier editor with live hardware controls](docs/screenshots/alpha42-amp.png)
 
-## Play along
+## Guides
 
-Use **Play along** in the toolbar to mix another app into your output, with its own stereo level and mute. Route the app to a separate playback device first. See [the setup guide](docs/PLAY-ALONG.md).
+| I want to…                                 | Read                                                                                          |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| Find answers and fix common problems       | [Full FAQ](docs/FAQ.md)                                                                       |
+| Set up my interface and understand latency | [Audio setup](docs/AUDIO-SETUP.md)                                                            |
+| Play along with music from another app     | [Play along](docs/PLAY-ALONG.md)                                                              |
+| Browse processors and their limitations    | [Effects collection](docs/EFFECTS-COLLECTION.md) · [Effect browsing](docs/EFFECT-BROWSING.md) |
+| Understand amps and recorded microphones   | [Circuit amps and cabinets](docs/CIRCUIT-AMPS-AND-CABS.md)                                    |
+| Use tags and compare capture levels        | [Tags and capture controls](docs/TAGS-AND-CAPTURE-LEVELS.md)                                  |
+| Understand the visual rig                  | [Pedalboard design](docs/PEDALBOARD-DESIGN.md) · [Hardware artwork](docs/HARDWARE-DESIGN.md)  |
+| Review the current audio investigation     | [Audio robustness](docs/AUDIO-ROBUSTNESS.md)                                                  |
 
-## Project setup
+## Build and contribute
 
-For a new Freerig conversation, use [Project context](docs/PROJECT-CONTEXT.md) as the reference brief and [Project instructions](docs/PROJECT-INSTRUCTIONS.md) as its working instructions. The conversation project is separate from the local source folder; select this repository for coding work.
-
-## Edit the source
-
-- [Architecture map](docs/ARCHITECTURE.md): where each part lives and how it connects.
-- [Contributing](CONTRIBUTING.md): dependencies, build commands and checks.
-- [Add a pedal](docs/ADDING-A-PEDAL.md): native processor, definition, presets and tests.
-- [Coding rules](AGENTS.md): standards for future human and assistant changes.
-- [Native build details](native/README.md): compiler/dependency setup and audio notes.
-
-The files to edit are `ui/src`, `src/legacy`, `effects` and the organised folders under `native`. Some large files in `prototype` are **generated runtime bundles**. Their headers identify the source; do not hand-edit them.
+Start with [Contributing](CONTRIBUTING.md), the [architecture map](docs/ARCHITECTURE.md) and [adding a pedal](docs/ADDING-A-PEDAL.md). Native builds require the Windows toolchain and dependencies documented in [native build details](native/README.md).
 
 ```powershell
 npm ci
@@ -59,28 +76,12 @@ npm run build
 npm run check
 ```
 
-Building native code also requires the documented Windows toolchain/dependencies. See Contributing before changing DSP.
+Readable sources live in `ui/src`, `src/legacy`, `effects` and the organised native folders. Generated bundles are identified by their headers; rebuild them instead of editing them. See [AGENTS.md](AGENTS.md) for compatibility and audio-callback rules.
 
-## Alpha 20 source reorganisation
+When reporting a problem, include the version, interface/driver, input/output route, sample rate, buffer size, affected processors and steps to reproduce. Remove account credentials and personal paths from anything you share. See [reporting problems](docs/FAQ.md#how-do-i-report-a-problem).
 
-Audio graph, device processors, patch data, host messages and services now have separate source files. Stock effects have individual descriptors and one native factory registry. Formatting and generated-file checks help prevent another monolithic source file. The legacy interface remains an explicitly documented compatibility layer while React migration continues.
+## Status, history and licences
 
-This refactor preserves patch keys, parameter order, processing maths and the existing interface. It does not claim new audio quality or lower latency.
+[CHANGELOG](CHANGELOG.md) records current work; [release history](docs/RELEASE-HISTORY.md) preserves earlier notes. Click the version inside the app for searchable offline history. `release.json` supplies the version; [Releasing](docs/RELEASING.md) describes packaging and validation.
 
-## History and licences
-
-See [CHANGELOG](CHANGELOG.md) for changes and [earlier release notes](docs/RELEASE-HISTORY.md) for the detailed development history. Upstream effect licences and revisions are recorded in `native/vendor`; packaged notices are in each release's `licenses` folder. The project licence is in [LICENSE](LICENSE).
-
-Alpha 25 adds Studio factory tags, detailed effect guides and measured DSP-cost filters. See [effect browsing](docs/EFFECT-BROWSING.md) and [non-NAM amp/cab research](docs/AMP-CAB-RESEARCH.md).
-
-## Circuit amps and recorded cabinets
-
-Alpha 26 adds all 13 Tamgamp circuit preamps/channels and five cabinet/speaker configurations with 21 recorded microphone setups. Open Collection → Amps or Cabs. Cabinets offer two microphone selectors, blend, polarity and output; settings belong to scenes. See [the models, controls and validation](docs/CIRCUIT-AMPS-AND-CABS.md).
-
-## Release history
-
-Click the version at the bottom-left to read and search the complete offline changelog. The current version comes from `release.json`; update its number and add matching release notes to `CHANGELOG.md` for every release, then run `npm run build`. Builds/package checks reject stale history or mismatched numbers. See [the release workflow](docs/RELEASING.md).
-
-## Audio robustness investigation
-
-The Mackie 32-sample regression reported after Alpha 39 is under investigation. Graph rendering now avoids control-thread locks, scene updates publish together, and unchanged effect parameters skip native setters. See [the full path audit](docs/AUDIO-ROBUSTNESS.md) for evidence, remaining work and live-testing limits.
+FreeRig carries the [GNU GPL v3 licence](LICENSE). Upstream notices, revisions and asset provenance remain in `native/vendor` and the relevant design guides; portable packages carry their licence notices. Downloaded captures have their own creators and permissions—do not assume they can be redistributed with a patch.
