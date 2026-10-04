@@ -417,5 +417,8 @@ The source and licences for this GPL-3.0-or-later build accompany the portable r
 - Supplied patch loop allocation fell from 2,688,000 bytes to zero over seven seconds at 32 frames. Timing remains subject to scheduling; this does not establish a live driver fix.
 - Existing logs show recent Mackie ASIO input routed to a separate BIG KNOB Windows output, adding buffering, plus repeated driver resets. Documented direct-ASIO comparison steps and unresolved cause in docs/AUDIO-ROBUSTNESS.md.
 
+## 4 October 2026 — Source-only processing spike investigation
 
-
+- Extended the offline serial-patch profiler with paired thread-cycle and elapsed timing, signal/silent subsets and slow-block evidence; no new live callback instrumentation or DSP changes.
+- Recorded live 32/64-frame comparisons and repeated standalone offline runs. Near-normal thread work during some elapsed spikes supports scheduling interruption as a contributor; the responsible driver/process remains unproven.
+- Added summary-pairing regression coverage. Existing portable Alpha 43 is preserved; this is a diagnostic source update, not a new app release.

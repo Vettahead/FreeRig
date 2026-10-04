@@ -336,6 +336,12 @@
       "title": "3 October 2026 — Supplied patch timing and steady callback allocations",
       "body": "- Added an offline serial-patch profiler with per-stage and complete graph/output deadline statistics at 32/64/128 samples.\n- Removed per-block enumerable allocations from unchanged legacy amp/cab EQ comparisons, preserving parameter comparison and DSP arithmetic; added zero-allocation steady render/output regression checks.\n- Supplied patch loop allocation fell from 2,688,000 bytes to zero over seven seconds at 32 frames. Timing remains subject to scheduling; this does not establish a live driver fix.\n- Existing logs show recent Mackie ASIO input routed to a separate BIG KNOB Windows output, adding buffering, plus repeated driver resets. Documented direct-ASIO comparison steps and unresolved cause in docs/AUDIO-ROBUSTNESS.md.",
       "version": 0
+    },
+    {
+      "id": "release-56",
+      "title": "4 October 2026 — Source-only processing spike investigation",
+      "body": "- Extended the offline serial-patch profiler with paired thread-cycle and elapsed timing, signal/silent subsets and slow-block evidence; no new live callback instrumentation or DSP changes.\n- Recorded live 32/64-frame comparisons and repeated standalone offline runs. Near-normal thread work during some elapsed spikes supports scheduling interruption as a contributor; the responsible driver/process remains unproven.\n- Added summary-pairing regression coverage. Existing portable Alpha 43 is preserved; this is a diagnostic source update, not a new app release.",
+      "version": 0
     }
   ]
 }

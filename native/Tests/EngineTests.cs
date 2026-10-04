@@ -54,6 +54,7 @@ namespace GuitarSuite
                 PlayAlongTests.Run(lines);
                 WindowsInputTests.Run(lines);
                 PerformanceTests.Run(lines);
+                PatchPerformanceAudit.TestSummary(lines);
                 AudioPerformanceLogTests.Run(lines);
                 CallbackIsolationTests.Run(lines);
                 CaptureHeadroomTests.Run(lines);
