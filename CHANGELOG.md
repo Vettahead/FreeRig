@@ -427,3 +427,7 @@ The source and licences for this GPL-3.0-or-later build accompany the portable r
 - Extended the offline serial-patch profiler with paired thread-cycle and elapsed timing, signal/silent subsets and slow-block evidence; no new live callback instrumentation or DSP changes.
 - Recorded live 32/64-frame comparisons and repeated standalone offline runs. Near-normal thread work during some elapsed spikes supports scheduling interruption as a contributor; the responsible driver/process remains unproven.
 - Added summary-pairing regression coverage. Existing portable Alpha 43 is preserved; this is a diagnostic source update, not a new app release.
+
+## 4 October 2026 — Mackie ASIO output investigation
+
+- Documented separate input/output channel naming and the Studio+ USB 3/4 cue return. Manufacturer ASIO playback silence remains under investigation; Windows playback success alone does not identify a converter or routing defect. No runtime change or new app release.

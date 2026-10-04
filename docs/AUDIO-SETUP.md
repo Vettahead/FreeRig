@@ -20,6 +20,10 @@ If capture cannot start, check Windows **Privacy & security → Microphone → L
 
 FreeRig takes a mono guitar input and produces stereo output. This release is not a multichannel recording mixer. Windows audio support does not guarantee that Bluetooth or every USB combination will have usable guitar latency.
 
+## Mackie Big Knob Studio+ output names
+
+The Mackie ASIO driver can report inputs named Analog 1/2 and four outputs named Analog 1–4. Input and output names belong to separate driver lists; matching names do not route playback into input sockets. Select the output pair that feeds the hardware monitoring path. The [Mackie manual](https://mackie.com/img/file_resources/Big_Knob_Series_OM.pdf), page 15, identifies USB returns 3/4 as a separate cue source. PC or Windows playback working does not establish that a selected ASIO pair feeds the same destination. Compare pairs with audio stopped between changes before changing processing code.
+
 ## Verification
 
 The offline suite tests selected-channel isolation for 1/2/8-channel float packets, changing packet sizes, continuity through 32/64/128-frame blocks, invalid samples and packet validation. Existing graph, scene, capture calibration and effect regressions remain required. `FreeRig.exe --inputs` enumerates capture endpoints without recording. `node scripts/audio-ui-preview.cjs` serves a development-only mock at localhost:4322; Start in that fixture never opens hardware. It is not packaged in the desktop UI.

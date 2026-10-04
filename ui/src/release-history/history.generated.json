@@ -348,6 +348,12 @@
       "title": "4 October 2026 — Source-only processing spike investigation",
       "body": "- Extended the offline serial-patch profiler with paired thread-cycle and elapsed timing, signal/silent subsets and slow-block evidence; no new live callback instrumentation or DSP changes.\r\n- Recorded live 32/64-frame comparisons and repeated standalone offline runs. Near-normal thread work during some elapsed spikes supports scheduling interruption as a contributor; the responsible driver/process remains unproven.\r\n- Added summary-pairing regression coverage. Existing portable Alpha 43 is preserved; this is a diagnostic source update, not a new app release.",
       "version": 0
+    },
+    {
+      "id": "release-58",
+      "title": "4 October 2026 — Mackie ASIO output investigation",
+      "body": "- Documented separate input/output channel naming and the Studio+ USB 3/4 cue return. Manufacturer ASIO playback silence remains under investigation; Windows playback success alone does not identify a converter or routing defect. No runtime change or new app release.",
+      "version": 0
     }
   ]
 }
