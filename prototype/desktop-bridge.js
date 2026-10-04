@@ -257,7 +257,7 @@ window.NativeDesktop = (() => {
             : message.load >= 1
               ? 'Audio processing exceeded the buffer time — increase the ASIO buffer size.'
               : message.clipped
-                ? 'Output ceiling reached — lower master or device output.'
+                ? 'Output limiter active — lower output for more dynamics.'
                 : message.rawPeak >= 0.999
                   ? 'Input is clipping — lower your interface gain.'
                   : message.peak >= 1
@@ -271,7 +271,7 @@ window.NativeDesktop = (() => {
         $('#output-meter').value = message.output || 0;
         $('#output-db').textContent = level(message.output);
         $('#output-warning').textContent = message.clipped
-          ? 'Output reached its ceiling — lower Master output.'
+          ? 'Output limiter active — lower output for more dynamics.'
           : '';
       }
       if (message.type === 'driver' && $('#audio-input')) {

@@ -13,7 +13,13 @@ Chris reported harshness with several Hendrix captures, cabinet IRs and studio m
 
 The original NAM playback DLL and model weights are unchanged. Effects are rebuilt and regression-tested, but no effect algorithm was modified. Play-along still mixes after guitar effects. No guitar buffering or lookahead was introduced.
 
-## Using the result
+## Current output protection — Alpha 45
+
+Alpha 45 replaces the historical hard ceiling below with a stereo-linked peak limiter after master gain. It reacts immediately to overload and releases over 80 ms, with no look-ahead buffering. Safe audio is unchanged when protection has recovered. Heavy limiting changes dynamics; it does not normalise patch loudness or repair earlier distortion. The existing red indication reports peaks before protection, while the warning now reads **Output limiter active**.
+
+The saved JCM TS9 comparison scene 4 was rerendered at 48 kHz and 32/64/128 frames. At 128 frames, the cabinet raised the synthetic chord peak from 0.144781 to 1.193528; the graph matched sequential processing exactly. That demonstrates output overload in this offline stimulus, not the precise level of live guitar or a diagnosis of the Mackie's analogue output. New hot-sine tests compare the limiter against the previous hard clip, check stereo linking, release and buffer independence, and verify zero processing allocations at 44.1/48/96 kHz.
+
+## Using the Alpha 23 result (historical)
 
 Keep your current IR and play the problem patch in Alpha 23. If **Output clipped** appears, choose **Lower master output**, then play again. Recover listening volume at the monitor/interface control if necessary. Raising the app's master into the ceiling recreates the distortion. If it still clips at −30 dB, lower device output levels.
 

@@ -101,8 +101,14 @@ namespace GuitarSuite
                           "Combined mix bypassed output ceiling.");
                     // Starvation must yield silence from backing immediately, not repeat music.
                     mix.Read(b, 0, b.Length);
+                    Check(BitConverter.ToSingle(b, 0) >= 0 && BitConverter.ToSingle(b, 0) <= .2f &&
+                              BitConverter.ToSingle(b, 0) == BitConverter.ToSingle(b, 4),
+                          "Backing starvation repeated old audio or lost stereo guitar.");
+                    // Peak protection releases gradually after the hot backing stops.
+                    for (int n = 0; n < rate / frames + 1; n++)
+                        mix.Read(b, 0, b.Length);
                     Check(Math.Abs(BitConverter.ToSingle(b, 0) - .2f) < .001,
-                          "Backing starvation repeated old audio.");
+                          "Output limiter failed to release after backing starvation.");
                 }
             lines.Add(
                 "PASS: play-along stereo sum, independent smoothed mute, master ceiling, silence on starvation and bit-identical guitar with empty backing at 44.1/48/96 kHz and 32/64/128/4096 frames.");

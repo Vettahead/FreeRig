@@ -20,7 +20,7 @@ FreeRig depends on open-source audio engines and recorded assets. See [Credits, 
 
 Hardware artwork represents families of equipment. Changing its appearance does not change the processor or loaded capture. Circuit amps model preamps; they are not complete power-amp simulations.
 
-Alpha 44 retains ASIO channel selections when reopening Audio setup during playback. Alpha 43 adds [automatic audio-performance logging](docs/AUDIO-PERFORMANCE-LOG.md) for reviewing load peaks and deadline misses.
+Alpha 45 adds stereo-linked output peak protection in place of hard clipping; Mackie loudness still needs a live listening comparison. Alpha 44 retains ASIO channel selections when reopening Audio setup during playback. Alpha 43 adds [automatic audio-performance logging](docs/AUDIO-PERFORMANCE-LOG.md) for reviewing load peaks and deadline misses.
 
 ## Get started
 

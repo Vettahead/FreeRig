@@ -206,7 +206,7 @@ Check the interface's direct-monitor mix. Hardware monitoring can add a dry path
 
 ### Why does the sound clip, fizz or become harsh?
 
-Check interface input overload, capture drive, downstream gain and the **Output clipped** warning separately. Adding an IR to an amp+cab capture can change the response again. **Lower master output** reduces listening/output level without changing capture drive. A lower final volume cannot undo clipping already introduced earlier. See [Capture fidelity](CAPTURE-FIDELITY.md).
+Check interface input overload, capture drive, downstream gain and the **Output limiter active** warning separately. Adding an IR to an amp+cab capture can change the response again. **Lower master output** reduces listening/output level without changing capture drive. A lower final volume cannot undo clipping already introduced earlier. See [Capture fidelity](CAPTURE-FIDELITY.md).
 
 ### Why does a captured drive change the amp so much?
 

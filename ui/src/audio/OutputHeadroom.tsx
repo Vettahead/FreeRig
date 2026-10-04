@@ -37,7 +37,7 @@ export function OutputHeadroom() {
     <aside className="output-headroom" aria-label="Output headroom">
       <span role="status">
         {peak
-          ? `Output clipped · peak ${(20 * Math.log10(peak)).toFixed(1)} dBFS before protection. This can sound harsh.`
+          ? `Output limiter active · peak ${(20 * Math.log10(peak)).toFixed(1)} dBFS before protection. Lower output for more dynamics.`
           : result}
       </span>
       {peak > 0 && (
@@ -47,7 +47,7 @@ export function OutputHeadroom() {
             ignoreUntil.current = Date.now() + 300;
             setPeak(0);
             setResult(
-              `Master set to ${db} dB. Input and capture tone unchanged. If clipping returns at −30 dB, lower device outputs.`,
+              `Master set to ${db} dB. Input and capture tone unchanged. If limiting returns at −30 dB, lower device outputs.`,
             );
           }}
         >

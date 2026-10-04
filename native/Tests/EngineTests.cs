@@ -52,6 +52,7 @@ namespace GuitarSuite
                 lines.Add("PASS: independent input trim, calibrated gain, 10 ms smoothing and " +
                           "restart level.");
                 PlayAlongTests.Run(lines);
+                OutputLimiterTests.Run(lines);
                 WindowsInputTests.Run(lines);
                 PerformanceTests.Run(lines);
                 PatchPerformanceAudit.TestSummary(lines);

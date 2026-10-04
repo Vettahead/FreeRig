@@ -1,3 +1,7 @@
+# FreeRig Alpha 45
+
+Final output now uses stereo-linked peak protection instead of hard sample clipping. Start at your previous output setting and raise it gradually while playing. The limiter controls peaks without changing amp drive or adding look-ahead latency; heavy limiting changes dynamics. The red output indication still marks pre-protection overload, and the warning now says Output limiter active. Lower output if you want more dynamics. This change does not certify Mackie speaker loudness or resolve ASIO scheduling dropouts.
+
 # FreeRig Alpha 43
 
 Adds automatic local audio-performance logging. Run this complete release folder, start audio, reproduce idle/playing load for a minute and stop audio. Records are saved to `%LOCALAPPDATA%\GuitarSuite\audio-performance.jsonl` with one rotated `.1` backup. The source guide `docs/AUDIO-PERFORMANCE-LOG.md` explains the measurements. Audio processing runs even while not playing; load is callback deadline utilisation, not whole-PC CPU. Reported live dropouts remain under investigation. Earlier release folders are preserved.

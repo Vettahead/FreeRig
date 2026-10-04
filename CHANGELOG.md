@@ -1,3 +1,9 @@
+## Alpha 45 — 4 October 2026
+
+- Replaced final sample hard clipping with a stereo-linked peak limiter after the master output. Instant attack and an 80 ms release control hot peaks without added buffering or flattening every waveform peak. Safe signals pass unchanged once protection has released.
+- Output warning now identifies limiter activity and recommends lowering output for more dynamics. Saved patches, capture drive, calibration and selected audio devices remain compatible.
+- Added rate/buffer, stereo, recovery, allocation and waveform-distortion regression checks. Heavy overload can still colour dynamics; this is peak protection, not automatic volume normalisation. Mackie speaker loudness and live ASIO dropouts still require listening verification.
+
 ## Alpha 44 — 4 October 2026
 
 - Fixed blank ASIO input/output selectors after closing and reopening Audio setup while audio is running. Discovered channel names now survive dialog dismissal; saved selections remain visible when names are unavailable.

@@ -45,7 +45,7 @@ The lockfiles also enumerate transitive JavaScript dependencies. `native/deps` i
 
 ## FreeRig adaptations and compositions
 
-FreeRig adds host wrappers, C ABI integration, saved patch/scene contracts, routing, parameter/preset descriptions and interface controls around imported processors. Shimmer Hall combines Signalsmith shifting with Dragonfly Hall. Other FreeRig adapters include EQ, manual/envelope wah, reverse/granular processing, vocoder and practice looping. These additions do not make the underlying third-party engines original FreeRig research. Source and porting notes show the actual implementation and any arithmetic changes; offline comparisons do not prove commercial hardware equivalence.
+FreeRig adds host wrappers, C ABI integration, saved patch/scene contracts, routing, parameter/preset descriptions and interface controls around imported processors. Shimmer Hall combines Signalsmith shifting with Dragonfly Hall. The final stereo-linked output peak limiter is FreeRig-owned managed code with no new upstream dependency. Other FreeRig adapters include EQ, manual/envelope wah, reverse/granular processing, vocoder and practice looping. These additions do not make the underlying third-party engines original FreeRig research. Source and porting notes show the actual implementation and any arithmetic changes; offline comparisons do not prove commercial hardware equivalence.
 
 ## Artwork, AI assistance and external services
 

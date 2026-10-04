@@ -18,9 +18,11 @@ namespace GuitarSuite
         public readonly PeakHold BeforeCeiling = new PeakHold();
         readonly float[] backingSamples = new float[8192];
         readonly float[] interleaved = new float[8192];
+        readonly OutputLimiter limiter;
         public LiveProvider(int rate)
         {
             WaveFormat = WaveFormat.CreateIeeeFloatWaveFormat(rate, 2);
+            limiter = new OutputLimiter(rate);
         }
         // Keep output gain independent of amp drive; ramp changes to avoid clicks.
         public volatile float Gain = .25f, Peak;
@@ -47,9 +49,6 @@ namespace GuitarSuite
                     v = 0;
                 clipped |= Math.Abs(v) > .95f;
                 beforeCeiling = Math.Max(beforeCeiling, Math.Abs(v));
-                v = Math.Max(-.95f, Math.Min(.95f, v));
-                peak = Math.Max(peak, Math.Abs(v));
-                interleaved[i * 2] = v;
                 float r = ((i < Count ? (RightSamples ?? Samples)[i] : 0) +
                            (backing == null ? 0 : backingSamples[i * 2 + 1])) *
                           currentGain;
@@ -57,8 +56,10 @@ namespace GuitarSuite
                     r = 0;
                 clipped |= Math.Abs(r) > .95f;
                 beforeCeiling = Math.Max(beforeCeiling, Math.Abs(r));
-                r = Math.Max(-.95f, Math.Min(.95f, r));
+                limiter.Process(ref v, ref r);
+                peak = Math.Max(peak, Math.Abs(v));
                 peak = Math.Max(peak, Math.Abs(r));
+                interleaved[i * 2] = v;
                 interleaved[i * 2 + 1] = r;
             }
             Peak = peak;
