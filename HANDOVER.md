@@ -1,3 +1,6 @@
+## 4 October 2026 — GitHub standing instruction and UI CPU review
+
+User instructs future checked changes to be committed/pushed to public origin Vettahead/FreeRig, with changelogs, docs and upstream attribution kept current. Recorded in AGENTS.md. Next priority raised: removing WebView2 to save CPU. Initial source review finds 100 ms host status/meter messaging (backing status sent even stopped), no explicit minimised suspension and short-lived drag animation that settles. No runtime CPU measurements collected, and no WebView2 causality or savings established. Added evidence-first comparison to TODO: same audio rig with visible/active/suspended UI, process CPU and deadline misses, then decide on optimisation versus native rewrite. No runtime changes or app release in this commit. Microsoft performance guidance supports profiling, batching messages and suspending unused webviews.
 ## 4 October 2026 — Public GitHub documentation
 
 User authorised public Vettahead/FreeRig repository and requested graphics, explanations, full FAQ and transparent upstream attribution. Reworked README with existing Alpha42 screenshots, GitHub signal-flow diagram, quick start and guide index. Added docs/FAQ.md and docs/CREDITS.md covering imported engines/assets, licences, pinned provenance, adaptations, AI artwork/code assistance and current live-audio limitations. Publication is source/documentation only; no new binary release or version bump. Regenerated in-app history through npm run build; existing release folders preserved.
@@ -401,4 +404,5 @@ Important alpha limits: mono processing duplicated to stereo outputs; stereo IR 
 Full licence and source links are in native/README.md; release includes required notices and Eigen source archive. No imported NAM captures are bundled. Do not claim the engine is production ready or that ASIO hardware has been verified. Mission Control bb78c32c-d021-44ed-b02c-0cad6ae65576.
 
 Live follow-up: Chris signed in and selected a tone in alpha 03, then got 'An error occurred while sending the request' at native token exchange. Alpha 03.1 explicitly enables TLS 1.2; a native .NET Framework GET auth preflight and POST to the token endpoint with a deliberately invalid diagnostic code both reached TONE3000 (307 and expected 400). Chris is retrying 03.1. Actual model download remains unverified.
+
 

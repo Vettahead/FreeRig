@@ -1,5 +1,7 @@
 # Next work
 
+- [ ] UI CPU investigation: measure FreeRig host and its WebView2 processes with the same patch/route, comparing visible idle UI, active meters/editing and explicitly suspended UI. Compare audio deadline misses as well as average CPU. Audit 100 ms host status messages and minimised-window lifecycle; establish evidence before choosing a native UI replacement. Preserve existing audio, patch and scene contracts.
+
 - [ ] MIDI foot control: learn PC/CC assignments for banks, patches, scenes 1–8, stomps, tap tempo and tuner; reconnect handling and saved mappings. Requested for later, not included in alpha 11.
 - [ ] Live scene qualification: repeated scene recalls across real long chains at 32 samples; test every effect's parameter transitions, especially delay time and EQ; implement smoothing where necessary. Preserve tails when effects remain enabled. Define bypass spillover explicitly.
 - [ ] Gapless full-patch recall: background preparation and measured transition strategy with CPU headroom. Alpha 11 scene continuity is not a guarantee for graph replacement.

@@ -6,6 +6,10 @@ Start with [the architecture map](docs/ARCHITECTURE.md) and [adding a pedal](doc
 
 Verify that the working directory is this FreeRig repository, not `G8-website` or a release folder. Read the current README, newest HANDOVER entry and relevant guides, then inspect Git status before edits. `docs/PROJECT-CONTEXT.md` is orientation for new chats; verify it against current source. Conversation project membership does not grant filesystem access.
 
+## GitHub and attribution
+
+The canonical public remote is `https://github.com/Vettahead/FreeRig` (`origin`). After completing and checking authorised changes, commit and push them to this repository unless the user asks to keep work local. Keep CHANGELOG and relevant documentation current; preserve transparent upstream credits in `docs/CREDITS.md`, including sources, revisions, licences, adaptations and artwork provenance. Do not publish credentials, private captures or unvalidated binaries.
+
 ## Source rules
 
 - Keep a file focused on one responsibility. Separate presentation, saved patch data, native messaging and audio processing.
