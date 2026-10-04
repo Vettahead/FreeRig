@@ -6,7 +6,7 @@ FreeRig is a Windows desktop guitar suite with a visual pedalboard, native audio
 
 ![FreeRig Alpha 42: hardware controls and pedalboard workspace](docs/screenshots/alpha42-echoking.png)
 
-> **Alpha software:** the packaged baseline is Alpha 44. Small-buffer audio dropouts are under investigation. Offline tests do not establish live performance on every interface. See [known limitations](docs/FAQ.md#what-are-the-known-limitations).
+> **Alpha software:** the packaged baseline is Alpha 45. Small-buffer audio dropouts are under investigation. Offline tests do not establish live performance on every interface. See [known limitations](docs/FAQ.md#what-are-the-known-limitations).
 
 FreeRig depends on open-source audio engines and recorded assets. See [Credits, upstream code and provenance](docs/CREDITS.md) for named projects, licences, revisions, adaptations and AI artwork disclosure.
 
@@ -20,11 +20,11 @@ FreeRig depends on open-source audio engines and recorded assets. See [Credits, 
 
 Hardware artwork represents families of equipment. Changing its appearance does not change the processor or loaded capture. Circuit amps model preamps; they are not complete power-amp simulations.
 
-Alpha 45 adds stereo-linked output peak protection in place of hard clipping; Mackie loudness still needs a live listening comparison. Alpha 44 retains ASIO channel selections when reopening Audio setup during playback. Alpha 43 adds [automatic audio-performance logging](docs/AUDIO-PERFORMANCE-LOG.md) for reviewing load peaks and deadline misses.
+Alpha 45 adds stereo-linked output peak protection in place of hard clipping. The user reports improved sound through Mackie speakers; loudness matching remains unverified. Alpha 44 retains ASIO channel selections when reopening Audio setup during playback. Alpha 43 adds [automatic audio-performance logging](docs/AUDIO-PERFORMANCE-LOG.md) for reviewing load peaks and deadline misses.
 
 ## Get started
 
-Download the ready-to-run [FreeRig Alpha 44 Windows app](https://github.com/Vettahead/FreeRig/releases/tag/alpha-44). Choose **FreeRig-alpha-44-win-x64.zip** under Assets. **A source ZIP is not a ready-to-run Windows app.** Portable packages are published as GitHub release assets; source remains in Git history. Builders can follow [Contributing](CONTRIBUTING.md).
+Download the ready-to-run [FreeRig Alpha 45 Windows app](https://github.com/Vettahead/FreeRig/releases/tag/alpha-45). Choose **FreeRig-alpha-45-win-x64.zip** under Assets. **A source ZIP is not a ready-to-run Windows app.** Portable packages are published as GitHub release assets; source remains in Git history. Builders can follow [Contributing](CONTRIBUTING.md).
 
 1. Extract the complete portable folder and open `FreeRig.exe`. Keep its DLLs, UI files and licences together.
 2. Connect your guitar to an instrument/Hi-Z input on your audio interface and connect headphones or monitors.

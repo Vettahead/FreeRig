@@ -1,3 +1,6 @@
+## 4 October 2026 — Alpha 45 GitHub release
+
+User reports the output candidate sounds better and explicitly asks for both release and code on GitHub. Source implementation commit bb3b1e4 is pushed to origin/master. Publish the exact validated Alpha45 portable/source ZIPs, release manifest and SHA256SUMS as prerelease alpha-45 at that commit. Existing local package preserved. README/FAQ download links updated to45. Listening improvement is user-reported, not independent live validation or proof that loudness matches YouTube. No runtime changes. Mission Control unavailable.
 ## 4 October 2026 — Alpha 45 final output peak protection
 
 User reports FreeRig output red/digital noise at 0 dB, needing -12 dB to avoid overload, while YouTube is loud through unchanged Mackie Big Knob Studio+ speakers, direct ASIO outputs 1/2. Do not keep attributing this to headphones or an invented USB source trim. Photos show low green Mackie source meters; snapshots do not establish live peak/RMS relationship. Existing UI also reports deadline misses; those are a separate unresolved source of crackles.
