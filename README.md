@@ -24,7 +24,7 @@ Alpha 44 retains ASIO channel selections when reopening Audio setup during playb
 
 ## Get started
 
-This repository contains source and documentation. **A source ZIP is not a ready-to-run Windows app.** Packaged builds are not included in Git history. Until a validated GitHub release is published, build using [Contributing](CONTRIBUTING.md), or use an existing complete portable release folder.
+Download the ready-to-run [FreeRig Alpha 44 Windows app](https://github.com/Vettahead/FreeRig/releases/tag/alpha-44). Choose **FreeRig-alpha-44-win-x64.zip** under Assets. **A source ZIP is not a ready-to-run Windows app.** Portable packages are published as GitHub release assets; source remains in Git history. Builders can follow [Contributing](CONTRIBUTING.md).
 
 1. Extract the complete portable folder and open `FreeRig.exe`. Keep its DLLs, UI files and licences together.
 2. Connect your guitar to an instrument/Hi-Z input on your audio interface and connect headphones or monitors.

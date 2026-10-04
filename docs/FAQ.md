@@ -32,7 +32,7 @@ The documented product is a standalone Windows desktop app. VST, AU and DAW plug
 
 ### How do I download and install it?
 
-Use a validated portable package when one is available. Extract the entire folder and run `FreeRig.exe`; do not move only the executable. GitHub's source download contains code, not an installed app. This documentation update does not itself publish a binary release. Builders should follow [Contributing](../CONTRIBUTING.md) and the [native instructions](../native/README.md).
+Download **FreeRig-alpha-44-win-x64.zip** from the [Alpha 44 GitHub release](https://github.com/Vettahead/FreeRig/releases/tag/alpha-44). Extract the entire folder and run `FreeRig.exe`; do not move only the executable. GitHub's source download contains code, not an installed app. Builders should follow [Contributing](../CONTRIBUTING.md) and the [native instructions](../native/README.md).
 
 ### What equipment do I need?
 
